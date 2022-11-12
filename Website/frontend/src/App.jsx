@@ -1,18 +1,18 @@
 import { useState } from "react";
-import heroImage from "./assets/hero-image.png";
-import { Header } from "./components/Header";
-import "./global.css";
+import "./App.css";
+import { Navbar } from "./components/Navbar";
+
 export function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
       <div className="">
-        <Header className="fixed-top" />
+        <Navbar className="fixed-top" />
         <div className="bg-image-gradient position-relative w-100 vh-100 d-flex">
           <div className="container d-flex justify-content-around align-items-center">
             <div className="me-auto">
-              <h1 className="">
+              <h1>
                 <strong>
                   "If you have a special
                   <p>point make it green."</p>
