@@ -1,31 +1,38 @@
 import React from 'react'
+import logo from '../assets/mygreenpointlogo.png'
+import { Link } from "react-router-dom"
 
 export function Navbar() {
     return (
-        <div>
-            <nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+     <div>
+         <nav className="fixed-top navbar navbar-expand-lg" style={{height:'7em'}}>
+            <div className='container'>
+                <a className="navbar-brand"><img src={logo} alt="My Green Point" style={{maxWidth:'180px', margin:'18px' , height:'auto'}}/></a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item" style={{width:'137px', height:'40px', background:'#6CCA98',borderRadius:'99px', marginRight:'10px'}}>
+                            <a type='button' className="nav-link" style={{color:'white'}} Link="#">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                        <li className="nav-item" style={{width:'137px', height:'40px', background:'#6CCA98',borderRadius:'99px', marginRight:'10px'}}>
+                            <a type='button' className="nav-link" style={{color:'white'}} Link="#">Descarregar</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                        <li className="nav-item" style={{width:'137px', height:'40px', background:'#6CCA98',borderRadius:'99px', marginRight:'10px'}}>
+                            <a type='button' className="nav-link" style={{color:'white'}} Link="#">Objetivos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
+                        <li className="nav-item" style={{width:'137px', height:'40px', background:'#6CCA98',borderRadius:'99px', marginRight:'10px'}}>
+                            <a type='button' className="nav-link" style={{color:'white'}} Link="#">Oferecemos</a>
+                        </li>
+                        <li className="nav-item" style={{width:'137px', height:'40px', background:'#6CCA98',borderRadius:'99px', marginRight:'10px'}}>
+                            <a type='button' className="nav-link" style={{color:'white'}} Link="#">Atualizações</a>
                         </li>
                     </ul>
                 </div>
-            </nav>
-        </div>
-
+            </div>
+        </nav>
+     </div>
     )
 }
+export default Navbar
