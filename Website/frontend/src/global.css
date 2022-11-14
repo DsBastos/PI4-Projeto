@@ -9,3 +9,7 @@
   );
   background-size: cover;
 }
+
+ .active{
+  background-color: white;
+}

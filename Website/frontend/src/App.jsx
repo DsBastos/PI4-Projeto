@@ -5,7 +5,7 @@ export function App() {
   return (
     <div className="App">
       <div className="">
-        <Navbar className="fixed-top" />
+        <Navbar/>
         <div className="bg-image-gradient position-relative w-100 vh-100 d-flex">
           <div className="container d-flex justify-content-around align-items-center">
             <div className="me-auto">
