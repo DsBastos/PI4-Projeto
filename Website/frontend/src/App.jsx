@@ -1,4 +1,5 @@
 import { Navbar } from "./components/Navbar";
+import heroImage from "./assets/heroImage.png";
 
 export function App() {
   return (
