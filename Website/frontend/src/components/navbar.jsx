@@ -1,14 +1,14 @@
 import React from "react";
 import logo from "../assets/mygreenpointlogo.png";
-import { Link } from "react-dom";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   return (
     <nav
-      class="navbar fixed-top navbar-expand-lg text-center"
+      className="navbar fixed-top navbar-expand-lg text-center"
       style={{ height: "7em" }}
     >
-      <div class="container">
+      <div className="container">
         <a className="navbar-brand">
           <img
             src={logo}
@@ -17,7 +17,7 @@ export function Navbar() {
           />
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -26,15 +26,15 @@ export function Navbar() {
           aria-label="Toggle navigation"
           ar
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
-          <ul class="navbar-nav align-items-end ">
+          <ul className="navbar-nav align-items-end ">
             <li
-              class="nav-item"
+              className="nav-item"
               style={{
                 width: "137px",
                 height: "40px",
@@ -45,7 +45,7 @@ export function Navbar() {
               }}
             >
               <a
-                class="nav-link"
+                className="nav-link"
                 type="button"
                 style={{ color: "white" }}
                 Link="#"
@@ -54,7 +54,7 @@ export function Navbar() {
               </a>
             </li>
             <li
-              class="nav-item"
+              className="nav-item"
               style={{
                 width: "137px",
                 height: "40px",
@@ -65,7 +65,7 @@ export function Navbar() {
               }}
             >
               <a
-                class="nav-link"
+                className="nav-link"
                 type="button"
                 style={{ color: "white" }}
                 Link="#"
@@ -74,7 +74,7 @@ export function Navbar() {
               </a>
             </li>
             <li
-              class="nav-item"
+              className="nav-item"
               style={{
                 width: "137px",
                 height: "40px",
@@ -85,7 +85,7 @@ export function Navbar() {
               }}
             >
               <a
-                class="nav-link"
+                className="nav-link"
                 type="button"
                 style={{ color: "white" }}
                 Link="#"
@@ -94,7 +94,7 @@ export function Navbar() {
               </a>
             </li>
             <li
-              class="nav-item"
+              className="nav-item"
               style={{
                 width: "137px",
                 height: "40px",
@@ -105,7 +105,7 @@ export function Navbar() {
               }}
             >
               <a
-                class="nav-link "
+                className="nav-link "
                 type="button"
                 style={{ color: "white" }}
                 Link="#"
@@ -114,7 +114,7 @@ export function Navbar() {
               </a>
             </li>
             <li
-              class="nav-item"
+              className="nav-item"
               style={{
                 width: "137px",
                 height: "40px",
@@ -125,7 +125,7 @@ export function Navbar() {
               }}
             >
               <a
-                class="nav-link "
+                className="nav-link "
                 type="button"
                 style={{ color: "white" }}
                 Link="#"
