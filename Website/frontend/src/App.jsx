@@ -1,4 +1,6 @@
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/navbar";
+import { Footer } from "./components/footer";
+
 import heroImage from "./assets/heroImage.png";
 
 export function App() {
@@ -7,8 +9,8 @@ export function App() {
       <div className="">
         <Navbar/>
         <div className="bg-image-gradient position-relative w-100 vh-100 d-flex">
-          <div className="container d-flex justify-content-around align-items-center">
-            <div className="me-auto">
+          <div className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center">
+            <div className="me-auto ">
               <h1>
                 <strong>
                   "If you have a special
@@ -25,9 +27,10 @@ export function App() {
                 Conhece a app aqui! 👈🏻
               </button>
             </div>
-            <img className="w-25 ms-auto" src={heroImage} alt="react logo" />
+            <img className="h-100 ms-auto d-none d-lg-block mt-5" src={heroImage} alt="react logo" />
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
