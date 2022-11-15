@@ -38,7 +38,7 @@ export function App() {
           </div>
         </div>
         <section className="py-5 section-background-verde d-flex align-items-center">
-          <div className="container d-flex justify-content-between align-items-center">
+          <div className="container d-lg-flex justify-content-between align-items-center">
             <div className="py-5">
               <h1>
                 <strong>Nosso Objetivo</strong>
@@ -70,7 +70,7 @@ export function App() {
             <h1>
               <strong>Atualização das ultimas versões da aplicação</strong>
             </h1>
-            <div className="card mx-auto mt-5" style={{ width: "42rem" }}>
+            <div className="card mx-auto mt-5" style={{ maxWidth: "42rem" }}>
               <div class="card-body p-4">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
                   <div class="accordion-item">
