@@ -10,6 +10,10 @@
   background-size: cover;
 }
 
- .active{
+.active {
   background-color: white;
+}
+
+.section-objetivo-background {
+  background: rgba(108, 202, 152, 0.06);
 }
