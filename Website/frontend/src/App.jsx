@@ -2,9 +2,10 @@ import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
 
 import heroImage from "./assets/heroImage.png";
+import mygreenpointlogo from "./assets/mygreenpointlogo.png";
 
 import "./global.css";
-import mygreenpointlogo from "./assets/mygreenpointlogo.png";
+
 export function App() {
   return (
     <div className="App">
@@ -36,7 +37,7 @@ export function App() {
             />
           </div>
         </div>
-        <section className="py-5 section-objetivo-background d-flex align-items-center">
+        <section className="py-5 section-background-verde d-flex align-items-center">
           <div className="container d-flex justify-content-between align-items-center">
             <div className="py-5">
               <h1>
@@ -61,6 +62,104 @@ export function App() {
               class="img-fluid w-50 h-50"
               alt="Image do logo na section do nosso objetivo"
             />
+          </div>
+        </section>
+        <section className="vh-100"></section>
+        <section className="py-5 section-background-verde d-flex align-items-center">
+          <div className="container py-5">
+            <h1>
+              <strong>Atualização das ultimas versões da aplicação</strong>
+            </h1>
+            <div className="card mx-auto mt-5" style={{ width: "42rem" }}>
+              <div class="card-body p-4">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                      <button
+                        class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne"
+                      >
+                        <strong>Versão 1.009.9</strong>
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseOne"
+                      class="accordion-collapse collapse show"
+                      aria-labelledby="panelsStayOpen-headingOne"
+                    >
+                      <div class="accordion-body">
+                        This is the first item's accordion body. It is hidden by
+                        default, until the collapse plugin adds the appropriate
+                        classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing
+                        and hiding via CSS transitions.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo"
+                      >
+                        <strong>Versão 1.009.8</strong>
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseTwo"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingTwo"
+                    >
+                      <div class="accordion-body">
+                        This is the first item's accordion body. It is hidden by
+                        default, until the collapse plugin adds the appropriate
+                        classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing
+                        and hiding via CSS transitions.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2
+                      class="accordion-header"
+                      id="panelsStayOpen-headingThree"
+                    >
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree"
+                      >
+                        <strong>Versão 1.009.7</strong>
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseThree"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingThree"
+                    >
+                      <div class="accordion-body">
+                        This is the first item's accordion body. It is hidden by
+                        default, until the collapse plugin adds the appropriate
+                        classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing
+                        and hiding via CSS transitions.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         <Footer />
