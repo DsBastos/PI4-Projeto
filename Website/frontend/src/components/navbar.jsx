@@ -1,6 +1,6 @@
 import logo from "../assets/mygreenpointlogo.png";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export function Navbar() {
   const [navbar, setnavbar] = useState(false);
