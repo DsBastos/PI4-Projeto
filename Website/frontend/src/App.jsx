@@ -5,6 +5,9 @@ import { Footer } from "./components/Footer";
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
 import imageDescarregarApp from "./assets/imageDescarregarApp.png";
+import ecrasOferecemos from "./assets/ECRAS_SECTION2.png";
+import qrcodeImage from "./assets/qrcode.png";
+
 import iconpt from "./assets/icon_pt.svg";
 import iconvouc from "./assets/icon_vou.svg";
 import iconres from "./assets/icon_res.svg";
@@ -42,18 +45,39 @@ export function App() {
           />
         </div>
       </div>
-      <section className="py-5">
-        <div className="container d-flex justify-content-between">
-          <img
-            src={imageDescarregarApp}
-            class="img-fluid p-5"
-            alt="Imagem do mockup da app na secção para descarregar"
-          />
-          <div>
-            <h1>
-              <strong>Descarregar a aplicação</strong>
-            </h1>
-            <h5 className="mt-5 text-muted"></h5>
+      <section className="my-5">
+        <div className="container">
+          <div className="row py-5">
+            <div className="col d-flex justify-content-center">
+              <img
+                src={imageDescarregarApp}
+                class="img-fluid"
+                alt="Imagem do mockup da app na secção para descarregar"
+              />
+            </div>
+
+            <div className="col">
+              <div className="me-5">
+                <h1>
+                  <strong>Descarregar a aplicação</strong>
+                </h1>
+                <h6 className="mt-5 text-muted lead">
+                  <strong>
+                    Descarrega a aplicação para Android pelo botão a baixo ou
+                    através da leitura do código QR
+                  </strong>
+                </h6>
+                <div className="d-flex align-items-start justify-content-between mt-5">
+                  <button
+                    className="btn btn-lg btn-primary text-white "
+                    type="submit"
+                  >
+                    Descarregar
+                  </button>
+                  <img src={qrcodeImage} className="pe-5" alt="" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -64,18 +88,20 @@ export function App() {
             <h1>
               <strong>Nosso Objetivo</strong>
             </h1>
-            <h5 className="mt-5 text-muted">
-              Pretendemos uma plataforma que permita aproximar o
-              <br />
-              visitante e os agentes locais de um território turístico,
-              <br />
-              abrindo um canal de comunicação e partilha que se
-              <br />
-              pretende vantajosa para ambas as partes, contribuindo
-              <br />
-              igualmente para a utilização responsável e sustentável a
-              <br />
-              nível ambiental e social do território.
+            <h5 className="mt-5 text-muted lead">
+              <strong>
+                Pretendemos uma plataforma que permita aproximar o
+                <br />
+                visitante e os agentes locais de um território turístico,
+                <br />
+                abrindo um canal de comunicação e partilha que se
+                <br />
+                pretende vantajosa para ambas as partes, contribuindo
+                <br />
+                igualmente para a utilização responsável e sustentável a
+                <br />
+                nível ambiental e social do território.
+              </strong>
             </h5>
           </div>
           <img
@@ -85,23 +111,51 @@ export function App() {
           />
         </div>
       </section>
-      <section className="vh-100">
-        <Card
-          titulo="asas"
-          descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw"
-          icon={iconvouc}
-        />
-        <Card titulo="OS MIGUXOS" descricao="OLÁ AMIGOS" icon={iconpt} />
-        <Card
-          titulo="BOLOOOOO"
-          descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHO"
-          icon={iconres}
-        />
-        <Card
-          titulo="O Iago vai entender isto"
-          descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto"
-          icon={iconqr}
-        />
+      <section className="my-5 d-flex align-items-center">
+        <div className="container my-4">
+          <div className="row">
+            <div className="col row row-cols-1">
+              <h1 className="">Oferecemos</h1>
+              <img
+                src={ecrasOferecemos}
+                className="img-fluid h-75 w-75"
+                alt=""
+              />
+            </div>
+            <div class="col row row-cols-1 row-cols-md-2">
+              <div class="col">
+                <Card
+                  titulo="asas"
+                  descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw"
+                  icon={iconvouc}
+                />
+              </div>
+              <div class="col">
+                <Card
+                  titulo="OS MIGUXOS"
+                  descricao="OLÁ AMIGOS"
+                  icon={iconpt}
+                />
+              </div>
+
+              <div class="col">
+                <Card
+                  titulo="BOLOOOOO"
+                  descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO"
+                  icon={iconres}
+                />
+              </div>
+
+              <div class="col">
+                <Card
+                  titulo="O Iago vai entender isto"
+                  descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto"
+                  icon={iconqr}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <section className="py-5 section-background-verde d-flex align-items-center">
         <div className="container py-5">
