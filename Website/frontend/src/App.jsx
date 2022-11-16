@@ -1,9 +1,15 @@
-import { Navbar } from "./components/navbar";
-import { Footer } from "./components/footer";
-
+import { Navbar } from "./components/Navbar";
+import { Card } from "./components/Card";
+import { Footer } from "./components/Footer";
 import heroImage from "./assets/heroImage.png";
+import iconpt from "./assets/icon_pt.svg";
+import iconvouc from "./assets/icon_vou.svg";
+import iconres from "./assets/icon_res.svg";
+import iconqr from "./assets/icon_qr.svg";
 
 export function App() {
+
+
   return (
     <div className="App">
       <div className="">
@@ -30,10 +36,15 @@ export function App() {
             <img className="h-100 ms-auto d-none d-lg-block mt-5" src={heroImage} alt="react logo" />
           </div>
         </div>
+        <Card titulo="asas" descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw" icon={iconvouc} />
+        <Card titulo="OS MIGUXOS" descricao="OLÁ AMIGOS" icon={iconpt}/>
+        <Card titulo="BOLOOOOO" descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHO" icon={iconres} />
+        <Card titulo="O Iago vai entender isto" descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto" icon={iconqr} />
         <Footer />
       </div>
     </div>
   );
 }
+
 
 export default App;
