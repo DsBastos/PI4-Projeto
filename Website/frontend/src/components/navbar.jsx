@@ -41,7 +41,7 @@ export function Navbar() {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div
-          class="offcanvas offcanvas-end text-bg-light w-75"
+          class="offcanvas offcanvas-end text-bg-light w-50"
           tabindex="-1"
           id="offcanvasNavbar2"
           aria-labelledby="offcanvasNavbar2Label"

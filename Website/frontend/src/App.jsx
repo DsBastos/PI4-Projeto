@@ -37,10 +37,10 @@ export function App() {
         </div>
       </div>
       <section className="py-5">
-        <div className="container py-5 d-flex justify-content-between">
+        <div className="container d-flex justify-content-between">
           <img
             src={imageDescarregarApp}
-            class="img-fluid"
+            class="img-fluid p-5"
             alt="Imagem do mockup da app na secção para descarregar"
           />
           <div>
