@@ -3,7 +3,7 @@ import { Footer } from "./components/footer";
 
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
-
+import imageDescarregarApp from "./assets/imageDescarregarApp.png";
 import "./global.css";
 
 export function App() {
@@ -36,6 +36,22 @@ export function App() {
           />
         </div>
       </div>
+      <section className="py-5">
+        <div className="container py-5 d-flex justify-content-between">
+          <img
+            src={imageDescarregarApp}
+            class="img-fluid"
+            alt="Imagem do mockup da app na secção para descarregar"
+          />
+          <div>
+            <h1>
+              <strong>Descarregar a aplicação</strong>
+            </h1>
+            <h5 className="mt-5 text-muted"></h5>
+          </div>
+        </div>
+      </section>
+
       <section className="py-5 section-background-verde d-flex align-items-center">
         <div className="container d-lg-flex justify-content-between align-items-center">
           <div className="py-5">
