@@ -1,18 +1,18 @@
 import { Navbar } from "./components/Navbar";
 import { Card } from "./components/Card";
 import { Footer } from "./components/Footer";
+
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
 import imageDescarregarApp from "./assets/imageDescarregarApp.png";
-import "./global.css";
 import iconpt from "./assets/icon_pt.svg";
 import iconvouc from "./assets/icon_vou.svg";
 import iconres from "./assets/icon_res.svg";
 import iconqr from "./assets/icon_qr.svg";
 
+import "./global.css";
+
 export function App() {
-
-
   return (
     <div className="App">
       <Navbar />
@@ -85,7 +85,24 @@ export function App() {
           />
         </div>
       </section>
-      <section className="vh-100"></section>
+      <section className="vh-100">
+        <Card
+          titulo="asas"
+          descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw"
+          icon={iconvouc}
+        />
+        <Card titulo="OS MIGUXOS" descricao="OLÁ AMIGOS" icon={iconpt} />
+        <Card
+          titulo="BOLOOOOO"
+          descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHO"
+          icon={iconres}
+        />
+        <Card
+          titulo="O Iago vai entender isto"
+          descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto"
+          icon={iconqr}
+        />
+      </section>
       <section className="py-5 section-background-verde d-flex align-items-center">
         <div className="container py-5">
           <h1>
@@ -181,15 +198,8 @@ export function App() {
         </div>
       </section>
       <Footer />
-        <Card titulo="asas" descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw" icon={iconvouc} />
-        <Card titulo="OS MIGUXOS" descricao="OLÁ AMIGOS" icon={iconpt}/>
-        <Card titulo="BOLOOOOO" descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHO" icon={iconres} />
-        <Card titulo="O Iago vai entender isto" descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto" icon={iconqr} />
-        <Footer />
-      </div>
     </div>
   );
 }
-
 
 export default App;
