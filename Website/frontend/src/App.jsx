@@ -48,7 +48,7 @@ export function App() {
       <section className="my-5">
         <div className="container">
           <div className="row py-5">
-            <div className="col d-flex justify-content-center">
+            <div className="col d-none d-lg-block d-flex justify-content-center">
               <img
                 src={imageDescarregarApp}
                 class="img-fluid"
@@ -57,7 +57,7 @@ export function App() {
             </div>
 
             <div className="col">
-              <div className="me-5">
+              <div className="me-lg-5">
                 <h1>
                   <strong>Descarregar a aplicação</strong>
                 </h1>
@@ -67,14 +67,18 @@ export function App() {
                     através da leitura do código QR
                   </strong>
                 </h6>
-                <div className="d-flex align-items-start justify-content-between mt-5">
-                  <button
-                    className="btn btn-lg btn-primary text-white "
-                    type="submit"
-                  >
-                    Descarregar
-                  </button>
-                  <img src={qrcodeImage} className="pe-5" alt="" />
+                <div className="d-lg-flex align-items-start justify-content-between mt-5">
+                  <div class="d-grid gap-2">
+                    <button
+                      className="btn btn-lg btn-primary text-white "
+                      type="submit"
+                    >
+                      Descarregar
+                    </button>
+                  </div>
+                  <div className="d-flex justify-content-center">
+                    <img src={qrcodeImage} className="pe-lg-5" alt="" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -114,13 +118,15 @@ export function App() {
       <section className="my-5 d-flex align-items-center">
         <div className="container my-4">
           <div className="row">
-            <div className="col row row-cols-1">
+            <div className="col-lg row-xl row-cols-xl-1">
               <h1 className="">Oferecemos</h1>
-              <img
-                src={ecrasOferecemos}
-                className="img-fluid h-75 w-75"
-                alt=""
-              />
+              <div className="d-md-flex justify-content-md-center justify-content-lg-start">
+                <img
+                  src={ecrasOferecemos}
+                  className="img-fluid d-none d-md-block h-lg-75 w-lg-75"
+                  alt=""
+                />
+              </div>
             </div>
             <div class="col row row-cols-1 row-cols-md-2">
               <div class="col">
