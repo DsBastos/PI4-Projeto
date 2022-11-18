@@ -45,18 +45,18 @@ export function App() {
           />
         </div>
       </div>
-      <section className="my-5">
+      <section className="">
         <div className="container">
-          <div className="row py-5">
-            <div className="col d-flex justify-content-center">
+          <div className="row">
+            <div className="col d-flex justify-content-center  align-items-center">
               <img
                 src={imageDescarregarApp}
-                class="img-fluid"
+                class="img-fluid h-75"
                 alt="Imagem do mockup da app na secção para descarregar"
               />
             </div>
 
-            <div className="col">
+            <div className="col d-flex justify-content-center  align-items-center">
               <div className="me-lg-5">
                 <h1>
                   <strong>Descarregar a aplicação</strong>
