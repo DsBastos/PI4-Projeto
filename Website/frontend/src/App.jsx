@@ -48,36 +48,25 @@ const fadeInUp = {
   },
 };
 
-const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
-
-const firstName = {
+const fadeInUp2 = {
   initial: {
-    y: -20,
+    y: -100,
+    opacity: 0,
+    transition: {
+      duration: 0.6,
+      ease: easeing,
+    },
   },
   animate: {
     y: 0,
+    opacity: 1,
     transition: {
-      delayChildren: 0.4,
-      staggerChildren: 0.04,
-      staggerDirection: -1,
+      duration: 0.6,
+      delay: 0.5,
+      ease: easeing,
     },
   },
 };
-
-const lastName = {
-  initial: {
-    y: -20,
-  },
-  animate: {
-    y: 0,
-    transition: {
-      delayChildren: 0.4,
-      staggerChildren: 0.04,
-      staggerDirection: 1,
-    },
-  },
-};
-
 const btnGroup = {
   initial: {
     y: -60,
@@ -93,18 +82,15 @@ const btnGroup = {
     },
   },
 };
-const star = {
-  initial: {
-    y: 60,
-    opacity: 0,
-    transition: { duration: 0.8, ease: easeing },
-  },
+
+const screenImg = {
+  initial: {},
   animate: {
-    y: 0,
-    opacity: 1,
-    animation: {
-      duration: 0.6,
-      ease: easeing,
+    y: [30, 0, 30],
+    transition: {
+      duration: 2,
+      ease: "linear",
+      repeat: Infinity,
     },
   },
 };
@@ -121,18 +107,14 @@ export function App() {
           className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center"
         >
           <motion.div className="me-auto">
-            <h1>
-              <motion.strong
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-              >
+            <motion.h1 variants={fadeInUp} initial="initial" animate="animate">
+              <strong>
                 "If you have a special
                 <p>point make it green."</p>
-              </motion.strong>
-            </h1>
+              </strong>
+            </motion.h1>
 
-            <motion.h5 className="mt-5" variants={fadeInUp}>
+            <motion.h5 className="mt-5" variants={fadeInUp2}>
               Uma aplicação móvel ideal para fazer turismo mas que irá
               <br />
               inovar o seu negócio, agilidade os processos e reduzir os <br />
@@ -154,6 +136,7 @@ export function App() {
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
+            variants={screenImg}
             className="h-100 ms-auto d-none d-lg-block mt-5"
             src={heroImage}
             alt="react logo"
