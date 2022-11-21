@@ -57,13 +57,13 @@ export function Footer() {
               </ul>
             </div>
           </div>
-          <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 border-top">
+          <div className="d-flex flex-column flex-sm-row justify-content-between pt-4 border-top">
             <p className="text-white">
               {" "}
               <strong>© Copyright 2022/2023 - My Green Point</strong>
               <small className="ms-3"> Todos os Direitos reservados</small>
             </p>
-            <ul class="list-unstyled d-flex">
+            <ul className="list-unstyled d-flex">
               <p className="text-white">
                 {" "}
                 <small>Termos e Condições</small>

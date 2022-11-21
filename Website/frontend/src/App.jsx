@@ -1,6 +1,7 @@
 import { Navbar } from "./components/Navbar";
 import { Card } from "./components/Card";
 import { Footer } from "./components/Footer";
+import { motion } from "framer-motion";
 
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
@@ -15,70 +16,182 @@ import iconqr from "./assets/icon_qr.svg";
 
 import "./global.css";
 
+let easeing = [0.6, -0.05, 0.01, 0.99];
+
+const stagger = {
+  animate: {
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.2,
+      staggerDirection: 1,
+    },
+  },
+};
+
+const fadeInUp = {
+  initial: {
+    y: -60,
+    opacity: 0,
+    transition: {
+      duration: 0.6,
+      ease: easeing,
+    },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      delay: 0.5,
+      ease: easeing,
+    },
+  },
+};
+
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
+
+const firstName = {
+  initial: {
+    y: -20,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const lastName = {
+  initial: {
+    y: -20,
+  },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: 0.4,
+      staggerChildren: 0.04,
+      staggerDirection: 1,
+    },
+  },
+};
+
+const btnGroup = {
+  initial: {
+    y: -60,
+    opacity: 0,
+    transition: { duration: 0.6, ease: easeing },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    animation: {
+      duration: 0.6,
+      ease: easeing,
+    },
+  },
+};
+const star = {
+  initial: {
+    y: 60,
+    opacity: 0,
+    transition: { duration: 0.8, ease: easeing },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    animation: {
+      duration: 0.6,
+      ease: easeing,
+    },
+  },
+};
+
 export function App() {
   return (
-    <div className="App">
+    <motion.div initial="initial" animate="animate">
       <Navbar />
       <div className="bg-image-gradient position-relative w-100 vh-100 d-flex">
-        <div className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center">
-          <div className="me-auto ">
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: easeing }}
+          className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center"
+        >
+          <motion.div className="me-auto">
             <h1>
-              <strong>
+              <motion.strong
+                variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+              >
                 "If you have a special
                 <p>point make it green."</p>
-              </strong>
+              </motion.strong>
             </h1>
-            <h5 className="mt-5">
+
+            <motion.h5 className="mt-5" variants={fadeInUp}>
               Uma aplicação móvel ideal para fazer turismo mas que irá
               <br />
               inovar o seu negócio, agilidade os processos e reduzir os <br />
               custos de operação.
-            </h5>
-            <button type="button" className="btn btn-lg btn-dark mt-5">
-              Conhece a app aqui! 👈🏻
-            </button>
-          </div>
-          <img
+            </motion.h5>
+            <motion.div variants={stagger}>
+              <motion.button
+                variants={btnGroup}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="button"
+                className="btn btn-lg btn-dark mt-5"
+              >
+                Conhece a app aqui! 👈🏻
+              </motion.button>
+            </motion.div>
+          </motion.div>
+          <motion.img
+            initial={{ x: 200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             className="h-100 ms-auto d-none d-lg-block mt-5"
             src={heroImage}
             alt="react logo"
           />
-        </div>
+        </motion.div>
       </div>
-      <section className="">
-        <div className="container">
-          <div className="row">
-            <div className="col d-flex justify-content-center  align-items-center">
-              <img
-                src={imageDescarregarApp}
-                class="img-fluid h-75"
-                alt="Imagem do mockup da app na secção para descarregar"
-              />
-            </div>
+      <section className="container">
+        <div className="row">
+          <div className="col d-flex justify-content-center  align-items-center">
+            <img
+              src={imageDescarregarApp}
+              className="img-fluid h-75"
+              alt="Imagem do mockup da app na secção para descarregar"
+            />
+          </div>
 
-            <div className="col d-flex justify-content-center  align-items-center">
-              <div className="me-lg-5">
-                <h1>
-                  <strong>Descarregar a aplicação</strong>
-                </h1>
-                <h6 className="mt-5 text-muted lead">
-                  <strong>
-                    Descarrega a aplicação para Android pelo botão a baixo ou
-                    através da leitura do código QR
-                  </strong>
-                </h6>
-                <div className="d-lg-flex align-items-start justify-content-between mt-5">
-                  <div class="d-grid gap-2">
-                    <button
-                      className="btn btn-lg btn-primary text-white "
-                      type="submit"
-                    >
-                      Descarregar
-                    </button>
-                  </div>
-                  <div className="d-flex justify-content-center">
-                    <img src={qrcodeImage} className="pe-lg-5" alt="" />
-                  </div>
+          <div className="col d-flex justify-content-center  align-items-center">
+            <div className="me-lg-5">
+              <h1>
+                <strong>Descarregar a aplicação</strong>
+              </h1>
+              <h6 className="mt-5 text-muted lead">
+                <strong>
+                  Descarrega a aplicação para Android pelo botão a baixo ou
+                  através da leitura do código QR
+                </strong>
+              </h6>
+              <div className="d-lg-flex align-items-start justify-content-between mt-5">
+                <div className="d-grid gap-2">
+                  <button
+                    className="btn btn-lg btn-primary text-white "
+                    type="submit"
+                  >
+                    Descarregar
+                  </button>
+                </div>
+                <div className="d-flex justify-content-center">
+                  <img src={qrcodeImage} className="pe-lg-5" alt="" />
                 </div>
               </div>
             </div>
@@ -110,7 +223,7 @@ export function App() {
           </div>
           <img
             src={mygreenpointlogo}
-            class="img-fluid w-50 h-50"
+            className="img-fluid w-50 h-50"
             alt="Image do logo na section do nosso objetivo"
           />
         </div>
@@ -128,15 +241,15 @@ export function App() {
                 />
               </div>
             </div>
-            <div class="col row row-cols-1 row-cols-md-2">
-              <div class="col">
+            <div className="col row row-cols-1 row-cols-md-2">
+              <div className="col">
                 <Card
                   titulo="asas"
                   descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw"
                   icon={iconvouc}
                 />
               </div>
-              <div class="col">
+              <div className="col">
                 <Card
                   titulo="OS MIGUXOS"
                   descricao="OLÁ AMIGOS"
@@ -144,7 +257,7 @@ export function App() {
                 />
               </div>
 
-              <div class="col">
+              <div className="col">
                 <Card
                   titulo="BOLOOOOO"
                   descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO"
@@ -152,7 +265,7 @@ export function App() {
                 />
               </div>
 
-              <div class="col">
+              <div className="col">
                 <Card
                   titulo="O Iago vai entender isto"
                   descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto"
@@ -169,12 +282,15 @@ export function App() {
             <strong>Atualização das ultimas versões da aplicação</strong>
           </h1>
           <div className="card mx-auto mt-5" style={{ maxWidth: "42rem" }}>
-            <div class="card-body p-4">
-              <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <div className="card-body p-4">
+              <div className="accordion" id="accordionPanelsStayOpenExample">
+                <div className="accordion-item">
+                  <h2
+                    className="accordion-header"
+                    id="panelsStayOpen-headingOne"
+                  >
                     <button
-                      class="accordion-button"
+                      className="accordion-button"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseOne"
@@ -186,10 +302,10 @@ export function App() {
                   </h2>
                   <div
                     id="panelsStayOpen-collapseOne"
-                    class="accordion-collapse collapse show"
+                    className="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingOne"
                   >
-                    <div class="accordion-body">
+                    <div className="accordion-body">
                       This is the first item's accordion body. It is hidden by
                       default, until the collapse plugin adds the appropriate
                       classes that we use to style each element. These classes
@@ -198,10 +314,13 @@ export function App() {
                     </div>
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <div className="accordion-item">
+                  <h2
+                    className="accordion-header"
+                    id="panelsStayOpen-headingTwo"
+                  >
                     <button
-                      class="accordion-button collapsed"
+                      className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseTwo"
@@ -213,10 +332,10 @@ export function App() {
                   </h2>
                   <div
                     id="panelsStayOpen-collapseTwo"
-                    class="accordion-collapse collapse"
+                    className="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingTwo"
                   >
-                    <div class="accordion-body">
+                    <div className="accordion-body">
                       This is the first item's accordion body. It is hidden by
                       default, until the collapse plugin adds the appropriate
                       classes that we use to style each element. These classes
@@ -225,10 +344,13 @@ export function App() {
                     </div>
                   </div>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <div className="accordion-item">
+                  <h2
+                    className="accordion-header"
+                    id="panelsStayOpen-headingThree"
+                  >
                     <button
-                      class="accordion-button collapsed"
+                      className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseThree"
@@ -240,10 +362,10 @@ export function App() {
                   </h2>
                   <div
                     id="panelsStayOpen-collapseThree"
-                    class="accordion-collapse collapse"
+                    className="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingThree"
                   >
-                    <div class="accordion-body">
+                    <div className="accordion-body">
                       This is the first item's accordion body. It is hidden by
                       default, until the collapse plugin adds the appropriate
                       classes that we use to style each element. These classes
@@ -258,7 +380,7 @@ export function App() {
         </div>
       </section>
       <Footer />
-    </div>
+    </motion.div>
   );
 }
 
