@@ -112,7 +112,7 @@ export function Navbar() {
                     className="nav-link"
                     type="button"
                     style={{ color: "white" }}
-                    href="#"
+                    href="#inicio"
                   >
                     Início
                   </a>
@@ -135,7 +135,7 @@ export function Navbar() {
                     className="nav-link"
                     type="button"
                     style={{ color: "white" }}
-                    href="#"
+                    href="#descarregar"
                   >
                     Descarregar
                   </a>
@@ -158,7 +158,7 @@ export function Navbar() {
                     className="nav-link"
                     type="button"
                     style={{ color: "white" }}
-                    href="#"
+                    href="#objetivo"
                   >
                     Objetivo
                   </a>
@@ -181,7 +181,7 @@ export function Navbar() {
                     className="nav-link "
                     type="button"
                     style={{ color: "white" }}
-                    href="#"
+                    href="#oferecemos"
                   >
                     Oferecemos
                   </a>
@@ -204,7 +204,7 @@ export function Navbar() {
                     className="nav-link "
                     type="button"
                     style={{ color: "white" }}
-                    href="#"
+                    href="#atualizacoes"
                   >
                     Atualizações
                   </a>

@@ -99,7 +99,7 @@ export function App() {
   return (
     <motion.div initial="initial" animate="animate">
       <Navbar />
-      <div className="bg-image-gradient position-relative w-100 vh-100 d-flex">
+      <div id="inicio" className="bg-image-gradient position-relative w-100 vh-100 d-flex">
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -141,7 +141,7 @@ export function App() {
           />
         </motion.div>
       </div>
-      <section className="container">
+      <section id="descarregar" className="container">
         <div className="row">
           <div className="col d-flex justify-content-center  align-items-center">
             <img
@@ -180,7 +180,7 @@ export function App() {
         </div>
       </section>
 
-      <section className="py-5 section-background-verde d-flex align-items-center">
+      <section id="objetivo" className="py-5 section-background-verde d-flex align-items-center">
         <div className="container d-lg-flex justify-content-between align-items-center">
           <div className="py-5">
             <h1>
@@ -209,7 +209,7 @@ export function App() {
           />
         </div>
       </section>
-      <section className="my-5 d-flex align-items-center">
+      <section id="oferecemos" className="my-5 d-flex align-items-center">
         <div className="container my-4">
           <div className="row">
             <div className="col-lg row-xl row-cols-xl-1">
@@ -227,31 +227,31 @@ export function App() {
             <div className="col row row-cols-1 row-cols-md-2">
               <div className="col">
                 <Card
-                  titulo="asas"
-                  descricao="dqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggwdqafwggrgwrggw"
-                  icon={iconvouc}
+                  titulo="Pontos Turísticos"
+                  descricao="Encontre facilmente na nossa secção de pontos turisticos aquilo que precisa para desfrutar os melhores momentos possiveis!"
+                  icon={iconpt}
                 />
               </div>
               <div className="col">
                 <Card
-                  titulo="OS MIGUXOS"
-                  descricao="OLÁ AMIGOS"
-                  icon={iconpt}
+                  titulo="Vouchers"
+                  descricao="A nossa aplicação permite usufruir do sistema de vouchers que benificia o utilizador dando-lhe descontos através de atividades para aplicar em pontos turísticos"
+                  icon={iconvouc}
                 />
               </div>
 
               <div className="col">
                 <Card
-                  titulo="BOLOOOOO"
-                  descricao="BOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO BOLINHOBOLO"
+                  titulo="Reservas"
+                  descricao="Faça reservas nos pontos turísticos para não perder as melhores experiências possiveis!"
                   icon={iconres}
                 />
               </div>
 
               <div className="col">
                 <Card
-                  titulo="O Iago vai entender isto"
-                  descricao="O Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender istoO Iago vai entender isto"
+                  titulo="QRCode"
+                  descricao="A nossa aplicação permite ainda usar a câmara do dispositivo móvel para leitura do código QR, ou então escrever manualmente os códigos fornecidos pelo nosso agente turístico"
                   icon={iconqr}
                 />
               </div>
@@ -259,7 +259,7 @@ export function App() {
           </div>
         </div>
       </section>
-      <section className="py-5 section-background-verde d-flex align-items-center">
+      <section id="atualizacoes" className="py-5 section-background-verde d-flex align-items-center">
         <div className="container py-5">
           <h1>
             <strong>Atualização das ultimas versões da aplicação</strong>
