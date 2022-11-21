@@ -232,7 +232,9 @@ export function App() {
         <div className="container my-4">
           <div className="row">
             <div className="col-lg row-xl row-cols-xl-1">
-              <h1 className="">Oferecemos</h1>
+              <h1>
+                <strong>Oferecemos</strong>
+              </h1>
               <div className="d-md-flex justify-content-md-center justify-content-lg-start">
                 <img
                   src={ecrasOferecemos}
