@@ -132,12 +132,10 @@ export function App() {
               </motion.button>
             </motion.div>
           </motion.div>
+
           <motion.img
-            initial={{ x: 200, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            className="img-fluid h-100 ms-auto d-none d-lg-block mt-5"
             variants={screenImg}
-            className="h-100 ms-auto d-none d-lg-block mt-5"
             src={heroImage}
             alt="react logo"
           />
