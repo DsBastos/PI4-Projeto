@@ -96,6 +96,8 @@ export function Navbar() {
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <motion.li
                   variants={header}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="nav-item"
                   style={{
                     width: "137px",
@@ -117,6 +119,8 @@ export function Navbar() {
                 </motion.li>
                 <motion.li
                   variants={header}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="nav-item"
                   style={{
                     width: "137px",
@@ -138,6 +142,8 @@ export function Navbar() {
                 </motion.li>
                 <motion.li
                   variants={header}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="nav-item"
                   style={{
                     width: "137px",
@@ -159,6 +165,8 @@ export function Navbar() {
                 </motion.li>
                 <motion.li
                   variants={header}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="nav-item"
                   style={{
                     width: "137px",
@@ -180,6 +188,8 @@ export function Navbar() {
                 </motion.li>
                 <motion.li
                   variants={header}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="nav-item"
                   style={{
                     width: "137px",
