@@ -2,34 +2,27 @@ import React from "react"
 
 
 export function Topnav(props) {
-  
+
+
     return (
-        <div>
-            <nav class="navbar fixed-top  navbar-expand-lg bg-white">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">{props.role}</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
-                            </li>
-                        </ul>
-                    </div>
+        <nav className="navbar d-flex top-0 w-75 navbar-expand-lg bg-white" style={{height:'88px'}}>
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">{props.role}</a>
+                <div className="justify-content-end" id="navbarNav">
+                    <ul className="nav d-inline-flex">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">{props.nome}</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="./assets/icon_roda.svg" alt="roda dentada" /></a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#"><img src="./assets/icon_saida.svg" alt="saida" /></a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     )
 }
 
