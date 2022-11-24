@@ -4,7 +4,7 @@ import { motion as m } from "framer-motion";
 
 import icongroup from "../assets/icongroup.svg";
 
-function dashboardIndex() {
+function dashboardAdmin() {
   return (
     <>
       {/* Colocar aqui o componente da sidebar */}
@@ -130,4 +130,4 @@ function dashboardIndex() {
   );
 }
 
-export default dashboardIndex;
+export default dashboardAdmin;
