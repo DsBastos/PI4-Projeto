@@ -1,7 +1,7 @@
-import dashboardIndex from "./dashboardIndex";
+import dashboardAdmin from "./dashboardAdmin";
 import login from "./login";
 
 export default {
-  dashboardIndex,
+  dashboardAdmin,
   login,
 };

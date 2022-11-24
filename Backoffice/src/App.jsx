@@ -7,7 +7,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<router.login />} />
-        <Route path="/dashboard" element={<router.dashboardIndex />} />
+        <Route path="/dashboard" element={<router.dashboardAdmin />} />
       </Routes>
     </BrowserRouter>
   );
