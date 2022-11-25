@@ -99,7 +99,10 @@ export function App() {
   return (
     <motion.div initial="initial" animate="animate">
       <Navbar />
-      <div id="inicio" className="bg-image-gradient position-relative w-100 vh-100 d-flex">
+      <div
+        id="inicio"
+        className="bg-image-gradient position-relative w-100 vh-100 d-flex"
+      >
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -180,7 +183,10 @@ export function App() {
         </div>
       </section>
 
-      <section id="objetivo" className="py-5 section-background-verde d-flex align-items-center">
+      <section
+        id="objetivo"
+        className="py-5 section-background-verde d-flex align-items-center"
+      >
         <div className="container d-lg-flex justify-content-between align-items-center">
           <div className="py-5">
             <h1>
@@ -212,11 +218,11 @@ export function App() {
       <section id="oferecemos" className="my-5 d-flex align-items-center">
         <div className="container my-4">
           <div className="row">
-            <div className="col-lg row-xl row-cols-xl-1">
+            <div className="col-xl-6 row">
               <h1>
                 <strong>Oferecemos</strong>
               </h1>
-              <div className="d-md-flex justify-content-md-center justify-content-lg-start">
+              <div className="d-md-flex mt-lg-5 justify-content-md-center justify-content-lg-start">
                 <img
                   src={ecrasOferecemos}
                   className="img-fluid d-none d-md-block h-lg-75 w-lg-75"
@@ -259,7 +265,10 @@ export function App() {
           </div>
         </div>
       </section>
-      <section id="atualizacoes" className="py-5 section-background-verde d-flex align-items-center">
+      <section
+        id="atualizacoes"
+        className="py-5 section-background-verde d-flex align-items-center"
+      >
         <div className="container py-5">
           <h1>
             <strong>Atualização das ultimas versões da aplicação</strong>

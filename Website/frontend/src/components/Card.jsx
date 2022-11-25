@@ -5,7 +5,7 @@ export function Card(props) {
     <div
       className="card border-0 shadow p-3 mb-5 bg-body rounded"
       style={{
-        minHeight: "12rem",
+        height: "15rem",
         maxWidth: "24rem",
       }}
     >
