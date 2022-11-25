@@ -4,11 +4,28 @@ import websiteAdmin from "../pages/admin/websiteAdmin";
 import responsaveisDaRegiaoAdmin from "../pages/admin/responsaveisDaRegiaoAdmin";
 import regioesturisticasAdmin from "../pages/admin/regioesTuristicasAdmin";
 import utilizadoresAdmin from "../pages/admin/utilizadoresAdmin";
+/*Responsavel da regiao Turistica */
+import dashboardRegiaoTuristica from "../pages/responsavelRegiaoTuristica/dashboardRT";
+import agentesTuristicosRT from "../pages/responsavelRegiaoTuristica/agentesTuristicosRT";
+import pontosDeInteresseRT from "../pages/responsavelRegiaoTuristica/pontosDeInteresseRT";
+import recompensasRT from "../pages/responsavelRegiaoTuristica/recompensasRT";
+/*Agente Turistico */
+import dashboardAT from "../pages/agenteTuristico/dashboardAT";
+import criarVisitaAT from "../pages/agenteTuristico/criarVisitaAT";
+import consulrarReservasAT from "../pages/agenteTuristico/consultarReservasAT";
+
 export default {
   login,
   dashboardAdmin,
   websiteAdmin,
   responsaveisDaRegiaoAdmin,
   regioesturisticasAdmin,
-  utilizadoresAdmin
+  utilizadoresAdmin,
+  dashboardRegiaoTuristica,
+  agentesTuristicosRT,
+  pontosDeInteresseRT,
+  recompensasRT,
+  dashboardAT,
+  criarVisitaAT,
+  consulrarReservasAT
 };
