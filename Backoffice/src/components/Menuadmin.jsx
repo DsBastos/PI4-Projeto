@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Menuadmin() {
+export function Menuadmin(props) {
   //const pageInfo = navegacao[page];
   return (
     <>
@@ -33,27 +33,27 @@ export function Menuadmin() {
           <hr />
           <li>
             <a href="#" class="nav-link link-dark d-flex align-items-center">
-              <img className="me-2" src="./assets/icon-filetext.svg" />
-              Website
+              <img className="me-2" src={props.icon1} />
+              {props.nome1}
             </a>
           </li>
           <li>
             <a href="#" class="nav-link link-dark d-flex align-items-center">
-              <img className="me-2" src="./assets/icon-filetext.svg" />
-              Responsáveis das regiões turísticas
+              <img className="me-2" src={props.icon2} />
+              {props.nome2}
             </a>
           </li>
           <li>
             <a href="#" class="nav-link link-dark d-flex align-items-center">
-              <img className="me-2" src="./assets/icon-filetext.svg" />
-              Regiões turísticas
+              <img className="me-2" src={props.icon3} />
+              {props.nome3}
             </a>
           </li>
           <hr />
           <li>
             <a href="#" class="nav-link link-dark d-flex align-items-center">
-              <img className="me-2" src="./assets/icon-user.svg" />
-              Utilizadores
+              <img className="me-2" src={props.icon4} />
+              {props.nome4}
             </a>
           </li>
         </ul>

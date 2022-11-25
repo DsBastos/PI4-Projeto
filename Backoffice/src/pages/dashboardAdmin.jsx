@@ -9,7 +9,10 @@ function dashboardAdmin() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menuadmin />
+      <Menuadmin nome1="Website" icon1="./assets/icon-filetext.svg" 
+      nome2="Responsáveis das regiões turísticas" icon2="./assets/icon-filetext.svg"
+      nome3="Regiões turísticas" icon3="./assets/icon-filetext.svg"
+      nome4="Utilizadores" icon4="./assets/icon-user.svg"/>
       <main className="w-100">
         <Topnav role="Adminsitrador" nome="ROBERTO" />
         <div className="container px-5">
