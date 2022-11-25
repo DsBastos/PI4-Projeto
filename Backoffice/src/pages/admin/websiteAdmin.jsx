@@ -1,4 +1,4 @@
-function website() {
+function websiteAdmin() {
   return (
     <div>
       <h1>Website</h1>
@@ -6,4 +6,4 @@ function website() {
   );
 }
 
-export default website;
+export default websiteAdmin;

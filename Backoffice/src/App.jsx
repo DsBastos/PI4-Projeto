@@ -10,6 +10,8 @@ export default function App() {
         <Route path="/dashboard" element={<router.dashboardAdmin />} />
         <Route path="/website" element={<router.websiteAdmin />} />
         <Route path="/responsaveisDaRegiao" element={<router.responsaveisDaRegiaoAdmin />} />
+        <Route path="/regioesturisticas" element={<router.regioesturisticasAdmin />} />
+        <Route path="/utilizadores" element={<router.utilizadoresAdmin />} />
       </Routes>
     </BrowserRouter>
   );
