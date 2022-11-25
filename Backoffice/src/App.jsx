@@ -8,7 +8,8 @@ export default function App() {
       <Routes>
         <Route index element={<router.login />} />
         <Route path="/dashboard" element={<router.dashboardAdmin />} />
-        <Route path="/website" element={<router.website />} />
+        <Route path="/website" element={<router.websiteAdmin />} />
+        <Route path="/responsaveisDaRegiao" element={<router.responsaveisDaRegiaoAdmin />} />
       </Routes>
     </BrowserRouter>
   );

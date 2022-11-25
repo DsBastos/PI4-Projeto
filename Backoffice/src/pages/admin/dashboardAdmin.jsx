@@ -1,9 +1,9 @@
 import React from "react";
-import { Topnav } from "../components/Topnav";
+import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
-import { Menuadmin } from "../components/Menuadmin";
+import { Menuadmin } from "../../components/Menuadmin";
 
-import icongroup from "../assets/icongroup.svg";
+import icongroup from "../../assets/icongroup.svg";
 
 function dashboardAdmin() {
   return (

@@ -45,10 +45,10 @@ export function Menuadmin() {
           </Link>
         </li>
         <li>
-          <a href="#" class="nav-link link-dark d-flex align-items-center">
+          <Link to="/responsaveisDaRegiao" class="nav-link link-dark d-flex align-items-center">
             <img className="me-2" src="./assets/icon-filetext.svg" />
             Responsáveis das regiões turísticas
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#" class="nav-link link-dark d-flex align-items-center">
