@@ -13,7 +13,7 @@ export function Topnav(props) {
         <div className="justify-content-end" id="navbarNav">
           <ul className="nav d-inline-flex">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link text-dark" href="#">
                 {props.nome}
               </a>
             </li>

@@ -8,7 +8,6 @@ import icongroup from "../assets/icongroup.svg";
 function dashboardAdmin() {
   return (
     <div className="d-flex">
-      {/* Colocar aqui o componente da sidebar */}
       <Menuadmin />
       <main className="w-100">
         <Topnav role="Adminsitrador" nome="ROBERTO" />
