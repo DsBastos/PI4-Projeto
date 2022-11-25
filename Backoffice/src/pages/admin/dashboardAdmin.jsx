@@ -10,7 +10,7 @@ function dashboardAdmin() {
     <div className="d-flex">
       <Menuadmin />
       <main className="w-100">
-        <Topnav role="Adminsitrador" nome="ROBERTO" />
+        <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">

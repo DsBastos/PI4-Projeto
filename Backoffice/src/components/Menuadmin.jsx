@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export function Menuadmin() {
   //const pageInfo = navegacao[page];
   return (
-    <nav class="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-2 ">
+    <nav className="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-lg-2 col-3">
       <a
         href="/"
-        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto p-3 text-decoration-none"
+        className="d-flex align-items-center mb-3 mb-md-0 me-md-auto p-3 text-decoration-none"
       >
         <img
           className="w-75 mx-auto d-block"
@@ -15,11 +15,11 @@ export function Menuadmin() {
           alt="Logótipo da My Green Point"
         />
       </a>
-      <ul class="nav nav-pills flex-column mb-auto mt-3 ">
-        <li class="nav-item">
+      <ul className="nav nav-pills flex-column mb-auto mt-3 ">
+        <li className="nav-item">
           <a
             href="#"
-            class="nav-link active d-flex align-items-center"
+            className="nav-link active d-flex align-items-center"
             aria-current="page"
           >
             <img
@@ -34,7 +34,7 @@ export function Menuadmin() {
         <li>
           <Link
             to="/website"
-            class="nav-link link-dark d-flex align-items-center"
+            className="nav-link link-dark d-flex align-items-center"
           >
             <img
               className="me-2"
@@ -45,20 +45,23 @@ export function Menuadmin() {
           </Link>
         </li>
         <li>
-          <Link to="/responsaveisDaRegiao" class="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src="./assets/icon-filetext.svg" />
+          <Link
+            to="/responsaveisDaRegiao"
+            className="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src="./assets/icon-filetext.svg" alt="" />
             Responsáveis das regiões turísticas
           </Link>
         </li>
         <li>
-          <a href="#" class="nav-link link-dark d-flex align-items-center">
+          <a href="#" className="nav-link link-dark d-flex align-items-center">
             <img className="me-2" src="./assets/icon-filetext.svg" />
             Regiões turísticas
           </a>
         </li>
         <hr />
         <li>
-          <a href="#" class="nav-link link-dark d-flex align-items-center">
+          <a href="#" className="nav-link link-dark d-flex align-items-center">
             <img className="me-2" src="./assets/icon-user.svg" />
             Utilizadores
           </a>
