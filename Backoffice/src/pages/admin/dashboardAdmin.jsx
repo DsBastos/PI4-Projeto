@@ -1,20 +1,21 @@
 import React from "react";
-import { Topnav } from "../components/Topnav";
+import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
-import { Menuadmin } from "../components/Menuadmin";
+import { Menuadmin } from "../../components/Menuadmin";
 
-import icongroup from "../assets/icongroup.svg";
+import icongroup from "../../assets/icongroup.svg";
 
 function dashboardAdmin() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menuadmin nome1="Website" icon1="./assets/icon-filetext.svg" 
-      nome2="Responsáveis das regiões turísticas" icon2="./assets/icon-filetext.svg"
-      nome3="Regiões turísticas" icon3="./assets/icon-filetext.svg"
-      nome4="Utilizadores" icon4="./assets/icon-user.svg"/>
+      <Menuadmin nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard"
+      nome2="Website" icon2="./assets/icon-filetext.svg" link2="/website"
+      nome3="Responsáveis das regiões turísticas" icon3="./assets/icon-filetext.svg" link3="/responsaveisDaRegiao"
+      nome4="Regiões turísticas" icon4="./assets/icon-filetext.svg" link4="/regioesturisticas"
+      nome5="Utilizadores" icon5="./assets/icon-user.svg" link5="/utilizadores"/>
       <main className="w-100">
-        <Topnav role="Adminsitrador" nome="ROBERTO" />
+        <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">

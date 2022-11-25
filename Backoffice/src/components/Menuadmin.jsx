@@ -1,4 +1,6 @@
+import { filterProps } from "framer-motion";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function Menuadmin(props) {
   //const pageInfo = navegacao[page];
@@ -16,50 +18,50 @@ export function Menuadmin(props) {
       </a>
       <ul class="nav nav-pills flex-column mb-auto mt-3 ">
         <li class="nav-item">
-          <a
-            href="#"
+          <Link
+            to={props.link1}
             class="nav-link active d-flex align-items-center"
             aria-current="page"
           >
             <img
               className="me-2"
-              src="./assets/icon-barchartline.svg"
-              alt="Logótipo"
-            />
-            Dashboard
-          </a>
-        </li>
-        <hr />
-        <li>
-          <Link
-            to="/website"
-            class="nav-link link-dark d-flex align-items-center"
-          >
-            <img
-              className="me-2"
               src={props.icon1}
-              alt="icon de página"
+              alt="Logótipo"
             />
             {props.nome1}
           </Link>
         </li>
+        <hr />
         <li>
-          <Link to="/responsaveisDaRegiao" class="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src={props.icon2} />
+          <Link
+            to={props.link2}
+            class="nav-link link-dark d-flex align-items-center"
+          >
+            <img
+              className="me-2"
+              src={props.icon2}
+              alt="icon de página"
+            />
             {props.nome2}
           </Link>
         </li>
         <li>
-          <Link to="/regioesturisticas" class="nav-link link-dark d-flex align-items-center">
+          <Link to={props.link3} class="nav-link link-dark d-flex align-items-center">
             <img className="me-2" src={props.icon3} />
             {props.nome3}
           </Link>
         </li>
-        <hr />
         <li>
-          <Link to="/utilizadores" class="nav-link link-dark d-flex align-items-center">
+          <Link to={props.link4} class="nav-link link-dark d-flex align-items-center">
             <img className="me-2" src={props.icon4} />
             {props.nome4}
+          </Link>
+        </li>
+        <hr />
+        <li>
+          <Link to={props.link5} class="nav-link link-dark d-flex align-items-center">
+            <img className="me-2" src={props.icon5}/>
+            {props.nome5}
           </Link>
         </li>
       </ul>
