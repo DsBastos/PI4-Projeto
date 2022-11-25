@@ -7,11 +7,21 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<router.login />} />
+        /*Admin*/
         <Route path="/dashboard" element={<router.dashboardAdmin />} />
         <Route path="/website" element={<router.websiteAdmin />} />
         <Route path="/responsaveisDaRegiao" element={<router.responsaveisDaRegiaoAdmin />} />
         <Route path="/regioesturisticas" element={<router.regioesturisticasAdmin />} />
         <Route path="/utilizadores" element={<router.utilizadoresAdmin />} />
+        /*Responsavel da Região Turistica*/
+        <Route path="/dashboard1" element={<router.dashboardRegiaoTuristica />} />
+        <Route path="/agentesTuristicos" element={<router.agentesTuristicosRT />} />
+        <Route path="/pontosDeInteresse" element={<router.pontosDeInteresseRT />} />
+        <Route path="/recompensas" element={<router.recompensasRT/>} />
+        /*Agente Turistico*/
+        <Route path="/dashboard3" element={<router.dashboardAT />} />
+        <Route path="/criarvisita" element={<router.criarVisitaAT />} />
+        <Route path="/consultarReservas" element={<router.consulrarReservasAT />} />
       </Routes>
     </BrowserRouter>
   );
