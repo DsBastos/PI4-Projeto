@@ -54,17 +54,23 @@ export function Menuadmin() {
           </Link>
         </li>
         <li>
-          <a href="#" className="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src="./assets/icon-filetext.svg" />
+          <Link
+            to="/regioesturisticas"
+            class="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src="./assets/icon-filetext.svg" alt="" />
             Regiões turísticas
-          </a>
+          </Link>
         </li>
         <hr />
         <li>
-          <a href="#" className="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src="./assets/icon-user.svg" />
+          <Link
+            to="/utilizadores"
+            class="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src="./assets/icon-user.svg" alt="" />
             Utilizadores
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

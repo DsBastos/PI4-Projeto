@@ -1,10 +1,8 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menuadmin } from "../../components/Menuadmin";
-{
-}
 
-function website() {
+function websiteAdmin() {
   return (
     <div className="d-flex">
       <Menuadmin />
@@ -142,4 +140,4 @@ function website() {
   );
 }
 
-export default website;
+export default websiteAdmin;
