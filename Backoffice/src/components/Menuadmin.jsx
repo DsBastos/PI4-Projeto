@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function Menuadmin() {
   //const pageInfo = navegacao[page];
   return (
-    <nav className="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-lg-2 col-3">
+    <nav className="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-lg-2 col-3 sticky-top">
       <a
         href="/"
         className="d-flex align-items-center mb-3 mb-md-0 me-md-auto p-3 text-decoration-none"

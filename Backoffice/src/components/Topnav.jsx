@@ -3,7 +3,7 @@ import React from "react";
 export function Topnav(props) {
   return (
     <div
-      className="navbar navbar-expand-lg bg-white"
+      className="navbar navbar-expand-lg bg-white sticky-top"
       style={{ height: "88px" }}
     >
       <div className="container px-5">
