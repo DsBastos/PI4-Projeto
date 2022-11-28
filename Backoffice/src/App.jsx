@@ -19,7 +19,7 @@ export default function App() {
         <Route path="/pontosDeInteresse" element={<router.pontosDeInteresseRT />} />
         <Route path="/recompensas" element={<router.recompensasRT/>} />
         /*Agente Turistico*/
-        <Route path="/dashboard3" element={<router.dashboardAT />} />
+        <Route path="/dashboard2" element={<router.dashboardAT />} />
         <Route path="/criarvisita" element={<router.criarVisitaAT />} />
         <Route path="/consultarReservas" element={<router.consulrarReservasAT />} />
       </Routes>

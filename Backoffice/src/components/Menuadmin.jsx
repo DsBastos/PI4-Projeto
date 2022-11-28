@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export function Menuadmin() {
+export function Menuadmin(props) {
   //const pageInfo = navegacao[page];
   return (
     <nav className="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-lg-2 col-3 sticky-top">
@@ -15,61 +15,52 @@ export function Menuadmin() {
           alt="Logótipo da My Green Point"
         />
       </a>
-      <ul className="nav nav-pills flex-column mb-auto mt-3 ">
-        <li className="nav-item">
-          <a
-            href="#"
-            className="nav-link active d-flex align-items-center"
+      <ul class="nav nav-pills flex-column mb-auto mt-3 ">
+        <li class="nav-item">
+          <Link
+            to={props.link1}
+            class="nav-link active d-flex align-items-center"
             aria-current="page"
           >
             <img
               className="me-2"
-              src="./assets/icon-barchartline.svg"
+              src={props.icon1}
               alt="Logótipo"
             />
-            Dashboard
-          </a>
+            {props.nome1}
+          </Link>
         </li>
         <hr />
         <li>
           <Link
-            to="/website"
-            className="nav-link link-dark d-flex align-items-center"
+            to={props.link2}
+            class="nav-link link-dark d-flex align-items-center"
           >
             <img
               className="me-2"
-              src="./assets/icon-filetext.svg"
+              src={props.icon2}
               alt="icon de página"
             />
-            Website
+            {props.nome2}
           </Link>
         </li>
         <li>
-          <Link
-            to="/responsaveisDaRegiao"
-            className="nav-link link-dark d-flex align-items-center"
-          >
-            <img className="me-2" src="./assets/icon-filetext.svg" alt="" />
-            Responsáveis das regiões turísticas
+          <Link to={props.link3} class="nav-link link-dark d-flex align-items-center">
+            <img className="me-2" src={props.icon3} />
+            {props.nome3}
           </Link>
         </li>
         <li>
-          <Link
-            to="/regioesturisticas"
-            class="nav-link link-dark d-flex align-items-center"
-          >
-            <img className="me-2" src="./assets/icon-filetext.svg" alt="" />
-            Regiões turísticas
+          <Link to={props.link4} class="nav-link link-dark d-flex align-items-center">
+            <img className="me-2" src={props.icon4} />
+            {props.nome4}
           </Link>
         </li>
         <hr />
         <li>
-          <Link
-            to="/utilizadores"
-            class="nav-link link-dark d-flex align-items-center"
-          >
-            <img className="me-2" src="./assets/icon-user.svg" alt="" />
-            Utilizadores
+          <Link to={props.link5} class="nav-link link-dark d-flex align-items-center">
+            <img className="me-2" src={props.icon5}/>
+            {props.nome5}
           </Link>
         </li>
       </ul>
