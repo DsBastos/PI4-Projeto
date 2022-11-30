@@ -1,6 +1,7 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menuadmin } from "../../components/Menuadmin";
+import { ModalUtilizadores} from "../../components/ModalUtilizadores"
 
 function utilizadoresAdmin() {
   return (
@@ -34,6 +35,10 @@ function utilizadoresAdmin() {
             </tbody>
           </table>
         </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Launch static backdrop modal
+        </button>
+        <ModalUtilizadores />
       </main>
     </div>
   );
