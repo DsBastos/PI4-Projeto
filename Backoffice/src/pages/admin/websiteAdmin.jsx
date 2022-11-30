@@ -1,11 +1,11 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
-import { Menuadmin } from "../../components/Menuadmin";
+import { Menu } from "../../components/Menu";
 
 function websiteAdmin() {
   return (
     <div className="d-flex">
-      <Menuadmin
+      <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
         link1="/dashboard"

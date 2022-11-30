@@ -1,12 +1,12 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
-import { Menuadmin } from "../../components/Menuadmin";
+import { Menu } from "../../components/Menu";
 
 function responsaveisdaregiaoAdmin() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menuadmin
+      <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
         link1="/dashboard"
