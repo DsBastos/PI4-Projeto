@@ -15,18 +15,14 @@ export function Menuadmin(props) {
           alt="Logótipo da My Green Point"
         />
       </a>
-      <ul class="nav nav-pills flex-column mb-auto mt-3 ">
-        <li class="nav-item">
+      <ul className="nav nav-pills flex-column mb-auto mt-3 ">
+        <li className="nav-item">
           <Link
             to={props.link1}
-            class="nav-link active d-flex align-items-center"
+            className="nav-link active d-flex align-items-center"
             aria-current="page"
           >
-            <img
-              className="me-2"
-              src={props.icon1}
-              alt="Logótipo"
-            />
+            <img className="me-2" src={props.icon1} alt="Logótipo" />
             {props.nome1}
           </Link>
         </li>
@@ -34,32 +30,37 @@ export function Menuadmin(props) {
         <li>
           <Link
             to={props.link2}
-            class="nav-link link-dark d-flex align-items-center"
+            className="nav-link link-dark d-flex align-items-center"
           >
-            <img
-              className="me-2"
-              src={props.icon2}
-              alt="icon de página"
-            />
+            <img className="me-2" src={props.icon2} alt="icon de página" />
             {props.nome2}
           </Link>
         </li>
         <li>
-          <Link to={props.link3} class="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src={props.icon3} />
+          <Link
+            to={props.link3}
+            className="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src={props.icon3} alt="" />
             {props.nome3}
           </Link>
         </li>
         <li>
-          <Link to={props.link4} class="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src={props.icon4} />
+          <Link
+            to={props.link4}
+            className="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src={props.icon4} alt="" />
             {props.nome4}
           </Link>
         </li>
         <hr />
         <li>
-          <Link to={props.link5} class="nav-link link-dark d-flex align-items-center">
-            <img className="me-2" src={props.icon5}/>
+          <Link
+            to={props.link5}
+            className="nav-link link-dark d-flex align-items-center"
+          >
+            <img className="me-2" src={props.icon5} alt="" />
             {props.nome5}
           </Link>
         </li>
