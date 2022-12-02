@@ -1,29 +1,35 @@
-export function ModalVouchers({ show, onHide }) {
+export function ModalPontoInteresse({ show, onHide }) {
   return (
     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">Lista de vouchers</h1>
+            <h1 className="modal-title fs-5" id="staticBackdropLabel">Lista de reservas</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <table className="table table-striped datatable-table">
               <thead className="datatable-header">
                 <tr>
-                  <th scope="col">ID do voucher</th>
-                  <th scope="col">Nome</th>
+                  <th scope="col">ID da reserva</th>
+                  <th scope="col">Nome do cliente</th>
+                  <th scope="col">Nº de pessoas</th>
+                  <th scope="col">Ponto de interesse</th>
                   <th scope="col">Local</th>
-                  <th scope="col">Descrição</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Horas</th>
                   <th scope="col">Ferramentas</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th>1</th>
-                  <td>Café</td>
+                  <td>Tiago</td>
+                  <td>3</td>
+                  <td>Rossio</td>
                   <td>Viseu</td>
-                  <td>Inserir aqui texto relativo ao voucher</td>
+                  <td>20/10/2022</td>
+                  <td>12:20</td>
                   <td>icones</td>
                 </tr>
               </tbody>
