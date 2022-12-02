@@ -1,4 +1,5 @@
 import React from "react";
+import { ModalRegiaoTuristica } from "./ModalRegiaoTuristica"
 
 export function Cartaodistrito() {
   //const pageInfo = navegacao[page];
@@ -47,10 +48,11 @@ export function Cartaodistrito() {
         </div>
       </div>
       <div className="card-footer">
-        <a href="#" class="btn btn-primary text-white">
+        <a href="#" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
           Adicionar Responsável
         </a>
       </div>
+      <ModalRegiaoTuristica />
     </div>
   );
 }
