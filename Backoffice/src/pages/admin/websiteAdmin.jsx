@@ -25,7 +25,7 @@ function websiteAdmin() {
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 mb-5">
           <h2 className="mt-5">Edição dos conteúdos do website</h2>
-          <div className="col col-md-11">
+          <div className="col col-md-10">
             <form className="d-inline-flex flex-column">
               <div className="row d-flex justify-content-between">
                 <div className="col-lg-5 mt-5">

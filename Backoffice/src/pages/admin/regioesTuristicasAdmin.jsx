@@ -23,7 +23,7 @@ function regioesturisticasAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 mt-5">
+        <div className="container px-5 mb-5">
           <h2 className="mt-5">Regiões turísticas</h2>
           <div className="d-flex justify-content-between flex-wrap mt-5">
             <Cartaodistrito />
