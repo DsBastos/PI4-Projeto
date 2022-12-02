@@ -13,9 +13,19 @@ export function WeatherCard() {
   });
 
   return (
-    <div className="location">
-      <p>{data.name}</p>
+  <div className="cardimage">
+    <div className="container">
+    <div className="p-5">
+    <h5 className="card-title text-end">viseu</h5>
+    <h3 className="card-title text-end">Neve</h3>
+    <h5 className="card-text text-end">-4º</h5>
     </div>
+    <div className="p-5">
+    <h5 className="card-title  ">08:30H</h5>
+    <h5 className="card-text">Quarta-feira,18 de novembro 2022</h5>
+    </div>
+  </div>
+  </div>
   );
 }
 
