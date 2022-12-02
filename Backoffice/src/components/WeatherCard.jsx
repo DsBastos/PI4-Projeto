@@ -15,17 +15,15 @@ export function WeatherCard() {
   });
   return (
   <div className="cardimage img-fluid">
-    <div className="container">
     <div className="p-5">
-    <h1 className="card-title text-end">Viseu</h1>
-    <h3 className="card-title text-end">Neve</h3>
+    <h1 className="card-text text-end">Viseu</h1>
+    <h3 className="card-text text-end">Neve</h3>
     <h1 className="card-text text-end">-4º</h1>
     </div>
     <div className="p-5">
-    <h2 className="card-title  ">08:30H</h2>
+    <h2 className="card-title">08:30H</h2>
     <h5 className="card-text">Quarta-feira,18 de novembro 2022</h5>
     </div>
-  </div>
   </div>
   );
 }
