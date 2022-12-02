@@ -17,3 +17,11 @@
 textarea {
   resize: none !important;
 }
+
+.cardimage{
+  border-radius: 4px;
+  width:57rem;
+  height: auto;
+  background-image: url("./assets/backgroundneve.jpg");
+  color: white;
+}
