@@ -1,4 +1,4 @@
-export function ModalPontoInteresse({ show, onHide }) {
+export function ModalReservaPontoInteresse({ show, onHide }) {
   return (
     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -30,7 +30,7 @@ export function ModalPontoInteresse({ show, onHide }) {
                   <td>Viseu</td>
                   <td>20/10/2022</td>
                   <td>12:20</td>
-                  <td>icones</td>
+                  <td><button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button></td>
                 </tr>
               </tbody>
             </table>

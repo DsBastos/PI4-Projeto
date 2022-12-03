@@ -37,7 +37,7 @@ function websiteAdmin() {
                       Texto da secção herói
                     </label>
                     <textarea
-                      class="form-control mt-md-4"
+                      className="form-control mt-md-4"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
@@ -51,7 +51,7 @@ function websiteAdmin() {
                       Texto da secção “Nosso Objetivo”
                     </label>
                     <textarea
-                      class="form-control mt-md-3"
+                      className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
@@ -59,15 +59,15 @@ function websiteAdmin() {
                   </div>
                 </div>
                 <div className="col-lg-5 mt-5">
-                  <div class="mb-3">
+                  <div className="mb-3">
                     <label
                       for="exampleFormControlTextarea1"
-                      class="form-label h4 fw-bold"
+                      className="form-label h4 fw-bold"
                     >
                       Texto da secção para descarregar aplicação
                     </label>
                     <textarea
-                      class="form-control"
+                      className="form-control"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
@@ -76,29 +76,29 @@ function websiteAdmin() {
                 </div>
                 <hr className="my-5" />
                 <div className="col-lg-5 mt-2">
-                  <div class="mb-5">
+                  <div className="mb-5">
                     <label
                       for="exampleFormControlTextarea1"
-                      class="form-label h4 fw-bold"
+                      className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Pontos Turísticos”
                     </label>
                     <textarea
-                      class="form-control mt-md-3"
+                      className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
                     ></textarea>
                   </div>
-                  <div class="mb-5">
+                  <div className="mb-5">
                     <label
                       for="exampleFormControlTextarea1"
-                      class="form-label h4 fw-bold"
+                      className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Reservas”
                     </label>
                     <textarea
-                      class="form-control mt-md-3"
+                      className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
@@ -106,29 +106,29 @@ function websiteAdmin() {
                   </div>
                 </div>
                 <div className="col-lg-5 mt-2">
-                  <div class="mb-5">
+                  <div className="mb-5">
                     <label
                       for="exampleFormControlTextarea1"
-                      class="form-label h4 fw-bold"
+                      className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Voucher”
                     </label>
                     <textarea
-                      class="form-control mt-md-3"
+                      className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
                     ></textarea>
                   </div>
-                  <div class="mb-3">
+                  <div className="mb-3">
                     <label
                       for="exampleFormControlTextarea1"
-                      class="form-label h4 fw-bold"
+                      className="form-label h4 fw-bold"
                     >
                       Texto do cartão “QRCode”
                     </label>
                     <textarea
-                      class="form-control mt-md-3"
+                      className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxlength="200"
@@ -143,7 +143,7 @@ function websiteAdmin() {
                         <h5 className="card-title h4 fw-bold">
                           Atualizações da aplicação
                         </h5>
-                        <table class="table table-striped table-group-divider text-center align-middle ">
+                        <table className="table table-striped table-group-divider text-center align-middle ">
                           <thead>
                             <tr>
                               <th scope="col">Nº da versão</th>
@@ -155,7 +155,7 @@ function websiteAdmin() {
                               <td className="fw-bold">1.0.0</td>
                               <td className="">
                                 <textarea
-                                  class="form-control mx-auto w-50 my-md-3"
+                                  className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
                                   maxlength="200"
@@ -167,7 +167,7 @@ function websiteAdmin() {
                               <td className="fw-bold">1.0.1</td>
                               <td>
                                 <textarea
-                                  class="form-control mx-auto  w-50 my-md-3"
+                                  className="form-control mx-auto  w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
                                   maxlength="200"
@@ -178,7 +178,7 @@ function websiteAdmin() {
                               <td className="fw-bold">1.0.2</td>
                               <td>
                                 <textarea
-                                  class="form-control mx-auto w-50 my-md-3"
+                                  className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
                                   maxlength="200"

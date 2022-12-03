@@ -24,7 +24,9 @@ export function ModalVouchers({ show, onHide }) {
                   <td>Café</td>
                   <td>Viseu</td>
                   <td>Inserir aqui texto relativo ao voucher</td>
-                  <td>icones</td>
+                  <td>
+                    <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                  </td>
                 </tr>
               </tbody>
             </table>

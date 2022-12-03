@@ -14,7 +14,7 @@ function recompensas() {
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Recompensas</h2>
-          <button type="button" class="btn btn-success">Consultar lista de reservas</button>
+          <button type="button" className="btn btn-success">Consultar lista de reservas</button>
         </div>
       </main>
     </div>

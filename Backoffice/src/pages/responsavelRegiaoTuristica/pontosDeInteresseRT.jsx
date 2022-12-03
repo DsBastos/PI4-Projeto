@@ -1,6 +1,7 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
+import { ModalEditarPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalEditarPontoInteresse"
 
 function pontosdeinteresseRT() {
   return (
@@ -14,8 +15,8 @@ function pontosdeinteresseRT() {
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Responsáveis da região turística</h2>
-          <button type="button" class="btn btn-success">Consultar lista de reservas</button>
-          <table class="table table-striped">
+          <button type="button" className="btn btn-success">Consultar lista de reservas</button>
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Nome</th>
@@ -28,8 +29,11 @@ function pontosdeinteresseRT() {
               <tr>
                 <th>Sé de Viseu</th>
                 <td>Viseu</td>
-                <td>Ver/editar detalhes</td>
-                <td>icones</td>
+                <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver/editar detalhes</button></td>
+                <td>
+                  <button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
+                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </td>
               </tr>
             </tbody>
           </table>

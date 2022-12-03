@@ -33,7 +33,9 @@ function utilizadoresAdmin() {
                 <th>1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>@mdo</td>
+                <td><button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
+                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </td>
               </tr>
             </tbody>
           </table>

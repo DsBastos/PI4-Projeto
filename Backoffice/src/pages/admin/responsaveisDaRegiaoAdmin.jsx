@@ -26,7 +26,7 @@ function responsaveisdaregiaoAdmin() {
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Responsáveis da região turística</h2>
-          <table class="table table-striped datatable-table">
+          <table className="table table-striped datatable-table">
             <thead className="datatable-header">
               <tr>
                 <th scope="col">Nome completo</th>
@@ -44,7 +44,9 @@ function responsaveisdaregiaoAdmin() {
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Otto</td>
-                <td>icones</td>
+                <td><button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
+                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </td>
               </tr>
             </tbody>
           </table>
