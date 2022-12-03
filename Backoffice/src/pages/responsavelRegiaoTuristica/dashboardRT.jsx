@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Topnav } from "../../components/Topnav";
-import { Menuadmin } from "../../components/Menuadmin";
+import { Menu } from "../../components/Menu";
 import { WeatherCard } from "../../components/WeatherCard";
 import { motion as m } from "framer-motion";
 import icongroup from "../../assets/icongroup.svg";
@@ -10,7 +10,7 @@ function dashboardRT() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menuadmin
+      <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
         nome2="Agentes turísticos"

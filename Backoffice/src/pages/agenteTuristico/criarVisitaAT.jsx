@@ -13,7 +13,7 @@ function criarVisitaAT() {
         <Topnav role="Agente turístico" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Criar reserva</h2>
-          <button type="button" class="btn btn-success">Confirmar</button>
+          <button type="button" className="btn btn-success">Confirmar</button>
         </div>
       </main>
     </div>
