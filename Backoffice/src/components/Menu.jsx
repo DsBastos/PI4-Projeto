@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export function Menuadmin(props) {
+export function Menu(props) {
   //const pageInfo = navegacao[page];
   return (
     <nav className="navbar-nav d-flex flex-column flex-shrink-0 p-3 bg-body vh-100 col-lg-2 col-3 sticky-top">
@@ -69,4 +69,4 @@ export function Menuadmin(props) {
   );
 }
 
-export default Menuadmin;
+export default Menu;

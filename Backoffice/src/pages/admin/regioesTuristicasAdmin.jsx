@@ -1,11 +1,11 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
-import { Menuadmin } from "../../components/Menuadmin";
-import { Cartaodistrito } from "../../components/Cartaodistrito";
+import { Menu } from "../../components/Menu";
+import { Cartaodistrito } from "../../components/admin/Cartaodistrito";
 function regioesturisticasAdmin() {
   return (
     <div className="d-flex">
-      <Menuadmin
+      <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
         link1="/dashboard"
