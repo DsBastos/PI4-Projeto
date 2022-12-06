@@ -7,13 +7,13 @@ export function WeatherCard() {
   const [data, setData] = useState({});
   const watch = true;
   const { latitude, longitude } = usePosition(watch);
-  /* useEffect(() => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=d02fd25e2c26e6e422160e087f7388d0`;
-    axios.get(url, { timeout: 0 }).then((response) => {
+  useEffect(() => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=cc4fa74b48e12da08bfc8ae0ed6a653b`;
+    axios.get(url).then((response) => {
       setData(response.data);
       console.log(response.data);
     });
-  }); */
+  }, []);
   return (
     <div className="cardimage img-fluid">
       <div className="p-5">

@@ -8,7 +8,7 @@ function Login() {
       <div className="container">
         <div
           className="d-flex mx-auto justify-content-center flex-column"
-          style={{ width: "24rem" }}
+          style={{ maxWidth: "24rem" }}
         >
           <img src={logo} className="w-50 mx-auto d-block" alt="" />
           <div className="px-4 pb-5 pt-4 bg-card  shadow mt-4 rounded-3">
@@ -49,9 +49,9 @@ function Login() {
                       </div>
 
                       <div class="col">
-                        <a href="#!" className="text-dark">
+                        <Link to="/recuperarPalavraPasse" className="text-dark">
                           Esqueceste a palavra-passe?
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
