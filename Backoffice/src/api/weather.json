@@ -1,0 +1,44 @@
+{
+  "coord": {
+    "lon": -7.9139,
+    "lat": 40.6575
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 282.96,
+    "feels_like": 281.29,
+    "temp_min": 282.96,
+    "temp_max": 282.96,
+    "pressure": 1013,
+    "humidity": 51,
+    "sea_level": 1013,
+    "grnd_level": 956
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 3.25,
+    "deg": 69,
+    "gust": 4.41
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1669980842,
+  "sys": {
+    "country": "PT",
+    "sunrise": 1669966632,
+    "sunset": 1670000714
+  },
+  "timezone": 0,
+  "id": 2732265,
+  "name": "Viseu",
+  "cod": 200
+}

@@ -1,18 +1,20 @@
 {
-  "name": "frontend",
+  "name": "backoffice",
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
+    "axios": "^1.2.0",
     "bootstrap": "^5.2.2",
-    "framer-motion": "^7.6.7",
+    "framer-motion": "^7.6.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-geolocation": "^1.1.0",
     "react-router-dom": "^6.4.3"
   },
   "devDependencies": {

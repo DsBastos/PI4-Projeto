@@ -1,0 +1,27 @@
+.bg-image-gradient {
+  /* fundo da app */
+
+  background: rgb(217, 235, 17);
+  background: linear-gradient(
+    180deg,
+    rgba(217, 235, 17, 0.3) 0%,
+    rgba(0, 168, 135, 100) 100%
+  );
+  background-size: cover;
+}
+
+.bg-card {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+textarea {
+  resize: none !important;
+}
+
+.cardimage{
+  border-radius: 4px;
+  width:57rem;
+  height: auto;
+  background-image: url("./assets/backgroundneve.jpg");
+  color: white;
+}
