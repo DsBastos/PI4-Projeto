@@ -20,6 +20,7 @@ var pontosTuristicos = sequelize.define(
         pT_coordenadas: Sequelize.STRING,
         pT_link: Sequelize.STRING,
         pT_pontosadquiridos: Sequelize.INTEGER,
+        pT_concelho:Sequelize.STRING,
     },
     {
         freezeTableName: true,
