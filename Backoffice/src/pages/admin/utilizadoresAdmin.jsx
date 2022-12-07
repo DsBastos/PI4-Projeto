@@ -1,24 +1,46 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalUtilizadores } from "../../components/admin/ModalUtilizadores"
+import { ModalUtilizadores } from "../../components/admin/ModalUtilizadores";
 
 function utilizadoresAdmin() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard"
-        nome2="Website" icon2="./assets/icon-filetext.svg" link2="/website"
-        nome3="Responsáveis das regiões turísticas" icon3="./assets/icon-filetext.svg" link3="/responsaveisDaRegiao"
-        nome4="Regiões turísticas" icon4="./assets/icon-filetext.svg" link4="/regioesturisticas"
-        nome5="Utilizadores" icon5="./assets/icon-user.svg" />
+      <Menu
+        nome1="Dashboard"
+        icon1="./assets/icon-barchartline.svg"
+        link1="/dashboard"
+        nome2="Website"
+        icon2="./assets/icon-filetext.svg"
+        link2="/website"
+        nome3="Responsáveis das regiões turísticas"
+        icon3="./assets/icon-filetext.svg"
+        link3="/responsaveisDaRegiao"
+        nome4="Regiões turísticas"
+        icon4="./assets/icon-filetext.svg"
+        link4="/regioesturisticas"
+        nome5="Utilizadores"
+        icon5="./assets/icon-user.svg"
+      />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 p-3">
-          <h2 className="mt-5">Utilizadores</h2>
-          <button type="button" class="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
-          </button>
+        <div className="container px-5">
+          <div className="d-flex justify-content-between mt-5">
+            <h2>Utilizadores</h2>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              <img
+                src="../../assets/icon-adduser.svg"
+                alt="ícone de utilizador com símbolo de mais"
+                width={30}
+              />
+            </button>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -33,8 +55,17 @@ function utilizadoresAdmin() {
                 <th>1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td><button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
-                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                <td>
+                  <button
+                    style={{ border: "none", background: "none" }}
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                    <img src="../../assets/icon-penfill.svg" alt="" />
+                  </button>
+                  <button style={{ border: "none", background: "none" }}>
+                    <img src="../../assets/icon-trashfill.svg" alt="" />
+                  </button>
                 </td>
               </tr>
             </tbody>

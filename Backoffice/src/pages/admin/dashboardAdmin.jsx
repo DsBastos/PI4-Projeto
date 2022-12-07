@@ -17,9 +17,9 @@ function dashboardAdmin() {
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
-          <h2 className="mt-5">Dashboard</h2>
+          <h2 className="mt-4">Dashboard</h2>
           <div className="col col-md-10">
-            <div className="d-flex flex-wrap mt-5">
+            <div className="d-flex flex-wrap mt-3">
               <m.div
                 className="card me-4 my-3"
                 whileHover={{
