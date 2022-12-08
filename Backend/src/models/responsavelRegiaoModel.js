@@ -12,8 +12,6 @@ var responsaveisregiao = sequelize.define(
         rr_nome: Sequelize.STRING,
         rr_email: Sequelize.STRING,
         rr_pwd: Sequelize.STRING,
-        rr_pntint: Sequelize.INTEGER,
-        rr_recompensa: Sequelize.STRING,
     },
     {
         freezeTableName: true,

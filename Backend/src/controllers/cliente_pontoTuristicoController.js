@@ -1,4 +1,4 @@
-var responsavelRegiao = require('../models/responsavelRegiaoModel');
+var clientePontoTuristico = require('../models/cliente_pontoTuristicoModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -6,38 +6,38 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors')
 
-controllers.getAllResponsavelRegiao = async (req, res, next) => {
+controllers.getAllClientePontoTuristico = async (req, res, next) => {
     try {
-        const data = await responsavelRegiao.findAll();
+        const data = await clientePontoTuristico.findAll();
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
     }
 };
 
-controllers.createResponsavelRegiao = async (req, res, next) => {
+controllers.createClientePontoTuristico = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const responsavelRegiao = await responsavelRegiao.create(
+        const clientePontoTuristico = await clientePontoTuristico.create(
             {
-                nome: req.body.rr_nome,
-                email: req.body.rr_email,
-                pwd: req.body.rr_pwd,
+                c_historicoPntInteresse: req.body.c_historicoPntInteresse,
+                c_historicoLocal: req.body.c_historicoLocal,
+                c_historicoData: req.body.c_historicoData,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: concelhoTuristico });
+        res.send({ success: true, data: cliente });
     } catch (e) {
         await t.rollback();
         next(e);
     }
 };
 
-controllers.getResponsavelRegiaoById = async (req, res, next) => {
+controllers.getClientePontoTuristicoById = async (req, res, next) => {
     try {
         const {id} = req.params
-        const data = await responsavelRegiao.findByPk(id)
+        const data = await clientePontoTuristico.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
     } catch (error) {
@@ -45,35 +45,30 @@ controllers.getResponsavelRegiaoById = async (req, res, next) => {
     }
 }
 
-controllers.updateResponsavelRegiao = async (req, res, next) => {
+controllers.updateClientePontoTuristico = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome,email,pwd} = req.body;
-        const data = await responsavelRegiao.update({
-            rr_nome: nome,
-            rr_email: email,
-            rr_pwd: pwd,
-        },
-            {
-                where: { rr_id: id }
-            })
+        const { c_historicoPntInteresse, c_historicoLocal,c_historicoData } = req.body;
+        const data = await clientePontoTuristico.update({
+            historicoPntInteresse: c_historicoPntInteresse,
+            historicoLocal:c_historicoLocal,
+            historicoData: c_historicoData,
+        },)
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {
         next(error)
     }
 }
 
-controllers.deleteResponsavelRegiao = async (req, res, next) => {
+controllers.deleteClientePontoTuristico = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-        const del = await responsavelRegiao.destroy({
-            where: { rr_id: id }
-        })
+        const del = await clientePontoTuristico.destroy
         res.send({ success: true, deleted: del, message: "Deleted successful" });
     } catch (error) {
         next(error)

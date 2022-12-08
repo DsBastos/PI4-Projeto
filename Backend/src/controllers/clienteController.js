@@ -57,13 +57,13 @@ controllers.updateCliente = async (req, res, next) => {
 
         const { nome, idade, email, pwd, regiao, estrangeiro, pontos } = req.body;
         const data = await cliente.update({
-            nome: nome,
-            idade:idade,
-            email: email,
-            pwd: pwd,
-            regiao: regiao,
-            estrangeiro: estrangeiro,
-            pontos: pontos,
+            c_nome: nome,
+            c_idade:idade,
+            c_email: email,
+            c_pwd: pwd,
+            c_regiao: regiao,
+            c_estrangeiro: estrangeiro,
+            c_pontos: pontos,
         },
             {
                 where: { c_id: id }

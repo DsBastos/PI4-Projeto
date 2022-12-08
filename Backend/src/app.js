@@ -4,7 +4,7 @@ const app = express();
 require('dotenv').config()
 require('./models/associations')
 const createError = require('http-errors');
-const middleware = require('./middleware');
+//const middleware = require('./middleware');
 
 const adminRoute = require('./routes/adminRoute.js')
 const agenteTuristicoRoute = require('./routes/agenteTuristicoRoute.js')

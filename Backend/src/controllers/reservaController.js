@@ -21,6 +21,8 @@ controllers.createReserva = async (req, res, next) => {
         const reserva = await reserva.create(
             {
                 npessoas: req.body.rs_nPessoas,
+                data: req.body.rs_data,
+                estado: req.body.rs_estado,
             },
             { transaction: t }
         );
@@ -49,12 +51,14 @@ controllers.updateReserva = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome} = req.body;
+        const {npessoas,dataReserva,estado} = req.body;
         const data = await reserva.update({
-            rs_nPessoas: nome,
+            rs_nPessoas: npessoas,
+            rs_data: dataReserva,
+            rs_estado: estado,
         },
             {
-                where: { cT_id: id }
+                where: { rs_id: id }
             })
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {
@@ -62,13 +66,13 @@ controllers.updateReserva = async (req, res, next) => {
     }
 }
 
-controllers.deleteConcelhoTuristico = async (req, res, next) => {
+controllers.deleteReserva = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-        const del = await concelhoTuristico.destroy({
-            where: { cT_id: id }
+        const del = await reserva.destroy({
+            where: { rs_id: id }
         })
         res.send({ success: true, deleted: del, message: "Deleted successful" });
     } catch (error) {
