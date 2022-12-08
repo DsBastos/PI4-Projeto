@@ -2,7 +2,8 @@ import { Navbar } from "./components/Navbar";
 import { Card } from "./components/Card";
 import { Footer } from "./components/Footer";
 import { motion } from "framer-motion";
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
 
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
@@ -99,7 +100,9 @@ const screenImg = {
   },
 };
 
-//Estados
+export function App() {
+
+  //Estados
   const [heroi, setHeroi] = useState("")
   const [descarregar, setDescarregar] = useState("")
   const [objetivo, setObjetivo] = useState("")
@@ -114,14 +117,19 @@ useEffect(() => {
   .then(({data}) => {
     const dados = data.data;
       setHeroi(dados.ws_texto)
+      setDescarregar(dados.ws_texto)
+      setObjetivo(dados.ws_texto)
+      setPontosT(dados.ws_texto)
+      setVoucher(dados.ws_texto)
+      setReservas(dados.ws_texto)
+      setQr(dados.ws_texto)
+      setAtualizacoes(dados.ws_texto)
   })
   .catch((error) => {
     alert(error)
   })
-    
 }, [])
 
-export function App() {
   return (
     <motion.div initial="initial" animate="animate">
       <Navbar />
