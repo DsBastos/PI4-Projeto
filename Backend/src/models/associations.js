@@ -1,31 +1,23 @@
 const db = require("./database");
-const admin = require("./adminModel");
-const agenteTuristico = require("./agenteTuristicoModel");
+const tipoUtilizador = require("./tipoUtilizadorModel");
+const utilizadores = require("./utilizadoresModel");
 const cliente = require("./clienteModel");
 const pontoTuristico = require("./pontoTuristicoModel");
 const recompensa = require("./recompensaModel");
 const regiaoTuristica = require("./regiaoTuristicaModel");
 const reserva = require("./reservaModel");
-const responsavelRegiao = require("./responsavelRegiaoModel");
 const tipologia = require("./tipologiaModel");
 const visita = require("./visitaModel");
 const voucher = require("./voucherModel");
 const website = require("./websiteModel");
-const cliente_voucher = require("./cliente_voucherModel");
 
 db.sync({logging:false})
 
 website.hasMany(admin, {foreignKey:{name:"ws_id",allowNull:false}});
 
-admin.hasMany(responsavelRegiao, {foreignKey:{name:"adm_id",allowNull:false}});
 
 regiaoTuristica.hasMany(responsavelRegiao, {foreignKey:{name:"rt_id",allowNull:false}});
 regiaoTuristica.hasMany(regiaoTuristica, {foreignKey:{name:"rt_id",allowNull:false}});
-
-responsavelRegiao.hasMany(recompensa, {foreignKey:{name:"rr_id",allowNull:false}});
-responsavelRegiao.hasMany(agenteTuristico, {foreignKey:{name:"rr_id",allowNull:false}});
-
-agenteTuristico.hasMany(pontoTuristico, {foreignKey:{name:"aa_id",allowNull:false}})
 
 cliente.belongsToMany(voucher,{through:'cliente_voucher'});
 voucher.belongsToMany(cliente,{through:'cliente_voucher'});

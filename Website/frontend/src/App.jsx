@@ -16,7 +16,7 @@ import iconqr from "./assets/icon_qr.svg";
 
 import "./global.css";
 
-import { api } from "../../../api";
+import { api } from "../api";
 
 let easeing = [0.6, -0.05, 0.01, 0.99];
 
@@ -114,8 +114,7 @@ export function App() {
           <motion.div className="me-auto">
             <motion.h1 variants={fadeInUp} initial="initial" animate="animate">
               <strong>
-                "If you have a special
-                <p>point make it green."</p>
+                
               </strong>
             </motion.h1>
 

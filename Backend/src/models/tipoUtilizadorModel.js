@@ -1,17 +1,15 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./database");
 
-var agentesTuristicos = sequelize.define(
-    "agenteTuristico",
+var tipoutilizador = sequelize.define(
+    "tipoutilizador",
     {
-        aa_id: {
+        tu_id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        aa_nome: Sequelize.STRING,
-        aa_email: Sequelize.STRING,
-        aa_psw: Sequelize.STRING,
+        tu_tipo: Sequelize.STRING,
     },
     {
         freezeTableName: true,
@@ -19,4 +17,4 @@ var agentesTuristicos = sequelize.define(
     }
 );
 
-module.exports = agentesTuristicos;
+module.exports = tipoutilizador;

@@ -1,17 +1,17 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./database");
 
-var admins = sequelize.define(
-    "admin",
+var utilizadores = sequelize.define(
+    "utilizadores",
     {
-        adm_id: {
+        u_id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        adm_nome: Sequelize.STRING,
-        adm_email: Sequelize.STRING,
-        adm_psw: Sequelize.STRING,
+        u_nome: Sequelize.STRING,
+        u_email: Sequelize.STRING,
+        u_pwd: Sequelize.STRING,
     },
     {
         freezeTableName: true,
@@ -19,4 +19,4 @@ var admins = sequelize.define(
     }
 );
 
-module.exports = admins;
+module.exports = utilizadores;
