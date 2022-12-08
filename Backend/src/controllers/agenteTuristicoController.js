@@ -53,9 +53,9 @@ controllers.updateAgenteTuristico = async (req, res, next) => {
 
         const {nome,email,psw } = req.body;
         const data = await agenteTuristico.update({
-            nome: nome,
-            psw:psw,
-            email: email,
+            aa_nome: nome,
+            aa_psw: psw,
+            aa_email: email,
         },
             {
                 where: { aa_id: id }

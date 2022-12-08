@@ -51,11 +51,11 @@ controllers.updateVisita = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {datas,horas,vagas} = req.body;
+        const {dataVisita,hora,vagas} = req.body;
         const data = await visita.update({
-            vs_data:datas,
-            vs_horas:horas,
-            vs_vagas:vagas
+            vs_data:dataVisita,
+            vs_horas:hora,
+            vs_vagas:vagas,
         },
             {
                 where: { vs_id: id }

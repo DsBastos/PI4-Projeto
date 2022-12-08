@@ -1,4 +1,4 @@
-var cliente_voucher = require('../models/cliente_voucherModel');
+var clienteVoucher = require('../models/cliente_voucherModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -49,7 +49,7 @@ controllers.updateClienteVoucher = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const { c_disponibilidade} = req.body;
+        const {c_disponibilidade} = req.body;
         const data = await clienteVoucher.update({
             disponibilidade: c_disponibilidade,
         },)

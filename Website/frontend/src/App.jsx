@@ -16,6 +16,8 @@ import iconqr from "./assets/icon_qr.svg";
 
 import "./global.css";
 
+import { api } from "../../../api";
+
 let easeing = [0.6, -0.05, 0.01, 0.99];
 
 const stagger = {

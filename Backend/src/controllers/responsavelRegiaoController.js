@@ -23,8 +23,6 @@ controllers.createResponsavelRegiao = async (req, res, next) => {
                 nome: req.body.rr_nome,
                 email: req.body.rr_email,
                 pwd: req.body.rr_pwd,
-                pntint: req.body.rr_pntint,
-                recompensa: req.body.rr_recompensa
             },
             { transaction: t }
         );
@@ -53,13 +51,11 @@ controllers.updateResponsavelRegiao = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome,email,pwd,pntint,recompensa} = req.body;
+        const {nome,email,pwd} = req.body;
         const data = await responsavelRegiao.update({
             rr_nome: nome,
             rr_email: email,
             rr_pwd: pwd,
-            rr_pntint: pntint,
-            rr_recompensa: recompensa,
         },
             {
                 where: { rr_id: id }

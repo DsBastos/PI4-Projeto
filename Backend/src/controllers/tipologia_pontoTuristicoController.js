@@ -1,4 +1,4 @@
-var tipologia_pontoTuristico = require('../models/tipologia_pontoTuristicoModel');
+var tipologiaPontoTuristico = require('../models/tipologia_pontoTuristicoModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -49,7 +49,7 @@ controllers.updateClienteVoucher = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const { c_disponibilidade} = req.body;
+        const {c_disponibilidade} = req.body;
         const data = await tipologiaPontoTuristico.update({
             disponibilidade: c_disponibilidade,
         },)

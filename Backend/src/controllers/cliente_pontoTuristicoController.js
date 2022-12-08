@@ -1,4 +1,4 @@
-var cliente_pontoTuristico = require('../models/cliente_pontoTuristicoModel');
+var clientePontoTuristico = require('../models/cliente_pontoTuristicoModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
