@@ -9,14 +9,13 @@ const reserva = require("./reservaModel");
 const tipologia = require("./tipologiaModel");
 const visita = require("./visitaModel");
 const voucher = require("./voucherModel");
-const website = require("./websiteModel");
 
 db.sync({logging:false})
 
-website.hasMany(admin, {foreignKey:{name:"ws_id",allowNull:false}});
 
 
-regiaoTuristica.hasMany(responsavelRegiao, {foreignKey:{name:"rt_id",allowNull:false}});
+
+
 regiaoTuristica.hasMany(regiaoTuristica, {foreignKey:{name:"rt_id",allowNull:false}});
 
 cliente.belongsToMany(voucher,{through:'cliente_voucher'});
