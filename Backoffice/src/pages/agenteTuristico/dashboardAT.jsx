@@ -1,8 +1,10 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
+//import { api } from "../../api";
+import { useState, useEffect } from "react"
 
-function recompensas() {
+function dashboardAT() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -13,12 +15,13 @@ function recompensas() {
         <Topnav role="Agente turístico" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Dashboard</h2>
+
         </div>
       </main>
     </div>
   );
 }
 
-export default recompensas;
+export default dashboardAT;
   
   
