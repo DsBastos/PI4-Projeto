@@ -30,40 +30,103 @@ function recompensas() {
           </div>
           <div className="col mt-4">
             <div className="card">
-              <div className="card-body p-4">
+              <div className="card-body p-5">
                 <h5 className="card-title h4 fw-bold">Criar Voucher</h5>
                 <form>
-                  <div class="form-group row">
-                    <label
-                      for="example-text-input"
-                      class="col-2 col-form-label"
-                    >
-                      Text
+                  <div class="form-group row mt-3">
+                    <label for="nomeRecompensa" class="col-2 col-form-label">
+                      Nome
                     </label>
-                    <div class="col-4">
+                    <div class="col-lg-3">
                       <input
                         class="form-control"
                         type="text"
                         placeholder="Insira o nome da recompensa"
-                        id="example-text-input"
+                        id="nomeRecompensa"
                       />
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary">
-                    Guardar
+                  <div class="form-group row mt-2">
+                    <label for="localRecompensa" class="col-2 col-form-label">
+                      Local
+                    </label>
+                    <div class="col-lg-3">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Insira a região do local"
+                        id="localRecompensa"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row mt-2">
+                    <label for="pontoTuristico" class="col-2 col-form-label">
+                      Ponto turístico
+                    </label>
+                    <div class="col-lg-3">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Insira o local do ponto turístico"
+                        id="pontoTuristico"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row mt-2">
+                    <label for="descricao" class="col-2 col-form-label">
+                      Descrição
+                    </label>
+                    <div class="col-lg-8">
+                      <textarea
+                        class="form-control"
+                        type="text"
+                        placeholder="Insira uma descrição para a recompensa"
+                        id="descricao"
+                        rows="6"
+                        maxlength="1024"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row mt-2">
+                    <label for="custoRecompensa" class="col-2 col-form-label">
+                      Custo
+                    </label>
+                    <div class="col-lg-3">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Insira o valor em pontos"
+                        id="custoRecompensa"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-success text-white mt-4 d-block ms-auto "
+                  >
+                    Criar voucher
                   </button>
                 </form>
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col mt-4">
             <div className="card">
-              <div className="card-body">
-                <div className="px-5 py-3">
-                  <h5 className="card-title h4 fw-bold">
-                    Associar pontos recebidos ao ponto de interesse
-                  </h5>
-                  <table class="table table-striped table-group-divider text-center align-middle ">
+              <div className="card-body p-5">
+                <h5 className="card-title h4 fw-bold">
+                  Associar pontos recebidos ao ponto turístico
+                </h5>
+                <form>
+                  <select
+                    class="form-select col-3 my-4"
+                    aria-label=".form-select example"
+                  >
+                    <option selected>Distrito</option>
+                    <option value="1">Viseu</option>
+                    <option value="2">Aveiro</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <table class="table table-striped table-group-divider text-center align-middle">
                     <thead>
                       <tr>
                         <th scope="col">Pontos de interesse</th>
@@ -111,7 +174,13 @@ function recompensas() {
                       </tr>
                     </tbody>
                   </table>
-                </div>
+                  <button
+                    type="submit"
+                    className="btn btn-success text-white mt-4 d-block ms-auto "
+                  >
+                    Associar pontos
+                  </button>
+                </form>
               </div>
             </div>
           </div>
