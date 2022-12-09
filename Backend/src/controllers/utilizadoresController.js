@@ -1,4 +1,4 @@
-var agenteTuristico = require('../models/agenteTuristicoModel');
+var utilizador = require('../models/tipoUtilizadorModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -6,38 +6,38 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors')
 
-controllers.getAllAgenteTuristico = async (req, res, next) => {
+controllers.getAllUtilizador = async (req, res, next) => {
     try {
-        const data = await agenteTuristico.findAll();
+        const data = await utilizador.findAll();
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
     }
 };
 
-controllers.createAgenteTuristico = async (req, res, next) => {
+controllers.createUtilizador = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const agenteTuristico = await agenteTuristico.create(
+        const utilizador = await utilizador.create(
             {
-                nome: req.body.aa_nome,
-                email: req.body.aa_email,
-                psw: req.body.aa_psw,
+                nome: req.body.u_nome,
+                email: req.body.u_email,
+                pwd: req.body.u_pwd,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: agenteTuristico });
+        res.send({ success: true, data: utilizador });
     } catch (e) {
         await t.rollback();
         next(e);
     }
 };
 
-controllers.getAgenteTuristicoById = async (req, res, next) => {
+controllers.getUtilizadorById = async (req, res, next) => {
     try {
         const {id} = req.params
-        const data = await agenteTuristico.findByPk(id)
+        const data = await utilizador.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
     } catch (error) {
@@ -45,20 +45,20 @@ controllers.getAgenteTuristicoById = async (req, res, next) => {
     }
 }
 
-controllers.updateAgenteTuristico = async (req, res, next) => {
+controllers.updateUtilizador = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome,email,psw } = req.body;
-        const data = await agenteTuristico.update({
-            nome: nome,
-            psw:psw,
-            email: email,
+        const {nome, email, pwd} = req.body;
+        const data = await utilizador.update({
+            u_nome: nome,
+            u_email: email,
+            u_pwd: pwd,
         },
             {
-                where: { aa_id: id }
+                where: { u_id: id }
             })
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {
@@ -66,13 +66,13 @@ controllers.updateAgenteTuristico = async (req, res, next) => {
     }
 }
 
-controllers.deleteAgenteTuristico = async (req, res, next) => {
+controllers.deleteUtilizador = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-        const del = await agenteTuristico.destroy({
-            where: { aa_id: id }
+        const del = await utilizador.destroy({
+            where: { u_id: id }
         })
         res.send({ success: true, deleted: del, message: "Deleted successful" });
     } catch (error) {

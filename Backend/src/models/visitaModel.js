@@ -9,9 +9,9 @@ var visitas = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        vs_data: Sequelize.STRING,
-        vs_horas: Sequelize.STRING,
-        vs_vagas: Sequelize.STRING,
+        vs_data: Sequelize.DATE,
+        vs_horas: Sequelize.TIME,
+        vs_vagas: Sequelize.INTEGER,
     },
     {
         freezeTableName: true,

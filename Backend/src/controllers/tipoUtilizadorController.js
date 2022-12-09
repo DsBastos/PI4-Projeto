@@ -1,4 +1,4 @@
-var visita = require('../models/VisitaModel');
+var tipoUtilizador = require('../models/tipoUtilizadorModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -6,38 +6,36 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors')
 
-controllers.getAllVisita = async (req, res, next) => {
+controllers.getAllTipoUtilizador = async (req, res, next) => {
     try {
-        const data = await visita.findAll();
+        const data = await tipoUtilizador.findAll();
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
     }
 };
 
-controllers.createVisita = async (req, res, next) => {
+controllers.createTipoUtilizador = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const visita = await visita.create(
+        const tipoUtilizador = await tipoUtilizador.create(
             {
-                datas: req.body.vs_data,
-                horas: req.body.vs_horas,
-                vagas: req.body.vs_vagas
+                tipo: req.body.tu_tipo,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: visita });
+        res.send({ success: true, data: tipoUtilizador });
     } catch (e) {
         await t.rollback();
         next(e);
     }
 };
 
-controllers.getVisitaById = async (req, res, next) => {
+controllers.getTipoUtilizadorById = async (req, res, next) => {
     try {
         const {id} = req.params
-        const data = await visita.findByPk(id)
+        const data = await tipoUtilizador.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
     } catch (error) {
@@ -45,20 +43,18 @@ controllers.getVisitaById = async (req, res, next) => {
     }
 }
 
-controllers.updateVisita = async (req, res, next) => {
+controllers.updateTipoUtilizador = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {dataVisita,hora,vagas} = req.body;
-        const data = await visita.update({
-            vs_data:dataVisita,
-            vs_horas:hora,
-            vs_vagas:vagas,
+        const {tipo} = req.body;
+        const data = await tipoUtilizador.update({
+            tu_tipo: tipo,
         },
             {
-                where: { vs_id: id }
+                where: { tu_id: id }
             })
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {
@@ -66,13 +62,13 @@ controllers.updateVisita = async (req, res, next) => {
     }
 }
 
-controllers.deleteVisita = async (req, res, next) => {
+controllers.deleteTipoUtilizador = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-        const del = await visita.destroy({
-            where: { vs_id: id }
+        const del = await tipoUtilizador.destroy({
+            where: { tu_id: id }
         })
         res.send({ success: true, deleted: del, message: "Deleted successful" });
     } catch (error) {

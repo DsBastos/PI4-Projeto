@@ -1,7 +1,7 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./database");
 
-var websites = sequelize.define(
+var website = sequelize.define(
     "website",
     {
         ws_id: {
@@ -9,14 +9,8 @@ var websites = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        ws_heroi: Sequelize.STRING,
-        ws_descarregar: Sequelize.STRING,
-        ws_objetivo: Sequelize.STRING,
-        ws_pontosT: Sequelize.STRING,
-        ws_voucher: Sequelize.STRING,
-        ws_reservas: Sequelize.STRING,
-        ws_qr: Sequelize.STRING,
-        ws_atualizacoes: Sequelize.STRING,
+        ws_nome: Sequelize.STRING,
+        ws_texto: Sequelize.STRING,
     },
     {
         freezeTableName: true,
@@ -24,4 +18,4 @@ var websites = sequelize.define(
     }
 );
 
-module.exports = websites;
+module.exports = website;

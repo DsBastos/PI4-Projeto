@@ -1,4 +1,4 @@
-var admin = require('../models/adminModel');
+var clienteVoucher = require('../models/cliente_voucherModel');
 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -6,39 +6,36 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors')
 
-controllers.getAllAdmin = async (req, res, next) => {
+controllers.getAllClienteVoucher = async (req, res, next) => {
     try {
-        const data = await admin.findAll();
+        const data = await clienteVoucher.findAll();
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
     }
 };
 
-controllers.createAdmin = async (req, res, next) => {
+controllers.createClienteVoucher = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const admin = await admin.create(
+        const clienteVoucher = await clienteVoucher.create(
             {
-                nome: req.body.adm_nome,
-                email: req.body.adm_email,
-                psw: req.body.adm_psw,
-                
+                c_disponibilidade: req.body.c_disponibilidade,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: admin });
+        res.send({ success: true, data: cliente });
     } catch (e) {
         await t.rollback();
         next(e);
     }
 };
 
-controllers.getAdminById = async (req, res, next) => {
+controllers.getClienteVoucherById = async (req, res, next) => {
     try {
         const {id} = req.params
-        const data = await admin.findByPk(id)
+        const data = await clienteVoucher.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
     } catch (error) {
@@ -46,35 +43,28 @@ controllers.getAdminById = async (req, res, next) => {
     }
 }
 
-controllers.updateAdmin = async (req, res, next) => {
+controllers.updateClienteVoucher = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome,email,psw } = req.body;
-        const data = await cliente.update({
-            nome: nome,
-            psw:psw,
-            email: email,
-        },
-            {
-                where: { adm_id: id }
-            })
+        const {c_disponibilidade} = req.body;
+        const data = await clienteVoucher.update({
+            disponibilidade: c_disponibilidade,
+        },)
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {
         next(error)
     }
 }
 
-controllers.deleteAdmin = async (req, res, next) => {
+controllers.deleteClienteVoucher = async (req, res, next) => {
     try {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-        const del = await admin.destroy({
-            where: { adm_id: id }
-        })
+        const del = await clienteVoucher.destroy
         res.send({ success: true, deleted: del, message: "Deleted successful" });
     } catch (error) {
         next(error)

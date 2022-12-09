@@ -2,6 +2,7 @@ import { Navbar } from "./components/Navbar";
 import { Card } from "./components/Card";
 import { Footer } from "./components/Footer";
 import { motion } from "framer-motion";
+import { useState } from "react"
 
 import heroImage from "./assets/heroImage.png";
 import mygreenpointlogo from "./assets/mygreenpointlogo.png";
@@ -16,6 +17,9 @@ import iconqr from "./assets/icon_qr.svg";
 
 import "./global.css";
 
+import { api } from "../api";
+
+//Animação da página
 let easeing = [0.6, -0.05, 0.01, 0.99];
 
 const stagger = {
@@ -95,6 +99,28 @@ const screenImg = {
   },
 };
 
+//Estados
+  const [heroi, setHeroi] = useState("")
+  const [descarregar, setDescarregar] = useState("")
+  const [objetivo, setObjetivo] = useState("")
+  const [pontosT, setPontosT] = useState("")
+  const [voucher, setVoucher] = useState("")
+  const [reservas, setReservas] = useState("")
+  const [qr, setQr] = useState("")
+  const [atualizacoes, setAtualizacoes] = useState("")
+
+useEffect(() => {
+  api.get('/website/list')
+  .then(({data}) => {
+    const dados = data.data;
+      setHeroi(dados.ws_texto)
+  })
+  .catch((error) => {
+    alert(error)
+  })
+    
+}, [])
+
 export function App() {
   return (
     <motion.div initial="initial" animate="animate">
@@ -112,8 +138,7 @@ export function App() {
           <motion.div className="me-auto">
             <motion.h1 variants={fadeInUp} initial="initial" animate="animate">
               <strong>
-                "If you have a special
-                <p>point make it green."</p>
+                
               </strong>
             </motion.h1>
 
