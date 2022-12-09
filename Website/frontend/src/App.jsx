@@ -115,15 +115,18 @@ export function App() {
 useEffect(() => {
   api.get('/website/list')
   .then(({data}) => {
-    const dados = data.data;
-      setHeroi(dados.ws_texto)
-      setDescarregar(dados.ws_texto)
-      setObjetivo(dados.ws_texto)
-      setPontosT(dados.ws_texto)
-      setVoucher(dados.ws_texto)
-      setReservas(dados.ws_texto)
-      setQr(dados.ws_texto)
-      setAtualizacoes(dados.ws_texto)
+    
+    const dados = data.data; 
+     setHeroi(dados[0].ws_texto)
+     console.log(dados)
+     console.log(dados[0].ws_texto)
+     setDescarregar(dados[0].ws_texto)
+     setObjetivo(dados[0].ws_texto)
+     setPontosT(dados[0].ws_texto)
+     setVoucher(dados[0].ws_texto)
+     setReservas(dados[0].ws_texto)
+     setQr(dados[0].ws_texto)
+     setAtualizacoes(dados[0].ws_texto)  
   })
   .catch((error) => {
     alert(error)
@@ -131,6 +134,7 @@ useEffect(() => {
 }, [])
 
   return (
+
     <motion.div initial="initial" animate="animate">
       <Navbar />
       <div
@@ -146,16 +150,15 @@ useEffect(() => {
           <motion.div className="me-auto">
             <motion.h1 variants={fadeInUp} initial="initial" animate="animate">
               <strong>
-                
+              “If you have a special point make it green.” 
               </strong>
             </motion.h1>
 
-            <motion.h5 className="mt-5" variants={fadeInUp2}>
-              Uma aplicação móvel ideal para fazer turismo mas que irá
-              <br />
-              inovar o seu negócio, agilidade os processos e reduzir os <br />
-              custos de operação.
+            <motion.h5 className="mt-5" variants={fadeInUp2} >
+            {console.log(heroi.ws_texto)}
+            {heroi.ws_texto}
             </motion.h5>
+
             <motion.div variants={stagger}>
               <motion.button
                 variants={btnGroup}
