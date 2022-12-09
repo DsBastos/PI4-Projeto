@@ -114,19 +114,16 @@ export function App() {
 
 useEffect(() => {
   api.get('/website/list')
-  .then(({data}) => {
-    
+  .then(({data}) => { 
     const dados = data.data; 
      setHeroi(dados[0].ws_texto)
-     console.log(dados)
-     console.log(dados[0].ws_texto)
-     setDescarregar(dados[0].ws_texto)
-     setObjetivo(dados[0].ws_texto)
-     setPontosT(dados[0].ws_texto)
-     setVoucher(dados[0].ws_texto)
-     setReservas(dados[0].ws_texto)
-     setQr(dados[0].ws_texto)
-     setAtualizacoes(dados[0].ws_texto)  
+     setDescarregar(dados[1].ws_texto)
+     setObjetivo(dados[2].ws_texto)
+     setPontosT(dados[3].ws_texto)
+     setVoucher(dados[4].ws_texto)
+     setReservas(dados[5].ws_texto)
+     setQr(dados[6].ws_texto)
+     setAtualizacoes(dados[7].ws_texto)  
   })
   .catch((error) => {
     alert(error)
@@ -155,8 +152,7 @@ useEffect(() => {
             </motion.h1>
 
             <motion.h5 className="mt-5" variants={fadeInUp2} >
-            {console.log(heroi.ws_texto)}
-            {heroi.ws_texto}
+            {heroi}
             </motion.h5>
 
             <motion.div variants={stagger}>
@@ -197,8 +193,7 @@ useEffect(() => {
               </h1>
               <h6 className="mt-5 text-muted lead">
                 <strong>
-                  Descarrega a aplicação para Android pelo botão a baixo ou
-                  através da leitura do código QR
+                {descarregar}
                 </strong>
               </h6>
               <div className="d-lg-flex align-items-start justify-content-between mt-5">
@@ -230,17 +225,7 @@ useEffect(() => {
             </h1>
             <h5 className="mt-5 text-muted lead">
               <strong>
-                Pretendemos uma plataforma que permita aproximar o
-                <br />
-                visitante e os agentes locais de um território turístico,
-                <br />
-                abrindo um canal de comunicação e partilha que se
-                <br />
-                pretende vantajosa para ambas as partes, contribuindo
-                <br />
-                igualmente para a utilização responsável e sustentável a
-                <br />
-                nível ambiental e social do território.
+               {objetivo}
               </strong>
             </h5>
           </div>
@@ -270,14 +255,14 @@ useEffect(() => {
               <div className="col">
                 <Card
                   titulo="Pontos Turísticos"
-                  descricao="Encontre facilmente na nossa secção de pontos turisticos aquilo que precisa para desfrutar os melhores momentos possiveis!"
+                  descricao={pontosT}
                   icon={iconpt}
                 />
               </div>
               <div className="col">
                 <Card
                   titulo="Vouchers"
-                  descricao="A nossa aplicação permite usufruir do sistema de vouchers que benificia o utilizador dando-lhe descontos através de atividades para aplicar em pontos turísticos"
+                  descricao={voucher}
                   icon={iconvouc}
                 />
               </div>
@@ -285,7 +270,7 @@ useEffect(() => {
               <div className="col">
                 <Card
                   titulo="Reservas"
-                  descricao="Faça reservas nos pontos turísticos para não perder as melhores experiências possiveis!"
+                  descricao={reservas}
                   icon={iconres}
                 />
               </div>
@@ -293,7 +278,7 @@ useEffect(() => {
               <div className="col">
                 <Card
                   titulo="QRCode"
-                  descricao="A nossa aplicação permite ainda usar a câmara do dispositivo móvel para leitura do código QR, ou então escrever manualmente os códigos fornecidos pelo nosso agente turístico"
+                  descricao={qr}
                   icon={iconqr}
                 />
               </div>
@@ -334,11 +319,7 @@ useEffect(() => {
                     aria-labelledby="panelsStayOpen-headingOne"
                   >
                     <div className="accordion-body">
-                      This is the first item's accordion body. It is hidden by
-                      default, until the collapse plugin adds the appropriate
-                      classes that we use to style each element. These classes
-                      control the overall appearance, as well as the showing and
-                      hiding via CSS transitions.
+                      {atualizacoes}
                     </div>
                   </div>
                 </div>
@@ -364,11 +345,7 @@ useEffect(() => {
                     aria-labelledby="panelsStayOpen-headingTwo"
                   >
                     <div className="accordion-body">
-                      This is the first item's accordion body. It is hidden by
-                      default, until the collapse plugin adds the appropriate
-                      classes that we use to style each element. These classes
-                      control the overall appearance, as well as the showing and
-                      hiding via CSS transitions.
+                    {atualizacoes}
                     </div>
                   </div>
                 </div>
@@ -394,11 +371,7 @@ useEffect(() => {
                     aria-labelledby="panelsStayOpen-headingThree"
                   >
                     <div className="accordion-body">
-                      This is the first item's accordion body. It is hidden by
-                      default, until the collapse plugin adds the appropriate
-                      classes that we use to style each element. These classes
-                      control the overall appearance, as well as the showing and
-                      hiding via CSS transitions.
+                    {atualizacoes}
                     </div>
                   </div>
                 </div>
