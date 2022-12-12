@@ -6,14 +6,26 @@ function consultarReservasAT() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard2"
-      nome2="Criar visita" icon2="./assets/icon-filetext.svg" link2="/criarvisita"
-      nome3="Consultar reservas" icon3="./assets/icon-filetext.svg" link3="/consultarReservas"/>
+      <Menu
+        nome1="Dashboard"
+        icon1="./assets/icon-barchartline.svg"
+        link1="/dashboard2"
+        nome2="Criar visita"
+        icon2="./assets/icon-filetext.svg"
+        link2="/criarvisita"
+        nome3="Consultar reservas"
+        icon3="./assets/icon-filetext.svg"
+        link3="/consultarReservas"
+      />
       <main className="w-100">
         <Topnav role="Agente turístico" nome="ROBERTO" />
         <div className="container px-5 mt-5">
-          <h2 className="mt-5">Consultar reservas</h2>
-          <button type="button" className="btn btn-success">Confirmar</button>
+        <div className="d-flex justify-content-between mt-5">
+          <h2>Consultar reservas</h2>
+          <button type="button" className="btn btn-success">
+            Confirmar
+          </button>
+        </div>
           <table className="table table-striped">
             <thead>
               <tr>
@@ -37,8 +49,12 @@ function consultarReservasAT() {
                 <td>20/10/2022</td>
                 <td>12:20</td>
                 <td>
-                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-accept.svg"></img></button>
-                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-decline.svg"></img></button>
+                  <button style={{ border: "none", background: "none" }}>
+                    <img src="../../assets/icon-accept.svg" alt="" />
+                  </button>
+                  <button style={{ border: "none", background: "none" }}>
+                    <img src="../../assets/icon-decline.svg" alt="" />
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -50,4 +66,3 @@ function consultarReservasAT() {
 }
 
 export default consultarReservasAT;
-  
