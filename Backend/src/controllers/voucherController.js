@@ -23,7 +23,7 @@ controllers.createVoucher = async (req, res, next) => {
                 dtinicio: req.body.v_dtinicio,
                 dtfim: req.body.v_dtfim,
                 pontos: req.body.v_pontos,
-                disponibilidade: req.body.v_disponibilidade,
+                emitidos: req.body.v_emitidos,
             },
             { transaction: t }
         );
@@ -52,12 +52,12 @@ controllers.updateVoucher = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {dtinicio,dtfim,pontos,disponibilidade} = req.body;
+        const {dtinicio,dtfim,pontos,emitidos} = req.body;
         const data = await voucher.update({
             v_dtinicio: dtinicio,
             v_dtfim:dtfim,
             v_pontos:pontos,
-            v_disponibilidade:disponibilidade
+            v_emitidos:emitidos,
 
         },
             {
