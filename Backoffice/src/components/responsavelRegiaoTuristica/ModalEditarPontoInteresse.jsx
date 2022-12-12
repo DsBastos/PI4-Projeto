@@ -11,14 +11,42 @@ export function ModalEditarPontoInteresse({ show, onHide }) {
               <form>
                 <div className="form-group m-1">
                   <label for="exampleInputEmail1">Dificuldade</label>
-                  <input type="name" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
+                  <input type="number" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
                 </div>
                 <div className="form-group m-2">
                   <label for="exampleInputEmail1">Duração</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
+                  <input type="minutes" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
                 </div>
                 <div className="form-group m-2">
                   <label for="exampleInputEmail1">Terreno</label>
+                  <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+                </div>
+                <div className="form-group m-2">
+                  <label for="exampleInputEmail1">Tamanho</label>
+                  <input type="size" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+                </div>
+                <div className="form-group m-2">
+                  <label for="exampleInputEmail1">Descrição</label>
+                  <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+                </div>
+                <div className="form-group row pt-4">
+                  <label className="col-1 col-form-label">Hora de abertura</label>
+                  <div className="col-4">
+                    <input type="time" className="form-control" id="inputHoras" placeholder="Horas"></input>
+                  </div>
+                </div>
+                <div className="form-group row pt-4">
+                  <label className="col-1 col-form-label">Hora de encerramento</label>
+                  <div className="col-4">
+                    <input type="time" className="form-control" id="inputHoras" placeholder="Horas"></input>
+                  </div>
+                </div>
+                <div className="form-group m-2">
+                  <label for="exampleInputEmail1">Coordenadas</label>
+                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+                </div>
+                <div className="form-group m-2">
+                  <label for="exampleInputEmail1">Link</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
               </form>

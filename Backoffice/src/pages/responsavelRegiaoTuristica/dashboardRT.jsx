@@ -2,7 +2,7 @@ import React from "react";
 
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { WeatherCard } from "../../components/WeatherCard";
+//import { WeatherCard } from "../../components/WeatherCard";
 import { motion as m } from "framer-motion";
 import icongroup from "../../assets/icongroup.svg";
 
@@ -84,6 +84,8 @@ function dashboardRT() {
                 </div>
               </m.div>
             </div>
+
+
           </div>
           <WeatherCard />
         </div>
@@ -91,5 +93,6 @@ function dashboardRT() {
     </div>
   );
 }
+//<WeatherCard />
 
 export default dashboardRT;
