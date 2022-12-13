@@ -41,6 +41,7 @@ function agentesturisticosRT() {
             </tbody>
           </table>
         </div>
+        <ModalEditarAgenteTuristico />
       </main>
     </div>
   );

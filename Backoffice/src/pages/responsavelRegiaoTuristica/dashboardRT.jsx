@@ -87,7 +87,6 @@ function dashboardRT() {
 
 
           </div>
-          <WeatherCard />
         </div>
       </main>
     </div>
