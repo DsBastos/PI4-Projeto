@@ -1,7 +1,8 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalUtilizadores } from "../../components/admin/ModalUtilizadores"
+import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
+import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
 
 function utilizadoresAdmin() {
   return (
@@ -40,8 +41,8 @@ function utilizadoresAdmin() {
             </tbody>
           </table>
         </div>
-        <ModalUtilizadores />
-        <ModalResponsavelRegiao />
+        <ModalCriarUtilizadores />
+        <ModalEditarUtilizadores />
       </main>
     </div>
   );

@@ -1,10 +1,10 @@
-export function ModalResponsavelRegiao({ show, onHide }) {
+export function ModalEditarUtilizadores({ show, onHide }) {
     return (
       <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar dados do responsável da região</h1>
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">Criar novo utilizador</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -17,17 +17,13 @@ export function ModalResponsavelRegiao({ show, onHide }) {
                   <label htmlFor="exampleInputEmail1">Email</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
                 </div>
-                <div className="form-group m-2">
-                  <label htmlFor="exampleInputEmail1">Telemóvel</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
-                </div>
-                <div className="form-group m-2">
-                  <label htmlFor="exampleInputEmail1">Localidade</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
-                </div>
-                <div className="form-group m-2">
-                  <label htmlFor="exampleInputEmail1">Região</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+                <div className="dropdown">
+                  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cargo
+                  </button>
+                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a className="dropdown-item" href="#">Cargo1</a>
+                  </div>
                 </div>
               </form>
             </div>

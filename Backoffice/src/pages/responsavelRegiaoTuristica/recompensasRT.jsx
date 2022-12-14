@@ -14,7 +14,7 @@ function recompensas() {
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 my-5">
             <h2 className="mt-5 d-inline">Recompensas</h2>
-            <button type="button" class="btn btn-success d-inline ms-auto">Consultar lista de reservas</button>
+            <button type="button" className="btn btn-success d-inline ms-auto">Consultar lista de reservas</button>
           <div className="col">
             <div className="card">
               <div className="card-body">
@@ -25,54 +25,54 @@ function recompensas() {
                 </div>
                 <form>
                   <div className="container">
-                    <div class="g-3 align-items-center">
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">Nome</label>
+                    <div className="g-3 align-items-center">
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">Nome</label>
                       </div>
-                      <div class="col-3">
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">Local</label>
-                      </div>
-                      <div class="col-3">
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="textHelpInline" />
+                      <div className="col-3">
+                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
                       </div>
 
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">Ponto de Interesse</label>
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">Local</label>
                       </div>
-                      <div class="col-3">
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">Data aquisição</label>
-                      </div>
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">00/00/00</label>
+                      <div className="col-3">
+                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
                       </div>
 
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">Data limite</label>
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">Ponto de Interesse</label>
                       </div>
-                      <div class="col-auto">
-                        <label for="text" class="col-form-label">00/00/00</label>
-                      </div>
-
-                      <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Custo</label>
-                      </div>
-                      <div class="col-3">
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="textHelpInline" />
+                      <div className="col-3">
+                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
                       </div>
 
-                      <div class="col-auto">
-                        <label for="inputPassword6" class="col-form-label">Descrição</label>
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">Data aquisição</label>
                       </div>
-                      <div class="col-5">
-                        <textarea type="text" id="textoareavou" class="form-control" aria-describedby="textHelpInline" />
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">00/00/00</label>
+                      </div>
+
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">Data limite</label>
+                      </div>
+                      <div className="col-auto">
+                        <label htmlFor="text" className="col-form-label">00/00/00</label>
+                      </div>
+
+                      <div className="col-auto">
+                        <label htmlFor="inputPassword6" className="col-form-label">Custo</label>
+                      </div>
+                      <div className="col-3">
+                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
+                      </div>
+
+                      <div className="col-auto">
+                        <label htmlFor="inputPassword6" className="col-form-label">Descrição</label>
+                      </div>
+                      <div className="col-5">
+                        <textarea type="text" id="textoareavou" className="form-control" aria-describedby="textHelpInline" />
                       </div>
                     </div>
                     <button type="submit" className="btn btn-primary">Guardar</button>  
@@ -88,7 +88,7 @@ function recompensas() {
                         <h5 className="card-title h4 fw-bold">
                         Associar pontos recebidos ao ponto de interesse
                         </h5>
-                        <table class="table table-striped table-group-divider text-center align-middle ">
+                        <table className="table table-striped table-group-divider text-center align-middle ">
                           <thead>
                             <tr>
                               <th scope="col">Pontos de interesse</th>
@@ -102,7 +102,7 @@ function recompensas() {
                               <td className="fw-bold">viseu</td>
                               <td className="">
                                 <textarea
-                                  class="form-control mx-auto w-25 my-md-3"
+                                  className="form-control mx-auto w-25 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
                                   maxlength="200"
@@ -115,7 +115,7 @@ function recompensas() {
                               <td className="fw-bold">viseu</td>
                               <td>
                                 <textarea
-                                  class="form-control mx-auto w-25 my-md-3 align-content-center"
+                                  className="form-control mx-auto w-25 my-md-3 align-content-center"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
                                   maxlength="200"
@@ -127,7 +127,7 @@ function recompensas() {
                               <td className="fw-bold">viseu</td>
                               <td>
                                 <textarea
-                                  class="form-control mx-auto w-25 my-md-3 align-content-center"
+                                  className="form-control mx-auto w-25 my-md-3 align-content-center"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
                                   maxlength="200"

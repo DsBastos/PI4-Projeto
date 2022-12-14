@@ -10,23 +10,23 @@ export function ModalEditarPontoInteresse({ show, onHide }) {
             <div className="modal-body">
               <form>
                 <div className="form-group m-1">
-                  <label for="exampleInputEmail1">Dificuldade</label>
+                  <label htmlFor="exampleInputEmail1">Dificuldade</label>
                   <input type="number" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Duração</label>
+                  <label htmlFor="exampleInputEmail1">Duração</label>
                   <input type="minutes" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Terreno</label>
+                  <label htmlFor="exampleInputEmail1">Terreno</label>
                   <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Tamanho</label>
+                  <label htmlFor="exampleInputEmail1">Tamanho</label>
                   <input type="size" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Descrição</label>
+                  <label htmlFor="exampleInputEmail1">Descrição</label>
                   <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
                 <div className="form-group row pt-4">
@@ -42,11 +42,11 @@ export function ModalEditarPontoInteresse({ show, onHide }) {
                   </div>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Coordenadas</label>
+                  <label htmlFor="exampleInputEmail1">Coordenadas</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
                 <div className="form-group m-2">
-                  <label for="exampleInputEmail1">Link</label>
+                  <label htmlFor="exampleInputEmail1">Link</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
                 </div>
               </form>

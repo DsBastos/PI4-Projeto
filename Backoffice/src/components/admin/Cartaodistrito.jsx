@@ -23,8 +23,7 @@ export function Cartaodistrito() {
           </div>
           <div
             class="alert alert-primary d-flex justify-content-between my-2 me-3"
-            role="alert"
-          >
+            role="alert">
             Pedro Mark
             <button
               type="button"

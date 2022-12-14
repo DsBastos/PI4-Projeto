@@ -1,6 +1,6 @@
 export function ModalRegiaoTuristica({ show, onHide }) {
   return (
-    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -19,7 +19,7 @@ export function ModalRegiaoTuristica({ show, onHide }) {
               </thead>
               <tbody>
                 <tr>
-                  <th><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></input></th>
+                  <th><input className="form-check-input" type="checkbox" value="" id="defaultCheck1"></input></th>
                   <th>Pedro Jacob</th>
                   <td>pedro@gmail.com</td>
                   <td>Viseu</td>
