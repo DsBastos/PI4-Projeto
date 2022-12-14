@@ -67,7 +67,7 @@ function criarVisitaAT() {
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark">Sobre o local</p>
+            <p className="text-dark">Sobre o ponto de interesse</p>
             <p> (inserir texto da bd aqui) </p>
           </div>
         </div>

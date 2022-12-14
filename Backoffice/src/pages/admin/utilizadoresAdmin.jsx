@@ -17,7 +17,7 @@ function utilizadoresAdmin() {
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 p-3">
           <h2 className="mt-5">Utilizadores</h2>
-          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
             <ModalCriarUtilizadores />
             <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
           </button>
@@ -35,9 +35,9 @@ function utilizadoresAdmin() {
                 <th>1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td><button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img>
-                <ModalEditarUtilizadores /></button>
-                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                <td><button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores"><img src="../../assets/icon-penfill.svg" />
+                  <ModalEditarUtilizadores /></button>
+                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg" /></button>
                 </td>
               </tr>
             </tbody>

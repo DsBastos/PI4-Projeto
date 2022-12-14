@@ -13,7 +13,7 @@ export function ModalVouchers({ show, onHide }) {
                 <tr>
                   <th scope="col">ID do voucher</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Local</th>
+                  <th scope="col">Distrito</th>
                   <th scope="col">Descrição</th>
                   <th scope="col">Ferramentas</th>
                 </tr>

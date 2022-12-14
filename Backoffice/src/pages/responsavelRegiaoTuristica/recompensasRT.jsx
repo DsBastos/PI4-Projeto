@@ -34,7 +34,7 @@ function recompensas() {
                       </div>
 
                       <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Local</label>
+                        <label htmlFor="text" className="col-form-label">Distrito</label>
                       </div>
                       <div className="col-3">
                         <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
@@ -105,7 +105,7 @@ function recompensas() {
                                   className="form-control mx-auto w-25 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
-                                  maxlength="200"
+                                  maxLength="200"
                                   cols="3"
                                 />
                               </td>
@@ -118,7 +118,7 @@ function recompensas() {
                                   className="form-control mx-auto w-25 my-md-3 align-content-center"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>
@@ -130,7 +130,7 @@ function recompensas() {
                                   className="form-control mx-auto w-25 my-md-3 align-content-center"
                                   id="exampleFormControlTextarea1"
                                   rows="2"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>

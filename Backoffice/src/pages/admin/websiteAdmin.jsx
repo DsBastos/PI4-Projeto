@@ -40,7 +40,7 @@ function websiteAdmin() {
                       className="form-control mt-md-4"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                   <div className="mb-3">
@@ -54,7 +54,7 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ function websiteAdmin() {
                       className="form-control"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                 </div>
@@ -87,7 +87,7 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                   <div className="mb-5">
@@ -101,7 +101,7 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                 </div>
@@ -117,7 +117,7 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                   <div className="mb-3">
@@ -131,7 +131,7 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
                     ></textarea>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ function websiteAdmin() {
                                   className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                   cols="3"
                                 />
                               </td>
@@ -170,7 +170,7 @@ function websiteAdmin() {
                                   className="form-control mx-auto  w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>
@@ -181,7 +181,7 @@ function websiteAdmin() {
                                   className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>
