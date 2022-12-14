@@ -26,7 +26,7 @@ function utilizadoresAdmin() {
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
-          <div className="d-flex justify-content-between mt-5">
+          <div className="d-flex justify-content-between my-5">
             <h2>Utilizadores</h2>
             <button
               type="button"

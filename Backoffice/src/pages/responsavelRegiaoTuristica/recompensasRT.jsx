@@ -5,7 +5,6 @@ import { Menu } from "../../components/Menu";
 function recompensas() {
   return (
     <div className="d-flex">
-      {/* Colocar aqui o componente da sidebar */}
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
