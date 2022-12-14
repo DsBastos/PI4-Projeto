@@ -17,13 +17,13 @@ export function ModalCriarUtilizadores({ show, onHide }) {
                 <label htmlFor="exampleInputEmail1">Email</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
               </div>
-              <div className="dropdown">
-              <label htmlFor="exampleInputEmail1">Cargo</label>
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Selecionar cargo
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">Cargo1</a>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Admin</a>
                 </div>
               </div>
             </form>
