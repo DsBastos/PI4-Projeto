@@ -2,8 +2,32 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalEditarAgenteTuristico } from "../../components/responsavelRegiaoTuristica/ModalEditarAgenteTuristico"
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function agentesturisticosRT() {
+
+  useEffect(() => {
+    api.get('/utilizadores/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newUtilizador = [];
+        dados.map((UtilizadorAux) => {
+            newUtilizador.push({
+              nome: UtilizadorAux.u_nome,
+              email: UtilizadorAux.u_email,
+              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+            })
+        })   
+      setUtilizador(newUtilizador);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+      
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

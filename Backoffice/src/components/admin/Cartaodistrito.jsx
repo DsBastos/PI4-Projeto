@@ -1,5 +1,8 @@
 import React from "react";
 import { ModalRegiaoTuristica } from "./ModalRegiaoTuristica"
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 export function Cartaodistrito() {
   //const pageInfo = navegacao[page];

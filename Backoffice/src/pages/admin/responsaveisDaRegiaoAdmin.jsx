@@ -2,8 +2,47 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalResponsavelRegiao } from "../../components/admin/ModalResponsavelRegiao"
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function responsaveisdaregiaoAdmin() {
+
+  //Estados
+  const [nome, setNome] = useState("")
+  const [email, setEmail] = useState("")
+  const [pwd, setPwd] = useState("")
+
+  useEffect(() => {
+    api.get('/utilizador/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newUtilizador = []
+
+        Object.keys(dados).map((key) => {
+          var newSubservicos = []
+
+          dados[key].subservicos.map((subservicoAux) => {
+            newSubservicos.push({
+              nome: subservicoAux.nome
+            })
+          })
+          newUtilizador.push(
+            {
+              nome: key,
+              email: key,
+              imagem: dados[key].imagem,
+              subservicos: newSubservicos
+            }
+          )
+        })
+        setServicos(newUtilizador);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -45,8 +84,8 @@ function responsaveisdaregiaoAdmin() {
                 <td>Otto</td>
                 <td>@mdo</td>
                 <td>Otto</td>
-                <td><button style={{"border":"none", "background":"none"}} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
-                  <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
+                <td><button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
+                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
                 </td>
               </tr>
             </tbody>

@@ -1,8 +1,78 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function websiteAdmin() {
+
+  const sendError = (erro) => {
+    toast.error(erro, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  //Estados
+  const [heroi, setHeroi] = useState("")
+  const [descarregar, setDescarregar] = useState("")
+  const [objetivo, setObjetivo] = useState("")
+  const [pontosT, setPontosT] = useState("")
+  const [voucher, setVoucher] = useState("")
+  const [reservas, setReservas] = useState("")
+  const [qr, setQr] = useState("")
+  const [atualizacoes, setAtualizacoes] = useState("")
+
+  function SendUpdate() {
+    const datawebsitepost = {
+      estado: estado == "" ? pedido.estado : estado,
+      data: data == "" ? pedido.data : data,
+    };
+
+    api.put("/website/updatewebsite/" + website.ws_id, datapedidospost).then((data) => {
+      if (data.status = "200") {
+        toast.success('Website alterado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar o website")
+      }
+    })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  useEffect(() => {
+    api.get('/website/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        setHeroi(dados[0].ws_texto)
+        setDescarregar(dados[1].ws_texto)
+        setObjetivo(dados[2].ws_texto)
+        setPontosT(dados[3].ws_texto)
+        setVoucher(dados[4].ws_texto)
+        setReservas(dados[5].ws_texto)
+        setQr(dados[6].ws_texto)
+        setAtualizacoes(dados[7].ws_texto)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
+
   return (
     <div className="d-flex">
       <Menu
@@ -24,7 +94,7 @@ function websiteAdmin() {
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 mb-5">
-          <h2 className="mt-5">Edição dos conteúdos do website</h2>
+          <h2 className="mt-5">Editar conteúdos do website</h2>
           <div className="col col-md-10">
             <form className="d-inline-flex flex-column">
               <div className="row d-flex justify-content-between">
@@ -194,10 +264,7 @@ function websiteAdmin() {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary px-5 text-white d-block ms-auto mt-4"
-              >
-                Guardar
-              </button>
+                className="btn btn-primary px-5 text-white d-block ms-auto mt-4" onClick={SendUpdate}>Guardar</button>
             </form>
           </div>
         </div>

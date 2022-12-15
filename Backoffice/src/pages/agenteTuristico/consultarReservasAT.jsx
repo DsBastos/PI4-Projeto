@@ -2,23 +2,32 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalConfirmacao } from "../../components/ModalConfirmacao";
-//import { api } from "../../../api";
+import { api } from "../../../api";
 import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function consultarReservasAT() {
-  // //Estados
-  // const [heroi, setHeroi] = useState("")
 
-  // useEffect(() => {
-  //   api.get('/website/list')
-  //     .then(({ data }) => {
-  //       const dados = data.data;
-  //       setHeroi(dados.ws_texto)
-  //     })
-  //     .catch((error) => {
-  //       alert(error)
-  //     })
-  // }, [])
+  useEffect(() => {
+    api.get('/reserva/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newReserva = [];
+        dados.map((ReservaAux) => {
+          newReserva.push({
+              detalhes: ReservaAux.rs_nPessoas,
+              estado: ReservaAux.rs_data,
+              data: ReservaAux.rs_estado,
+              email:ReservaAux.cliente.email,
+            })
+        })   
+      setReserva(newReserva);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

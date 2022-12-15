@@ -6,6 +6,29 @@ import { Menu } from "../../components/Menu";
 import icongroup from "../../assets/icongroup.svg";
 
 function dashboardAdmin() {
+
+  useEffect(() => {
+    api.get('/pedidos/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newPedido = [];
+        dados.map((PedidosAux) => {
+            newPedido.push({
+              detalhes: PedidosAux.detalhes,
+              estado: PedidosAux.estado,
+              data: PedidosAux.data,
+              email:PedidosAux.cliente.email,
+              nome:PedidosAux.cliente.nome,
+              contacto:PedidosAux.cliente.contacto,
+            })
+        })   
+      setPedido(newPedido);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

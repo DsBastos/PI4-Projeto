@@ -1,23 +1,20 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-//import { api } from "../../../api";
+import { api } from "../../../api";
 import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
 
 function criarVisitaAT() {
-  // //Estados
-  // const [heroi, setHeroi] = useState("")
 
-  // useEffect(() => {
-  //   api.get('/website/list')
-  //     .then(({ data }) => {
-  //       const dados = data.data;
-  //       setHeroi(dados.ws_texto)
-  //     })
-  //     .catch((error) => {
-  //       alert(error)
-  //     })
-  // }, [])
+  app.post('/api/listitems', (req, res) => {
+    var postData = req.body;
+    connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+  });
 
   return (
     <div className="d-flex">
@@ -31,7 +28,7 @@ function criarVisitaAT() {
         <div className="d-flex">
           <div className="col">
             <div className="container px-5 mt-5">
-              
+
               <div className="pt-4">
                 <div className="card" style={{ "width": "18rem" }}>
                   <img className="card-img-top" src="..." alt="Card image cap"></img>
