@@ -29,9 +29,9 @@ app.use(express.json());
 
 app.use('/utilizadores',utilizadoresRoute)
 app.use('/cliente', clienteRoute)
-app.use('/pontoTuristico', pontoTuristicoRoute)
+app.use('/pontoturistico', pontoTuristicoRoute)
 app.use('/recompensa', recompensaRoute)
-app.use('/regiaoTuristica', regiaoTuristicaRoute)
+app.use('/regiaoturistica', regiaoTuristicaRoute)
 app.use('/reserva', reservaRoute)
 app.use('/tipologia', tipologiaRoute);
 app.use('/visita', visitaRoute)

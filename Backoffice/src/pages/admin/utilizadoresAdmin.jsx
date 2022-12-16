@@ -3,30 +3,30 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
 import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-import { api } from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+// import { api } from "../../../api";
+// import { useState, useEffect } from "react"
+// import { toast } from 'react-toastify';
 
 function utilizadoresAdmin() {
 
-  useEffect(() => {
-    api.get('/utilizadores/list')
-    .then(({data}) => {
-      const dados = data.data;
-      var newUtilizador = [];
-        dados.map((UtilizadorAux) => {
-            newUtilizador.push({
-              nome: UtilizadorAux.u_nome,
-              email: UtilizadorAux.u_email,
-              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
-            })
-        })   
-      setUtilizador(newUtilizador);
-    })
-    .catch((error) => {
-      alert(error)
-    })
-  }, [])
+  // useEffect(() => {
+  //   api.get('/utilizadores/list')
+  //   .then(({data}) => {
+  //     const dados = data.data;
+  //     var newUtilizador = [];
+  //       dados.map((UtilizadorAux) => {
+  //           newUtilizador.push({
+  //             nome: UtilizadorAux.u_nome,
+  //             email: UtilizadorAux.u_email,
+  //             cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+  //           })
+  //       })   
+  //     setUtilizador(newUtilizador);
+  //   })
+  //   .catch((error) => {
+  //     alert(error)
+  //   })
+  // }, [])
 
   return (
     <div className="d-flex">

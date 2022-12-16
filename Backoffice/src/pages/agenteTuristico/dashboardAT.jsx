@@ -12,11 +12,10 @@ function dashboardAT() {
     const [infoAT, setInfoAT] = useState([])
   
     useEffect(() => {
-      api.get('utilizadores/countdashboardAT')
+      api.get('utilizadores/countdashboardat')
         .then(({ data }) => {
           let aux=data.data;
           setInfoAT(aux);
-          console.log(data.data)
         })
         .catch((error) => {
           alert(error)
@@ -41,16 +40,16 @@ function dashboardAT() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de visitas
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAT[0]}</p>
                 </div>
               </m.div>
               <m.div
@@ -59,16 +58,16 @@ function dashboardAT() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de clientes
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAT[1]}</p>
                 </div>
               </m.div>
               <m.div
@@ -77,16 +76,16 @@ function dashboardAT() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de reservas
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAT[2]}</p>
                 </div>
               </m.div>
             </div>

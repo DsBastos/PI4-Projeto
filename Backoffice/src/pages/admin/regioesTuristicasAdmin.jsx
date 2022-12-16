@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 function regioesturisticasAdmin() {
 
   useEffect(() => {
-    api.get('/regiaoTuristica/list')
+    api.get('/regiaoturistica/list')
     .then(({data}) => {
       const dados = data.data;
       var newUtilizador = [];

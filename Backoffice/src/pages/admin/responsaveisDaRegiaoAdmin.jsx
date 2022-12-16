@@ -2,46 +2,46 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalResponsavelRegiao } from "../../components/admin/ModalResponsavelRegiao"
-import { api } from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+// import { api } from "../../../api";
+// import { useState, useEffect } from "react"
+// import { toast } from 'react-toastify';
 
 function responsaveisdaregiaoAdmin() {
 
   //Estados
-  const [nome, setNome] = useState("")
-  const [email, setEmail] = useState("")
-  const [pwd, setPwd] = useState("")
+  // const [nome, setNome] = useState("")
+  // const [email, setEmail] = useState("")
+  // const [pwd, setPwd] = useState("")
 
-  useEffect(() => {
-    api.get('/utilizador/list')
-      .then(({ data }) => {
-        const dados = data.data;
-        var newUtilizador = []
+  // useEffect(() => {
+  //   api.get('/utilizadores/list')
+  //     .then(({ data }) => {
+  //       const dados = data.data;
+  //       var newUtilizador = []
 
-        Object.keys(dados).map((key) => {
-          var newSubservicos = []
+  //       Object.keys(dados).map((key) => {
+  //         var newSubservicos = []
 
-          dados[key].subservicos.map((subservicoAux) => {
-            newSubservicos.push({
-              nome: subservicoAux.nome
-            })
-          })
-          newUtilizador.push(
-            {
-              nome: key,
-              email: key,
-              imagem: dados[key].imagem,
-              subservicos: newSubservicos
-            }
-          )
-        })
-        setServicos(newUtilizador);
-      })
-      .catch((error) => {
-        alert(error)
-      })
-  }, [])
+  //         dados[key].subservicos.map((subservicoAux) => {
+  //           newSubservicos.push({
+  //             nome: subservicoAux.nome
+  //           })
+  //         })
+  //         newUtilizador.push(
+  //           {
+  //             nome: key,
+  //             email: key,
+  //             imagem: dados[key].imagem,
+  //             subservicos: newSubservicos
+  //           }
+  //         )
+  //       })
+  //       setServicos(newUtilizador);
+  //     })
+  //     .catch((error) => {
+  //       alert(error)
+  //     })
+  // }, [])
 
   return (
     <div className="d-flex">
