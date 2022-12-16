@@ -1,5 +1,4 @@
-var utilizador = require('../models/tipoUtilizadorModel');
-
+var utilizador = require('../models/utilizadoresModel');
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
@@ -11,6 +10,7 @@ const visitas = require('../models/visitaModel');
 const recompensas = require('../models/recompensaModel');
 const pontosTuristicos = require('../models/pontoTuristicoModel');
 const clientes = require('../models/clienteModel');
+const regioesTuristicas = require('../models/regiaoTuristicaModel');
 
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
@@ -91,15 +91,24 @@ controllers.deleteUtilizador = async (req, res, next) => {
 
 controllers.getCountDashboardAdmin  = async (req, res, next) => {
     try {
+        const countUtilizadores = await utilizador.count({
+
+        });
         const countRT = await utilizador.count({
             where: {
                 tu_id: 2
             }
         });
+        const countRegioesTuristicas = await regioesTuristicas.count({
+ 
+        });
         const countAT = await utilizador.count({
             where: {
                 tu_id: 3
             }
+        });
+        const countPontoTuristico = await pontosTuristicos.count({
+ 
         });
         const countReservas = await reservas.count({
  
@@ -110,7 +119,7 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
         const countClientes = await clientes.count({
 
         });
-        res.send({ success: true, data: [countRT,countAT,countReservas,countVouchers,countClientes] });
+        res.send({ success: true, data: [countUtilizadores,countRT,countRegioesTuristicas,countAT,countPontoTuristico,countReservas,countVouchers,countClientes] });
     } catch (error) {
         next(error)
     }
@@ -126,10 +135,16 @@ controllers.getCountDashboardRT  = async (req, res, next) => {
         const countPontoTuristico = await reservas.count({
  
         });
+        const countVisitas = await visitas.count({
+
+        });
+        const countClientes = await clientes.count({
+
+        });
         const countVouchers = await vouchers.count({
 
         });
-        res.send({ success: true, data: [countAT,countPontoTuristico,countVouchers] });
+        res.send({ success: true, data: [countAT,countPontoTuristico,countVisitas,countClientes,countVouchers] });
     } catch (error) {
         next(error)
     }
@@ -137,15 +152,16 @@ controllers.getCountDashboardRT  = async (req, res, next) => {
 
 controllers.getCountDashboardAT  = async (req, res, next) => {
     try {
-        const countVisitas = await utilizador.count({
-            where: {
-                tu_id: 3
-            }
+        const countVisitas = await visitas.count({
+
+        });
+        const countClientes = await clientes.count({
+
         });
         const countReservas = await reservas.count({
  
         });
-        res.send({ success: true, data: [{countVisitas},{countReservas}]});
+        res.send({ success: true, data: [countVisitas,countClientes,countReservas]});
     } catch (error) {
         next(error)
     }
