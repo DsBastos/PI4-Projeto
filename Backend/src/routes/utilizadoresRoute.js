@@ -1,13 +1,13 @@
 const express =require('express');
 const router =express.Router();
-const utilizadorController =require('../controllers/utilizadorController')
+const utilizadoresController =require('../controllers/utilizadoresController')
 
-router.get('/list', utilizadorController.getAllUtilizador);
-router.get('/getutilizador/:id', utilizadorController.getUtilizadorById);
-router.post('/create', utilizadorController.createUtilizador);
-router.put('/updateutilizador/:id', utilizadorController.updateUtilizador);
-router.delete('/deleteutilizador/:id', utilizadorController.deleteUtilizador);
-router.get('/countdashboardadmin', utilizadorController.getCountDashboardAdmin)
-router.get('/countdashboardrt', utilizadorController.getCountDashboardRT)
-router.get('/countdashboardat', utilizadorController.getCountDashboardAT)
+router.get('/list', utilizadoresController.getAllUtilizador);
+router.get('/getutilizador/:id', utilizadoresController.getUtilizadorById);
+router.post('/create', utilizadoresController.createUtilizador);
+router.put('/updateutilizador/:id', utilizadoresController.updateUtilizador);
+router.delete('/deleteutilizador/:id', utilizadoresController.deleteUtilizador);
+router.get('/countdashboardadmin', utilizadoresController.getCountDashboardAdmin)
+router.get('/countdashboardrt', utilizadoresController.getCountDashboardRT)
+router.get('/countdashboardat', utilizadoresController.getCountDashboardAT)
 module.exports = router;

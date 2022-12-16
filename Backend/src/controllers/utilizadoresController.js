@@ -6,7 +6,11 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors');
 const reservas = require('../models/reservaModel');
-const { ModalVouchers } = require('../../../Backoffice/src/components/responsavelRegiaoTuristica/ModalVouchers');
+const vouchers = require('../models/voucherModel');
+const visitas = require('../models/visitaModel');
+const recompensas = require('../models/recompensaModel');
+const pontosTuristicos = require('../models/pontoTuristicoModel');
+const clientes = require('../models/clienteModel');
 
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
@@ -103,10 +107,10 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
         const countVouchers = await vouchers.count({
 
         });
-        const countClientes = await cliente.count({
+        const countClientes = await clientes.count({
 
         });
-        res.send({ success: true, data: [{countRT},{countAT},{countReservas},{countVouchers},{countClientes}] });
+        res.send({ success: true, data: [countRT,countAT,countReservas,countVouchers,countClientes] });
     } catch (error) {
         next(error)
     }
@@ -125,7 +129,7 @@ controllers.getCountDashboardRT  = async (req, res, next) => {
         const countVouchers = await vouchers.count({
 
         });
-        res.send({ success: true, data: [{countAT},{countPontoTuristico},{countVouchers}] });
+        res.send({ success: true, data: [countAT,countPontoTuristico,countVouchers] });
     } catch (error) {
         next(error)
     }

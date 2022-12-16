@@ -1,4 +1,3 @@
-import { deletePontoTuristico } from "../../../../Backend/src/controllers/pontoTuristicoController";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';

@@ -8,6 +8,21 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 function dashboardAT() {
+
+    const [infoAT, setInfoAT] = useState([])
+  
+    useEffect(() => {
+      api.get('utilizadores/countdashboardAT')
+        .then(({ data }) => {
+          let aux=data.data;
+          setInfoAT(aux);
+          console.log(data.data)
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

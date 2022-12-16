@@ -1,49 +1,48 @@
-import utilizadores from "../../../../Backend/src/models/utilizadoresModel";
-import { api } from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+// import { api } from "../../../api";
+// import { useState, useEffect } from "react"
+// import { toast } from 'react-toastify';
 
 export function ModalEditarUtilizadores({ show, onHide }) {
-  function SendUpdate() {
-    const datawebsitepost = {
-      estado: estado == "" ? pedido.estado : estado,
-      data: data == "" ? pedido.data : data,
-    };
+  // function SendUpdate() {
+  //   const datawebsitepost = {
+  //     estado: estado == "" ? pedido.estado : estado,
+  //     data: data == "" ? pedido.data : data,
+  //   };
 
-    api.put("/utilizadores/updateutilizador/" + utilizadores.u_id, datautilizadorespost).then((data) => {
-      if (data.status = "200") {
-        toast.success('Website alterado com sucesso', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        sendError("Ocorreu um erro ao tentar alterar o utilizador")
-      }
-    })
-      .catch((error) => {
-        alert(error);
-      });
-  }
+  //   api.put("/utilizadores/updateutilizador/" + utilizadores.u_id, datautilizadorespost).then((data) => {
+  //     if (data.status = "200") {
+  //       toast.success('Website alterado com sucesso', {
+  //         position: "top-center",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //     } else {
+  //       sendError("Ocorreu um erro ao tentar alterar o utilizador")
+  //     }
+  //   })
+  //     .catch((error) => {
+  //       alert(error);
+  //     });
+  // }
 
-  const deleteUtilizador = (e) => {
-    api.delete("utilizadores/deleteutilizador/"+utilizadores.u_id).then(()=>{
-     onHide();
-    })
-    toast.success('Utilizador apagado com sucesso', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      });
-  }
+  // const deleteUtilizador = (e) => {
+  //   api.delete("utilizadores/deleteutilizador/"+utilizadores.u_id).then(()=>{
+  //    onHide();
+  //   })
+  //   toast.success('Utilizador apagado com sucesso', {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     });
+  // }
 
   return (
     <div className="modal fade" id="ModalEditarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
