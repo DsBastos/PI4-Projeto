@@ -1,7 +1,11 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalEditarPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalEditarPontoInteresse";
+import { ModalEditarPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalEditarPontoInteresse"
+import { ModalReservaPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalReservaPontoInteresse";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function pontosdeinteresseRT() {
   return (
@@ -22,18 +26,14 @@ function pontosdeinteresseRT() {
       />
       <main className="w-100">
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
-        <div className="container px-5">
-          <div className="d-flex justify-content-between mt-5">
-            <h2>Pontos de interesse</h2>
-            <button type="button" className="btn btn-success">
-              Consultar lista de reservas
-            </button>
-          </div>
-          <table className="table table-striped mt-4">
+        <div className="container px-5 mt-5">
+          <h2 className="mt-5">Pontos de interesse</h2>
+          <button type="button" className="btn btn-success">Consultar lista de reservas</button>
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Local</th>
+                <th scope="col">Distrito</th>
                 <th scope="col">Informação adicional</th>
                 <th scope="col">Ferramentas</th>
               </tr>
@@ -42,6 +42,8 @@ function pontosdeinteresseRT() {
               <tr>
                 <th>Sé de Viseu</th>
                 <td>Viseu</td>
+                <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Ver/editar detalhes</button></td>
                 <td>
                   <a
                     type="button"

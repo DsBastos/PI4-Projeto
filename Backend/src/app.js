@@ -17,7 +17,8 @@ const reservaRoute = require('./routes/reservaRoute.js')
 const tipologiaRoute = require('./routes/tipologiaRoute.js')
 const visitaRoute = require('./routes/visitaRoute.js')
 const voucherRoute = require('./routes/voucherRoute.js')
-const websiteRoute = require('./routes/websiteRoute.js')
+const websiteRoute = require('./routes/websiteRoute.js');
+const utilizadoresRoute = require('./routes/utilizadoresRoute.js');
 
 //Configurações 
 app.use(cors())
@@ -26,7 +27,7 @@ app.set('port', (process.env.PORT || 3333));
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
-
+app.use('/utilizadores',utilizadoresRoute)
 app.use('/cliente', clienteRoute)
 app.use('/pontoTuristico', pontoTuristicoRoute)
 app.use('/recompensa', recompensaRoute)

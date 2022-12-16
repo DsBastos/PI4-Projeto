@@ -4,7 +4,13 @@ const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const createError = require('http-errors')
+const createError = require('http-errors');
+const reservas = require('../models/reservaModel');
+const vouchers = require('../models/voucherModel');
+const visitas = require('../models/visitaModel');
+const recompensas = require('../models/recompensaModel');
+const pontosTuristicos = require('../models/pontoTuristicoModel');
+const clientes = require('../models/clienteModel');
 
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
@@ -79,4 +85,70 @@ controllers.deleteUtilizador = async (req, res, next) => {
         next(error)
     }
 }
+
+//Funções de count
+//Devia estar uma função apenas a retornar um count, mas assim vai facilitar-nos o trabalho no frontend
+
+controllers.getCountDashboardAdmin  = async (req, res, next) => {
+    try {
+        const countRT = await utilizador.count({
+            where: {
+                tu_id: 2
+            }
+        });
+        const countAT = await utilizador.count({
+            where: {
+                tu_id: 3
+            }
+        });
+        const countReservas = await reservas.count({
+ 
+        });
+        const countVouchers = await vouchers.count({
+
+        });
+        const countClientes = await clientes.count({
+
+        });
+        res.send({ success: true, data: [countRT,countAT,countReservas,countVouchers,countClientes] });
+    } catch (error) {
+        next(error)
+    }
+}
+
+controllers.getCountDashboardRT  = async (req, res, next) => {
+    try {
+        const countAT = await utilizador.count({
+            where: {
+                tu_id: 3
+            }
+        });
+        const countPontoTuristico = await reservas.count({
+ 
+        });
+        const countVouchers = await vouchers.count({
+
+        });
+        res.send({ success: true, data: [countAT,countPontoTuristico,countVouchers] });
+    } catch (error) {
+        next(error)
+    }
+}
+
+controllers.getCountDashboardAT  = async (req, res, next) => {
+    try {
+        const countVisitas = await utilizador.count({
+            where: {
+                tu_id: 3
+            }
+        });
+        const countReservas = await reservas.count({
+ 
+        });
+        res.send({ success: true, data: [{countVisitas},{countReservas}]});
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = controllers;

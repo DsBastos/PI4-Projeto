@@ -2,10 +2,27 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+// import { toast } from 'react-toastify';
 
 import icongroup from "../../assets/icongroup.svg";
 
 function dashboardAdmin() {
+  const [infoAdmin, setInfoAdmin] = useState([])
+
+  useEffect(() => {
+    api.get('utilizadores/countdashboardadmin')
+      .then(({ data }) => {
+        let aux=data.data;
+        setInfoAdmin(aux);
+        console.log(data.data)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

@@ -2,11 +2,29 @@ import React from "react";
 
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { WeatherCard } from "../../components/WeatherCard";
+//import { WeatherCard } from "../../components/WeatherCard";
 import { motion as m } from "framer-motion";
 import icongroup from "../../assets/icongroup.svg";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function dashboardRT() {
+
+    const [infoRT, setInfoRT] = useState([])
+  
+    useEffect(() => {
+      api.get('utilizadores/countdashboardrt')
+        .then(({ data }) => {
+          let aux=data.data;
+          setInfoRT(aux);
+          console.log(data.data)
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -92,5 +110,6 @@ function dashboardRT() {
     </div>
   );
 }
+//<WeatherCard />
 
 export default dashboardRT;

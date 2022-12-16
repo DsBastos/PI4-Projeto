@@ -17,38 +17,38 @@ function Login() {
             </div>
             <div className="card-body px-4">
               <form>
-                <div class="row g-3 mt-2">
-                  <div class="col-md-12">
-                    <label for="inputEmail" class="col-form-label">
+                <div className="row g-3 mt-2">
+                  <div className="col-md-12">
+                    <label htmlFor="inputEmail" className="col-form-label">
                       Utilizador
                     </label>
-                    <input type="email" id="inputEmail" class="form-control" />
-                    <div class="form-outline mb-4">
-                      <label for="inputPassword" class="col-form-label mt-3">
+                    <input type="email" id="inputEmail" className="form-control" />
+                    <div className="form-outline mb-4">
+                      <label htmlFor="inputPassword" className="col-form-label mt-3">
                         Palavra passe
                       </label>
                       <input
                         type="password"
                         id="inputPassword"
-                        class="form-control"
+                        className="form-control"
                         aria-describedby="passwordHelpInline"
                       />
                     </div>
-                    <div class="mb-4">
-                      <div class="form-check mb-2">
+                    <div className="mb-4">
+                      <div className="form-check mb-2">
                         <input
-                          class="form-check-input"
+                          className="form-check-input"
                           type="checkbox"
                           value=""
                           id="form1Example3"
                           checked
                         />
-                        <label class="form-check-label" for="form1Example3">
+                        <label className="form-check-label" htmlFor="form1Example3">
                           Lembrar a palavra-passe
                         </label>
                       </div>
 
-                      <div class="col">
+                      <div className="col">
                         <Link to="/recuperarPalavraPasse" className="text-dark">
                           Esqueceste a palavra-passe?
                         </Link>
@@ -56,11 +56,11 @@ function Login() {
                     </div>
                   </div>
                 </div>
-                <div class="d-grid gap-2">
+                <div className="d-grid gap-2">
                   <Link
                     to="/dashboard"
                     type="submit"
-                    class="btn btn-primary text-white"
+                    className="btn btn-primary text-white"
                   >
                     Entrar
                   </Link>

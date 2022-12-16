@@ -19,19 +19,19 @@ function forgotPassword() {
                 Insira o seu e-mail para poder definir uma nova.
               </h5>
               <form>
-                <div class="row g-3 mt-2 mb-5">
-                  <div class="col-md-12">
-                    <label for="inputEmail" class="col-form-label">
+                <div className="row g-3 mt-2 mb-5">
+                  <div className="col-md-12">
+                    <label htmlFor="inputEmail" className="col-form-label">
                       O seu e-mail
                     </label>
-                    <input type="email" id="inputEmail" class="form-control" />
+                    <input type="email" id="inputEmail" className="form-control" />
                   </div>
                 </div>
-                <div class="d-grid gap-2">
+                <div className="d-grid gap-2">
                   <Link
                     to="/dashboard"
                     type="submit"
-                    class="btn btn-primary text-white"
+                    className="btn btn-primary text-white"
                   >
                     Enviar
                   </Link>
