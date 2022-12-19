@@ -5,10 +5,30 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function Cartaodistrito() {
-  //const pageInfo = navegacao[page];
+
+  const [regiao, setRegiao] = useState([]);
+
+  useEffect(() => {
+    api.get('/regiaoturistica/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newRegiao = [];
+        dados.map((RegiaoAux) => {
+          newRegiao.push({
+              nome: RegiaoAux.rt_nome,
+          })
+        })
+        setRegiao(newRegiao);
+        console.log(dados)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
+
   return (
     <div className="card" style={{ width: "23rem" }}>
-      <div className="card-header">Aveiro</div>
+      <div className="card-header">{regiao.nome}</div>
       <div className="card-body">
         <h5 className="card-title">Responsáveis definidos</h5>
         <div className="d-flex flex-wrap">

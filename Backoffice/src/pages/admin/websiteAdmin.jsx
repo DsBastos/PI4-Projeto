@@ -250,6 +250,8 @@ function websiteAdmin() {
                                   rows="4"
                                   maxLength="200"
                                   cols="3"
+                                  value={atualizacoes.ws_texto}
+                                  onChange={(e) => { setAtualizacoes(e.target.value)}}
                                 />
                               </td>
                             </tr>

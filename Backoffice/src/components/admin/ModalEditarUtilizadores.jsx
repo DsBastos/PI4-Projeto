@@ -1,6 +1,6 @@
-// import { api } from "../../../api";
-// import { useState, useEffect } from "react"
-// import { toast } from 'react-toastify';
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 export function ModalEditarUtilizadores({ show, onHide }) {
   // function SendUpdate() {
@@ -54,16 +54,16 @@ export function ModalEditarUtilizadores({ show, onHide }) {
           </div>
           <div className="modal-body">
           <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Nome</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome Exemplo"/>
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Nome</label>
+                <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Nome Exemplo"/>
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Email</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="nome.exemplo@email.com"/>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Email</label>
+                <input type="password" className="form-control" placeholder="nome.exemplo@email.com"/>
               </div>
               <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Inserir cargo
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">

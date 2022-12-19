@@ -44,7 +44,7 @@ function consultarReservasAT() {
                 <th scope="col">ID da Reserva</th>
                 <th scope="col">Nome do cliente</th>
                 <th scope="col">Nº de pessoas</th>
-                <th scope="col">Ponto de interesse</th>
+                <th scope="col">Ponto turístico</th>
                 <th scope="col">Distrito</th>
                 <th scope="col">Data</th>
                 <th scope="col">Horas</th>
@@ -76,7 +76,7 @@ function consultarReservasAT() {
                 <th scope="col">ID da Reserva</th>
                 <th scope="col">Nome do cliente</th>
                 <th scope="col">Nº de pessoas</th>
-                <th scope="col">Ponto de interesse</th>
+                <th scope="col">Ponto turístico</th>
                 <th scope="col">Distrito</th>
                 <th scope="col">Data</th>
                 <th scope="col">Horas</th>

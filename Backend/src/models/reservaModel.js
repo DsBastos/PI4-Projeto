@@ -9,9 +9,10 @@ var reservas = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        rs_nPessoas: Sequelize.INTEGER,
+        rs_npessoas: Sequelize.INTEGER,
         rs_data: Sequelize.DATE,
-        rs_estado: Sequelize.STRING
+        rs_estado: Sequelize.STRING,
+        r_aceite: Sequelize.BOOLEAN
     },
     {
         freezeTableName: true,

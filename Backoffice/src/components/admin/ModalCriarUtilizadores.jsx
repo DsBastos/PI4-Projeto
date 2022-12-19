@@ -3,6 +3,36 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalCriarUtilizadores({ show, onHide }) {
+  const criarUtilizador = () => {
+    let valid = true;
+    if (nome == "" || email == "" || password == "" || cargo == "") {
+      valid = false;
+      sendError("Os campos não podem estar vazios");
+    }
+    if (valid) {
+      let newUtilizador = {
+        nome: u_nome,
+        email: u_email,
+        password: u_password,
+        cargo: u_cargo,
+      };
+      api.post("utilizadores/create", newUtilizador).then((data) => {
+        if (data.status == "200") {
+          toast.success("Utilizador criado com sucesso", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          sendError("Erro ao criar utilizador");
+        }
+      });
+    }
+  };
   return (
     <div className="modal fade" id="ModalCriarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -12,17 +42,21 @@ export function ModalCriarUtilizadores({ show, onHide }) {
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-          <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Nome</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome Exemplo"/>
+            <form>
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Nome</label>
+                <input type="name" className="form-control" aria-describedby="emailHelp" placeholder="Nome Exemplo" />
               </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Email</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="nome.exemplo@email.com"/>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Email</label>
+                <input type="email" className="form-control" placeholder="nome.exemplo@email.com" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Password</label>
+                <input type="password" className="form-control" placeholder="palavrapasseexemplo" />
               </div>
               <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Inserir cargo
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -33,7 +67,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary">Confirmar</button>
+            <button type="button" className="btn btn-primary" onClick={criarUtilizador}>Confirmar</button>
           </div>
         </div>
       </div>

@@ -3,31 +3,87 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
 import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-// import { api } from "../../../api";
-// import { useState, useEffect } from "react"
-// import { toast } from 'react-toastify';
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
+function LoadFillData() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [selectedUtilizador, setSelectedUtilizador] = useState(null);
+  const [utilizador, setUtilizador] = useState([]);
+  const [modalEditarUtilizadorShow, setEditarUtilizadorShow] = React.useState(false);
+
+  useEffect(() => {
+    api.get('/utilizadores/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newUtilizador = [];
+        dados.map((UtilizadorAux) => {
+          newUtilizador.push({
+              nome: UtilizadorAux.u_nome,
+              email: UtilizadorAux.u_email,
+              cargo: UtilizadorAux.tu_tipo,
+          })
+        })
+        console.log(dados)
+        setUtilizador(newUtilizador);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
+
+  return (
+    <>
+      {utilizador.map((data, index) => {
+        return (
+          <>
+            <tr key={index}>
+              <td scope="row">{data.utilizador?.nome}</td>
+              <td>{data.utilizador?.email}</td>
+              <td>{data.utilizador?.cargo}</td>
+              <td>
+                <div className="d-flex gap-2">
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={() => {
+                      setSelectedUtilizador(data);
+                      setModalShow(true);
+                    }}
+                  >
+                    <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-penfill.svg"></img></button>
+                  </span>
+
+                  <span
+                    id={data.u_id}
+                    className="material-symbols-outlined"
+                    onClick={() => {
+                      setSelectedUtilizador(data);
+                      setEditarUtilizadorShow(true);
+                    }}
+                  >
+                    <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                  </span>
+                </div>
+              </td>
+            </tr>
+
+            <ModalEditarUtilizadores
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              utilizador={selectedUtilizador}
+            />
+          </>
+        );
+      })}
+    </>
+  );
+}
 
 function utilizadoresAdmin() {
-
-  // useEffect(() => {
-  //   api.get('/utilizadores/list')
-  //   .then(({data}) => {
-  //     const dados = data.data;
-  //     var newUtilizador = [];
-  //       dados.map((UtilizadorAux) => {
-  //           newUtilizador.push({
-  //             nome: UtilizadorAux.u_nome,
-  //             email: UtilizadorAux.u_email,
-  //             cargo: UtilizadorAux.tipoutilizador.tu_tipo,
-  //           })
-  //       })   
-  //     setUtilizador(newUtilizador);
-  //   })
-  //   .catch((error) => {
-  //     alert(error)
-  //   })
-  // }, [])
-
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -65,16 +121,7 @@ function utilizadoresAdmin() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
-                      <img src="../../assets/icon-penfill.svg" /><ModalEditarUtilizadores />
-                    </button>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
-                </td>
-              </tr>
+              <LoadFillData />
             </tbody>
           </table>
         </div>
