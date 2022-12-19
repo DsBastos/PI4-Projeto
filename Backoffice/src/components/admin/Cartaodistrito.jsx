@@ -30,7 +30,7 @@ export function Cartaodistrito() {
     <div className="card" style={{ width: "23rem" }}>
       <div className="card-header">{regiao.nome}</div>
       <div className="card-body">
-        <h5 className="card-title">Responsáveis definidos</h5>
+        <h5 className="card-title">Responsáveis definidos olá</h5>
         <div className="d-flex flex-wrap">
           <div
             className="alert alert-primary d-flex justify-content-between my-2 me-3"
