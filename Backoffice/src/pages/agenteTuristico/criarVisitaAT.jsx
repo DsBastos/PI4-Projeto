@@ -8,13 +8,13 @@ import { toast } from 'react-toastify';
 
 function criarVisitaAT() {
 
-  app.post('/api/listitems', (req, res) => {
-    var postData = req.body;
-    connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
-      if (error) throw error;
-      res.end(JSON.stringify(results));
-    });
-  });
+  // app.post('/api/listitems', (req, res) => {
+  //   var postData = req.body;
+  //   connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
+  //     if (error) throw error;
+  //     res.end(JSON.stringify(results));
+  //   });
+  // });
 
   return (
     <div className="d-flex">
@@ -64,7 +64,7 @@ function criarVisitaAT() {
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark">Sobre o ponto de interesse</p>
+            <p className="text-dark">Sobre o ponto turístico</p>
             <p> (inserir texto da bd aqui) </p>
           </div>
         </div>

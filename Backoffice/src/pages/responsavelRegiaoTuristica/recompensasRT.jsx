@@ -4,6 +4,7 @@ import { Menu } from "../../components/Menu";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/ModalVouchers";
 
 function recompensas() {
   return (
@@ -25,7 +26,8 @@ function recompensas() {
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 my-5">
           <h2 className="mt-5 d-inline">Recompensas</h2>
-          <div className="col">
+          <button type="button" className="btn btn-success d-inline" data-bs-toggle="modal" data-bs-target="#ModalReservaPontoInteresse">Consultar lista de vouchers<ModalVouchers/></button>
+          <div className="col mt-3">
             <div className="card">
               <div className="card-body p-5">
                 <h5 className="card-title h4 fw-bold">Criar Voucher</h5>
@@ -45,7 +47,7 @@ function recompensas() {
                         <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
                       </div>
                       <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Ponto de Interesse</label>
+                        <label htmlFor="text" className="col-form-label">Ponto turístico</label>
                       </div>
                       <div className="col-3">
                         <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />

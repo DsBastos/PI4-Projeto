@@ -1,5 +1,4 @@
-var utilizador = require('../models/tipoUtilizadorModel');
-
+var utilizador = require('../models/utilizadoresModel');
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
@@ -12,7 +11,6 @@ const recompensas = require('../models/recompensaModel');
 const pontosTuristicos = require('../models/pontoTuristicoModel');
 const clientes = require('../models/clienteModel');
 const regioesTuristicas = require('../models/regiaoTuristicaModel');
-const utilizadores = require('../models/utilizadoresModel');
 
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
@@ -93,10 +91,10 @@ controllers.deleteUtilizador = async (req, res, next) => {
 
 controllers.getCountDashboardAdmin  = async (req, res, next) => {
     try {
-        const countUtilizadores = await utilizadores.count({
+        const countUtilizadores = await utilizador.count({
 
         });
-        const countRT = await utilizadores.count({
+        const countRT = await utilizador.count({
             where: {
                 tu_id: 2
             }
@@ -104,7 +102,7 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
         const countRegioesTuristicas = await regioesTuristicas.count({
  
         });
-        const countAT = await utilizadores.count({
+        const countAT = await utilizador.count({
             where: {
                 tu_id: 3
             }

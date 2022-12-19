@@ -31,8 +31,14 @@ function websiteAdmin() {
 
   function SendUpdate() {
     const datawebsitepost = {
-      estado: estado == "" ? pedido.estado : estado,
-      data: data == "" ? pedido.data : data,
+      heroi: heroi,
+      descarregar: descarregar,
+      objetivo: objetivo,
+      pontosT: pontosT,
+      voucher: voucher,
+      reservas: reservas,
+      qr: qr,
+      atualizacoes: atualizacoes
     };
 
     api.put("/website/updatewebsite/" + website.ws_id, datapedidospost).then((data) => {
@@ -59,14 +65,14 @@ function websiteAdmin() {
     api.get('/website/list')
       .then(({ data }) => {
         const dados = data.data;
-        setHeroi(dados[0].ws_texto)
-        setDescarregar(dados[1].ws_texto)
-        setObjetivo(dados[2].ws_texto)
-        setPontosT(dados[3].ws_texto)
-        setVoucher(dados[4].ws_texto)
-        setReservas(dados[5].ws_texto)
-        setQr(dados[6].ws_texto)
-        setAtualizacoes(dados[7].ws_texto)
+        setHeroi(dados[0])
+        setDescarregar(dados[1])
+        setObjetivo(dados[2])
+        setPontosT(dados[3])
+        setVoucher(dados[4])
+        setReservas(dados[5])
+        setQr(dados[6])
+        setAtualizacoes(dados[7])
       })
       .catch((error) => {
         alert(error)
@@ -111,6 +117,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={heroi.ws_texto}
+                      onChange={(e) => { setHeroi(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
@@ -125,6 +133,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={objetivo.ws_texto}
+                      onChange={(e) => { setObjetivo(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -141,6 +151,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={descarregar.ws_texto}
+                      onChange={(e) => { setDescarregar(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -158,6 +170,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={pontosT.ws_texto}
+                      onChange={(e) => { setPontosT(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-5">
@@ -172,6 +186,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={reservas.ws_texto}
+                      onChange={(e) => { setReservas(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -188,6 +204,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={voucher.ws_texto}
+                      onChange={(e) => { setVoucher(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
@@ -202,6 +220,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={qr.ws_texto}
+                      onChange={(e) => { setQr(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>

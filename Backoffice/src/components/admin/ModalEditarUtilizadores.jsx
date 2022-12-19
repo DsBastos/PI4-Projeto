@@ -73,7 +73,7 @@ export function ModalEditarUtilizadores({ show, onHide }) {
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger text-left" data-bs-dismiss="modal" onClick={deleteUtilizador}>Eliminar utilizador</button>
+            <button type="button" className="btn btn-danger text-left" data-bs-dismiss="modal" /*onClick={deleteUtilizador*/>Eliminar utilizador</button>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <button type="button" className="btn btn-primary">Confirmar</button>
           </div>

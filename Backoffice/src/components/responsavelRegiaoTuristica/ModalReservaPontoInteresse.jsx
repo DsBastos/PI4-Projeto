@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export function ModalReservaPontoInteresse({ show, onHide }) {
   return (
     <div className="modal fade" id="ModalReservaPontoInteresse" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="staticBackdropLabel">Lista de reservas</h1>
