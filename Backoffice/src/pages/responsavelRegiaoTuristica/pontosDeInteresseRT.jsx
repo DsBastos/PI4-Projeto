@@ -8,6 +8,28 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 function pontosdeinteresseRT() {
+  const [pontoTuristico, setPontoTuristico] = useState([]);
+
+  useEffect(() => {
+    api.get('/pontoturistico/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newPontoTuristico = [];
+        dados.map((ReservaAux) => {
+          newPontoTuristico.push({
+            npessoas: ReservaAux.rs_npessoas,
+            data: ReservaAux.rs_data,
+            hora: ReservaAux.rs_hora,
+            aceite: ReservaAux.r_aceite,
+          })
+        })   
+      setReserva(newPontoTuristico);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}

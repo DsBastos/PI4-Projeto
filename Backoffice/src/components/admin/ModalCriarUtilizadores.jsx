@@ -3,6 +3,37 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalCriarUtilizadores({ show, onHide }) {
+  let [nome, setNome] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [cargo, setCargo] = useState("");
+
+  const handleInputChange = (e) => {
+    switch (e.target.name) {
+      case "nome":
+        setNome(e.target.value);
+        break;
+      case "email":
+        setEmail(e.target.value);
+        break;
+      case "password":
+        setPassword(e.target.value);
+        break;
+    }
+  };
+
+  const sendError = (erro) => {
+    toast.error(erro, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   const criarUtilizador = () => {
     let valid = true;
     if (nome == "" || email == "" || password == "" || cargo == "") {
@@ -14,7 +45,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
         nome: u_nome,
         email: u_email,
         password: u_password,
-        cargo: u_cargo,
+        cargo: tu_tipo,
       };
       api.post("utilizadores/create", newUtilizador).then((data) => {
         if (data.status == "200") {
@@ -33,6 +64,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
       });
     }
   };
+
   return (
     <div className="modal fade" id="ModalCriarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -45,7 +77,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
             <form>
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Nome</label>
-                <input type="name" className="form-control" aria-describedby="emailHelp" placeholder="Nome Exemplo" />
+                <input type="name" className="form-control" placeholder="Nome Exemplo" />
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Email</label>
@@ -60,7 +92,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
                   Inserir cargo
                 </button>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Cargo1</a>
+                  <a className="dropdown-item" href="#">{}</a>
                 </div>
               </div>
             </form>

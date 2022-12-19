@@ -10,7 +10,7 @@ var recompensas = sequelize.define(
             autoIncrement: true,
         },
         r_nome: Sequelize.STRING,
-        r_descricaoo: Sequelize.STRING,
+        r_descricao: Sequelize.STRING,
         r_imagem: Sequelize.STRING,
         r_duracao: Sequelize.STRING,
     },

@@ -25,10 +25,9 @@ function LoadFillData() {
           newUtilizador.push({
               nome: UtilizadorAux.u_nome,
               email: UtilizadorAux.u_email,
-              cargo: UtilizadorAux.tu_tipo,
+              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
           })
         })
-        console.log(dados)
         setUtilizador(newUtilizador);
       })
       .catch((error) => {
@@ -42,9 +41,9 @@ function LoadFillData() {
         return (
           <>
             <tr key={index}>
-              <td scope="row">{data.utilizador?.nome}</td>
-              <td>{data.utilizador?.email}</td>
-              <td>{data.utilizador?.cargo}</td>
+              <td scope="row">{data.nome}</td>
+              <td>{data.email}</td>
+              <td>{data.cargo}</td>
               <td>
                 <div className="d-flex gap-2">
                   <span
@@ -54,7 +53,7 @@ function LoadFillData() {
                       setModalShow(true);
                     }}
                   >
-                    <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-penfill.svg"></img></button>
+                    <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores"><img src="../../assets/icon-penfill.svg"></img></button>
                   </span>
 
                   <span

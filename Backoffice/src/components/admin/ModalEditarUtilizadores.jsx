@@ -3,6 +3,26 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalEditarUtilizadores({ show, onHide }) {
+  const [utilizador, setUtilizador] = useState([]);
+  useEffect(() => {
+    api.get('/utilizadores/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        console.table(dados)
+        var newUtilizador = [];
+        dados.map((UtilizadorAux) => {
+          newUtilizador.push({
+              nome: UtilizadorAux.u_nome,
+              email: UtilizadorAux.u_email,
+              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+          })
+        })
+        setUtilizador(newUtilizador);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
   // function SendUpdate() {
   //   const datawebsitepost = {
   //     estado: estado == "" ? pedido.estado : estado,

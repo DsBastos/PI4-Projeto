@@ -13,7 +13,7 @@ const pontoTuristicoRoute = require('./routes/pontoTuristicoRoute.js')
 const recompensaRoute = require('./routes/recompensaRoute.js')
 const regiaoTuristicaRoute = require('./routes/regiaoTuristicaRoute.js')
 const reservaRoute = require('./routes/reservaRoute.js')
-
+const tipoutilizadoresRoute = require('./routes/tipoUtilizadorRoute.js')
 const tipologiaRoute = require('./routes/tipologiaRoute.js')
 const visitaRoute = require('./routes/visitaRoute.js')
 const voucherRoute = require('./routes/voucherRoute.js')
@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
 app.use('/utilizadores',utilizadoresRoute)
+app.use('/tipoutilizadores',tipoutilizadoresRoute)
 app.use('/cliente', clienteRoute)
 app.use('/pontoturistico', pontoTuristicoRoute)
 app.use('/recompensa', recompensaRoute)

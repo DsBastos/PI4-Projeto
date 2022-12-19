@@ -11,10 +11,13 @@ const recompensas = require('../models/recompensaModel');
 const pontosTuristicos = require('../models/pontoTuristicoModel');
 const clientes = require('../models/clienteModel');
 const regioesTuristicas = require('../models/regiaoTuristicaModel');
+const tipoutilizador = require('../models/tipoUtilizadorModel');
 
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
-        const data = await utilizador.findAll();
+        const data = await utilizador.findAll({
+            include:[{model:tipoutilizador, attributes:['tu_tipo']}]
+        });
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
