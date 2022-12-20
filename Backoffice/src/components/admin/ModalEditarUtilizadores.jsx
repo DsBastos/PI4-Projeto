@@ -2,28 +2,25 @@ import { api } from "../../../api";
 import React, { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import 'react-dropdown/style.css';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown'
 
 export function ModalEditarUtilizadores({ show, onHide, props }) {
   const [cargos, setCargos] = useState([]);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [selectedcargo, setSelectedcargo] = useState("");
+
   useEffect(() => {
     api.get("tipoutilizadores/list").then((data) => {
       let cargosarr = data.data.data;
       setCargos(cargosarr);
     });
   }, []);
+
   // function SendUpdate() {
   //   const datawebsitepost = {
   //     estado: estado == "" ? pedido.estado : estado,
   //     data: data == "" ? pedido.data : data,
   //   };
-
-
-  
 
   // const deleteUtilizador = (e) => {
   //   api.delete("utilizadores/deleteutilizador/"+utilizadores.u_id).then(()=>{
@@ -46,7 +43,7 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
       email: email == "" ? props?.email : email,
       tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
     }
-    console.log(newUser)
+    //console.log(newUser)
     api.patch("/utilizadores/updateutilizador/" + props.id, newUser).then((data) => {
       console.log(data);
       if (data.status = "200") {
@@ -61,11 +58,11 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
         });
       } else {
         sendError("Ocorreu um erro ao tentar alterar o utilizador")
-        console.log("asd");
+        //console.log("asd");
       }
     })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
         alert(error);
       });
   }

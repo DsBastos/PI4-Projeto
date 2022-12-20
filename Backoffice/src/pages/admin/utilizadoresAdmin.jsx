@@ -11,10 +11,10 @@ function LoadFillData() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalEditarUtilizadorShow, setModalEditarUtilizadorShow] = React.useState(false);
   const [selectedUtilizador, setSelectedUtilizador] = useState(null);
   const [utilizador, setUtilizador] = useState([]);
-  const [modalEditarUtilizadorShow, setEditarUtilizadorShow] = React.useState(false);
+  const [modalConfirmacaoShow, setConfirmacaoShow] = React.useState(false);
 
   useEffect(() => {
     api.get('/utilizadores/list')
@@ -50,8 +50,7 @@ function LoadFillData() {
                   className="material-symbols-outlined"
                   onClick={() => {
                     setSelectedUtilizador(data);
-                    setModalShow(true);
-
+                    setModalEditarUtilizadorShow(true);
                   }}
                 >
                   <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
@@ -65,7 +64,7 @@ function LoadFillData() {
                   className="material-symbols-outlined"
                   onClick={() => {
                     setSelectedUtilizador(data);
-                    setEditarUtilizadorShow(true);
+                    setModalConfirmacaoShow(true);
                   }}
                 >
                   <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
@@ -73,8 +72,8 @@ function LoadFillData() {
               </td>
             </tr>
             <ModalEditarUtilizadores
-              show={modalShow}
-              onHide={() => setModalShow(false)}
+              show={modalEditarUtilizadorShow}
+              onHide={() => setModalEditarUtilizadorShow(false)}
               props={selectedUtilizador}
             />
           </>

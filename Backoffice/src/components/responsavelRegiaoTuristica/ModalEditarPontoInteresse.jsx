@@ -2,14 +2,10 @@ import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
-export function ModalEditarPontoInteresse({ show, onHide }) {
+export function ModalEditarPontoInteresse({ show, onHide, props }) {
   function SendUpdate() {
-    const datapontointeressepost = {
-      estado: estado == "" ? pedido.estado : estado,
-      data: data == "" ? pedido.data : data,
-    };
-
-    api.put("/pontoturistico/updatepontoturistico/" + pontoturistico.pT_id, datapedidospost).then((data) => {
+    api.patch("/pontoturistico/updatepontoturistico/" + props.id, newUser).then((data) => {
+      console.log(data);
       if (data.status = "200") {
         toast.success('Ponto turístico alterado com sucesso', {
           position: "top-center",
@@ -22,9 +18,11 @@ export function ModalEditarPontoInteresse({ show, onHide }) {
         });
       } else {
         sendError("Ocorreu um erro ao tentar alterar o ponto turístico")
+        //console.log("asd");
       }
     })
       .catch((error) => {
+        //console.log(error);
         alert(error);
       });
 

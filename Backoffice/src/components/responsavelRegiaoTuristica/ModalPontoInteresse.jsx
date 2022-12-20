@@ -15,25 +15,53 @@ export function ModalPontoInteresse({ show, onHide }) {
             <form>
               <div className="form-group m-1">
                 <label htmlFor="exampleInputEmail1">Nome</label>
-                <input type="name" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
+                <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
               </div>
               <div className="form-group m-2">
-                <label htmlFor="exampleInputEmail1">Email</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
+                <label htmlFor="exampleInputEmail1">Região</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
               </div>
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Cargo
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Cargo1</a>
+              <div className="form-group m-1">
+                <label htmlFor="exampleInputEmail1">Dificuldade</label>
+                <input type="number" className="form-control" aria-describedby="emailHelp" placeholder="Inserir nome completo"></input>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Duração</label>
+                <input type="minutes" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Inserir email"></input>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Terreno</label>
+                <input type="number" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Tamanho</label>
+                <input type="size" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Descrição</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+              </div>
+              <div className="form-group row pt-4">
+                <label className="col-1 col-form-label">Hora de abertura</label>
+                <div className="col-4">
+                  <input type="time" className="form-control" id="inputHoras" placeholder="Horas"></input>
                 </div>
               </div>
+              <div className="form-group row pt-4">
+                <label className="col-1 col-form-label">Hora de encerramento</label>
+                <div className="col-4">
+                  <input type="time" className="form-control" id="inputHoras" placeholder="Horas"></input>
+                </div>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Coordenadas</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+              </div>
+              <div className="form-group m-2">
+                <label htmlFor="exampleInputEmail1">Link</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
+              </div>
             </form>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary">Confirmar</button>
           </div>
         </div>
       </div>

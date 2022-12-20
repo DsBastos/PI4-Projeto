@@ -11,7 +11,6 @@ var vouchers = sequelize.define(
         },
         v_dtinicio: Sequelize.DATE,
         v_dtfim: Sequelize.DATE,
-        v_pontos: Sequelize.INTEGER,
     },
     {
         freezeTableName: true,

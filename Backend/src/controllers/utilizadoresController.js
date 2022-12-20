@@ -16,7 +16,7 @@ const tipoutilizador = require('../models/tipoUtilizadorModel');
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
         const data = await utilizador.findAll({
-            include:[{model:tipoutilizador, attributes:['tu_tipo']}]
+            include:[{model:tipoutilizador, attributes:['tu_tipo']},{model:regioesTuristicas, attributes:['rt_nome']}]
         });
         res.send({ success: true, data: data });
     } catch (error) {

@@ -13,9 +13,11 @@ const voucher = require("./voucherModel");
 tipoUtilizador.hasMany(utilizadores, {foreignKey:{name:"tu_id",allowNull:false}});
 utilizadores.belongsTo(tipoUtilizador, {foreignKey:{name:"tu_id",allowNull:false}});
 
-pontoTuristico.belongsTo(utilizadores, {foreignKey:{name:"u_id",allowNull:false}});
+pontoTuristico.belongsTo(utilizadores, {foreignKey:{name:"u_id",allowNull:true}});
 
 regiaoTuristica.hasMany(utilizadores, {foreignKey:{name:"rt_id",allowNull:true}});
+utilizadores.belongsTo(regiaoTuristica, {foreignKey:{name:"rt_id",allowNull:true}});
+
 utilizadores.hasMany(pontoTuristico, {foreignKey:{name:"u_id",allowNull:false}});
 regiaoTuristica.hasMany(pontoTuristico, {foreignKey:{name:"rt_id",allowNull:false}});
 
@@ -31,6 +33,8 @@ pontoTuristico.hasMany(visita, {foreignKey:{name:"pT_id",allowNull:false}})
 recompensa.hasMany(voucher, {foreignKey:{name:"r_id",allowNull:false}})
 
 cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}})
+reserva.belongsTo(cliente, {foreignKey:{name:"c_id",allowNull:false}})
+
 visita.hasMany(reserva, {foreignKey:{name:"vs_id",allowNull:false}})
 
 db.sync()

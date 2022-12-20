@@ -7,6 +7,39 @@ import { toast } from 'react-toastify';
 import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/ModalVouchers";
 
 function recompensas() {
+
+  // const criarRecompensa = () => {
+  //   let valid = true;
+  //   if (nome == "" || descricao == "" || imagem == "" || duracao == "" || preco == "") {
+  //     valid = false;
+  //     sendError("Os campos não podem estar vazios");
+  //   }
+  //   if (valid) {
+  //     let newRecompensa = {
+  //       nome: r_nome,
+  //       descricao: r_descricao,
+  //       imagem: r_imagem,
+  //       duracao: r_duracao,
+  //       preco: r_preco,
+  //     };
+  //     api.post("recompensa/create", newRecompensa).then((data) => {
+  //       if (data.status == "200") {
+  //         toast.success("Recompensa criada com sucesso", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         sendError("Erro ao criar recompensa");
+  //       }
+  //     });
+  //   }
+  // };
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -17,7 +50,7 @@ function recompensas() {
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
-        nome3="Pontos de interesse"
+        nome3="Pontos turísticos"
         icon3="./assets/icon-filetext.svg"
         link3="/pontosDeInteresse"
         nome4="Recompensas"

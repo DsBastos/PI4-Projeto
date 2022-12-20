@@ -8,13 +8,35 @@ import { toast } from 'react-toastify';
 
 function criarVisitaAT() {
 
-  // app.post('/api/listitems', (req, res) => {
-  //   var postData = req.body;
-  //   connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
-  //     if (error) throw error;
-  //     res.end(JSON.stringify(results));
-  //   });
-  // });
+  // const criarVisita = () => {
+  //   let valid = true;
+  //   if (data == "" || hora == "" || vagas == "" || cargo == null) {
+  //     valid = false;
+  //     sendError("Os campos não podem estar vazios");
+  //   }
+  //   if (valid) {
+  //     let newVisita = {
+  //       data: vs_data,
+  //       hora: vs_hora,
+  //       vs_vagas: vs_vagas,
+  //     };
+  //     api.post("visita/create", newVisita).then((data) => {
+  //       if (data.status == "200") {
+  //         toast.success("Visita criada com sucesso", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         sendError("Erro ao criar visita");
+  //       }
+  //     });
+  //   }
+  // };
 
   return (
     <div className="d-flex">

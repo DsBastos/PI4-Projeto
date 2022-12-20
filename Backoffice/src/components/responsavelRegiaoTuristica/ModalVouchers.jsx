@@ -3,6 +3,27 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalVouchers({ show, onHide }) {
+  const [recompensa, setRecompensa] = useState([]);
+
+  useEffect(() => {
+    api.get('/recompensa/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newRecompensa = [];
+        dados.map((RecompensaAux) => {
+          newRecompensa.push({
+              id: RecompensaAux.r_id,
+              nome: RecompensaAux.r_nome,
+              descricao: RecompensaAux.r_descricao,
+              regiao: RecompensaAux.regiaoturistica.r_nome,
+            })
+        })   
+      setRecompensa(newRecompensa);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+  }, [])
   return (
     <div className="modal fade" id="ModalVouchers" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -15,7 +36,7 @@ export function ModalVouchers({ show, onHide }) {
             <table className="table table-striped datatable-table">
               <thead className="datatable-header">
                 <tr>
-                  <th scope="col">ID do voucher</th>
+                  <th scope="col">ID da recompensa</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Distrito</th>
                   <th scope="col">Descrição</th>
@@ -27,7 +48,7 @@ export function ModalVouchers({ show, onHide }) {
                   <th>1</th>
                   <td>Café</td>
                   <td>Viseu</td>
-                  <td>Inserir aqui texto relativo ao voucher</td>
+                  <td>Inserir aqui texto relativo à recompensa</td>
                   <td>
                     <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
                   </td>

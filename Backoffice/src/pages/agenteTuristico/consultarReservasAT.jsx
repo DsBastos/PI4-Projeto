@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 function consultarReservasAT() {
+  const [reserva, setReserva] = useState([]);
 
   useEffect(() => {
     api.get('/reserva/list')
@@ -15,10 +16,10 @@ function consultarReservasAT() {
       var newReserva = [];
         dados.map((ReservaAux) => {
           newReserva.push({
-              detalhes: ReservaAux.rs_nPessoas,
-              estado: ReservaAux.rs_data,
-              data: ReservaAux.rs_estado,
-              email:ReservaAux.cliente.email,
+              nPessoas: ReservaAux.rs_nPessoas,
+              data: ReservaAux.rs_data,
+              estado: ReservaAux.rs_estado,
+              nomeCliente:ReservaAux.cliente.nome,
             })
         })   
       setReserva(newReserva);
@@ -45,7 +46,7 @@ function consultarReservasAT() {
                 <th scope="col">Nome do cliente</th>
                 <th scope="col">Nº de pessoas</th>
                 <th scope="col">Ponto turístico</th>
-                <th scope="col">Distrito</th>
+                <th scope="col">Região</th>
                 <th scope="col">Data</th>
                 <th scope="col">Horas</th>
                 <th scope="col">Ferramentas</th>

@@ -31,8 +31,6 @@ function regioesturisticasAdmin() {
           <h2 className="mt-5">Regiões turísticas</h2>
           <div className="d-flex justify-content-between flex-wrap mt-5">
             <Cartaodistrito />
-            <Cartaodistrito />
-            <Cartaodistrito />
           </div>
         </div>
       </main>

@@ -32,7 +32,7 @@ function dashboardRT() {
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
-        nome3="Pontos de interesse"
+        nome3="Pontos turísticos"
         icon3="./assets/icon-filetext.svg"
         link3="/pontosDeInteresse"
         nome4="Recompensas"
@@ -135,8 +135,7 @@ function dashboardRT() {
                   <p className="card-text h1 mt-3">{infoRT[4]}</p>
                 </div>
               </m.div>
-            </div>
-                
+            </div>  
           </div>
         </div>
       </main>
