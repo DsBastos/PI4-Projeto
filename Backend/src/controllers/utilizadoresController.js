@@ -60,11 +60,12 @@ controllers.updateUtilizador = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome, email, pwd} = req.body;
+        const {nome, email, pwd, tipo} = req.body;
         const data = await utilizador.update({
             u_nome: nome,
             u_email: email,
             u_pwd: pwd,
+            tu_id: tipo
         },
             {
                 where: { u_id: id }

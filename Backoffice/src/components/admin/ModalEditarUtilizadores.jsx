@@ -1,27 +1,20 @@
 import { api } from "../../../api";
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import 'react-dropdown/style.css';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 
-export function ModalEditarUtilizadores({ show, onHide }) {
-  const [utilizador, setUtilizador] = useState([]);
+export function ModalEditarUtilizadores({ show, onHide, props }) {
+  const [cargos, setCargos] = useState([]);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [selectedcargo, setSelectedcargo] = useState("");
   useEffect(() => {
-    api.get('/utilizadores/list')
-      .then(({ data }) => {
-        const dados = data.data;
-        console.table(dados)
-        var newUtilizador = [];
-        dados.map((UtilizadorAux) => {
-          newUtilizador.push({
-              nome: UtilizadorAux.u_nome,
-              email: UtilizadorAux.u_email,
-              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
-          })
-        })
-        setUtilizador(newUtilizador);
-      })
-      .catch((error) => {
-        alert(error)
-      })
+    api.get("tipoutilizadores/list").then((data) => {
+      let cargosarr = data.data.data;
+      setCargos(cargosarr);
+    });
   }, []);
   // function SendUpdate() {
   //   const datawebsitepost = {
@@ -29,25 +22,8 @@ export function ModalEditarUtilizadores({ show, onHide }) {
   //     data: data == "" ? pedido.data : data,
   //   };
 
-  //   api.put("/utilizadores/updateutilizador/" + utilizadores.u_id, datautilizadorespost).then((data) => {
-  //     if (data.status = "200") {
-  //       toast.success('Website alterado com sucesso', {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //       });
-  //     } else {
-  //       sendError("Ocorreu um erro ao tentar alterar o utilizador")
-  //     }
-  //   })
-  //     .catch((error) => {
-  //       alert(error);
-  //     });
-  // }
+
+  
 
   // const deleteUtilizador = (e) => {
   //   api.delete("utilizadores/deleteutilizador/"+utilizadores.u_id).then(()=>{
@@ -64,38 +40,72 @@ export function ModalEditarUtilizadores({ show, onHide }) {
   //     });
   // }
 
+  function editUser() {
+    let newUser = {
+      nome: nome == "" ? props?.nome : nome,
+      email: email == "" ? props?.email : email,
+      tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
+    }
+    console.log(newUser)
+    api.patch("/utilizadores/updateutilizador/" + props.id, newUser).then((data) => {
+      console.log(data);
+      if (data.status = "200") {
+        toast.success('Utilizador alterado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar o utilizador")
+        console.log("asd");
+      }
+    })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  }
+
   return (
     <div className="modal fade" id="ModalEditarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar utilizador (inserir ID)</h1>
+            <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar utilizador</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-          <form>
+            <form>
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Nome</label>
-                <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Nome Exemplo"/>
+                <label>Nome</label>
+                <input type="text" className="form-control" onChange={e => setNome(e.target.value)} aria-describedby="emailHelp" placeholder="Nome Exemplo" value={nome == "" ? props?.nome : nome} />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Email</label>
-                <input type="password" className="form-control" placeholder="nome.exemplo@email.com"/>
+                <label>Email</label>
+                <input type="email" className="form-control" onChange={e => setEmail(e.target.value)} placeholder="nome.exemplo@email.com" value={email == "" ? props?.email : email} />
               </div>
               <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Inserir cargo
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">Cargo1</a>
-                </div>
+                <label>Cargo</label>
+                <select
+                  value={selectedcargo == "" ? cargos?.find(x => x.tu_tipo == props?.cargo)?.tu_id : selectedcargo}
+                  onChange={e => setSelectedcargo(e.target.value)}>
+                  {cargos.map(o => (
+                    o.tu_tipo == props?.cargo ?
+                      <option key={o.tu_id} value={o.tu_id}>{o.tu_tipo}</option>
+                      :
+                      <option key={o.tu_id} value={o.tu_id}>{o.tu_tipo}</option>
+                  ))}
+                </select>
               </div>
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger text-left" data-bs-dismiss="modal" /*onClick={deleteUtilizador*/>Eliminar utilizador</button>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary">Confirmar</button>
+            <button type="button" onClick={editUser} data-bs-dismiss="modal" className="btn btn-primary">Confirmar</button>
           </div>
         </div>
       </div>

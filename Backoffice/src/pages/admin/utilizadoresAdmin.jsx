@@ -23,9 +23,10 @@ function LoadFillData() {
         var newUtilizador = [];
         dados.map((UtilizadorAux) => {
           newUtilizador.push({
-              nome: UtilizadorAux.u_nome,
-              email: UtilizadorAux.u_email,
-              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+            id: UtilizadorAux.u_id,
+            nome: UtilizadorAux.u_nome,
+            email: UtilizadorAux.u_email,
+            cargo: UtilizadorAux.tipoutilizador.tu_tipo,
           })
         })
         setUtilizador(newUtilizador);
@@ -45,35 +46,36 @@ function LoadFillData() {
               <td>{data.email}</td>
               <td>{data.cargo}</td>
               <td>
-                <div className="d-flex gap-2">
-                  <span
-                    className="material-symbols-outlined"
-                    onClick={() => {
-                      setSelectedUtilizador(data);
-                      setModalShow(true);
-                    }}
-                  >
-                    <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores"><img src="../../assets/icon-penfill.svg"></img></button>
-                  </span>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setModalShow(true);
 
-                  <span
-                    id={data.u_id}
-                    className="material-symbols-outlined"
-                    onClick={() => {
-                      setSelectedUtilizador(data);
-                      setEditarUtilizadorShow(true);
-                    }}
-                  >
-                    <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
-                  </span>
-                </div>
+                  }}
+                >
+                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
+                    <img src="../../assets/icon-penfill.svg"></img>
+
+                  </button>
+                </span>
+
+                <span
+                  id={data.u_id}
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setEditarUtilizadorShow(true);
+                  }}
+                >
+                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </span>
               </td>
             </tr>
-
             <ModalEditarUtilizadores
               show={modalShow}
               onHide={() => setModalShow(false)}
-              utilizador={selectedUtilizador}
+              props={selectedUtilizador}
             />
           </>
         );

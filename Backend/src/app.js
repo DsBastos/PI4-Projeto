@@ -6,8 +6,6 @@ require('./models/associations')
 const createError = require('http-errors');
 //const middleware = require('./middleware');
 
-
-
 const clienteRoute = require('./routes/clienteRoute.js')
 const pontoTuristicoRoute = require('./routes/pontoTuristicoRoute.js')
 const recompensaRoute = require('./routes/recompensaRoute.js')

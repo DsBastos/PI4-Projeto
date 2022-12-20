@@ -12,12 +12,10 @@ var clientes = sequelize.define(
         c_nome: Sequelize.STRING,
         c_idade: Sequelize.STRING,
         c_email: Sequelize.STRING,
-        c_email: Sequelize.STRING,
         c_pwd: Sequelize.STRING,
         c_regiao: Sequelize.STRING,
         c_estrangeiro: Sequelize.BOOLEAN,
         c_pontos: Sequelize.INTEGER,
-        
     },
     {
         freezeTableName: true,

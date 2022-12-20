@@ -8,61 +8,61 @@ export function ModalCriarUtilizadores({ show, onHide }) {
   let [password, setPassword] = useState("");
   let [cargo, setCargo] = useState("");
 
-  const handleInputChange = (e) => {
-    switch (e.target.name) {
-      case "nome":
-        setNome(e.target.value);
-        break;
-      case "email":
-        setEmail(e.target.value);
-        break;
-      case "password":
-        setPassword(e.target.value);
-        break;
-    }
-  };
+  // const handleInputChange = (e) => {
+  //   switch (e.target.name) {
+  //     case "nome":
+  //       setNome(e.target.value);
+  //       break;
+  //     case "email":
+  //       setEmail(e.target.value);
+  //       break;
+  //     case "password":
+  //       setPassword(e.target.value);
+  //       break;
+  //   }
+  // };
 
-  const sendError = (erro) => {
-    toast.error(erro, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+  // const sendError = (erro) => {
+  //   toast.error(erro, {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // };
 
   const criarUtilizador = () => {
-    let valid = true;
-    if (nome == "" || email == "" || password == "" || cargo == "") {
-      valid = false;
-      sendError("Os campos não podem estar vazios");
-    }
-    if (valid) {
-      let newUtilizador = {
-        nome: u_nome,
-        email: u_email,
-        password: u_password,
-        cargo: tu_tipo,
-      };
-      api.post("utilizadores/create", newUtilizador).then((data) => {
-        if (data.status == "200") {
-          toast.success("Utilizador criado com sucesso", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          sendError("Erro ao criar utilizador");
-        }
-      });
-    }
+  //   let valid = true;
+  //   if (nome == "" || email == "" || password == "" || cargo == "") {
+  //     valid = false;
+  //     sendError("Os campos não podem estar vazios");
+  //   }
+  //   if (valid) {
+  //     let newUtilizador = {
+  //       nome: u_nome,
+  //       email: u_email,
+  //       password: u_password,
+  //       cargo: tu_tipo,
+  //     };
+  //     api.post("utilizadores/create", newUtilizador).then((data) => {
+  //       if (data.status == "200") {
+  //         toast.success("Utilizador criado com sucesso", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         sendError("Erro ao criar utilizador");
+  //       }
+  //     });
+  //   }
   };
 
   return (
@@ -76,30 +76,22 @@ export function ModalCriarUtilizadores({ show, onHide }) {
           <div className="modal-body">
             <form>
               <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Nome</label>
+                <label>Nome</label>
                 <input type="name" className="form-control" placeholder="Nome Exemplo" />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Email</label>
+                <label>Email</label>
                 <input type="email" className="form-control" placeholder="nome.exemplo@email.com" />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+                <label>Password</label>
                 <input type="password" className="form-control" placeholder="palavrapasseexemplo" />
-              </div>
-              <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Inserir cargo
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a className="dropdown-item" href="#">{}</a>
-                </div>
               </div>
             </form>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary" onClick={criarUtilizador}>Confirmar</button>
+            <button type="button" className="btn btn-primary">Confirmar</button>
           </div>
         </div>
       </div>
