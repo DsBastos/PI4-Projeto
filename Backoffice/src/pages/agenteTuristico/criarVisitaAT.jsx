@@ -1,23 +1,42 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-//import { api } from "../../../api";
+import { api } from "../../../api";
 import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
 
 function criarVisitaAT() {
-  // //Estados
-  // const [heroi, setHeroi] = useState("")
 
-  // useEffect(() => {
-  //   api.get('/website/list')
-  //     .then(({ data }) => {
-  //       const dados = data.data;
-  //       setHeroi(dados.ws_texto)
-  //     })
-  //     .catch((error) => {
-  //       alert(error)
-  //     })
-  // }, [])
+  // const criarVisita = () => {
+  //   let valid = true;
+  //   if (data == "" || hora == "" || vagas == "" || cargo == null) {
+  //     valid = false;
+  //     sendError("Os campos não podem estar vazios");
+  //   }
+  //   if (valid) {
+  //     let newVisita = {
+  //       data: vs_data,
+  //       hora: vs_hora,
+  //       vs_vagas: vs_vagas,
+  //     };
+  //     api.post("visita/create", newVisita).then((data) => {
+  //       if (data.status == "200") {
+  //         toast.success("Visita criada com sucesso", {
+  //           position: "top-center",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //         });
+  //       } else {
+  //         sendError("Erro ao criar visita");
+  //       }
+  //     });
+  //   }
+  // };
 
   return (
     <div className="d-flex">
@@ -31,12 +50,12 @@ function criarVisitaAT() {
         <div className="d-flex">
           <div className="col">
             <div className="container px-5 mt-5">
-              
+
               <div className="pt-4">
                 <div className="card" style={{ "width": "18rem" }}>
                   <img className="card-img-top" src="..." alt="Card image cap"></img>
                   <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+                    <h5 className="card-title">Nome do ponto turístico</h5>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   </div>
                 </div>
@@ -67,7 +86,7 @@ function criarVisitaAT() {
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark">Sobre o local</p>
+            <p className="text-dark">Sobre o ponto turístico</p>
             <p> (inserir texto da bd aqui) </p>
           </div>
         </div>

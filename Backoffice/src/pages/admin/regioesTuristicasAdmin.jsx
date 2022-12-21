@@ -2,6 +2,10 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { Cartaodistrito } from "../../components/admin/Cartaodistrito";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
 function regioesturisticasAdmin() {
   return (
     <div className="d-flex">
@@ -26,8 +30,6 @@ function regioesturisticasAdmin() {
         <div className="container px-5 mb-5">
           <h2 className="mt-5">Regiões turísticas</h2>
           <div className="d-flex justify-content-between flex-wrap mt-5">
-            <Cartaodistrito />
-            <Cartaodistrito />
             <Cartaodistrito />
           </div>
         </div>

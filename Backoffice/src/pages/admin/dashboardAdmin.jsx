@@ -2,10 +2,26 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+// import { toast } from 'react-toastify';
 
 import icongroup from "../../assets/icongroup.svg";
 
 function dashboardAdmin() {
+  const [infoAdmin, setInfoAdmin] = useState([])
+
+  useEffect(() => {
+    api.get('utilizadores/countdashboardadmin')
+      .then(({ data }) => {
+        let aux=data.data;
+        setInfoAdmin(aux);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -26,16 +42,16 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de utilizadores
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[0]}</p>
                 </div>
               </m.div>
               <m.div
@@ -44,16 +60,16 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de responsáveis da região turística
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[1]}</p>
                 </div>
               </m.div>
               <m.div
@@ -62,16 +78,16 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de regiões turísticas
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[2]}</p>
                 </div>
               </m.div>
               <m.div
@@ -80,16 +96,16 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de agentes turísticos
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[3]}</p>
                 </div>
               </m.div>
               <m.div
@@ -98,16 +114,16 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº de pontos turísticos
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[4]}</p>
                 </div>
               </m.div>
               <m.div
@@ -116,16 +132,52 @@ function dashboardAdmin() {
                   scale: 1.05,
                   boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
                 }}
-                style={{ maxWidth: "18rem", height: "12rem" }}
+                style={{ width: "18rem", height: "12rem" }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
                     <h5 className="card-title text-muted pe-4 fw-bold">
-                      Nº de Responsável da região turística
+                      Nº total de reservas
                     </h5>
                     <img src={icongroup} alt="" />
                   </div>
-                  <p className="card-text h1 mt-3">25</p>
+                  <p className="card-text h1 mt-3">{infoAdmin[5]}</p>
+                </div>
+              </m.div>
+              <m.div
+                className="card me-4 my-3"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                }}
+                style={{ width: "18rem", height: "12rem" }}
+              >
+                <div className="card-body">
+                  <div className="d-flex justify-content-between">
+                    <h5 className="card-title text-muted pe-4 fw-bold">
+                      Nº total de vouchers emitidos
+                    </h5>
+                    <img src={icongroup} alt="" />
+                  </div>
+                  <p className="card-text h1 mt-3">{infoAdmin[6]}</p>
+                </div>
+              </m.div>
+              <m.div
+                className="card me-4 my-3"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                }}
+                style={{ width: "18rem", height: "12rem" }}
+              >
+                <div className="card-body">
+                  <div className="d-flex justify-content-between">
+                    <h5 className="card-title text-muted pe-4 fw-bold">
+                      Nº total de clientes
+                    </h5>
+                    <img src={icongroup} alt="" />
+                  </div>
+                  <p className="card-text h1 mt-3">{infoAdmin[7]}</p>
                 </div>
               </m.div>
             </div>

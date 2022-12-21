@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import 'react-dropdown/style.css';
 
-export function ModalEditarAgenteTuristico({ show, onHide, props }) {
+export function ModalEditarUtilizadores({ show, onHide, props }) {
   const [cargos, setCargos] = useState([]);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -43,7 +43,7 @@ export function ModalEditarAgenteTuristico({ show, onHide, props }) {
       email: email == "" ? props?.email : email,
       tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
     }
-    console.log(newUser)
+    //console.log(newUser)
     api.patch("/utilizadores/updateutilizador/" + props.id, newUser).then((data) => {
       console.log(data);
       if (data.status = "200") {
@@ -87,7 +87,7 @@ export function ModalEditarAgenteTuristico({ show, onHide, props }) {
               </div>
               <div className="dropdown">
                 <label>Cargo</label>
-                {/* <select
+                <select
                   value={selectedcargo == "" ? cargos?.find(x => x.tu_tipo == props?.cargo)?.tu_id : selectedcargo}
                   onChange={e => setSelectedcargo(e.target.value)}>
                   {cargos.map(o => (
@@ -96,13 +96,13 @@ export function ModalEditarAgenteTuristico({ show, onHide, props }) {
                       :
                       <option key={o.tu_id} value={o.tu_id}>{o.tu_tipo}</option>
                   ))}
-                </select> */}
+                </select>
               </div>
             </form>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" data-bs-dismiss="modal" className="btn btn-primary">Confirmar</button>
+            <button type="button" onClick={editUser} data-bs-dismiss="modal" className="btn btn-primary">Confirmar</button>
           </div>
         </div>
       </div>

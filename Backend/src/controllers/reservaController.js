@@ -1,5 +1,5 @@
 var reserva = require('../models/reservaModel');
-
+const clientes = require('../models/clienteModel');
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
@@ -8,7 +8,9 @@ const createError = require('http-errors')
 
 controllers.getAllReserva = async (req, res, next) => {
     try {
-        const data = await reserva.findAll();
+        const data = await reserva.findAll({
+            include:[{model:clientes, attributes:['c_nome','c_email']}]
+        });
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)

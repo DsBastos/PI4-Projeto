@@ -1,8 +1,84 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function websiteAdmin() {
+
+  const sendError = (erro) => {
+    toast.error(erro, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  //Estados
+  const [heroi, setHeroi] = useState("")
+  const [descarregar, setDescarregar] = useState("")
+  const [objetivo, setObjetivo] = useState("")
+  const [pontosT, setPontosT] = useState("")
+  const [voucher, setVoucher] = useState("")
+  const [reservas, setReservas] = useState("")
+  const [qr, setQr] = useState("")
+  const [atualizacoes, setAtualizacoes] = useState("")
+
+  function SendUpdate() {
+    const datawebsitepost = {
+      heroi: heroi,
+      descarregar: descarregar,
+      objetivo: objetivo,
+      pontosT: pontosT,
+      voucher: voucher,
+      reservas: reservas,
+      qr: qr,
+      atualizacoes: atualizacoes
+    };
+
+    api.put("/website/updatewebsite/" + website.ws_id, datapedidospost).then((data) => {
+      if (data.status = "200") {
+        toast.success('Website alterado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar o website")
+      }
+    })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  useEffect(() => {
+    api.get('/website/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        setHeroi(dados[0])
+        setDescarregar(dados[1])
+        setObjetivo(dados[2])
+        setPontosT(dados[3])
+        setVoucher(dados[4])
+        setReservas(dados[5])
+        setQr(dados[6])
+        setAtualizacoes(dados[7])
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
+
   return (
     <div className="d-flex">
       <Menu
@@ -23,15 +99,15 @@ function websiteAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 my-5">
-          <h2 className="mt-5">Edição dos conteúdos do website</h2>
+        <div className="container px-5 mb-5">
+          <h2 className="mt-5">Editar conteúdos do website</h2>
           <div className="col col-md-10">
             <form className="d-inline-flex flex-column">
               <div className="row d-flex justify-content-between">
                 <div className="col-lg-5 mt-5">
                   <div className="mb-5">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção herói
@@ -40,12 +116,14 @@ function websiteAdmin() {
                       className="form-control mt-md-4"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={heroi.ws_texto}
+                      onChange={(e) => { setHeroi(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção “Nosso Objetivo”
@@ -54,14 +132,16 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={objetivo.ws_texto}
+                      onChange={(e) => { setObjetivo(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-5">
                   <div className="mb-3">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto da secção para descarregar aplicação
@@ -70,7 +150,9 @@ function websiteAdmin() {
                       className="form-control"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={descarregar.ws_texto}
+                      onChange={(e) => { setDescarregar(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -78,7 +160,7 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Pontos Turísticos”
@@ -87,12 +169,14 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={pontosT.ws_texto}
+                      onChange={(e) => { setPontosT(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-5">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Reservas”
@@ -101,14 +185,16 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={reservas.ws_texto}
+                      onChange={(e) => { setReservas(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Voucher”
@@ -117,12 +203,14 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={voucher.ws_texto}
+                      onChange={(e) => { setVoucher(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
                     <label
-                      for="exampleFormControlTextarea1"
+                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “QRCode”
@@ -131,7 +219,9 @@ function websiteAdmin() {
                       className="form-control mt-md-3"
                       id="exampleFormControlTextarea1"
                       rows="5"
-                      maxlength="200"
+                      maxLength="200"
+                      value={qr.ws_texto}
+                      onChange={(e) => { setQr(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -158,8 +248,10 @@ function websiteAdmin() {
                                   className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                   cols="3"
+                                  value={atualizacoes.ws_texto}
+                                  onChange={(e) => { setAtualizacoes(e.target.value)}}
                                 />
                               </td>
                             </tr>
@@ -170,7 +262,7 @@ function websiteAdmin() {
                                   className="form-control mx-auto  w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>
@@ -181,7 +273,7 @@ function websiteAdmin() {
                                   className="form-control mx-auto w-50 my-md-3"
                                   id="exampleFormControlTextarea1"
                                   rows="4"
-                                  maxlength="200"
+                                  maxLength="200"
                                 />
                               </td>
                             </tr>
@@ -194,10 +286,7 @@ function websiteAdmin() {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary px-5 text-white d-block ms-auto mt-4"
-              >
-                Guardar
-              </button>
+                className="btn btn-primary px-5 text-white d-block ms-auto mt-4" onClick={SendUpdate}>Guardar</button>
             </form>
           </div>
         </div>

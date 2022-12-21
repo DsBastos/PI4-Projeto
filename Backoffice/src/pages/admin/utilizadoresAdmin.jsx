@@ -1,7 +1,87 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalUtilizadores } from "../../components/admin/ModalUtilizadores";
+import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
+import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
+function LoadFillData() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [modalEditarUtilizadorShow, setModalEditarUtilizadorShow] = React.useState(false);
+  const [selectedUtilizador, setSelectedUtilizador] = useState(null);
+  const [utilizador, setUtilizador] = useState([]);
+  const [modalConfirmacaoShow, setConfirmacaoShow] = React.useState(false);
+
+  useEffect(() => {
+    api.get('/utilizadores/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newUtilizador = [];
+        dados.map((UtilizadorAux) => {
+          newUtilizador.push({
+            id: UtilizadorAux.u_id,
+            nome: UtilizadorAux.u_nome,
+            email: UtilizadorAux.u_email,
+            cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+          })
+        })
+        setUtilizador(newUtilizador);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
+
+  return (
+    <>
+      {utilizador.map((data, index) => {
+        return (
+          <>
+            <tr key={index}>
+              <td scope="row">{data.nome}</td>
+              <td>{data.email}</td>
+              <td>{data.cargo}</td>
+              <td>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setModalEditarUtilizadorShow(true);
+                  }}
+                >
+                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
+                    <img src="../../assets/icon-penfill.svg"></img>
+
+                  </button>
+                </span>
+
+                <span
+                  id={data.u_id}
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setModalConfirmacaoShow(true);
+                  }}
+                >
+                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </span>
+              </td>
+            </tr>
+            <ModalEditarUtilizadores
+              show={modalEditarUtilizadorShow}
+              onHide={() => setModalEditarUtilizadorShow(false)}
+              props={selectedUtilizador}
+            />
+          </>
+        );
+      })}
+    </>
+  );
+}
 
 function utilizadoresAdmin() {
   return (
@@ -25,23 +105,13 @@ function utilizadoresAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5">
-          <div className="d-flex justify-content-between my-5">
-            <h2>Utilizadores</h2>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              <img
-                src="../../assets/icon-adduser.svg"
-                alt="ícone de utilizador com símbolo de mais"
-                width={30}
-              />
-            </button>
-          </div>
-          <table class="table table-striped">
+        <div className="container px-5 p-3">
+          <h2 className="mt-5">Utilizadores</h2>
+          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
+            <ModalCriarUtilizadores />
+            <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
+          </button>
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th scope="col">Nome completo</th>
@@ -51,27 +121,10 @@ function utilizadoresAdmin() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>
-                  <button
-                    style={{ border: "none", background: "none" }}
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
-                  >
-                    <img src="../../assets/icon-penfill.svg" alt="" />
-                  </button>
-                  <button style={{ border: "none", background: "none" }}>
-                    <img src="../../assets/icon-trashfill.svg" alt="" />
-                  </button>
-                </td>
-              </tr>
+              <LoadFillData />
             </tbody>
           </table>
         </div>
-        <ModalUtilizadores />
       </main>
     </div>
   );
