@@ -107,8 +107,8 @@ function utilizadoresAdmin() {
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 p-3">
           <h2 className="mt-5">Utilizadores</h2>
-          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
-            <ModalCriarUtilizadores />
+          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            
             <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
           </button>
           <table className="table table-striped">
@@ -126,6 +126,7 @@ function utilizadoresAdmin() {
           </table>
         </div>
       </main>
+      <ModalCriarUtilizadores />
     </div>
   );
 }

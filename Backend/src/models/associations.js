@@ -30,6 +30,8 @@ tipologia.belongsToMany(pontoTuristico,{through:'tipologia_pontoTuristico'});
 pontoTuristico.hasMany(recompensa, {foreignKey:{name:"pT_id",allowNull:false}})
 pontoTuristico.hasMany(visita, {foreignKey:{name:"pT_id",allowNull:false}}) 
 
+//pontoTuristico.hasMany(reserva, {foreignKey:{name:"v_id",allowNull:false}}) 
+
 recompensa.hasMany(voucher, {foreignKey:{name:"r_id",allowNull:false}})
 
 cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}})

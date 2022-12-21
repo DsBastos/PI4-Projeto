@@ -5,11 +5,14 @@ var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const createError = require('http-errors')
+const pontoTuristico = require('../models/PontoTuristicoModel');
 
 controllers.getAllReserva = async (req, res, next) => {
     try {
         const data = await reserva.findAll({
-            include:[{model:clientes, attributes:['c_nome','c_email']}]
+            include:[{model:clientes, attributes:['c_nome','c_email']},
+            {include: [{model:pontoTuristico, attributes:['pT_nome']}]}]
+            
         });
         res.send({ success: true, data: data });
     } catch (error) {
