@@ -30,6 +30,7 @@ function consultarReservasAT() {
   }, [])
 
   return (
+    <>
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
       <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard2"
@@ -53,9 +54,12 @@ function consultarReservasAT() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+        {reserva.map((data, index) => {
+           if (data.tipoid == 2) {
+          return (
+              <tr  key={index}>
                 <th>1</th>
-                <td>Tiago</td>
+                <td>{data.nomeCliente}</td>
                 <td>3</td>
                 <td>Rossio</td>
                 <td>Viseu</td>
@@ -66,6 +70,9 @@ function consultarReservasAT() {
                   <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-decline.svg"></img></button>
                 </td>
               </tr>
+               );
+              }
+            })}
             </tbody>
           </table>
         </div>
@@ -98,6 +105,7 @@ function consultarReservasAT() {
         </div>
       </main>
     </div>
+    </>
   );
 }
 
