@@ -6,37 +6,132 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 
-function criarVisitaAT() {
+ function criarVisitaAT() {
 
-  // const criarVisita = () => {
-  //   let valid = true;
-  //   if (data == "" || hora == "" || vagas == "" || cargo == null) {
-  //     valid = false;
-  //     sendError("Os campos não podem estar vazios");
-  //   }
-  //   if (valid) {
-  //     let newVisita = {
-  //       data: vs_data,
-  //       hora: vs_hora,
-  //       vs_vagas: vs_vagas,
-  //     };
-  //     api.post("visita/create", newVisita).then((data) => {
-  //       if (data.status == "200") {
-  //         toast.success("Visita criada com sucesso", {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         sendError("Erro ao criar visita");
-  //       }
-  //     });
-  //   }
-  // };
+//   const [data, setData]= useState("");
+//   const [hora, setHora]= useState("");
+//   const [vaga, setVaga]= useState("");
+//   const [visita, setVisita]= useState([]);
+
+//   useEffect(() => {
+//     api
+//       .get("/visita/list")
+//       .then(({ data }) => {
+//         const dados = data.data;
+//         var newVisita = [];
+//         Object.keys(dados).map((key) => {
+//           var newVisita = [];
+//           dados[key].visita.map((visitaAux) => {
+//             newVisita.push({
+//               data: visitaAux.vs_data,
+//               horas: visitaAux.vs_horas,
+//             });
+//           });
+//         });
+//         setVisita(newVisita);
+//       })
+//       .catch((error) => {
+//         alert(error);
+//       });
+//   }, []);
+
+//ALTERAR PEDIDOS PARA VISITA
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const datacliente = {
+    nome: nome,
+    email: email,
+    contacto: contacto,
+  };
+
+  api
+    .post("cliente/create", datacliente)
+    .then((res) => {
+      let idcliente;
+      if (res.data.success) {
+        const data = res.data.data;
+        idcliente = data.idCliente;
+        setclienteid(idcliente);
+      }
+   
+      var selectedId = 0;
+      servicos.map((servico) => {
+        console.log(servico)
+       servico.subservicos.map((subservico) => {
+          if (subservico.ativo) {
+            selectedId = subservico.id;
+          }
+        }
+       )
+      })
+      const datapedido = {
+        idcliente: idcliente,
+        detalhes: detalhes,
+        idsubservico: selectedId,
+      }; 
+
+      if (selectedId === 0) {
+        sendError("Selecione pelo menos um serviço");
+      } else {
+        api
+          .post("pedidos/create", datapedido)
+          .then((data) => {
+            if (data.status == "200") {
+              toast.success("Pedido criado com sucesso", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            } else {
+              sendError("Erro ao criar pedido");
+            }
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+
+  /*Submeter dados para API */
+}
+
+
+  const criarVisita = () => {
+    let valid = true;
+    if (data == "" || hora == "" || vagas == "" || cargo == null) {
+      valid = false;
+      sendError("Os campos não podem estar vazios");
+    }
+    if (valid) {
+      let newVisita = {
+        data: vs_data,
+        hora: vs_hora,
+        vs_vagas: vs_vagas,
+      };
+      api.post("visita/create", newVisita).then((data) => {
+        if (data.status == "200") {
+          toast.success("Visita criada com sucesso", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          sendError("Erro ao criar visita");
+        }
+      });
+    }
+  };
 
   return (
     <div className="d-flex">
