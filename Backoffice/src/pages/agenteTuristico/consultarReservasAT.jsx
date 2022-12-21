@@ -22,6 +22,7 @@ function consultarReservasAT() {
               nomeCliente:ReservaAux.cliente.nome,
             })
         })   
+        console.log
       setReserva(newReserva);
     })
     .catch((error) => {
