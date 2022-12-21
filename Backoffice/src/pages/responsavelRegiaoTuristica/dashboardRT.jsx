@@ -44,7 +44,7 @@ function dashboardRT() {
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">
-            <div className="d-flex flex-wrap mt-3">
+            <div className="d-flex flex-wrap mt-5">
               <m.div
                 className="card me-4 my-3"
                 whileHover={{
@@ -136,9 +136,6 @@ function dashboardRT() {
                 </div>
               </m.div>
             </div>  
-            </div>
-            <WeatherCard />
-
           </div>
         </div>
       </main>
