@@ -13,7 +13,6 @@ var recompensas = sequelize.define(
         r_descricao: Sequelize.STRING,
         r_pontos: Sequelize.INTEGER,
         r_imagem: Sequelize.STRING,
-        r_duracao: Sequelize.STRING,
     },
     {
         freezeTableName: true,

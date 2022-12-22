@@ -8,6 +8,43 @@ import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/Modal
 
 function recompensas() {
 
+  const [nome, setNome] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [local, setLocal] = useState("");
+  const [ponto, setPonto] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [custo, setCusto] = useState("");
+
+  useEffect(() => {
+    api
+      .get("/recompensa/list")
+      .then(({ data }) => {
+        const dados = data.data;
+        var newServicos = [];
+
+        Object.keys(dados).map((key) => {
+          var newSubservicos = [];
+
+          dados[key].subservicos.map((subservicoAux) => {
+            newSubservicos.push({
+              nome: subservicoAux.nome,
+              id: subservicoAux.idsubservico,
+            });
+          });
+          newServicos.push({
+            nome: key,
+            imagem: dados[key].imagem,
+            ativo: false,
+            subservicos: newSubservicos,
+          });
+        });
+        setServicos(newServicos);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+
   // const criarRecompensa = () => {
   //   let valid = true;
   //   if (nome == "" || descricao == "" || imagem == "" || duracao == "" || preco == "") {
@@ -65,51 +102,30 @@ function recompensas() {
               <div className="card-body p-5">
                 <h5 className="card-title h4 fw-bold">Criar Voucher</h5>
                 <form>
-                  <div className="container">
-                    <div className="g-3 align-items-center">
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Nome</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Local</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Ponto turístico</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Data aquisição</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">00/00/00</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Data limite</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">00/00/00</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="inputPassword6" className="col-form-label">Custo</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="inputPassword6" className="col-form-label">Descrição</label>
-                      </div>
-                      <div className="col-5">
-                        <textarea type="text" id="textoareavou" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
+                <div className="form-group row mt-2">
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                      Nome
+                    </label>
+                    <div className="col-lg-3">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Insira Nome da recompensa"
+                        id="nomeRecompensa"
+                      />
                     </div>
+                    <div className="form-group row mt-2">
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                     Imagem
+                    </label>
+                    <div className="col-lg-3">
+                      <input
+                        className="form-control"
+                        type="file"
+                        id="imagemRecompensa"
+                      />
+                    </div>
+                  </div>
                   </div>
                   <div className="form-group row mt-2">
                     <label htmlFor="localRecompensa" className="col-2 col-form-label">
