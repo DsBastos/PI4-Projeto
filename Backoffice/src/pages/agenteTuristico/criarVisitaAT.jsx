@@ -6,102 +6,75 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 
- function criarVisitaAT() {
+function criarVisitaAT() {
 
-//   const [data, setData]= useState("");
-//   const [hora, setHora]= useState("");
-//   const [vaga, setVaga]= useState("");
-//   const [visita, setVisita]= useState([]);
+  const [data, setData] = useState("");
+  const [hora, setHora] = useState("");
+  const [vagas, setVagas] = useState("");
 
-//   useEffect(() => {
-//     api
-//       .get("/visita/list")
-//       .then(({ data }) => {
-//         const dados = data.data;
-//         var newVisita = [];
-//         Object.keys(dados).map((key) => {
-//           var newVisita = [];
-//           dados[key].visita.map((visitaAux) => {
-//             newVisita.push({
-//               data: visitaAux.vs_data,
-//               horas: visitaAux.vs_horas,
-//             });
-//           });
-//         });
-//         setVisita(newVisita);
-//       })
-//       .catch((error) => {
-//         alert(error);
-//       });
-//   }, []);
+  //ALTERAR PEDIDOS PARA VISITA
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const datavisita = {
+      data: vs_data,
+      hora: vs_horas,
+      vagas: vs_vagas,
+    };
 
-//ALTERAR PEDIDOS PARA VISITA
-function handleFormSubmit(e) {
-  e.preventDefault();
-  const datacliente = {
-    nome: nome,
-    email: email,
-    contacto: contacto,
-  };
-
-  api
-    .post("cliente/create", datacliente)
-    .then((res) => {
-      let idcliente;
-      if (res.data.success) {
-        const data = res.data.data;
-        idcliente = data.idCliente;
-        setclienteid(idcliente);
-      }
-   
-      var selectedId = 0;
-      servicos.map((servico) => {
-        console.log(servico)
-       servico.subservicos.map((subservico) => {
-          if (subservico.ativo) {
-            selectedId = subservico.id;
-          }
+    api
+      .post("visita/create", datavisita)
+      .then((res) => {
+        let vs_id;
+        if (res.data.success) {
+          const data = res.data.data;
+          vs_id = data.vs_id;
+          setvisitaid(vs_id);
         }
-       )
+
+        if (selectedId === 0) {
+          sendError("Selecione pelo menos um serviço");
+        } else {
+          api
+            .post("pedidos/create", datapedido)
+            .then((data) => {
+              if (data.status == "200") {
+                toast.success("Pedido criado com sucesso", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              } else {
+                sendError("Erro ao criar pedido");
+              }
+            })
+            .catch((error) => {
+              console.log(error.response);
+            });
+        }
       })
-      const datapedido = {
-        idcliente: idcliente,
-        detalhes: detalhes,
-        idsubservico: selectedId,
-      }; 
+      .catch((error) => {
+        console.log(error.response);
+      });
+    /*Submeter dados para API */
+  }
 
-      if (selectedId === 0) {
-        sendError("Selecione pelo menos um serviço");
-      } else {
-        api
-          .post("pedidos/create", datapedido)
-          .then((data) => {
-            if (data.status == "200") {
-              toast.success("Pedido criado com sucesso", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            } else {
-              sendError("Erro ao criar pedido");
-            }
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-      }
-    })
-    .catch((error) => {
-      console.log(error.response);
-    });
-
-  /*Submeter dados para API */
-}
-
+  const handleInputChange = (e) => {
+    switch (e.target.name) {
+      case "data":
+        setData(e.target.value);
+        break;
+      case "hora":
+        setHora(e.target.value);
+        break;
+      case "contacto":
+        setVagas(e.target.value);
+        break;
+    }
+  };
 
   const criarVisita = () => {
     let valid = true;
@@ -129,8 +102,8 @@ function handleFormSubmit(e) {
         } else {
           sendError("Erro ao criar visita");
         }
-      });
-    }
+      })      
+    } 
   };
 
   return (
@@ -155,28 +128,59 @@ function handleFormSubmit(e) {
                   </div>
                 </div>
               </div>
-              <form>
+              <form onSubmit={handleFormSubmit}>
                 <div className="form-group row mt-5">
                   <label className="col-1 col-form-label">Data</label>
                   <div className="col-4">
-                    <input type="date" className="form-control" id="staticEmail"></input>
+                    <input 
+                    type="date" 
+                    className="form-control" 
+                    id="staticEmail"
+                    value={data}
+                    onChange={(e) => {
+                    setData(e.target.value);
+                     }}
+                    ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
                   <label className="col-1 col-form-label">Hora</label>
                   <div className="col-4">
-                    <input type="time" className="form-control" id="inputHoras" placeholder="Horas"></input>
+                    <input 
+                    type="time" 
+                    className="form-control" 
+                    id="inputHoras" 
+                    placeholder="Horas"
+                    value={hora}
+                    onChange={(e) => {
+                    setHora(e.target.value);
+                    }}
+                    ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
                   <label className="col-1 col-form-label">Vagas</label>
                   <div className="col-4">
-                    <input type="number" className="form-control" id="inputVagas" placeholder="Número de vagas"></input>
+                    <input type="number" 
+                    className="form-control" 
+                    id="inputVagas"
+                    placeholder="Número de vagas"
+                    value={vagas}
+                    onChange={(e) => {
+                    setVagas(e.target.value);
+                }}
+                    ></input>
                   </div>
                 </div>
               </form>
               <div className="pt-4">
-                <button type="button" className="btn btn-success">Confirmar</button>
+                <button 
+                type="submit" 
+                className="btn btn-success"
+                onClick={handleFormSubmit}
+                >
+                  Confirmar
+                </button>
               </div>
             </div>
           </div>
