@@ -1,6 +1,6 @@
 var reserva = require('../models/reservaModel');
 const clientes = require('../models/clienteModel');
-const visitas = require('../models/VisitaModel');
+const visita = require('../models/VisitaModel');
 const pontoTuristico = require('../models/pontoTuristicoModel') 
 const controllers = {};
 var sequelize = require("../models/database");
@@ -14,27 +14,17 @@ controllers.getAllReserva = async (req, res, next) => {
             include:[{ all: true, nested: true }]
         });*/
         
-        /*const data2 = await reserva.findAll({
+        const data = await reserva.findAll({
             include: [{
-              model: visitas,
+              model: visita,
               include: [{
-                model: pontoTuristico,
+                model: pontoTuristico
               }]
             },{
                 model: clientes,
             }]
-          })*/
-          const data = await pontoTuristico.findAll({
-            include: [{
-              model: visitas,
-              include: [{
-                model: reserva,
-                include: [{
-                    model: clientes,
-                  }]
-              }]
-            }]
           })
+
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)

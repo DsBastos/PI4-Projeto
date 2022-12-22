@@ -20,4 +20,7 @@ var visitas = sequelize.define(
     }
 );
 
+pontoTuristico.hasMany(visitas, {foreignKey:{name:"pt_id",allowNull:false}});
+visitas.belongsTo(pontoTuristico, {foreignKey:{name:"pt_id",allowNull:false}});
+
 module.exports = visitas;
