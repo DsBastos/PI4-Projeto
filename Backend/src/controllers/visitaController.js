@@ -4,11 +4,15 @@ const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const createError = require('http-errors')
+const createError = require('http-errors');
+const pontoTuristicos = require('../models/pontoTuristicoModel');
 
 controllers.getAllVisita = async (req, res, next) => {
     try {
-        const data = await visita.findAll();
+        const data = await visita.findAll({
+            include:[{model:pontoTuristicos, attributes:['pT_nome']}]
+
+        });
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)

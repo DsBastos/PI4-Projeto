@@ -1,5 +1,6 @@
 var recompensa = require('../models/recompensaModel');
 var pontoTuristico = require('../models/pontoTuristicoModel');
+var regioesTuristicas = require('../models/regiaoTuristicaModel');
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
@@ -9,7 +10,7 @@ const createError = require('http-errors')
 controllers.getAllRecompensa = async (req, res, next) => {
     try {
         const data = await recompensa.findAll({
-            include:[{model:pontoTuristico, attributes:['pT_nome','pT_local']},{model:regioesTuristicas, attributes:['rt_nome']}]
+            include:[{model:pontoTuristico, attributes:['pT_nome','pT_local']}]
         });
         res.send({ success: true, data: data });
     } catch (error) {

@@ -1,5 +1,6 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./database");
+var pontoTuristico = require("./pontoTuristicoModel.js")
 
 var visitas = sequelize.define(
     "visita",

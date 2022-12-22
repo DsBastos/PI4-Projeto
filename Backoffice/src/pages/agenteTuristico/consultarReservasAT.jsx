@@ -1,12 +1,11 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalConfirmacao } from "../../components/ModalConfirmacao";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
-function consultarReservasAT() {
+function LoadFillDataNotAccepted() {
   const [reserva, setReserva] = useState([]);
 
   useEffect(() => {
@@ -16,12 +15,13 @@ function consultarReservasAT() {
       var newReserva = [];
         dados.map((ReservaAux) => {
           newReserva.push({
+              aceite: ReservaAux.r_aceite,
               nPessoas: ReservaAux.rs_nPessoas,
               data: ReservaAux.rs_data,
               estado: ReservaAux.rs_estado,
               nomeCliente:ReservaAux.cliente.nome,
             })
-        })   
+        })
       setReserva(newReserva);
     })
     .catch((error) => {
@@ -29,6 +29,90 @@ function consultarReservasAT() {
     })
   }, [])
 
+  return (
+    <>
+      {reserva.map((data, index) => {
+        if (data.r_aceite==false) {
+          return (
+            <tr key={index}>
+              <th>{data.nome}</th>
+              <td>{data.email}</td>
+              <td>{pontosT?.find(pt=>pt.idUser==data.id)?.nomePt}</td>
+              <td>
+                <button
+                  style={{ border: "none", background: "none" }}
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  <img src="../../assets/icon-penfill.svg"></img>
+                </button>
+                <button style={{ border: "none", background: "none" }}>
+                  <img src="../../assets/icon-trashfill.svg"></img>
+                </button>
+              </td>
+            </tr>
+          );
+        }
+      })}
+    </>
+  )
+
+}
+
+function LoadFillDataAccepted() {
+  const [reserva, setReserva] = useState([]);
+
+  useEffect(() => {
+    api.get('/reserva/list')
+    .then(({data}) => {
+      const dados = data.data;
+      var newReserva = [];
+        dados.map((ReservaAux) => {
+          newReserva.push({
+              aceite: ReservaAux.r_aceite,
+              nPessoas: ReservaAux.rs_nPessoas,
+              data: ReservaAux.rs_data,
+              estado: ReservaAux.rs_estado,
+              nomeCliente:ReservaAux.cliente.nome,
+            })
+        })
+      setReserva(newReserva);
+    })
+    .catch((error) => {
+      alert(error)
+    })
+  }, [])
+
+  return (
+    <>
+      {reserva.map((data, index) => {
+        if (data.r_aceite==true) {
+          return (
+            <tr key={index}>
+              <th>{data.cliente.nomeCliente}</th>
+              <td>{data.email}</td>
+              <td>{pontosT?.find(pt=>pt.idUser==data.id)?.nomePt}</td>
+              <td>
+                <button
+                  style={{ border: "none", background: "none" }}
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  <img src="../../assets/icon-penfill.svg"></img>
+                </button>
+                <button style={{ border: "none", background: "none" }}>
+                  <img src="../../assets/icon-trashfill.svg"></img>
+                </button>
+              </td>
+            </tr>
+          );
+        }
+      })}
+    </>
+  )
+}
+
+function consultarReservasAT() {
   return (
     <>
     <div className="d-flex">
@@ -54,25 +138,7 @@ function consultarReservasAT() {
               </tr>
             </thead>
             <tbody>
-        {reserva.map((data, index) => {
-           if (data.tipoid == 2) {
-          return (
-              <tr  key={index}>
-                <th>1</th>
-                <td>{data.nomeCliente}</td>
-                <td>3</td>
-                <td>Rossio</td>
-                <td>Viseu</td>
-                <td>20/10/2022</td>
-                <td>12:20</td>
-                <td>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-accept.svg"></img></button>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-decline.svg"></img></button>
-                </td>
-              </tr>
-               );
-              }
-            })}
+
             </tbody>
           </table>
         </div>
@@ -91,15 +157,7 @@ function consultarReservasAT() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Tiago</td>
-                <td>3</td>
-                <td>Rossio</td>
-                <td>Viseu</td>
-                <td>20/10/2022</td>
-                <td>12:20</td>
-              </tr>
+
             </tbody>
           </table>
         </div>

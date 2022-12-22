@@ -10,6 +10,7 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
   const [selectedcargo, setSelectedcargo] = useState("");
 
   useEffect(() => {
+    console.log(props)
     api.get("tipoutilizadores/list").then((data) => {
       let cargosarr = data.data.data;
       setCargos(cargosarr);

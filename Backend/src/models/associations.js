@@ -27,14 +27,18 @@ voucher.belongsToMany(cliente,{through:'cliente_voucher'});
 pontoTuristico.belongsToMany(tipologia,{through:'tipologia_pontoTuristico'});
 tipologia.belongsToMany(pontoTuristico,{through:'tipologia_pontoTuristico'});
 
-pontoTuristico.hasMany(recompensa, {foreignKey:{name:"pT_id",allowNull:false}})
-pontoTuristico.hasMany(visita, {foreignKey:{name:"pT_id",allowNull:false}}) 
+pontoTuristico.hasMany(recompensa, {foreignKey:{name:"pT_id",allowNull:false}});
+recompensa.belongsTo(pontoTuristico, {foreignKey:{name:"pT_id",allowNull:false}});
 
-recompensa.hasMany(voucher, {foreignKey:{name:"r_id",allowNull:false}})
+pontoTuristico.hasMany(visita, {foreignKey:{name:"pt_id",allowNull:false}});
+visita.belongsTo(pontoTuristico, {foreignKey:{name:"pt_id",allowNull:false}});
 
-cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}})
-reserva.belongsTo(cliente, {foreignKey:{name:"c_id",allowNull:false}})
+recompensa.hasMany(voucher, {foreignKey:{name:"r_id",allowNull:false}});
 
-visita.hasMany(reserva, {foreignKey:{name:"vs_id",allowNull:false}})
+cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}});
+reserva.belongsTo(cliente, {foreignKey:{name:"c_id",allowNull:false}});
 
-db.sync()
+visita.hasMany(reserva, {foreignKey:{name:"vs_id",allowNull:false}});
+reserva.belongsTo(visita, {foreignKey:{name:"vs_id",allowNull:false}});
+
+db.sync({logging:false});
