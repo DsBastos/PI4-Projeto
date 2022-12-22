@@ -12,81 +12,56 @@ function criarVisitaAT() {
   const [hora, setHora] = useState("");
   const [vagas, setVagas] = useState("");
 
-  //ALTERAR PEDIDOS PARA VISITA
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    const datavisita = {
-      data: vs_data,
-      hora: vs_horas,
-      vagas: vs_vagas,
-    };
+  // //ALTERAR PEDIDOS PARA VISITA
+  // function handleFormSubmit(e) {
+  //   e.preventDefault();
+  //   const datavisita = {
+  //     data: vs_data,
+  //     hora: vs_horas,
+  //     vagas: vs_vagas,
+  //   };
 
-    api
-      .post("visita/create", datavisita)
-      .then((res) => {
-        let vs_id;
-        if (res.data.success) {
-          const data = res.data.data;
-          vs_id = data.vs_id;
-          setvisitaid(vs_id);
-        }
+  //   api
+  //     .post("visita/create", datavisita)
+  //     .then((res) => {
+  //       let vs_id;
+  //       if (res.data.success) {
+  //         const data = res.data.data;
+  //         vs_id = data.vs_id;
+  //         setvisitaid(vs_id);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response);
+  //     });
+  //   /*Submeter dados para API */
+  // }
 
-        if (selectedId === 0) {
-          sendError("Selecione pelo menos um serviço");
-        } else {
-          api
-            .post("pedidos/create", datapedido)
-            .then((data) => {
-              if (data.status == "200") {
-                toast.success("Pedido criado com sucesso", {
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
-              } else {
-                sendError("Erro ao criar pedido");
-              }
-            })
-            .catch((error) => {
-              console.log(error.response);
-            });
-        }
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-    /*Submeter dados para API */
-  }
-
-  const handleInputChange = (e) => {
-    switch (e.target.name) {
-      case "data":
-        setData(e.target.value);
-        break;
-      case "hora":
-        setHora(e.target.value);
-        break;
-      case "contacto":
-        setVagas(e.target.value);
-        break;
-    }
-  };
+  // const handleInputChange = (e) => {
+  //   switch (e.target.name) {
+  //     case "data":
+  //       setData(e.target.value);
+  //       break;
+  //     case "hora":
+  //       setHora(e.target.value);
+  //       break;
+  //     case "contacto":
+  //       setVagas(e.target.value);
+  //       break;
+  //   }
+  // };
 
   const criarVisita = () => {
     let valid = true;
-    if (data == "" || hora == "" || vagas == "" || cargo == null) {
+    if (data == "" || hora == "" || vagas == "" ) {
       valid = false;
       sendError("Os campos não podem estar vazios");
     }
     if (valid) {
       let newVisita = {
-        data: vs_data,
-        hora: vs_hora,
-        vs_vagas: vs_vagas,
+        data: data,
+        hora: hora,
+        vagas: vagas,
       };
       api.post("visita/create", newVisita).then((data) => {
         if (data.status == "200") {
@@ -102,8 +77,8 @@ function criarVisitaAT() {
         } else {
           sendError("Erro ao criar visita");
         }
-      })      
-    } 
+      })
+    }
   };
 
   return (
@@ -128,56 +103,56 @@ function criarVisitaAT() {
                   </div>
                 </div>
               </div>
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={criarVisita}>
                 <div className="form-group row mt-5">
                   <label className="col-1 col-form-label">Data</label>
                   <div className="col-4">
-                    <input 
-                    type="date" 
-                    className="form-control" 
-                    id="staticEmail"
-                    value={data}
-                    onChange={(e) => {
-                    setData(e.target.value);
-                     }}
+                    <input
+                      type="date"
+                      className="form-control"
+                      id="staticData"
+                      value={data}
+                      onChange={(e) => {
+                        setData(e.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
                   <label className="col-1 col-form-label">Hora</label>
                   <div className="col-4">
-                    <input 
-                    type="time" 
-                    className="form-control" 
-                    id="inputHoras" 
-                    placeholder="Horas"
-                    value={hora}
-                    onChange={(e) => {
-                    setHora(e.target.value);
-                    }}
+                    <input
+                      type="time"
+                      className="form-control"
+                      id="inputHoras"
+                      placeholder="Horas"
+                      value={hora}
+                      onChange={(e) => {
+                        setHora(e.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
                   <label className="col-1 col-form-label">Vagas</label>
                   <div className="col-4">
-                    <input type="number" 
-                    className="form-control" 
-                    id="inputVagas"
-                    placeholder="Número de vagas"
-                    value={vagas}
-                    onChange={(e) => {
-                    setVagas(e.target.value);
-                }}
+                    <input type="number"
+                      className="form-control"
+                      id="inputVagas"
+                      placeholder="Número de vagas"
+                      value={vagas}
+                      onChange={(e) => {
+                        setVagas(e.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
               </form>
               <div className="pt-4">
-                <button 
-                type="submit" 
-                className="btn btn-success"
-                onClick={handleFormSubmit}
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={criarVisita}
                 >
                   Confirmar
                 </button>
