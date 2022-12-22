@@ -22,7 +22,7 @@ export default function App() {
         {/*Agente Turistico*/}
         <Route path="/dashboard2" element={<router.dashboardAT />} />
         <Route path="/criarvisita" element={<router.criarVisitaAT />} />
-        <Route path="/consultarReservas" element={<router.consulrarReservasAT />} />
+        <Route path="/consultarReservas" element={<router.consultarReservasAT />} />
       </Routes>
     </BrowserRouter>
   );

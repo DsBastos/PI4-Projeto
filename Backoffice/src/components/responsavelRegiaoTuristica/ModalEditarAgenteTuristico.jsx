@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import 'react-dropdown/style.css';
 
-export function ModalEditarAgenteTuristico({ show, onHide, props }) {
+//ESTE MODAL NÃO VAI SER USADO
+
+export function ModalEditarAgenteTuristico({ show, onHide, props}) {
   const [cargos, setCargos] = useState([]);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -68,11 +70,11 @@ export function ModalEditarAgenteTuristico({ show, onHide, props }) {
   }
 
   return (
-    <div className="modal fade" id="ModalEditarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id="ModalEditarAgenteTuristico" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar utilizador</h1>
+            <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar agente turístico</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">

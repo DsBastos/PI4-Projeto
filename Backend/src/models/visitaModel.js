@@ -1,5 +1,6 @@
 var Sequelize = require("sequelize");
 var sequelize = require("./database");
+var pontoTuristico = require("./pontoTuristicoModel.js")
 
 var visitas = sequelize.define(
     "visita",
@@ -18,5 +19,8 @@ var visitas = sequelize.define(
         timestamps: false,
     }
 );
+
+pontoTuristico.hasMany(visitas, {foreignKey:{name:"pt_id",allowNull:false}});
+visitas.belongsTo(pontoTuristico, {foreignKey:{name:"pt_id",allowNull:false}});
 
 module.exports = visitas;

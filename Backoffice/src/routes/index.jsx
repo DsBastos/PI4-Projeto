@@ -14,7 +14,7 @@ import recompensasRT from "../pages/responsavelRegiaoTuristica/recompensasRT";
 /*Agente Turistico */
 import dashboardAT from "../pages/agenteTuristico/dashboardAT";
 import criarVisitaAT from "../pages/agenteTuristico/criarVisitaAT";
-import consulrarReservasAT from "../pages/agenteTuristico/consultarReservasAT";
+import consultarReservasAT from "../pages/agenteTuristico/consultarReservasAT";
 
 export default {
   login,
@@ -30,5 +30,5 @@ export default {
   recompensasRT,
   dashboardAT,
   criarVisitaAT,
-  consulrarReservasAT
+  consultarReservasAT
 };

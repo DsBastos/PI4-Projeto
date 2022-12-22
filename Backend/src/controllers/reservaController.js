@@ -1,19 +1,30 @@
 var reserva = require('../models/reservaModel');
 const clientes = require('../models/clienteModel');
+const visita = require('../models/VisitaModel');
+const pontoTuristico = require('../models/pontoTuristicoModel') 
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const createError = require('http-errors')
-const pontoTuristico = require('../models/PontoTuristicoModel');
+const createError = require('http-errors');
 
 controllers.getAllReserva = async (req, res, next) => {
     try {
+        /*const data = await reserva.findAll({
+            include:[{ all: true, nested: true }]
+        });*/
+        
         const data = await reserva.findAll({
-            include:[{model:clientes, attributes:['c_nome','c_email']},
-            {include: [{model:pontoTuristico, attributes:['pT_nome']}]}]
-            
-        });
+            include: [{
+              model: visita,
+              include: [{
+                model: pontoTuristico
+              }]
+            },{
+                model: clientes,
+            }]
+          })
+
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)

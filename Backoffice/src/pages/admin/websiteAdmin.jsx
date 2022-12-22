@@ -107,7 +107,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-5">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção herói
@@ -123,7 +122,6 @@ function websiteAdmin() {
                   </div>
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção “Nosso Objetivo”
@@ -141,7 +139,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-5">
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto da secção para descarregar aplicação
@@ -160,7 +157,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Pontos Turísticos”
@@ -176,7 +172,6 @@ function websiteAdmin() {
                   </div>
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Reservas”
@@ -194,7 +189,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Voucher”
@@ -210,7 +204,6 @@ function websiteAdmin() {
                   </div>
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “QRCode”

@@ -2,7 +2,7 @@ import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
-export function ModalVouchers({ show, onHide }) {
+function LoadFillData() {
   const [recompensa, setRecompensa] = useState([]);
 
   useEffect(() => {
@@ -13,9 +13,10 @@ export function ModalVouchers({ show, onHide }) {
         dados.map((RecompensaAux) => {
           newRecompensa.push({
               id: RecompensaAux.r_id,
+              nomePT: RecompensaAux.pontoTuristico.pT_nome,
+              nomeLocal: RecompensaAux.pontoTuristico.pT_local,
               nome: RecompensaAux.r_nome,
               descricao: RecompensaAux.r_descricao,
-              regiao: RecompensaAux.regiaoturistica.r_nome,
             })
         })   
       setRecompensa(newRecompensa);
@@ -24,12 +25,32 @@ export function ModalVouchers({ show, onHide }) {
       alert(error)
     })
   }, [])
+
+  return (
+    <>
+      {recompensa.map((data, index) => {
+        return (
+          <>
+            <tr key={index}>
+              <td scope="row">{data.id}</td>
+              <td>{data.nome}</td>
+              <td>{data.nomePT}</td>
+              <td>{data.descricao}</td>
+            </tr>
+          </>
+        );
+      })}
+    </>
+  );
+}
+
+export function ModalVouchers({ show, onHide }) {
   return (
     <div className="modal fade" id="ModalVouchers" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-lg">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">Lista de vouchers</h1>
+            <h1 className="modal-title fs-5" id="staticBackdropLabel">Lista de recompensas</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
@@ -38,28 +59,19 @@ export function ModalVouchers({ show, onHide }) {
                 <tr>
                   <th scope="col">ID da recompensa</th>
                   <th scope="col">Nome</th>
-                  <th scope="col">Distrito</th>
+                  <th scope="col">Ponto turístico</th>
                   <th scope="col">Descrição</th>
-                  <th scope="col">Ferramentas</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>Café</td>
-                  <td>Viseu</td>
-                  <td>Inserir aqui texto relativo à recompensa</td>
-                  <td>
-                    <button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button>
-                  </td>
-                </tr>
+                <LoadFillData />
               </tbody>
             </table>
           </div>
-          <div className="modal-footer">
+          {/* <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <button type="button" className="btn btn-primary">Confirmar</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
