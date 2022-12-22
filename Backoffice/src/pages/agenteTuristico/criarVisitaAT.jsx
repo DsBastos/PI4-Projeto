@@ -63,8 +63,9 @@ function criarVisitaAT() {
         hora: hora,
         vagas: vagas,
       };
-      api.post("visita/create", newVisita).then((data) => {
-        if (data.status == "200") {
+      console.log(newVisita)
+      api.post("visita/create", newVisita).then(res => {
+        if (res.data.sucess) {
           toast.success("Visita criada com sucesso", {
             position: "top-center",
             autoClose: 5000,
@@ -74,9 +75,12 @@ function criarVisitaAT() {
             draggable: true,
             progress: undefined,
           });
+          console.log(res.data)
         } else {
           sendError("Erro ao criar visita");
         }
+      }).catch(err => {
+        alert("ERRO: " + err);
       })
     }
   };
