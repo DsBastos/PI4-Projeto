@@ -44,7 +44,7 @@ controllers.createPontoTuristico = async (req, res, next) => {
 
 controllers.getPontoTuristicoById = async (req, res, next) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const data = await pontoTuristico.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
@@ -59,22 +59,23 @@ controllers.updatePontoTuristico = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome,local,dificuldade,duracao,terreno,tamanho,descricao,horario,coordenadas,link,pontosadquiridos} = req.body;
+        const { nome, local, dificuldade, duracao, terreno, tamanho, descricao, horario, coordenadas, link, pontosadquiridos } = req.body;
+        console.log(req.body);
         const data = await pontoTuristico.update({
-            pT_nome: nome,
-            pT_local:local,
-            pT_dificuldade: dificuldade,
-            pT_duracao:duracao,
-            pT_terreno: terreno,
-            pT_tamanho:tamanho,
-            pT_descricao: descricao,
-            pT_horario:horario,
-            pT_coordenadas: coordenadas,
-            pT_link:link,
-            pT_pontosadquiridos: pontosadquiridos,
+            pt_nome: nome,
+            pt_local: local,
+            pt_dificuldade: dificuldade,
+            pt_duracao: duracao,
+            pt_terreno: terreno,
+            pt_tamanho: tamanho,
+            pt_descricao: descricao,
+            pt_horario: horario,
+            pt_coordenadas: coordenadas,
+            pt_link: link,
+            pt_pontosadquiridos: pontosadquiridos,
         },
             {
-                where: { pT_id: id }
+                where: { pt_id: id }
             })
         res.send({ success: true, data: data, message: "Updated successful" });
     } catch (error) {

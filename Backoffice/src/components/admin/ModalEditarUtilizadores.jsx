@@ -81,11 +81,11 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
             <form>
               <div className="form-group">
                 <label>Nome</label>
-                <input type="text" className="form-control" onChange={e => setNome(e.target.value)} aria-describedby="emailHelp" placeholder="Nome Exemplo" value={nome == "" ? props?.nome : nome} />
+                <input type="text" className="form-control" onChange={e => setNome(e.target.value)} aria-describedby="emailHelp" value={nome == "" ? props?.nome : nome} />
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" className="form-control" onChange={e => setEmail(e.target.value)} placeholder="nome.exemplo@email.com" value={email == "" ? props?.email : email} />
+                <input type="email" className="form-control" onChange={e => setEmail(e.target.value)} value={email == "" ? props?.email : email} />
               </div>
               <div className="dropdown">
                 <label>Cargo</label>
