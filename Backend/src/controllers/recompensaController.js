@@ -10,7 +10,7 @@ const createError = require('http-errors')
 controllers.getAllRecompensa = async (req, res, next) => {
     try {
         const data = await recompensa.findAll({
-            include:[{model:pontoTuristico, attributes:['pT_nome','pT_local']}]
+            include:[{model:pontoTuristico, attributes:['pt_nome','pt_local']}]
         });
         res.send({ success: true, data: data });
     } catch (error) {

@@ -3,43 +3,7 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalPontoInteresse({ show, onHide, props }) {
-  const [pontoTuristico, setPontoTuristico] = useState([]);
-  let open = false;
-  if(!open){setInterval(() => {
-    if(show)
-    console.log(show)
-  }, 20);}
-  
-  useEffect(() => {
-    console.log(props)
-    if (props!=null) {
-      api.get('/pontoturistico/getpontoturistico/' + props.id)
-        .then(({ data }) => {
-          const dados = data.data;
-          var newPontoTuristico = [];
-          dados.map((PontoTuristicoAux) => {
-            newPontoTuristico.push({
-              id: PontoTuristicoAux.pT_id,
-              nome: PontoTuristicoAux.pT_nome,
-              local: PontoTuristicoAux.pT_local,
-              dificuldade: PontoTuristicoAux.pT_dificuldade,
-              duracao: PontoTuristicoAux.pT_duracao,
-              terreno: PontoTuristicoAux.pT_terreno,
-              tamanho: PontoTuristicoAux.pT_tamanho,
-              descricao: PontoTuristicoAux.pT_descricao,
-              horario: PontoTuristicoAux.pT_horario,
-              coordenadas: PontoTuristicoAux.pT_coordenadas,
-              link: PontoTuristicoAux.pT_link,
-              pontosAdquiridos: PontoTuristicoAux.pT_pontosadquiridos,
-            })
-          })
-          setPontoTuristico(newPontoTuristico);
-        })
-        .catch((error) => {
-          
-        })
-    }
-  }, [])
+
 
   return (
     <div className="modal fade" id="ModalPontoInteresse" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -53,7 +17,7 @@ export function ModalPontoInteresse({ show, onHide, props }) {
             <form>
               <div className="form-group m-1">
                 <label>Nome</label>
-                <a>{pontoTuristico.nome}</a>
+                <input type="text" className="form-control" aria-describedby="emailHelp" disabled value={props?.nome}></input>
               </div>
               <div className="form-group m-2">
                 <label>Região</label>

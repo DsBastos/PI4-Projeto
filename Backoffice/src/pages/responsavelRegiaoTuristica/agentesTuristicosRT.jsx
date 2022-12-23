@@ -5,7 +5,7 @@ import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtili
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
-import { ModalEditarAgenteTuristico } from "../../components/responsavelRegiaoTuristica/ModalEditarAgenteTuristico";
+//import { ModalEditarAgenteTuristico } from "../../components/responsavelRegiaoTuristica/ModalEditarAgenteTuristico";
 
 function LoadFillData() {
   const [show, setShow] = useState(false);
@@ -29,7 +29,7 @@ function LoadFillData() {
             email: UtilizadorAux.u_email,
             tipoid: UtilizadorAux.tu_id,
           })
-          console.log(UtilizadorAux)
+          //console.log(UtilizadorAux)
         })
         setUtilizadores(newUtilizador);
       })
@@ -40,13 +40,13 @@ function LoadFillData() {
       api.get('/pontoturistico/list')
       .then(({ data }) => {
         const dados = data.data;
-        //console.log(dados)
+        console.log(dados)
         var newPontoTuristico = [];
         dados.map((PontoTAux) => {
           newPontoTuristico.push({
             idUser: PontoTAux.u_id,
-            idPt: PontoTAux.pT_id,
-            nomePt: PontoTAux.pT_nome,
+            idPt: PontoTAux.pt_id,
+            nomePt: PontoTAux.pt_nome,
           })
         })
         setPontosT(newPontoTuristico);

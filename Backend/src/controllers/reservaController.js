@@ -66,12 +66,9 @@ controllers.updateReserva = async (req, res, next) => {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-
-        const {npessoas,dataReserva,estado} = req.body;
+        const {aceite} = req.body;
         const data = await reserva.update({
-            rs_nPessoas: npessoas,
-            rs_data: dataReserva,
-            rs_estado: estado,
+            r_aceite: aceite,
         },
             {
                 where: { rs_id: id }

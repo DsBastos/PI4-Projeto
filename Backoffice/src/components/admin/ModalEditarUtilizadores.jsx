@@ -1,6 +1,7 @@
 import { api } from "../../../api";
 import React, { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-dropdown/style.css';
 
 export function ModalEditarUtilizadores({ show, onHide, props }) {

@@ -27,17 +27,20 @@ controllers.getAllUtilizador = async (req, res, next) => {
 controllers.createUtilizador = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const utilizador = await utilizador.create(
+        //console.log(req.body)
+        const util = await utilizador.create(
             {
-                nome: req.body.u_nome,
-                email: req.body.u_email,
-                pwd: req.body.u_pwd,
+                tu_id: req.body.cargo,
+                u_nome: req.body.nome,
+                u_email: req.body.email,
+                u_pwd: req.body.password,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: utilizador });
+        res.send({ success: true, data: util });
     } catch (e) {
+        //console.log(e)
         await t.rollback();
         next(e);
     }
