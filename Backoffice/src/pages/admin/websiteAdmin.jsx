@@ -99,7 +99,7 @@ function websiteAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 mb-5">
+        <div className="container px-5">
           <h2 className="mt-5">Editar conteúdos do website</h2>
           <div className="col col-md-10">
             <form className="d-inline-flex flex-column">

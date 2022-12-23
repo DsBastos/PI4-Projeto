@@ -3,28 +3,58 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalReservaPontoInteresse({ show, onHide }) {
-  const [reserva, setReserva] = useState([]);
 
-  useEffect(() => {
-    api.get('/reserva/list')
-    .then(({data}) => {
-      const dados = data.data;
-      var newReserva = [];
-        dados.map((ReservaAux) => {
-          newReserva.push({
-              nPessoas: ReservaAux.rs_nPessoas,
-              data: ReservaAux.rs_data,
+  function LoadFillDataAccepted() {
+    const [reserva, setReserva] = useState([]);
+
+    useEffect(() => {
+      api.get('/reserva/list')
+        .then(({ data }) => {
+          const dados = data.data;
+          var newReserva = [];
+          dados.map((ReservaAux) => {
+            newReserva.push({
+              id: ReservaAux.rs_id,
+              aceite: ReservaAux.r_aceite,
+              nPessoas: ReservaAux.rs_npessoas,
+              data: ReservaAux.visitum.vs_data,
+              horas: ReservaAux.visitum.vs_horas,
               estado: ReservaAux.rs_estado,
-              nomeCliente:ReservaAux.cliente.nome,
+              nomeCliente: ReservaAux.cliente.c_nome,
+              nomePt: ReservaAux.visitum.pontoTuristico.pt_nome,
+              localPt: ReservaAux.visitum.pontoTuristico.pt_regiao,
             })
-        })   
-      setReserva(newReserva);
-    })
-    .catch((error) => {
-      alert(error)
-    })
-  }, [])
-  
+            //console.log(ReservaAux)
+          })
+          setReserva(newReserva);
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    }, [])
+
+    return (
+      <>
+        {/* PARA O IF && data.localPt == */}
+        {reserva.map((data, index) => {
+          if (data.aceite == true) {
+            return (
+              <tr key={index}>
+                <th>{data.id}</th>
+                <td>{data.nomeCliente}</td>
+                <td>{data.nPessoas}</td>
+                <td>{data.nomePt}</td>
+                <td>{data.localPt}</td>
+                <td>{data.data}</td>
+                <td>{data.horas}</td>
+              </tr>
+            );
+          }
+        })}
+      </>
+    )
+  }
+
   return (
     <div className="modal fade" id="ModalReservaPontoInteresse" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog modal-lg">
@@ -37,33 +67,19 @@ export function ModalReservaPontoInteresse({ show, onHide }) {
             <table className="table table-striped datatable-table">
               <thead className="datatable-header">
                 <tr>
-                  <th scope="col">ID da reserva</th>
+                  <th scope="col">ID da Reserva</th>
                   <th scope="col">Nome do cliente</th>
                   <th scope="col">Nº de pessoas</th>
-                  <th scope="col">Ponto de interesse</th>
-                  <th scope="col">Região</th>
+                  <th scope="col">Ponto turístico</th>
+                  <th scope="col">Distrito</th>
                   <th scope="col">Data</th>
                   <th scope="col">Horas</th>
-                  <th scope="col">Ferramentas</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>Tiago</td>
-                  <td>3</td>
-                  <td>Rossio</td>
-                  <td>Viseu</td>
-                  <td>20/10/2022</td>
-                  <td>12:20</td>
-                  <td><button style={{"border":"none", "background":"none"}}><img src="../../assets/icon-trashfill.svg"></img></button></td>
-                </tr>
+                <LoadFillDataAccepted />
               </tbody>
             </table>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary">Confirmar</button>
           </div>
         </div>
       </div>

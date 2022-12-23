@@ -145,11 +145,11 @@ export function ModalEditarPontoInteresse({ show, onHide, props }) {
                 </div>
               </div>
               <div className="form-group m-2">
-                <label >Coordenadas</label>
+                <label>Coordenadas</label>
                 <input type="email" className="form-control"  aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
               </div>
               <div className="form-group m-2">
-                <label >Link</label>
+                <label>Link</label>
                 <input type="email" className="form-control"  aria-describedby="emailHelp" placeholder="Selecionar cargo"></input>
               </div>
             </form>

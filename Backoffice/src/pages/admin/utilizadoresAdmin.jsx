@@ -5,7 +5,7 @@ import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtiliza
 import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
 function LoadFillData() {
   const [show, setShow] = useState(false);
@@ -51,11 +51,9 @@ function LoadFillData() {
                   onClick={() => {
                     setSelectedUtilizador(data);
                     setModalEditarUtilizadorShow(true);
-                  }}
-                >
+                  }}>
                   <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
                     <img src="../../assets/icon-penfill.svg"></img>
-
                   </button>
                 </span>
 
@@ -65,8 +63,7 @@ function LoadFillData() {
                   onClick={() => {
                     setSelectedUtilizador(data);
                     setModalConfirmacaoShow(true);
-                  }}
-                >
+                  }}>
                   <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
                 </span>
               </td>
@@ -105,13 +102,12 @@ function utilizadoresAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 p-3">
-          <h2 className="mt-5">Utilizadores</h2>
-          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            
+        <div className="container px-5 p-3 mt-5">
+          <h2 className="mt-5 d-inline">Utilizadores</h2>
+          <button type="button" className="btn btn-primary d-inline float-end" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
             <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
           </button>
-          <table className="table table-striped">
+          <table className="table table-striped mt-5">
             <thead>
               <tr>
                 <th scope="col">Nome completo</th>
@@ -125,6 +121,8 @@ function utilizadoresAdmin() {
             </tbody>
           </table>
         </div>
+        <ModalCriarUtilizadores />
+
       </main>
       <ModalCriarUtilizadores />
     </div>

@@ -1,53 +1,48 @@
 import { api } from "../../../api";
 import React, { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
 import 'react-dropdown/style.css';
+import { toast } from 'react-toastify';
 
 export function ModalCriarUtilizadores({ show, onHide }) {
   let [nome, setNome] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
-  let [cargos, setCargos] = useState("");
-  const [selectedcargo, setSelectedcargo] = useState("");
+  let [cargos, setCargos] = useState([]);
+  let [selectedcargo, setSelectedcargo] = useState(1);
 
-  // const handleInputChange = (e) => {
-  //   switch (e.target.name) {
-  //     case "nome":
-  //       setNome(e.target.value);
-  //       break;
-  //     case "email":
-  //       setEmail(e.target.value);
-  //       break;
-  //     case "password":
-  //       setPassword(e.target.value);
-  //       break;
-  //   }
-  // };
+  useEffect(() => {
+    api.get("tipoutilizadores/list").then((data) => {
+      let cargosarr = data.data.data;
+      setCargos(cargosarr);
+      console.log(cargos)
+    });
+  }, []);
 
-  // const sendError = (erro) => {
-  //   toast.error(erro, {
-  //     position: "top-center",
-  //     autoClose: 5000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //   });
-  // };
+  const sendError = (erro) => {
+    toast.error(erro, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
-  const criarUtilizador = () => {
+  function criarUtilizador()  {
     let valid = true;
-    if (nome == "" || email == "" || password == "" || cargo == null) {
+    console.log(1);
+    if (nome == "" || email == "" || password == "") {
       valid = false;
       sendError("Os campos não podem estar vazios");
     }
     if (valid) {
       let newUtilizador = {
-        nome: u_nome,
-        email: u_email,
-        password: u_password,
-        cargo: tipoutilzador.tu_tipo,
+        nome: nome,
+        email: email,
+        password: password,
+        cargo: selectedcargo,
       };
       api.post("utilizadores/create", newUtilizador).then((data) => {
         if (data.status == "200") {
@@ -68,7 +63,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
   };
 
   return (
-    <>
+    <> 
       <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -92,26 +87,23 @@ export function ModalCriarUtilizadores({ show, onHide }) {
               </div>
               <div className="dropdown">
                 <label>Cargo</label>
-                {/* <select
-                  value={selectedcargo == "" ? cargos?.find(x => x.tu_tipo == props?.cargo)?.tu_id : selectedcargo}
+                <select
+                  value={selectedcargo}
                   onChange={e => setSelectedcargo(e.target.value)}>
                   {cargos.map(o => (
-                    o.tu_tipo == props?.cargo ?
-                      <option key={o.tu_id} value={o.tu_id}>{o.tu_tipo}</option>
-                      :
                       <option key={o.tu_id} value={o.tu_id}>{o.tu_tipo}</option>
                   ))}
-                </select> */}
+                </select>
               </div>
             </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save changes</button>
-            </div>
+          </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" data-bs-dismiss="modal" className="btn btn-primary" onClick={criarUtilizador}>Confirmar</button>
           </div>
         </div>
       </div>
+      </div> 
     </>
   );
 }

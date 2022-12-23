@@ -5,8 +5,82 @@ import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
-function LoadFillDataNotAccepted() {
+function LoadFillData({ props }) {
   const [reserva, setReserva] = useState([]);
+  function updateAccepted(accepted, res) {
+    let newReserva = {
+      aceite: accepted,
+    }
+    api.patch("/reserva/updatereserva/" + res.id, newReserva).then((data) => {
+      if (data.status = "200") {
+        let newReservas = []
+        reserva.map((reservaAux) => {
+          newReservas.push({
+            id: reservaAux.id,
+            aceite: reservaAux.id == res.id ? accepted : reservaAux.aceite,
+            nPessoas: reservaAux.nPessoas,
+            data: reservaAux.data,
+            horas: reservaAux.horas,
+            estado: reservaAux.estado,
+            nomeCliente: reservaAux.nomeCliente,
+            nomePt: reservaAux.nomePt,
+            localPt: reservaAux.localPt,
+          })
+        })
+        setReserva(newReservas);
+        addTr(res);
+        toast.success('Reserva alterada com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar a reserva")
+      }
+    })
+      .catch((error) => {
+        alert(error);
+      });
+
+    function addTr(res) {
+      let body = document.getElementsByName("abc")[0];
+      let tr = document.createElement('tr');
+
+      let thid = document.createElement('th');
+      thid.innerHTML = res.id;
+      tr.appendChild(thid);
+
+      let tdnome = document.createElement('td');
+      tdnome.innerHTML = res.nomeCliente;
+      tr.appendChild(tdnome);
+
+      let tdnpessoas = document.createElement('td');
+      tdnpessoas.innerHTML = res.nPessoas;
+      tr.appendChild(tdnpessoas);
+
+      let tdponto = document.createElement('td');
+      tdponto.innerHTML = res.nomePt;
+      tr.appendChild(tdponto);
+
+      let tdistrito = document.createElement('td');
+      tdistrito.innerHTML = res.localPt;
+      tr.appendChild(tdistrito);
+
+      let tddata = document.createElement('td');
+      tddata.innerHTML = res.data;
+      tr.appendChild(tddata);
+
+      let tdhoras = document.createElement('td');
+      tdhoras.innerHTML = res.horas;
+      tr.appendChild(tdhoras);
+
+      body.appendChild(tr);
+    }
+  }
 
   useEffect(() => {
     api.get('/reserva/list')
@@ -15,15 +89,19 @@ function LoadFillDataNotAccepted() {
         var newReserva = [];
         dados.map((ReservaAux) => {
           newReserva.push({
-            id:ReservaAux.rs_id,
+            id: ReservaAux.rs_id,
             aceite: ReservaAux.r_aceite,
             nPessoas: ReservaAux.rs_npessoas,
+            data: ReservaAux.visitum.vs_data,
+            horas: ReservaAux.visitum.vs_horas,
             estado: ReservaAux.rs_estado,
             nomeCliente: ReservaAux.cliente.c_nome,
+            nomePt: ReservaAux.visitum.pontoTuristico.pt_nome,
+            localPt: ReservaAux.visitum.pontoTuristico.pt_regiao,
           })
         })
         setReserva(newReserva);
-        
+
       })
       .catch((error) => {
         alert(error)
@@ -34,89 +112,54 @@ function LoadFillDataNotAccepted() {
     <>
     {console.log(reserva)}
       {reserva.map((data, index) => {
-        if (data.aceite == false) {
-          return (
-            <tr key={index}>
-              <th>{data.id}</th>
-              <td>{data.nomeCliente}</td>
-              <td>{data.nPessoas}</td>
-              <td>{}</td>
-              <td>
-                <button
-                  style={{ border: "none", background: "none" }}
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
-                >
-                  <img src="../../assets/icon-penfill.svg"></img>
-                </button>
-                <button style={{ border: "none", background: "none" }}>
-                  <img src="../../assets/icon-trashfill.svg"></img>
-                </button>
-              </td>
-            </tr>
-          );
+        //console.table(data);
+        console.log(props);
+        if (props == 'tabela1') {
+          if (data.aceite == null) {
+            return (
+              <tr key={index}>
+                <th>{data.id}</th>
+                <td>{data.nomeCliente}</td>
+                <td>{data.nPessoas}</td>
+                <td>{data.nomePt}</td>
+                <td>{data.localPt}</td>
+                <td>{data.data}</td>
+                <td>{data.horas}</td>
+                <td>
+                  <button
+                    style={{ border: "none", background: "none" }}
+                    onClick={() => updateAccepted(true, data)}>
+                    <img src="../../assets/icon-accept.svg"></img>
+                  </button>
+
+                  <button style={{ border: "none", background: "none" }}
+                    onClick={() => updateAccepted(false, data)}>
+                    <img src="../../assets/icon-decline.svg"></img>
+                  </button>
+                </td>
+              </tr>
+            );
+          }
         }
-      })}
-    </>
-    
-  )
-
-}
-
-function LoadFillDataAccepted() {
-  const [reserva, setReserva] = useState([]);
-
-  useEffect(() => {
-    api.get('/reserva/list')
-      .then(({ data }) => {
-        const dados = data.data;
-        var newReserva = [];
-        dados.map((ReservaAux) => {
-          newReserva.push({
-            aceite: ReservaAux.r_aceite,
-            nPessoas: ReservaAux.rs_nPessoas,
-            data: ReservaAux.rs_data,
-            estado: ReservaAux.rs_estado,
-            nomeCliente: ReservaAux.cliente.c_nome,
-          })
-        })
-        setReserva(newReserva);
-      })
-      .catch((error) => {
-        alert(error)
-      })
-  }, [])
-
-  return (
-    <>
-      {reserva.map((data, index) => {
-        if (data.r_aceite == true) {
-
-          return (
-            <tr key={index}>
-              <th>{data.cliente.nomeCliente}</th>
-              <td>{data.nPessoas}</td>
-              <td>{data.email}</td>
-              <td>{pontosT?.find(pt => pt.idUser == data.id)?.nomePt}</td>
-              <td>
-                <button
-                  style={{ border: "none", background: "none" }}
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
-                >
-                  <img src="../../assets/icon-penfill.svg"></img>
-                </button>
-                <button style={{ border: "none", background: "none" }}>
-                  <img src="../../assets/icon-trashfill.svg"></img>
-                </button>
-              </td>
-            </tr>
-          );
+        else {
+          if (data.aceite == true)
+            return (
+              <tr key={index}>
+                <th>{data.id}</th>
+                <td>{data.nomeCliente}</td>
+                <td>{data.nPessoas}</td>
+                <td>{data.nomePt}</td>
+                <td>{data.localPt}</td>
+                <td>{data.data}</td>
+                <td>{data.horas}</td>
+              </tr>
+            );
         }
       })}
     </>
   )
 }
+
 
 function consultarReservasAT() {
   return (
@@ -144,7 +187,7 @@ function consultarReservasAT() {
                 </tr>
               </thead>
               <tbody>
-               <LoadFillDataNotAccepted  />
+                <LoadFillData props='tabela1' />
               </tbody>
             </table>
           </div>
@@ -162,8 +205,8 @@ function consultarReservasAT() {
                   <th scope="col">Horas</th>
                 </tr>
               </thead>
-              <tbody>
-              <LoadFillDataAccepted />
+              <tbody name="abc">
+                <LoadFillData props='tabela2' />
               </tbody>
             </table>
           </div>

@@ -87,12 +87,13 @@ function responsaveisTuristicosAdmin() {
         link4="/regioesturisticas"
         nome5="Utilizadores"
         icon5="./assets/icon-user.svg"
+        link5="/utilizadores"
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 p-3">
           <h2 className="mt-5">Responsáveis das regiões turísticas</h2>
-          <table className="table table-striped">
+          <table className="table table-striped mt-5">
             <thead>
               <tr>
                 <th scope="col">Nome completo</th>

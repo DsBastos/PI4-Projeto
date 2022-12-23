@@ -22,18 +22,18 @@ function LoadFillData() {
         var newPontoTuristico = [];
         dados.map((PontoTuristicoAux) => {
           newPontoTuristico.push({
-            id: PontoTuristicoAux.pT_id,
-            nome: PontoTuristicoAux.pT_nome,
-            local: PontoTuristicoAux.pT_local,
-            dificuldade: PontoTuristicoAux.pT_dificuldade,
-            duracao: PontoTuristicoAux.pT_duracao,
-            terreno: PontoTuristicoAux.pT_terreno,
-            tamanho: PontoTuristicoAux.pT_tamanho,
-            descricao: PontoTuristicoAux.pT_descricao,
-            horario: PontoTuristicoAux.pT_horario,
-            coordenadas: PontoTuristicoAux.pT_coordenadas,
-            link: PontoTuristicoAux.pT_link,
-            pontosAdquiridos: PontoTuristicoAux.pT_pontosadquiridos,
+            id: PontoTuristicoAux.pt_id,
+            nome: PontoTuristicoAux.pt_nome,
+            local: PontoTuristicoAux.pt_regiao,
+            dificuldade: PontoTuristicoAux.pt_dificuldade,
+            duracao: PontoTuristicoAux.pt_duracao,
+            terreno: PontoTuristicoAux.pt_terreno,
+            tamanho: PontoTuristicoAux.pt_tamanho,
+            descricao: PontoTuristicoAux.pt_descricao,
+            horario: PontoTuristicoAux.pt_horario,
+            coordenadas: PontoTuristicoAux.pt_coordenadas,
+            link: PontoTuristicoAux.pt_link,
+            pontosAdquiridos: PontoTuristicoAux.pt_pontosadquiridos,
           })
         })
         setPontoTuristico(newPontoTuristico);
@@ -46,62 +46,64 @@ function LoadFillData() {
   return (
     <>
       {pontoTuristico.map((data, index) => {
-        return (
-          <>
-            <tr key={index}>
-              <td scope="row">{data.nome}</td>
-              <td>{data.local}</td>
-              <td>
-                
-                <span onClick={() => {setSelectedPontoTuristico(data); setModalPontoTuristicoShow(true); }}>
-                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalPontoInteresse">
-                  Ver detalhes
-                  </button>
-                </span>
-              </td>
-              <td>
-                <span
-                  className="material-symbols-outlined"
-                  onClick={() => {
-                    setSelectedPontoTuristico(data);
-                    setModalEditarPontoTuristicoShow(true);
-                  }}>
-                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarPontoInteresse">
-                    <img src="../../assets/icon-penfill.svg"></img>
-                  </button>
-                </span>
-
-                <span
-                  id={data.u_id}
-                  className="material-symbols-outlined"
-                  onClick={() => {
-                    setSelectedPontoTuristico(data);
-                    setModalConfirmacaoShow(true);
-                  }}
-                >
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
-                </span>
-              </td>
-            </tr>
-            <ModalEditarPontoInteresse
-              show={modalEditarPontoTuristicoShow}
-              onHide={() => setModalEditarPontoTuristicoShow(false)}
-              props={selectedPontoTuristico}
-            />
-
-            <ModalPontoInteresse
-              show={modalPontoTuristicoShow}
-              onHide={() => setModalPontoTuristicoShow(false)}
-              props={selectedPontoTuristico}
-            />
-            
-            <ModalReservaPontoInteresse
-              show={modalReservaPontoTuristicoShow}
-              onHide={() => setModalReservaPontoTuristicoShow(false)}
-              props={selectedPontoTuristico}
-            />
-          </>
-        );
+        // if(o ponto turistico tem de pertencer a regiao do responsável que estiver logado)
+        // {
+          return (
+            <>
+              <tr key={index}>
+                <td scope="row">{data.nome}</td>
+                <td>{data.local}</td>
+                <td>
+                  <span onClick={() => {setSelectedPontoTuristico(data); setModalPontoTuristicoShow(true); }}>
+                    <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalPontoInteresse">
+                    Ver detalhes
+                    </button>
+                  </span>
+                </td>
+                <td>
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={() => {
+                      setSelectedPontoTuristico(data);
+                      setModalEditarPontoTuristicoShow(true);
+                    }}>
+                    <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarPontoInteresse">
+                      <img src="../../assets/icon-penfill.svg"></img>
+                    </button>
+                  </span>
+  
+                  <span
+                    id={data.u_id}
+                    className="material-symbols-outlined"
+                    onClick={() => {
+                      setSelectedPontoTuristico(data);
+                      setModalConfirmacaoShow(true);
+                    }}
+                  >
+                    <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                  </span>
+                </td>
+              </tr>
+              <ModalEditarPontoInteresse
+                show={modalEditarPontoTuristicoShow}
+                onHide={() => setModalEditarPontoTuristicoShow(false)}
+                props={selectedPontoTuristico}
+              />
+  
+              <ModalPontoInteresse
+                show={modalPontoTuristicoShow}
+                onHide={() => setModalPontoTuristicoShow(false)}
+                props={selectedPontoTuristico}
+              />
+              
+              <ModalReservaPontoInteresse
+                show={modalReservaPontoTuristicoShow}
+                onHide={() => setModalReservaPontoTuristicoShow(false)}
+                props={selectedPontoTuristico}
+              />
+            </>
+          );
+        // }
       })}
     </>
   )
@@ -117,7 +119,7 @@ function pontosdeinteresseRT() {
       <main className="w-100">
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 mt-5">
-          <h2 className="mt-5 d-inline">Pontos de interesse</h2>
+          <h2 className="mt-5 d-inline">Pontos turísticos</h2>
           <button type="button" className="btn btn-success d-inline float-end" data-bs-toggle="modal" data-bs-target="#ModalReservaPontoInteresse">Consultar lista de reservas</button>
           <div></div>
           <table className="table table-striped mt-5">
