@@ -1,7 +1,7 @@
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
-import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
+// import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
+// import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
@@ -25,7 +25,7 @@ function LoadFillData() {
             id: UtilizadorAux.u_id,
             nome: UtilizadorAux.u_nome,
             email: UtilizadorAux.u_email,
-            regiao: UtilizadorAux.regiaoturistica.rt_nome,
+            regiao: UtilizadorAux.regiaoturistica?.rt_nome,
             tipoid: UtilizadorAux.tu_id,
           })
           console.log(UtilizadorAux)
@@ -45,23 +45,16 @@ function LoadFillData() {
             <tr key={index}>
               <th>{data.nome}</th>
               <td>{data.email}</td>
-              <td>{data.regiao}</td>
-              <td>
-                <button
-                  style={{ border: "none", background: "none" }}
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
-                >
-                  <img src="../../assets/icon-penfill.svg"></img>
-                </button>
-                <button style={{ border: "none", background: "none" }}>
-                  <img src="../../assets/icon-trashfill.svg"></img>
-                </button>
-              </td>
+              <td>{data.regiao == null ? "Não definido" : data.regiao}</td>
             </tr>
           );
         }
       })}
+      {/* <ModalEditarUtilizadores
+        show={modalEditarUtilizadorShow}
+        onHide={() => setModalEditarUtilizadorShow(false)}
+        props={selectedUtilizador}
+      /> */}
     </>
   )
 
@@ -99,7 +92,7 @@ function responsaveisTuristicosAdmin() {
                 <th scope="col">Nome completo</th>
                 <th scope="col">Email</th>
                 <th scope="col">Região turística</th>
-                <th scope="col">Ferramentas</th>
+                {/* <th scope="col">Ferramentas</th> */}
               </tr>
             </thead>
             <tbody>

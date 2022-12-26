@@ -16,7 +16,7 @@ const tipoutilizador = require('../models/tipoUtilizadorModel');
 controllers.getAllUtilizador = async (req, res, next) => {
     try {
         const data = await utilizador.findAll({
-            include:[{model:tipoutilizador, attributes:['tu_tipo']},{model:regioesTuristicas, attributes:['rt_nome']}]
+            include: [{ model: tipoutilizador, attributes: ['tu_tipo'] }, { model: regioesTuristicas, attributes: ['rt_nome'] }]
         });
         res.send({ success: true, data: data });
     } catch (error) {
@@ -48,7 +48,7 @@ controllers.createUtilizador = async (req, res, next) => {
 
 controllers.getUtilizadorById = async (req, res, next) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const data = await utilizador.findByPk(id)
         //check if id is not a number
         res.send({ success: true, data: data });
@@ -63,12 +63,13 @@ controllers.updateUtilizador = async (req, res, next) => {
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
 
-        const {nome, email, pwd, tipo} = req.body;
+        const { nome, email, pwd, tipo, rt_id } = req.body;
         const data = await utilizador.update({
             u_nome: nome,
             u_email: email,
             u_pwd: pwd,
-            tu_id: tipo
+            tu_id: tipo,
+            rt_id: rt_id
         },
             {
                 where: { u_id: id }
@@ -96,7 +97,7 @@ controllers.deleteUtilizador = async (req, res, next) => {
 //Funções de count
 //Devia estar uma função apenas a retornar um count, mas assim vai facilitar-nos o trabalho no frontend
 
-controllers.getCountDashboardAdmin  = async (req, res, next) => {
+controllers.getCountDashboardAdmin = async (req, res, next) => {
     try {
         const countUtilizadores = await utilizador.count({
 
@@ -107,7 +108,7 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
             }
         });
         const countRegioesTuristicas = await regioesTuristicas.count({
- 
+
         });
         const countAT = await utilizador.count({
             where: {
@@ -115,10 +116,10 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
             }
         });
         const countPontoTuristico = await pontosTuristicos.count({
- 
+
         });
         const countReservas = await reservas.count({
- 
+
         });
         const countVouchers = await vouchers.count({
 
@@ -126,13 +127,13 @@ controllers.getCountDashboardAdmin  = async (req, res, next) => {
         const countClientes = await clientes.count({
 
         });
-        res.send({ success: true, data: [countUtilizadores,countRT,countRegioesTuristicas,countAT,countPontoTuristico,countReservas,countVouchers,countClientes] });
+        res.send({ success: true, data: [countUtilizadores, countRT, countRegioesTuristicas, countAT, countPontoTuristico, countReservas, countVouchers, countClientes] });
     } catch (error) {
         next(error)
     }
 }
 
-controllers.getCountDashboardRT  = async (req, res, next) => {
+controllers.getCountDashboardRT = async (req, res, next) => {
     try {
         const countAT = await utilizador.count({
             where: {
@@ -140,7 +141,7 @@ controllers.getCountDashboardRT  = async (req, res, next) => {
             }
         });
         const countPontoTuristico = await reservas.count({
- 
+
         });
         const countVisitas = await visitas.count({
 
@@ -151,13 +152,13 @@ controllers.getCountDashboardRT  = async (req, res, next) => {
         const countVouchers = await vouchers.count({
 
         });
-        res.send({ success: true, data: [countAT,countPontoTuristico,countVisitas,countClientes,countVouchers] });
+        res.send({ success: true, data: [countAT, countPontoTuristico, countVisitas, countClientes, countVouchers] });
     } catch (error) {
         next(error)
     }
 }
 
-controllers.getCountDashboardAT  = async (req, res, next) => {
+controllers.getCountDashboardAT = async (req, res, next) => {
     try {
         const countVisitas = await visitas.count({
 
@@ -166,9 +167,9 @@ controllers.getCountDashboardAT  = async (req, res, next) => {
 
         });
         const countReservas = await reservas.count({
- 
+
         });
-        res.send({ success: true, data: [countVisitas,countClientes,countReservas]});
+        res.send({ success: true, data: [countVisitas, countClientes, countReservas] });
     } catch (error) {
         next(error)
     }

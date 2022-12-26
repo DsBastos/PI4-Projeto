@@ -41,7 +41,7 @@ function websiteAdmin() {
       atualizacoes: atualizacoes
     };
 
-    api.put("/website/updatewebsite/" + website.ws_id, datapedidospost).then((data) => {
+    api.patch("/website/updatewebsite", datawebsitepost).then((data) => {
       if (data.status = "200") {
         toast.success('Website alterado com sucesso', {
           position: "top-center",
@@ -279,7 +279,7 @@ function websiteAdmin() {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary px-5 text-white d-block ms-auto mt-4" onClick={SendUpdate}>Guardar</button>
+                className="btn btn-primary px-5 text-white d-block ms-auto mt-4 mb-4" onClick={SendUpdate}>Guardar</button>
             </form>
           </div>
         </div>
