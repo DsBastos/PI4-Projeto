@@ -131,61 +131,52 @@ useEffect(() => {
 }, [])
 
   return (
-
     <motion.div initial="initial" animate="animate">
       <Navbar />
       <div
         id="inicio"
-        className="bg-image-gradient position-relative w-100 vh-100 d-flex"
-      >
+        className="bg-image-gradient position-relative w-100 vh-100 d-flex">
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, ease: easeing }}
-          className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center"
-        >
+          className="container h-75 my-auto pt-5 d-flex justify-content-around align-items-center">
           <motion.div className="me-auto">
             <motion.h1 variants={fadeInUp} initial="initial" animate="animate">
               <strong>
               “If you have a special point make it green.” 
               </strong>
             </motion.h1>
-
             <motion.h5 className="mt-5" variants={fadeInUp2} >
             {heroi}
             </motion.h5>
-
             <motion.div variants={stagger}>
               <motion.button
                 variants={btnGroup}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="button"
-                className="btn btn-lg btn-dark mt-5"
-              >
+                className="btn btn-lg btn-dark mt-5">
                 Conhece a app aqui! 👈🏻
               </motion.button>
             </motion.div>
           </motion.div>
-
           <motion.img
             className="img-fluid h-100 ms-auto d-none d-lg-block mt-5"
             variants={screenImg}
             src={heroImage}
-            alt="react logo"
-          />
+            alt="react logo"/>
         </motion.div>
       </div>
+
       <section id="descarregar" className="container">
         <div className="row">
           <div className="col d-flex justify-content-center  align-items-center">
             <img
               src={imageDescarregarApp}
               className="img-fluid h-75"
-              alt="Imagem do mockup da app na secção para descarregar"
-            />
+              alt="Imagem do mockup da app na secção para descarregar"/>
           </div>
-
           <div className="col d-flex justify-content-center  align-items-center">
             <div className="me-lg-5">
               <h1>
@@ -200,8 +191,7 @@ useEffect(() => {
                 <div className="d-grid gap-2">
                   <button
                     className="btn btn-lg btn-primary text-white "
-                    type="submit"
-                  >
+                    type="submit">
                     Descarregar
                   </button>
                 </div>
@@ -216,8 +206,7 @@ useEffect(() => {
 
       <section
         id="objetivo"
-        className="py-5 section-background-verde d-flex align-items-center"
-      >
+        className="py-5 section-background-verde d-flex align-items-center">
         <div className="container d-lg-flex justify-content-between align-items-center">
           <div className="py-5">
             <h1>
@@ -232,10 +221,10 @@ useEffect(() => {
           <img
             src={mygreenpointlogo}
             className="img-fluid w-50 h-50"
-            alt="Image do logo na section do nosso objetivo"
-          />
+            alt="Image do logo na section do nosso objetivo"/>
         </div>
       </section>
+
       <section id="oferecemos" className="my-5 d-flex align-items-center">
         <div className="container my-4">
           <div className="row">
@@ -247,8 +236,7 @@ useEffect(() => {
                 <img
                   src={ecrasOferecemos}
                   className="img-fluid d-none d-md-block h-lg-75 w-lg-75"
-                  alt=""
-                />
+                  alt=""/>
               </div>
             </div>
             <div className="col row row-cols-1 row-cols-md-2">
@@ -256,40 +244,36 @@ useEffect(() => {
                 <Card
                   titulo="Pontos Turísticos"
                   descricao={pontosT}
-                  icon={iconpt}
-                />
+                  icon={iconpt}/>
               </div>
               <div className="col">
                 <Card
                   titulo="Vouchers"
                   descricao={voucher}
-                  icon={iconvouc}
-                />
+                  icon={iconvouc}/>
               </div>
 
               <div className="col">
                 <Card
                   titulo="Reservas"
                   descricao={reservas}
-                  icon={iconres}
-                />
+                  icon={iconres}/>
               </div>
 
               <div className="col">
                 <Card
                   titulo="QRCode"
                   descricao={qr}
-                  icon={iconqr}
-                />
+                  icon={iconqr}/>
               </div>
             </div>
           </div>
         </div>
       </section>
+
       <section
         id="atualizacoes"
-        className="py-5 section-background-verde d-flex align-items-center"
-      >
+        className="py-5 section-background-verde d-flex align-items-center">
         <div className="container py-5">
           <h1>
             <strong>Atualização das ultimas versões da aplicação</strong>
@@ -300,24 +284,21 @@ useEffect(() => {
                 <div className="accordion-item">
                   <h2
                     className="accordion-header"
-                    id="panelsStayOpen-headingOne"
-                  >
+                    id="panelsStayOpen-headingOne">
                     <button
                       className="accordion-button"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseOne"
                       aria-expanded="true"
-                      aria-controls="panelsStayOpen-collapseOne"
-                    >
+                      aria-controls="panelsStayOpen-collapseOne">
                       <strong>Versão 1.009.9</strong>
                     </button>
                   </h2>
                   <div
                     id="panelsStayOpen-collapseOne"
                     className="accordion-collapse collapse show"
-                    aria-labelledby="panelsStayOpen-headingOne"
-                  >
+                    aria-labelledby="panelsStayOpen-headingOne">
                     <div className="accordion-body">
                       {atualizacoes}
                     </div>
@@ -326,24 +307,21 @@ useEffect(() => {
                 <div className="accordion-item">
                   <h2
                     className="accordion-header"
-                    id="panelsStayOpen-headingTwo"
-                  >
+                    id="panelsStayOpen-headingTwo">
                     <button
                       className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseTwo"
                       aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseTwo"
-                    >
+                      aria-controls="panelsStayOpen-collapseTwo">
                       <strong>Versão 1.009.8</strong>
                     </button>
                   </h2>
                   <div
                     id="panelsStayOpen-collapseTwo"
                     className="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingTwo"
-                  >
+                    aria-labelledby="panelsStayOpen-headingTwo">
                     <div className="accordion-body">
                     {atualizacoes}
                     </div>
@@ -352,24 +330,21 @@ useEffect(() => {
                 <div className="accordion-item">
                   <h2
                     className="accordion-header"
-                    id="panelsStayOpen-headingThree"
-                  >
+                    id="panelsStayOpen-headingThree">
                     <button
                       className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseThree"
                       aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseThree"
-                    >
+                      aria-controls="panelsStayOpen-collapseThree">
                       <strong>Versão 1.009.7</strong>
                     </button>
                   </h2>
                   <div
                     id="panelsStayOpen-collapseThree"
                     className="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingThree"
-                  >
+                    aria-labelledby="panelsStayOpen-headingThree">
                     <div className="accordion-body">
                     {atualizacoes}
                     </div>

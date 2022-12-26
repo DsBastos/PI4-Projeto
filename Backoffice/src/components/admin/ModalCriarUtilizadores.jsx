@@ -67,7 +67,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">Editar utilizador</h1>
+            <h1 className="modal-title fs-5" id="staticBackdropLabel">Criar utilizador</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
@@ -76,16 +76,16 @@ export function ModalCriarUtilizadores({ show, onHide }) {
                 <label>Nome</label>
                 <input type="text" className="form-control" onChange={e => setNome(e.target.value)} aria-describedby="emailHelp" placeholder="Nome Exemplo" />
               </div>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <label>Email</label>
                 <input type="email" className="form-control" onChange={e => setEmail(e.target.value)} placeholder="nome.exemplo@email.com" />
               </div>
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <label>Password</label>
                 <input type="text" className="form-control" onChange={e => setPassword(e.target.value)} placeholder="palavrapasseexemplo" />
               </div>
-              <div className="dropdown">
-                <label>Cargo</label>
+              <div className="dropdown mt-3">
+                <label className="px-1">Cargo</label>
                 <select
                   value={selectedcargo}
                   onChange={e => setSelectedcargo(e.target.value)}>

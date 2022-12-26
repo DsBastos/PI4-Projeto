@@ -16,7 +16,7 @@ export function ModalEditarPontoInteresse({ show, onHide, props }) {
   let [link, setLink] = useState("");
   let [pontosAdquiridos, setPontosAdquiridos] = useState("");
 
-  function editUser() {
+  function editPonto() {
     let newPontoTuristico = {
       nome: nome == "" ? props?.nome : nome,
       local: local == "" ? props?.local : local,
@@ -127,7 +127,7 @@ export function ModalEditarPontoInteresse({ show, onHide, props }) {
           <div className="modal-footer">
             {/* <button type="button" className="btn btn-danger text-left" data-bs-dismiss="modal" onClick={deletePontoTuristico}>Eliminar ponto turístico</button> */}
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" className="btn btn-primary" onClick={editUser}>Guardar</button>
+            <button type="button" className="btn btn-primary" onClick={editPonto}>Guardar</button>
           </div>
         </div>
       </div>
