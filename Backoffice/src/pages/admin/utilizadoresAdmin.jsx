@@ -124,6 +124,7 @@ function utilizadoresAdmin() {
         <ModalCriarUtilizadores />
 
       </main>
+      <ModalCriarUtilizadores />
     </div>
   );
 }
