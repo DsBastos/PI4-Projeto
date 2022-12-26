@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("./database");
 
 var pontosTuristicos = sequelize.define(
-    "pontoturistico",
+    "pontoTuristico",
     {
         pt_id: {
             type: Sequelize.INTEGER,

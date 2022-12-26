@@ -110,7 +110,6 @@ function LoadFillData({ props }) {
 
   return (
     <>
-    {console.log(reserva)}
       {reserva.map((data, index) => {
         //console.table(data);
         console.log(props);
