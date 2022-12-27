@@ -3,7 +3,9 @@ import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalRegiaoTuristica({ show, onHide, props, props2 }) {
+
   let [selectedUtilizador, setSelectedUtilizador] = useState([]);
+  
   function editUserSetRegiao() {
     selectedUtilizador.map((id) => {
       api.patch("/utilizadores/updateutilizador/" + id, { rt_id: props.id }).then((data) => {
@@ -28,7 +30,7 @@ export function ModalRegiaoTuristica({ show, onHide, props, props2 }) {
     })
   }
 
-  function sandesPeru(e,id) {
+  function utilizadorChecked(e,id) {
     if (e.target.checked) {
       setSelectedUtilizador([...selectedUtilizador, id])
     } else {
@@ -59,7 +61,7 @@ export function ModalRegiaoTuristica({ show, onHide, props, props2 }) {
                   if (user.tu_id == 2 && user.rt_id == null) {
                     return (
                       <tr key={index}>
-                        <th><input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={(e)=>sandesPeru(e,user.u_id)}></input></th>
+                        <th><input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={(e)=>utilizadorChecked(e,user.u_id)}></input></th>
                         <th>{user.u_nome}</th>
                         <td>{user.u_email}</td>
                       </tr>

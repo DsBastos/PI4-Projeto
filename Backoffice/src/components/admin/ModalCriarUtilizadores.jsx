@@ -63,6 +63,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
   };
 
   return (
+    <>
     <div className="modal fade" id="ModalCriarUtilizadores" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
@@ -102,6 +103,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

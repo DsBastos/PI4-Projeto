@@ -13,8 +13,8 @@ function LoadFillData() {
         dados.map((RecompensaAux) => {
           newRecompensa.push({
               id: RecompensaAux.r_id,
-              nomePT: RecompensaAux.pontoTuristico.pT_nome,
-              nomeLocal: RecompensaAux.pontoTuristico.pT_local,
+              nomePT: RecompensaAux.pontoTuristico.pt_nome,
+              nomeLocal: RecompensaAux.pontoTuristico.pt_regiao,
               nome: RecompensaAux.r_nome,
               descricao: RecompensaAux.r_descricao,
             })
@@ -57,7 +57,7 @@ export function ModalVouchers({ show, onHide }) {
             <table className="table table-striped datatable-table">
               <thead className="datatable-header">
                 <tr>
-                  <th scope="col">ID da recompensa</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Nome</th>
                   <th scope="col">Ponto turístico</th>
                   <th scope="col">Descrição</th>

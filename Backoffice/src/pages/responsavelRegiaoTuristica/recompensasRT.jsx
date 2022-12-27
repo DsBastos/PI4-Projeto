@@ -8,37 +8,186 @@ import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/Modal
 
 function recompensas() {
 
-  // const criarRecompensa = () => {
-  //   let valid = true;
-  //   if (nome == "" || descricao == "" || imagem == "" || duracao == "" || preco == "") {
-  //     valid = false;
-  //     sendError("Os campos não podem estar vazios");
-  //   }
-  //   if (valid) {
-  //     let newRecompensa = {
-  //       nome: r_nome,
-  //       descricao: r_descricao,
-  //       imagem: r_imagem,
-  //       duracao: r_duracao,
-  //       preco: r_preco,
-  //     };
-  //     api.post("recompensa/create", newRecompensa).then((data) => {
-  //       if (data.status == "200") {
-  //         toast.success("Recompensa criada com sucesso", {
-  //           position: "top-center",
-  //           autoClose: 5000,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //         });
-  //       } else {
-  //         sendError("Erro ao criar recompensa");
-  //       }
-  //     });
-  //   }
-  // };
+  const [nome, setNome] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [local, setLocal] = useState("");
+  const [ponto, setPonto] = useState("");
+  const [recompensa, setRecompensa] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [pontos, setPontos] = useState("");
+  const [pontoTuristico, setPontoTuristico] = useState([]);
+  let [selectedPontoTuristico, setSelectedPontoTuristico] = useState(0);
+
+  useEffect(() => {
+    api.get('/recompensa/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newRecompensa = [];
+        dados.map((RecompensaAux) => {
+          newRecompensa.push({
+            nome: RecompensaAux.r_nome,
+            pontos: RecompensaAux.r_pontos,
+          })
+        })
+        setRecompensa(newRecompensa);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+
+      api.get('/pontoturistico/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newPontoTuristico = [];
+        dados.map((PontoTuristicoAux) => {
+          newPontoTuristico.push({
+            id: PontoTuristicoAux.pt_id,
+            nomePT: PontoTuristicoAux.pt_nome,
+            regiao: PontoTuristicoAux.pt_regiao,
+            dificuldade: PontoTuristicoAux.pt_dificuldade,
+            duracao: PontoTuristicoAux.pt_duracao,
+            terreno: PontoTuristicoAux.pt_terreno,
+            tamanho: PontoTuristicoAux.pt_tamanho,
+            descricao: PontoTuristicoAux.pt_descricao,
+            horario: PontoTuristicoAux.pt_horario,
+            coordenadas: PontoTuristicoAux.pt_coordenadas,
+            link: PontoTuristicoAux.pt_link,
+            pontosAdquiridos: PontoTuristicoAux.pt_pontosadquiridos,
+          })
+        })
+
+        setPontoTuristico(newPontoTuristico);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
+
+  function criarRecompensa(){
+    let valid = true;
+    if (nome == "" || descricao == "" || pontos == "") {
+      valid = false;
+    }
+    console.log(valid);
+    if (valid) {
+      let newRecompensa = {
+        nome: nome,
+        descricao: descricao,
+        imagem: imagem,
+        pontos: pontos,
+        pt_id: selectedPontoTuristico,
+      };
+      try {
+        api.post("recompensa/create/", newRecompensa).then((data) => {
+          console.log(data);
+          if (data.status == "200") {
+            toast.success("Recompensa criada com sucesso", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  function editPontoTuristico(pontoTuristico) {
+    let newPontoTuristico = {
+      ponto: ponto == "" ? pontoTuristico.ponto : ponto,
+      tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
+    }
+    //console.log(newUser)
+    api.patch("/pontoturistico/updatepontoturistico/" + pt_id, newUser).then((data) => {
+      //console.log(data);
+      if (data.status = "200") {
+        toast.success('Ponto turístico alterado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar o ponto turístico")
+        //console.log("asd");
+      }
+    })
+      .catch((error) => {
+        //console.log(error);
+        alert(error);
+      });
+  }
+
+  function LoadFillData() {
+
+    // useEffect(() => {
+    //   api.get('/pontoturistico/list')
+    //     .then(({ data }) => {
+    //       const dados = data.data;
+    //       var newPontoTuristico = [];
+    //       dados.map((PontoTuristicoAux) => {
+    //         newPontoTuristico.push({
+    //           id: PontoTuristicoAux.pt_id,
+    //           nomePT: PontoTuristicoAux.pt_nome,
+    //           regiao: PontoTuristicoAux.pt_regiao,
+    //           dificuldade: PontoTuristicoAux.pt_dificuldade,
+    //           duracao: PontoTuristicoAux.pt_duracao,
+    //           terreno: PontoTuristicoAux.pt_terreno,
+    //           tamanho: PontoTuristicoAux.pt_tamanho,
+    //           descricao: PontoTuristicoAux.pt_descricao,
+    //           horario: PontoTuristicoAux.pt_horario,
+    //           coordenadas: PontoTuristicoAux.pt_coordenadas,
+    //           link: PontoTuristicoAux.pt_link,
+    //           pontosAdquiridos: PontoTuristicoAux.pt_pontosadquiridos,
+    //         })
+    //       })
+
+    //       setPontoTuristico(newPontoTuristico);
+    //     })
+    //     .catch((error) => {
+    //       alert(error)
+    //     })
+    // }, [])
+
+    return (
+      <>
+        {pontoTuristico.map((data, index) => {
+          // if(o ponto turistico tem de pertencer a regiao do responsável que estiver logado)
+          // {
+          //console.log(data)
+          return (
+            <>
+              <tr>
+                <td className="fw-bold">{data?.nomePT}</td>
+                <td className="fw-bold">{data.regiao}</td>
+                <td className="">
+                  <textarea
+                    className="form-control mx-auto w-25 my-md-3"
+                    id="exampleFormControlTextarea1"
+                    rows="2"
+                    maxLength="200"
+                    cols="3"
+                    value={data.pontosAdquiridos}
+                    onChange={(e) => setPontosAdquiridos(e.target.value)}
+                  />
+                </td>
+              </tr>
+            </>
+          );
+          // }
+        })}
+      </>
+    )
+  }
 
   return (
     <div className="d-flex">
@@ -56,7 +205,7 @@ function recompensas() {
         nome4="Recompensas"
         icon4="./assets/icon-filetext.svg" />
         
-      <main className="w-100">
+        <main className="w-100">
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 my-5">
           <h2 className="mt-5 d-inline">Recompensas</h2>
@@ -66,51 +215,23 @@ function recompensas() {
               <div className="card-body p-5">
                 <h5 className="card-title h4 fw-bold">Criar recompensa</h5>
                 <form>
-                  <div className="container">
-                    <div className="g-3 align-items-center">
-                      <div className="col-auto">
-                        <label className="col-form-label">Nome</label>
-                      </div>
-                      <div className="col-3">
-                        <input id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Local</label>
-                      </div>
-                      <div className="col-3">
-                        <input id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Ponto turístico</label>
-                      </div>
-                      <div className="col-3">
-                        <input id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Data aquisição</label>
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">00/00/00</label>
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Data limite</label>
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">00/00/00</label>
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Custo</label>
-                      </div>
-                      <div className="col-3">
-                        <input id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-                      <div className="col-auto">
-                        <label className="col-form-label">Descrição</label>
-                      </div>
-                      <div className="col-5">
-                        <textarea id="textoareavou" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
+                  <div className="form-group row mt-2">
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                      Nome
+                    </label>
+                    <div className="col-lg-3">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Insira Nome da recompensa"
+                        id="nomeRecompensa"
+                        value={nome}
+                        onChange={(e) => {
+                          setNome(e.target.value);
+                        }}
+                      />
                     </div>
+
                   </div>
                   <div className="form-group row mt-2">
                     <label className="col-2 col-form-label">
@@ -121,6 +242,10 @@ function recompensas() {
                         className="form-control"
                         placeholder="Insira a região do local"
                         id="localRecompensa"
+                        value={local}
+                        onChange={(e) => {
+                          setLocal(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -129,10 +254,31 @@ function recompensas() {
                       Ponto turístico
                     </label>
                     <div className="col-lg-3">
+                      <select onChange={e => setSelectedPontoTuristico(e.target.value)}>
+                        <option value="0">Selecione o ponto turístico</option>
+                        {pontoTuristico.map((data, index) => {
+                          return (
+                            <>
+                              <option value={data.id} >{data.nomePT}</option>
+                            </>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="form-group row mt-2">
+                    <label className="col-2 col-form-label">
+                      Preço em pontos
+                    </label>
+                    <div className="col-lg-3">
                       <input
                         className="form-control"
-                        placeholder="Insira o local do ponto turístico"
-                        id="pontoTuristico"
+                        placeholder="Insira o valor em pontos"
+                        id="precoRecompensa"
+                        value={pontos}
+                        onChange={(e) => {
+                          setPontos(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
@@ -147,25 +293,33 @@ function recompensas() {
                         id="descricao"
                         rows="6"
                         maxLength="1024"
+                        value={descricao}
+                        onChange={(e) => {
+                          setDescricao(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
                   <div className="form-group row mt-2">
-                    <label className="col-2 col-form-label">
-                      Custo
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                      Imagem
                     </label>
                     <div className="col-lg-3">
                       <input
                         className="form-control"
-                        placeholder="Insira o valor em pontos"
-                        id="custoRecompensa"
+                        type="file"
+                        id="imagemRecompensa"
+                        value={imagem}
+                        onChange={(e) => {
+                          setImagem(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
                   <button
-                    type="submit"
-                    className="btn btn-success text-white mt-4 d-block ms-auto ">
-                    Criar voucher
+                    className="btn btn-success text-white mt-4 d-block ms-auto "
+                    onClick={criarRecompensa}>
+                    Criar recompensa
                   </button>
                 </form>
               </div>
@@ -178,15 +332,6 @@ function recompensas() {
                   Associar pontos recebidos ao ponto turístico
                 </h5>
                 <form>
-                  {/* <select
-                    className="form-select col-3 my-4"
-                    aria-label=".form-select example"
-                  >
-                    <option selected>Distrito</option>
-                    <option value="1">Viseu</option>
-                    <option value="2">Aveiro</option>
-                    <option value="3">Three</option>
-                  </select> */}
                   <table className="table table-striped table-group-divider text-center align-middle mt-5">
                     <thead>
                       <tr>
@@ -196,43 +341,8 @@ function recompensas() {
                       </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td className="">
-                          <textarea
-                            className="form-control mx-auto w-25 my-md-3"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxLength="200"
-                            cols="3"
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td>
-                          <textarea
-                            className="form-control mx-auto w-25 my-md-3 align-content-center"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxLength="200"
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td>
-                          <textarea
-                            className="form-control mx-auto w-25 my-md-3 align-content-center"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxLength="200"
-                          />
-                        </td>
-                      </tr>
+
+                      <LoadFillData />
                     </tbody>
                   </table>
                   <button
@@ -246,7 +356,7 @@ function recompensas() {
             </div>
           </div>
         </div>
-        <ModalVouchers/>
+        <ModalVouchers />
       </main>
     </div>
   );

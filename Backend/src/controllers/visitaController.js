@@ -22,11 +22,13 @@ controllers.getAllVisita = async (req, res, next) => {
 controllers.createVisita = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
-        const visita = await visita.create(
+        const visitas = await visita.create(
             {
-                datas: req.body.vs_data,
-                horas: req.body.vs_horas,
-                vagas: req.body.vs_vagas
+                vs_data: req.body.data,
+                vs_horas: req.body.horas,
+                vs_vagas: req.body.vagas,
+                //pt_id: req.body.pt_id,
+                pt_id: 1,
             },
             { transaction: t }
         );

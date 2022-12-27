@@ -51,8 +51,8 @@ function LoadFillData() {
           return (
             <>
               <tr key={index}>
-                <td scope="row">{data.nome}</td>
-                <td>{data.local}</td>
+                <td scope="row">{data?.nome}</td>
+                <td>{data?.local}</td>
                 <td>
                   <span onClick={() => {setSelectedPontoTuristico(data); setModalPontoTuristicoShow(true); }}>
                     <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalPontoInteresse">
@@ -73,7 +73,7 @@ function LoadFillData() {
                   </span>
   
                   <span
-                    id={data.u_id}
+                    id={data?.u_id}
                     className="material-symbols-outlined"
                     onClick={() => {
                       setSelectedPontoTuristico(data);
