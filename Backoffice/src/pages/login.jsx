@@ -1,22 +1,25 @@
-import { useState, useRef, useEffect, useContext } from "react";
-import AuthContext from "../contexts/AuthProvider";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import useAuth from "../hooks/useAuth";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import logo from "../assets/mygreenpointlogo.png";
 
 import { api } from "../../api";
-const LOGIN_URL = "/utilizadores/list";
+const LOGIN_URL = "/auth";
 
 function Login() {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const userRef = useRef();
   const errRef = useRef();
 
-  const [uemail, setUemail] = useState("");
-  const [upwd, setUpwd] = useState("");
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -24,14 +27,15 @@ function Login() {
 
   useEffect(() => {
     setErrMsg("");
-  }, [uemail, upwd]);
+  }, [email, pwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await api.post(
         LOGIN_URL,
-        JSON.stringify({ uemail, upwd }),
+        JSON.stringify({ email, pwd }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,23 +43,24 @@ function Login() {
           withCredentials: true,
         }
       );
+
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ uemail, upwd, roles, accessToken });
-      setUemail("");
-      setUpwd("");
-      setIsLogged(true);
+      const roles = response?.data?.tu_id;
+      setAuth({ email, pwd, roles, accessToken });
+      setEmail('');
+      setPwd('');
+      navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("Sem resposta do servidor");
       } else if (err?.response?.status === 400) {
-        setErrMsg("Falta o email ou a palavra-passe");
+        setErrMsg("Falta o email ou a palavra-passe.");
       } else if (err?.response?.status === 401) {
         setErrMsg(
           "Não autorizado, provalvelmente o email e/ou a palavra-passe estão errados"
         );
-      }else{
+      } else {
         setErrMsg("Erro desconhecido -> erro ao fazer login");
       }
       errRef.current.focus();
@@ -65,6 +70,14 @@ function Login() {
   return (
     <main className="bg-image-gradient vw-100 vh-100 d-flex align-items-center">
       <div className="container">
+        <p
+          ref={errRef}
+          className={errMsg ? "errmsg alert alert-danger" : "offscreen"}
+          role="alert"
+          aria-live="assertive"
+        >
+          {errMsg}
+        </p>
         <div
           className="d-flex mx-auto justify-content-center flex-column"
           style={{ maxWidth: "24rem" }}
@@ -87,9 +100,9 @@ function Login() {
                       className="form-control"
                       ref={userRef}
                       autoComplete="off"
-                      onChange={(e) => setUemail(e.target.value)}
-                      value={uemail}
-                      
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      required
                     />
                     <div className="form-outline mb-4">
                       <label
@@ -102,9 +115,9 @@ function Login() {
                         type="password"
                         id="inputPassword"
                         className="form-control"
-                        onChange={(e) => setUpwd(e.target.value)}
-                        value={upwd}
-                        
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
                       />
                     </div>
                     <div className="mb-4">

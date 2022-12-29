@@ -1,58 +1,27 @@
+require("dotenv").config();
 const express = require("express");
 var cors = require("cors");
 const app = express();
 const path = require("path");
-require("dotenv").config();
 require("./models/associations");
 const createError = require("http-errors");
-const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
+const verifyJWT = require("./middleware/verifyJWT");
+const cookieParser = require("cookie-parser");
+const corsOptions = require("./config/corsOptions");
+const credentials = require("./middleware/credentials");
 
-//const middleware = require('./middleware');
+// Handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
 
-// const corsOptions = {
-//   allowedHeaders: [
-//     "Origin",
-//     "X-Requested-With",
-//     "Content-Type",
-//     "Accept",
-//     "X-Access-Token",
-//     "Authorization",
-//   ],
-//   credentials: true,
-//   origin: [
-//     "http://localhost:3333/",
-//     "http://localhost:8000/",
-//     "http://localhost:8001/",
-//   ],
-// };
-
-//Configurações
-const whiteList = [
-  "http://localhost:3333/",
-  "http://localhost:8000/",
-  "http://localhost:8001/",
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors({ credentials: true, origin: true }));
 
 app.set("port", process.env.PORT || 3333);
 //Middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//custom middleware logger
-app.use(logger);
+app.use(cookieParser());
 
 //serve static files
 app.use("/", express.static(path.join(__dirname, "../public")));
@@ -60,6 +29,7 @@ app.use("/", express.static(path.join(__dirname, "../public")));
 //Routes
 
 const autenticacaoRoute = require("./routes/authRoute.js");
+const refreshRoute = require("./routes/refreshRoute.js");
 
 const clienteRoute = require("./routes/clienteRoute.js");
 const pontoTuristicoRoute = require("./routes/pontoTuristicoRoute.js");
@@ -74,7 +44,8 @@ const websiteRoute = require("./routes/websiteRoute.js");
 const utilizadoresRoute = require("./routes/utilizadoresRoute.js");
 
 app.use("/auth", autenticacaoRoute);
-
+app.use("/refresh", refreshRoute);
+app.use(verifyJWT);
 app.use("/utilizadores", utilizadoresRoute);
 app.use("/cliente", clienteRoute);
 app.use("/pontoTuristico", pontoTuristicoRoute);
@@ -97,7 +68,7 @@ app.all("*", (req, res, next) => {
   }
 });
 
-app.use(errorHandler);
+app.use(createError);
 
 app.listen(app.get("port"), () => {
   console.log("Start server on port " + app.get("port"));

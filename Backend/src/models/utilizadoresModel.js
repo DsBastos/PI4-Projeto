@@ -12,6 +12,7 @@ var utilizadores = sequelize.define(
         u_nome: Sequelize.STRING,
         u_email: Sequelize.STRING,
         u_pwd: Sequelize.STRING,
+        refreshToken: Sequelize.STRING,
     },
     {
         freezeTableName: true,

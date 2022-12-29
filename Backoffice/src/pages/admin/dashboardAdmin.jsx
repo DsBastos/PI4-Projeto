@@ -1,18 +1,14 @@
-import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
 import { api } from "../../../api";
-import { useState, useEffect } from "react";
+import {React, useState, useEffect } from "react";
 // import { toast } from 'react-toastify';
 
 import icongroup from "../../assets/icongroup.svg";
 
-import useRefreshToken from "../../hooks/useRefreshToken";
-
-function dashboardAdmin() {
+function DashboardAdmin() {
   const [infoAdmin, setInfoAdmin] = useState([]);
-  const refresh = useRefreshToken();
 
   useEffect(() => {
     api
@@ -168,4 +164,4 @@ function dashboardAdmin() {
   );
 }
 
-export default dashboardAdmin;
+export default DashboardAdmin;

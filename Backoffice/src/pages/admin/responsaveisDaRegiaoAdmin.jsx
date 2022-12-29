@@ -1,47 +1,38 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { ModalResponsavelRegiao } from "../../components/admin/ModalResponsavelRegiao"
+import { ModalResponsavelRegiao } from "../../components/admin/ModalResponsavelRegiao";
 import { api } from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
-function responsaveisdaregiaoAdmin() {
-
+function ResponsaveisdaregiaoAdmin() {
   //Estados
-  const [nome, setNome] = useState("")
-  const [email, setEmail] = useState("")
-  const [pwd, setPwd] = useState("")
+  const [rt_id, setRt_id] = useState(0);
+  const [tu_id, setTu_id] = useState(0);
+  const [id, setId] = useState(0);
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const [data, setData] = useState([]);
+
+  const url = "http://localhost:3333/utilizadores/list";
 
   useEffect(() => {
-    api.get('/utilizador/list')
-      .then(({ data }) => {
-        const dados = data.data;
-        var newUtilizador = []
-
-        Object.keys(dados).map((key) => {
-          var newSubservicos = []
-
-          dados[key].subservicos.map((subservicoAux) => {
-            newSubservicos.push({
-              nome: subservicoAux.nome
-            })
-          })
-          newUtilizador.push(
-            {
-              nome: key,
-              email: key,
-              imagem: dados[key].imagem,
-              subservicos: newSubservicos
-            }
-          )
-        })
-        setServicos(newUtilizador);
+    api
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          setData(res.data.data);
+        } else {
+          alert("Error Web Service!");
+        }
       })
       .catch((error) => {
-        alert(error)
-      })
-  }, [])
+        alert(error);
+      });
+  }, []);
 
   return (
     <div className="d-flex">
@@ -63,6 +54,7 @@ function responsaveisdaregiaoAdmin() {
         link5="/utilizadores"
       />
       <main className="w-100">
+        {console.log(data)}
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Responsáveis da região turística</h2>
@@ -71,23 +63,35 @@ function responsaveisdaregiaoAdmin() {
               <tr>
                 <th scope="col">Nome completo</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telemóvel</th>
-                <th scope="col">Localidade</th>
                 <th scope="col">Regiões turísticas</th>
                 <th scope="col">Ferramentas</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Otto</td>
-                <td><button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="../../assets/icon-penfill.svg"></img></button>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
-                </td>
-              </tr>
+              {data.map((data, index) => {
+                if(data.tu_id == 2 ){
+                  return (
+                    <tr key={index}>
+                      <th>{data.u_nome}</th>
+                      <td>{data.u_email}</td>
+                      <td>{data.tu_id}</td>
+                      <td>Otto</td>
+                      <td>
+                        <button
+                          style={{ border: "none", background: "none" }}
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
+                        >
+                          <img src="../../assets/icon-penfill.svg"></img>
+                        </button>
+                        <button style={{ border: "none", background: "none" }}>
+                          <img src="../../assets/icon-trashfill.svg"></img>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                }
+              })}
             </tbody>
           </table>
         </div>
@@ -97,4 +101,4 @@ function responsaveisdaregiaoAdmin() {
   );
 }
 
-export default responsaveisdaregiaoAdmin;
+export default ResponsaveisdaregiaoAdmin;
