@@ -1,6 +1,10 @@
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
 export function ModalReservaPontoInteresse({ show, onHide }) {
   return (
-    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -15,7 +19,7 @@ export function ModalReservaPontoInteresse({ show, onHide }) {
                   <th scope="col">Nome do cliente</th>
                   <th scope="col">Nº de pessoas</th>
                   <th scope="col">Ponto de interesse</th>
-                  <th scope="col">Local</th>
+                  <th scope="col">Distrito</th>
                   <th scope="col">Data</th>
                   <th scope="col">Horas</th>
                   <th scope="col">Ferramentas</th>

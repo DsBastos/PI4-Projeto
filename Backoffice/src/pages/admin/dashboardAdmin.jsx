@@ -1,19 +1,47 @@
-import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
+import { api } from "../../../api";
+import {React, useState, useEffect } from "react";
+// import { toast } from 'react-toastify';
 
 import icongroup from "../../assets/icongroup.svg";
 
-function dashboardAdmin() {
+function DashboardAdmin() {
+  const [infoAdmin, setInfoAdmin] = useState([]);
+
+  useEffect(() => {
+    api
+      .get("utilizadores/countdashboardadmin")
+      .then(({ data }) => {
+        let aux = data.data;
+        setInfoAdmin(aux);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg"
-        nome2="Website" icon2="./assets/icon-filetext.svg" link2="/website"
-        nome3="Responsáveis das regiões turísticas" icon3="./assets/icon-filetext.svg" link3="/responsaveisDaRegiao"
-        nome4="Regiões turísticas" icon4="./assets/icon-filetext.svg" link4="/regioesturisticas"
-        nome5="Utilizadores" icon5="./assets/icon-user.svg" link5="/utilizadores" />
+      <Menu
+        nome1="Dashboard"
+        icon1="./assets/icon-barchartline.svg"
+        nome2="Website"
+        icon2="./assets/icon-filetext.svg"
+        link2="/website"
+        nome3="Responsáveis das regiões turísticas"
+        icon3="./assets/icon-filetext.svg"
+        link3="/responsaveisDaRegiao"
+        nome4="Regiões turísticas"
+        icon4="./assets/icon-filetext.svg"
+        link4="/regioesturisticas"
+        nome5="Utilizadores"
+        icon5="./assets/icon-user.svg"
+        link5="/utilizadores"
+      />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
@@ -136,4 +164,4 @@ function dashboardAdmin() {
   );
 }
 
-export default dashboardAdmin;
+export default DashboardAdmin;

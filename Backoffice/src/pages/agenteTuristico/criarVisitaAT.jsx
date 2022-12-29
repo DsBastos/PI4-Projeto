@@ -1,22 +1,19 @@
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-//import { api } from "../../../api";
-import { React, useState, useEffect } from "react";
+import { api } from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+
 
 function criarVisitaAT() {
-  // //Estados
-  // const [heroi, setHeroi] = useState("")
 
-  // useEffect(() => {
-  //   api.get('/website/list')
-  //     .then(({ data }) => {
-  //       const dados = data.data;
-  //       setHeroi(dados.ws_texto)
-  //     })
-  //     .catch((error) => {
-  //       alert(error)
-  //     })
-  // }, [])
+  app.post('/api/listitems', (req, res) => {
+    var postData = req.body;
+    connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
+      if (error) throw error;
+      res.end(JSON.stringify(results));
+    });
+  });
 
   return (
     <div className="d-flex">
@@ -37,14 +34,14 @@ function criarVisitaAT() {
         <div className="d-flex">
           <div className="col">
             <div className="container px-5 mt-5">
-              <h2 className="mt-5">Criar visita</h2>
+
               <div className="pt-4">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    className="card-img-top"
-                    src="..."
-                    alt="Card image cap"
-                  />
+                <div className="card" style={{ "width": "18rem" }}>
+                  <img className="card-img-top" src="..." alt="Card image cap"></img>
+                  <div className="card-body">
+                    <h5 className="card-title">Nome do ponto turístico</h5>
+                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
                 </div>
               </div>
               <form>
@@ -89,7 +86,7 @@ function criarVisitaAT() {
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark">Sobre o local</p>
+            <p className="text-dark">Sobre o ponto de interesse</p>
             <p> (inserir texto da bd aqui) </p>
           </div>
         </div>
