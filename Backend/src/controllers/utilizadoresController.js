@@ -23,6 +23,7 @@ controllers.getAllUtilizador = async (req, res, next) => {
         next(error)
     }
 };
+
 controllers.createUtilizador = async (req, res, next) => {
     const t = await sequelize.transaction();
     try {
@@ -57,10 +58,10 @@ controllers.getUtilizadorById = async (req, res, next) => {
 }
 
 controllers.updateUtilizador = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    //check if id is not a number
-    if (isNaN(id)) return createError.BadRequest("id is not a number");
+    try {
+        const { id } = req.params;
+        //check if id is not a number
+        if (isNaN(id)) return createError.BadRequest("id is not a number")
 
         const { nome, email, pwd, tipo, rt_id } = req.body;
         const data = await utilizador.update({
@@ -80,18 +81,18 @@ controllers.updateUtilizador = async (req, res, next) => {
 }
 
 controllers.deleteUtilizador = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    //check if id is not a number
-    if (isNaN(id)) return createError.BadRequest("id is not a number");
-    const del = await utilizador.destroy({
-      where: { u_id: id },
-    });
-    res.send({ success: true, deleted: del, message: "Deleted successful" });
-  } catch (error) {
-    next(error);
-  }
-};
+    try {
+        const { id } = req.params;
+        //check if id is not a number
+        if (isNaN(id)) return createError.BadRequest("id is not a number")
+        const del = await utilizador.destroy({
+            where: { u_id: id }
+        })
+        res.send({ success: true, deleted: del, message: "Deleted successful" });
+    } catch (error) {
+        next(error)
+    }
+}
 
 //Funções de count
 //Devia estar uma função apenas a retornar um count, mas assim vai facilitar-nos o trabalho no frontend
@@ -122,31 +123,8 @@ controllers.getCountDashboardAdmin = async (req, res, next) => {
         });
         const countVouchers = await vouchers.count({
 
-controllers.getCountDashboardRT = async (req, res, next) => {
-  try {
-    const countAT = await utilizador.count({
-      where: {
-        tu_id: 3,
-      },
-    });
-    const countPontoTuristico = await reservas.count({});
-    const countVisitas = await visitas.count({});
-    const countClientes = await clientes.count({});
-    const countVouchers = await vouchers.count({});
-    res.send({
-      success: true,
-      data: [
-        countAT,
-        countPontoTuristico,
-        countVisitas,
-        countClientes,
-        countVouchers,
-      ],
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+        });
+        const countClientes = await clientes.count({
 
         });
         res.send({ success: true, data: [countUtilizadores, countRT, countRegioesTuristicas, countAT, countPontoTuristico, countReservas, countVouchers, countClientes] });
