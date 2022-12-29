@@ -17,6 +17,8 @@ function recompensas() {
   const [pontos, setPontos] = useState("");
   const [pontoTuristico, setPontoTuristico] = useState([]);
   let [selectedPontoTuristico, setSelectedPontoTuristico] = useState(0);
+  let [selectedPontos, setSelectedPontos] = useState([]);
+
 
   useEffect(() => {
     api.get('/recompensa/list')
@@ -63,6 +65,7 @@ function recompensas() {
       })
   }, []);
 
+//CRIAR RECOMPENSA
   function criarRecompensa(){
     let valid = true;
     if (nome == "" || descricao == "" || pontos == "") {
@@ -98,13 +101,14 @@ function recompensas() {
     }
   }
 
+  //EDITAR PONTOS OBTIDOS NO PONTO TURÍSTICO
   function editPontoTuristico(pontoTuristico) {
     let newPontoTuristico = {
       ponto: ponto == "" ? pontoTuristico.ponto : ponto,
       tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
     }
     //console.log(newUser)
-    api.patch("/pontoturistico/updatepontoturistico/" + pt_id, newUser).then((data) => {
+    api.patch("/pontoturistico/updatepontoturistico/" + pt_id, newPontoTuristico).then((data) => {
       //console.log(data);
       if (data.status = "200") {
         toast.success('Ponto turístico alterado com sucesso', {
@@ -177,6 +181,7 @@ function recompensas() {
                     maxLength="200"
                     cols="3"
                     value={data.pontosAdquiridos}
+                    //onClick={setSelectedPontos(data.pt_id)}
                     onChange={(e) => setPontosAdquiridos(e.target.value)}
                   />
                 </td>
@@ -341,14 +346,13 @@ function recompensas() {
                       </tr>
                     </thead>
                     <tbody className="table-group-divider">
-
                       <LoadFillData />
                     </tbody>
                   </table>
                   <button
                     type="submit"
                     className="btn btn-success text-white mt-4 d-block ms-auto "
-                  >
+                    onClick={editPontoTuristico}>
                     Associar pontos
                   </button>
                 </form>

@@ -64,7 +64,7 @@ function LoadFillData() {
             <tr key={index}>
               <th>{utilizador.nome}</th>
               <td>{utilizador.email}</td>
-              <td>{pontosT?.find(pt=>pt.idUser==utilizador.id)?.nomePt}</td>
+              <td>{pontosT?.find(pt=>pt.idUser==utilizador.id)?.nomePt==null?'Não definido':pontosT?.find(pt=>pt.idUser==utilizador.id)?.nomePt}</td>
             </tr>
           );
         }

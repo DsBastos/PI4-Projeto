@@ -10,7 +10,7 @@ const pontoTuristicos = require('../models/pontoTuristicoModel');
 controllers.getAllVisita = async (req, res, next) => {
     try {
         const data = await visita.findAll({
-            include:[{model:pontoTuristicos, attributes:['pT_nome']}]
+            include:[{model:pontoTuristicos, attributes:['pt_nome']}]
 
         });
         res.send({ success: true, data: data });
