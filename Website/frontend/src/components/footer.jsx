@@ -10,30 +10,22 @@ export function Footer() {
             <div className="col mb-3">
               <a
                 href="/"
-                className="d-flex align-items-center mb-3 link-dark text-decoration-none"
-              >
+                className="d-flex align-items-center mb-3 link-dark text-decoration-none">
                 <img src={logo} alt="logo branco" />
               </a>
             </div>
-
             <div className="col mb-3"></div>
             <div className="col mb-3">
               <h5 className="text-white">Sobre</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-white">
-                    Home
-                  </a>
+                  <a href="#" className="nav-link p-0 text-white">Home</a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-white">
-                    Serviços
-                  </a>
+                  <a href="#" className="nav-link p-0 text-white">Serviços</a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-white">
-                    Atualizações
-                  </a>
+                  <a href="#" className="nav-link p-0 text-white">Atualizações</a>
                 </li>
               </ul>
             </div>
@@ -41,18 +33,10 @@ export function Footer() {
               <h5 className="text-white">Contatos</h5>
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-white">
-                    Telefone
-                    <br />
-                    <strong>20300403043</strong>
-                  </a>
+                  <a href="#" className="nav-link p-0 text-white">Telefone<br/><strong>20300403043</strong></a>
                 </li>
                 <li className="nav-item mb-2">
-                  <a href="#" className="nav-link p-0 text-white">
-                    E-mail
-                    <br />
-                    <strong> email@email.com </strong>
-                  </a>
+                  <a href="#" className="nav-link p-0 text-white">E-mail<br/><strong> email@email.com </strong></a>
                 </li>
               </ul>
             </div>
@@ -75,3 +59,4 @@ export function Footer() {
     </div>
   );
 }
+

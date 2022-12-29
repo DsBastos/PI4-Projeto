@@ -5,29 +5,82 @@ import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtiliza
 import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 
-function utilizadoresAdmin() {
+function LoadFillData() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [modalEditarUtilizadorShow, setModalEditarUtilizadorShow] = React.useState(false);
+  const [selectedUtilizador, setSelectedUtilizador] = useState(null);
+  const [utilizador, setUtilizador] = useState([]);
+  const [modalConfirmacaoShow, setConfirmacaoShow] = React.useState(false);
 
   useEffect(() => {
     api.get('/utilizadores/list')
-    .then(({data}) => {
-      const dados = data.data;
-      var newUtilizador = [];
+      .then(({ data }) => {
+        const dados = data.data;
+        var newUtilizador = [];
         dados.map((UtilizadorAux) => {
-            newUtilizador.push({
-              nome: UtilizadorAux.u_nome,
-              email: UtilizadorAux.u_email,
-              cargo: UtilizadorAux.tipoutilizador.tu_tipo,
-            })
-        })   
-      setUtilizador(newUtilizador);
-    })
-    .catch((error) => {
-      alert(error)
-    })
-  }, [])
+          newUtilizador.push({
+            id: UtilizadorAux.u_id,
+            nome: UtilizadorAux.u_nome,
+            email: UtilizadorAux.u_email,
+            cargo: UtilizadorAux.tipoutilizador.tu_tipo,
+          })
+        })
+        setUtilizador(newUtilizador);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
 
+  return (
+    <>
+      {utilizador.map((data, index) => {
+        return (
+          <>
+            <tr key={index}>
+              <td scope="row">{data.nome}</td>
+              <td>{data.email}</td>
+              <td>{data.cargo}</td>
+              <td>
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setModalEditarUtilizadorShow(true);
+                  }}>
+                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
+                    <img src="../../assets/icon-penfill.svg"></img>
+                  </button>
+                </span>
+
+                <span
+                  id={data.u_id}
+                  className="material-symbols-outlined"
+                  onClick={() => {
+                    setSelectedUtilizador(data);
+                    setModalConfirmacaoShow(true);
+                  }}>
+                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                </span>
+              </td>
+            </tr>
+            <ModalEditarUtilizadores
+              show={modalEditarUtilizadorShow}
+              onHide={() => setModalEditarUtilizadorShow(false)}
+              props={selectedUtilizador}
+            />
+          </>
+        );
+      })}
+    </>
+  );
+}
+
+function utilizadoresAdmin() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -49,13 +102,12 @@ function utilizadoresAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 p-3">
-          <h2 className="mt-5">Utilizadores</h2>
-          <button type="button" className="btn btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
-            <ModalCriarUtilizadores />
+        <div className="container px-5 p-3 mt-5">
+          <h2 className="mt-5 d-inline">Utilizadores</h2>
+          <button type="button" className="btn btn-primary d-inline float-end" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
             <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
           </button>
-          <table className="table table-striped">
+          <table className="table table-striped mt-5">
             <thead>
               <tr>
                 <th scope="col">Nome completo</th>
@@ -65,19 +117,12 @@ function utilizadoresAdmin() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
-                      <img src="../../assets/icon-penfill.svg" alt="" /><ModalEditarUtilizadores />
-                    </button>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg" alt="" /></button>
-                </td>
-              </tr>
+              <LoadFillData />
             </tbody>
           </table>
         </div>
+        <ModalCriarUtilizadores />
+
       </main>
     </div>
   );

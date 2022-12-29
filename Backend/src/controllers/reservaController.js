@@ -1,14 +1,30 @@
 var reserva = require('../models/reservaModel');
-
+const clientes = require('../models/clienteModel');
+const visita = require('../models/VisitaModel');
+const pontoTuristico = require('../models/pontoTuristicoModel') 
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const createError = require('http-errors')
+const createError = require('http-errors');
 
 controllers.getAllReserva = async (req, res, next) => {
     try {
-        const data = await reserva.findAll();
+        /*const data = await reserva.findAll({
+            include:[{ all: true, nested: true }]
+        });*/
+        
+        const data = await reserva.findAll({
+            include: [{
+              model: visita,
+              include: [{
+                model: pontoTuristico
+              }]
+            },{
+                model: clientes,
+            }]
+          })
+
         res.send({ success: true, data: data });
     } catch (error) {
         next(error)
@@ -50,12 +66,9 @@ controllers.updateReserva = async (req, res, next) => {
         const { id } = req.params;
         //check if id is not a number
         if (isNaN(id)) return createError.BadRequest("id is not a number")
-
-        const {npessoas,dataReserva,estado} = req.body;
+        const {aceite} = req.body;
         const data = await reserva.update({
-            rs_nPessoas: npessoas,
-            rs_data: dataReserva,
-            rs_estado: estado,
+            r_aceite: aceite,
         },
             {
                 where: { rs_id: id }

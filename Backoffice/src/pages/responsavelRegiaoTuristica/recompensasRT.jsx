@@ -4,8 +4,196 @@ import { Menu } from "../../components/Menu";
 import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/ModalVouchers";
 
 function recompensas() {
+
+  const [nome, setNome] = useState("");
+  const [imagem, setImagem] = useState("");
+  const [local, setLocal] = useState("");
+  const [ponto, setPonto] = useState("");
+  const [recompensa, setRecompensa] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [pontos, setPontos] = useState("");
+  const [pontoTuristico, setPontoTuristico] = useState([]);
+  let [selectedPontoTuristico, setSelectedPontoTuristico] = useState(0);
+  let [selectedPontos, setSelectedPontos] = useState([]);
+
+
+  useEffect(() => {
+    api.get('/recompensa/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newRecompensa = [];
+        dados.map((RecompensaAux) => {
+          newRecompensa.push({
+            nome: RecompensaAux.r_nome,
+            pontos: RecompensaAux.r_pontos,
+          })
+        })
+        setRecompensa(newRecompensa);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+
+      api.get('/pontoturistico/list')
+      .then(({ data }) => {
+        const dados = data.data;
+        var newPontoTuristico = [];
+        dados.map((PontoTuristicoAux) => {
+          newPontoTuristico.push({
+            id: PontoTuristicoAux.pt_id,
+            nomePT: PontoTuristicoAux.pt_nome,
+            regiao: PontoTuristicoAux.pt_regiao,
+            dificuldade: PontoTuristicoAux.pt_dificuldade,
+            duracao: PontoTuristicoAux.pt_duracao,
+            terreno: PontoTuristicoAux.pt_terreno,
+            tamanho: PontoTuristicoAux.pt_tamanho,
+            descricao: PontoTuristicoAux.pt_descricao,
+            horario: PontoTuristicoAux.pt_horario,
+            coordenadas: PontoTuristicoAux.pt_coordenadas,
+            link: PontoTuristicoAux.pt_link,
+            pontosAdquiridos: PontoTuristicoAux.pt_pontosadquiridos,
+          })
+        })
+
+        setPontoTuristico(newPontoTuristico);
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, []);
+
+//CRIAR RECOMPENSA
+  function criarRecompensa(){
+    let valid = true;
+    if (nome == "" || descricao == "" || pontos == "") {
+      valid = false;
+    }
+    console.log(valid);
+    if (valid) {
+      let newRecompensa = {
+        nome: nome,
+        descricao: descricao,
+        imagem: imagem,
+        pontos: pontos,
+        pt_id: selectedPontoTuristico,
+      };
+      try {
+        api.post("recompensa/create/", newRecompensa).then((data) => {
+          console.log(data);
+          if (data.status == "200") {
+            toast.success("Recompensa criada com sucesso", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  //EDITAR PONTOS OBTIDOS NO PONTO TURÍSTICO
+  function editPontoTuristico(pontoTuristico) {
+    let newPontoTuristico = {
+      ponto: ponto == "" ? pontoTuristico.ponto : ponto,
+      tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
+    }
+    //console.log(newUser)
+    api.patch("/pontoturistico/updatepontoturistico/" + pt_id, newPontoTuristico).then((data) => {
+      //console.log(data);
+      if (data.status = "200") {
+        toast.success('Ponto turístico alterado com sucesso', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        sendError("Ocorreu um erro ao tentar alterar o ponto turístico")
+        //console.log("asd");
+      }
+    })
+      .catch((error) => {
+        //console.log(error);
+        alert(error);
+      });
+  }
+
+  function LoadFillData() {
+
+    // useEffect(() => {
+    //   api.get('/pontoturistico/list')
+    //     .then(({ data }) => {
+    //       const dados = data.data;
+    //       var newPontoTuristico = [];
+    //       dados.map((PontoTuristicoAux) => {
+    //         newPontoTuristico.push({
+    //           id: PontoTuristicoAux.pt_id,
+    //           nomePT: PontoTuristicoAux.pt_nome,
+    //           regiao: PontoTuristicoAux.pt_regiao,
+    //           dificuldade: PontoTuristicoAux.pt_dificuldade,
+    //           duracao: PontoTuristicoAux.pt_duracao,
+    //           terreno: PontoTuristicoAux.pt_terreno,
+    //           tamanho: PontoTuristicoAux.pt_tamanho,
+    //           descricao: PontoTuristicoAux.pt_descricao,
+    //           horario: PontoTuristicoAux.pt_horario,
+    //           coordenadas: PontoTuristicoAux.pt_coordenadas,
+    //           link: PontoTuristicoAux.pt_link,
+    //           pontosAdquiridos: PontoTuristicoAux.pt_pontosadquiridos,
+    //         })
+    //       })
+
+    //       setPontoTuristico(newPontoTuristico);
+    //     })
+    //     .catch((error) => {
+    //       alert(error)
+    //     })
+    // }, [])
+
+    return (
+      <>
+        {pontoTuristico.map((data, index) => {
+          // if(o ponto turistico tem de pertencer a regiao do responsável que estiver logado)
+          // {
+          //console.log(data)
+          return (
+            <>
+              <tr>
+                <td className="fw-bold">{data?.nomePT}</td>
+                <td className="fw-bold">{data.regiao}</td>
+                <td className="">
+                  <textarea
+                    className="form-control mx-auto w-25 my-md-3"
+                    id="exampleFormControlTextarea1"
+                    rows="2"
+                    maxLength="200"
+                    cols="3"
+                    value={data.pontosAdquiridos}
+                    //onClick={setSelectedPontos(data.pt_id)}
+                    onChange={(e) => setPontosAdquiridos(e.target.value)}
+                  />
+                </td>
+              </tr>
+            </>
+          );
+          // }
+        })}
+      </>
+    )
+  }
+
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
@@ -16,133 +204,127 @@ function recompensas() {
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
-        nome3="Pontos de interesse"
+        nome3="Pontos turísticos"
         icon3="./assets/icon-filetext.svg"
         link3="/pontosDeInteresse"
         nome4="Recompensas"
-        icon4="./assets/icon-filetext.svg"
-      />
-      <main className="w-100">
+        icon4="./assets/icon-filetext.svg" />
+        
+        <main className="w-100">
         <Topnav role="Responsável da região turística" nome="ROBERTO" />
         <div className="container px-5 my-5">
-            <h2 className="mt-5 d-inline">Recompensas</h2>
-            <button type="button" className="btn btn-success d-inline ms-auto">Consultar lista de reservas</button>
-          <div className="col">
+          <h2 className="mt-5 d-inline">Recompensas</h2>
+          <button type="button" className="btn btn-success d-inline float-end" data-bs-toggle="modal" data-bs-target="#ModalVouchers">Consultar recompensas emitidas</button>
+          <div className="col mt-3">
             <div className="card">
               <div className="card-body p-5">
-                <h5 className="card-title h4 fw-bold">Criar Voucher</h5>
+                <h5 className="card-title h4 fw-bold">Criar recompensa</h5>
                 <form>
-                  <div className="container">
-                    <div className="g-3 align-items-center">
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Nome</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Local</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Ponto de Interesse</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="passwordHelpInline" />
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Data aquisição</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">00/00/00</label>
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">Data limite</label>
-                      </div>
-                      <div className="col-auto">
-                        <label htmlFor="text" className="col-form-label">00/00/00</label>
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="inputPassword6" className="col-form-label">Custo</label>
-                      </div>
-                      <div className="col-3">
-                        <input type="text" id="inputPassword6" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
-
-                      <div className="col-auto">
-                        <label htmlFor="inputPassword6" className="col-form-label">Descrição</label>
-                      </div>
-                      <div className="col-5">
-                        <textarea type="text" id="textoareavou" className="form-control" aria-describedby="textHelpInline" />
-                      </div>
+                  <div className="form-group row mt-2">
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                      Nome
+                    </label>
+                    <div className="col-lg-3">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Insira Nome da recompensa"
+                        id="nomeRecompensa"
+                        value={nome}
+                        onChange={(e) => {
+                          setNome(e.target.value);
+                        }}
+                      />
                     </div>
+
                   </div>
-                  <div class="form-group row mt-2">
-                    <label for="localRecompensa" class="col-2 col-form-label">
+                  <div className="form-group row mt-2">
+                    <label className="col-2 col-form-label">
                       Local
                     </label>
-                    <div class="col-lg-3">
+                    <div className="col-lg-3">
                       <input
-                        class="form-control"
-                        type="text"
+                        className="form-control"
                         placeholder="Insira a região do local"
                         id="localRecompensa"
+                        value={local}
+                        onChange={(e) => {
+                          setLocal(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
-                  <div class="form-group row mt-2">
-                    <label for="pontoTuristico" class="col-2 col-form-label">
+                  <div className="form-group row mt-2">
+                    <label className="col-2 col-form-label">
                       Ponto turístico
                     </label>
-                    <div class="col-lg-3">
+                    <div className="col-lg-3">
+                      <select onChange={e => setSelectedPontoTuristico(e.target.value)}>
+                        <option value="0">Selecione o ponto turístico</option>
+                        {pontoTuristico.map((data, index) => {
+                          return (
+                            <>
+                              <option value={data.id} >{data.nomePT}</option>
+                            </>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="form-group row mt-2">
+                    <label className="col-2 col-form-label">
+                      Preço em pontos
+                    </label>
+                    <div className="col-lg-3">
                       <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Insira o local do ponto turístico"
-                        id="pontoTuristico"
+                        className="form-control"
+                        placeholder="Insira o valor em pontos"
+                        id="precoRecompensa"
+                        value={pontos}
+                        onChange={(e) => {
+                          setPontos(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
-                  <div class="form-group row mt-2">
-                    <label for="descricao" class="col-2 col-form-label">
+                  <div className="form-group row mt-2">
+                    <label className="col-2 col-form-label">
                       Descrição
                     </label>
-                    <div class="col-lg-8">
+                    <div className="col-lg-8">
                       <textarea
-                        class="form-control"
-                        type="text"
+                        className="form-control"
                         placeholder="Insira uma descrição para a recompensa"
                         id="descricao"
                         rows="6"
-                        maxlength="1024"
+                        maxLength="1024"
+                        value={descricao}
+                        onChange={(e) => {
+                          setDescricao(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
-                  <div class="form-group row mt-2">
-                    <label for="custoRecompensa" class="col-2 col-form-label">
-                      Custo
+                  <div className="form-group row mt-2">
+                    <label htmlFor="localRecompensa" className="col-2 col-form-label">
+                      Imagem
                     </label>
-                    <div class="col-lg-3">
+                    <div className="col-lg-3">
                       <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Insira o valor em pontos"
-                        id="custoRecompensa"
+                        className="form-control"
+                        type="file"
+                        id="imagemRecompensa"
+                        value={imagem}
+                        onChange={(e) => {
+                          setImagem(e.target.value);
+                        }}
                       />
                     </div>
                   </div>
                   <button
-                    type="submit"
                     className="btn btn-success text-white mt-4 d-block ms-auto "
-                  >
-                    Criar voucher
+                    onClick={criarRecompensa}>
+                    Criar recompensa
                   </button>
                 </form>
               </div>
@@ -155,16 +337,7 @@ function recompensas() {
                   Associar pontos recebidos ao ponto turístico
                 </h5>
                 <form>
-                  <select
-                    class="form-select col-3 my-4"
-                    aria-label=".form-select example"
-                  >
-                    <option selected>Distrito</option>
-                    <option value="1">Viseu</option>
-                    <option value="2">Aveiro</option>
-                    <option value="3">Three</option>
-                  </select>
-                  <table class="table table-striped table-group-divider text-center align-middle">
+                  <table className="table table-striped table-group-divider text-center align-middle mt-5">
                     <thead>
                       <tr>
                         <th scope="col">Pontos de interesse</th>
@@ -173,115 +346,21 @@ function recompensas() {
                       </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td className="">
-                          <textarea
-                            class="form-control mx-auto w-25 my-md-3"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxlength="200"
-                            cols="3"
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td>
-                          <textarea
-                            class="form-control mx-auto w-25 my-md-3 align-content-center"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxlength="200"
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="fw-bold">sé de viseu</td>
-                        <td className="fw-bold">viseu</td>
-                        <td>
-                          <textarea
-                            class="form-control mx-auto w-25 my-md-3 align-content-center"
-                            id="exampleFormControlTextarea1"
-                            rows="2"
-                            maxlength="200"
-                          />
-                        </td>
-                      </tr>
+                      <LoadFillData />
                     </tbody>
                   </table>
                   <button
                     type="submit"
                     className="btn btn-success text-white mt-4 d-block ms-auto "
-                  >
+                    onClick={editPontoTuristico}>
                     Associar pontos
                   </button>
                 </form>
               </div>
             </div>
           </div>
-          <div className="col">
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="px-5 py-3">
-                        <h5 className="card-title h4 fw-bold">
-                        Associar pontos recebidos ao ponto de interesse
-                        </h5>
-                        <table className="table table-striped table-group-divider text-center align-middle ">
-                          <thead>
-                            <tr>
-                              <th scope="col">Pontos de interesse</th>
-                              <th scope="col">Distrito</th>
-                              <th scope="col">pontos</th>
-                            </tr>
-                          </thead>
-                          <tbody className="table-group-divider">
-                            <tr>
-                              <td className="fw-bold">sé de viseu</td>
-                              <td className="fw-bold">viseu</td>
-                              <td className="">
-                                <textarea
-                                  className="form-control mx-auto w-25 my-md-3"
-                                  id="exampleFormControlTextarea1"
-                                  rows="2"
-                                  maxlength="200"
-                                  cols="3"
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="fw-bold">sé de viseu</td>
-                              <td className="fw-bold">viseu</td>
-                              <td>
-                                <textarea
-                                  className="form-control mx-auto w-25 my-md-3 align-content-center"
-                                  id="exampleFormControlTextarea1"
-                                  rows="2"
-                                  maxlength="200"
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="fw-bold">sé de viseu</td>
-                              <td className="fw-bold">viseu</td>
-                              <td>
-                                <textarea
-                                  className="form-control mx-auto w-25 my-md-3 align-content-center"
-                                  id="exampleFormControlTextarea1"
-                                  rows="2"
-                                  maxlength="200"
-                                />
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
         </div>
+        <ModalVouchers />
       </main>
     </div>
   );

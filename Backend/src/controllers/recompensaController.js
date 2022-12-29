@@ -1,5 +1,6 @@
 var recompensa = require('../models/recompensaModel');
-
+var pontoTuristico = require('../models/pontoTuristicoModel');
+var regioesTuristicas = require('../models/regiaoTuristicaModel');
 const controllers = {};
 var sequelize = require("../models/database");
 const Sequelize = require("sequelize");
@@ -8,28 +9,34 @@ const createError = require('http-errors')
 
 controllers.getAllRecompensa = async (req, res, next) => {
     try {
-        const data = await recompensa.findAll();
+        const data = await recompensa.findAll({
+            include:[{model:pontoTuristico, attributes:['pt_nome','pt_regiao']}]
+        });
         res.send({ success: true, data: data });
     } catch (error) {
+        console.log(error);
         next(error)
     }
 };
 
 controllers.createRecompensa = async (req, res, next) => {
+    console.log(req.body);
     const t = await sequelize.transaction();
     try {
-        const recompensa = await recompensa.create(
+        const recompensaa = await recompensa.create(
             {
-                nome: req.body.r_nome,
-                descricao: req.body.r_descricao,
-                imagem: req.body.r_imagem,
-                duracao: req.body.r_duracao,
+                r_nome: req.body.nome,
+                r_descricao: req.body.descricao,
+                r_imagem: req.body.imagem,
+                r_pontos: req.body.pontos,
+                pT_id: req.body.pt_id,
             },
             { transaction: t }
         );
         await t.commit();
-        res.send({ success: true, data: recompensa });
+        res.send({ success: true, data: recompensaa });
     } catch (e) {
+        console.error(e);
         await t.rollback();
         next(e);
     }

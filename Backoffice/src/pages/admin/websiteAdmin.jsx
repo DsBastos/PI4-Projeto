@@ -31,11 +31,17 @@ function websiteAdmin() {
 
   function SendUpdate() {
     const datawebsitepost = {
-      estado: estado == "" ? pedido.estado : estado,
-      data: data == "" ? pedido.data : data,
+      heroi: heroi,
+      descarregar: descarregar,
+      objetivo: objetivo,
+      pontosT: pontosT,
+      voucher: voucher,
+      reservas: reservas,
+      qr: qr,
+      atualizacoes: atualizacoes
     };
 
-    api.put("/website/updatewebsite/" + website.ws_id, datapedidospost).then((data) => {
+    api.patch("/website/updatewebsite", datawebsitepost).then((data) => {
       if (data.status = "200") {
         toast.success('Website alterado com sucesso', {
           position: "top-center",
@@ -59,14 +65,14 @@ function websiteAdmin() {
     api.get('/website/list')
       .then(({ data }) => {
         const dados = data.data;
-        setHeroi(dados[0].ws_texto)
-        setDescarregar(dados[1].ws_texto)
-        setObjetivo(dados[2].ws_texto)
-        setPontosT(dados[3].ws_texto)
-        setVoucher(dados[4].ws_texto)
-        setReservas(dados[5].ws_texto)
-        setQr(dados[6].ws_texto)
-        setAtualizacoes(dados[7].ws_texto)
+        setHeroi(dados[0])
+        setDescarregar(dados[1])
+        setObjetivo(dados[2])
+        setPontosT(dados[3])
+        setVoucher(dados[4])
+        setReservas(dados[5])
+        setQr(dados[6])
+        setAtualizacoes(dados[7])
       })
       .catch((error) => {
         alert(error)
@@ -93,7 +99,7 @@ function websiteAdmin() {
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
-        <div className="container px-5 mb-5">
+        <div className="container px-5">
           <h2 className="mt-5">Editar conteúdos do website</h2>
           <div className="col col-md-10">
             <form className="d-inline-flex flex-column">
@@ -101,7 +107,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-5">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção herói
@@ -111,11 +116,12 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={heroi.ws_texto}
+                      onChange={(e) => { setHeroi(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold mt-md-3"
                     >
                       Texto da secção “Nosso Objetivo”
@@ -125,13 +131,14 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={objetivo.ws_texto}
+                      onChange={(e) => { setObjetivo(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-5">
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto da secção para descarregar aplicação
@@ -141,6 +148,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={descarregar.ws_texto}
+                      onChange={(e) => { setDescarregar(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -148,7 +157,6 @@ function websiteAdmin() {
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Pontos Turísticos”
@@ -158,11 +166,12 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={pontosT.ws_texto}
+                      onChange={(e) => { setPontosT(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Reservas”
@@ -172,13 +181,14 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={reservas.ws_texto}
+                      onChange={(e) => { setReservas(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “Voucher”
@@ -188,11 +198,12 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={voucher.ws_texto}
+                      onChange={(e) => { setVoucher(e.target.value)}}
                     ></textarea>
                   </div>
                   <div className="mb-3">
                     <label
-                      htmlFor="exampleFormControlTextarea1"
                       className="form-label h4 fw-bold"
                     >
                       Texto do cartão “QRCode”
@@ -202,6 +213,8 @@ function websiteAdmin() {
                       id="exampleFormControlTextarea1"
                       rows="5"
                       maxLength="200"
+                      value={qr.ws_texto}
+                      onChange={(e) => { setQr(e.target.value)}}
                     ></textarea>
                   </div>
                 </div>
@@ -230,6 +243,8 @@ function websiteAdmin() {
                                   rows="4"
                                   maxLength="200"
                                   cols="3"
+                                  value={atualizacoes.ws_texto}
+                                  onChange={(e) => { setAtualizacoes(e.target.value)}}
                                 />
                               </td>
                             </tr>
@@ -264,7 +279,7 @@ function websiteAdmin() {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary px-5 text-white d-block ms-auto mt-4" onClick={SendUpdate}>Guardar</button>
+                className="btn btn-primary px-5 text-white d-block ms-auto mt-4 mb-4" onClick={SendUpdate}>Guardar</button>
             </form>
           </div>
         </div>

@@ -7,13 +7,44 @@ import { toast } from 'react-toastify';
 
 function criarVisitaAT() {
 
-  app.post('/api/listitems', (req, res) => {
-    var postData = req.body;
-    connection.query('INSERT INTO list_items SET ?', postData, (error, results, fields) => {
-      if (error) throw error;
-      res.end(JSON.stringify(results));
-    });
-  });
+  const [data, setData] = useState("");
+  const [hora, setHora] = useState("");
+  const [vagas, setVagas] = useState("");
+
+  const criarVisita = () => {
+    let valid = true;
+    if (data == "" || hora == "" || vagas == "" ) {
+      valid = false;
+      sendError("Os campos não podem estar vazios");
+    }
+    if (valid) {
+      let newVisita = {
+        data: data,
+        horas: hora,
+        vagas: vagas,
+        //pt_id: IDPONTOTURISTICO,
+      };
+      console.log(newVisita)
+      api.post("visita/create", newVisita).then(res => {
+        if (res.data.sucess) {
+          toast.success("Visita criada com sucesso", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          console.log(res.data)
+        } else {
+          sendError("Erro ao criar visita");
+        }
+      }).catch(err => {
+        alert("ERRO: " + err);
+      })
+    }
+  };
 
   return (
     <div className="d-flex">
@@ -44,15 +75,19 @@ function criarVisitaAT() {
                   </div>
                 </div>
               </div>
-              <form>
+              <form onSubmit={criarVisita}>
                 <div className="form-group row mt-5">
                   <label className="col-1 col-form-label">Data</label>
                   <div className="col-4">
                     <input
                       type="date"
                       className="form-control"
-                      id="staticEmail"
-                    />
+                      id="staticData"
+                      value={data}
+                      onChange={(e) => {
+                        setData(e.target.value);
+                      }}
+                    ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
@@ -63,30 +98,41 @@ function criarVisitaAT() {
                       className="form-control"
                       id="inputHoras"
                       placeholder="Horas"
+                      value={hora}
+                      onChange={(e) => {
+                        setHora(e.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
                 <div className="form-group row pt-4">
                   <label className="col-1 col-form-label">Vagas</label>
                   <div className="col-4">
-                    <input
-                      type="number"
+                    <input type="number"
                       className="form-control"
                       id="inputVagas"
                       placeholder="Número de vagas"
+                      value={vagas}
+                      onChange={(e) => {
+                        setVagas(e.target.value);
+                      }}
                     ></input>
                   </div>
                 </div>
               </form>
               <div className="pt-4">
-                <button type="button" className="btn btn-success">
+                <button
+                  type="submit"
+                  className="btn btn-success"
+                  onClick={criarVisita}
+                >
                   Confirmar
                 </button>
               </div>
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark">Sobre o ponto de interesse</p>
+            <p className="text-dark">Sobre o ponto turístico</p>
             <p> (inserir texto da bd aqui) </p>
           </div>
         </div>

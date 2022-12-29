@@ -31,31 +31,32 @@ app.use("/", express.static(path.join(__dirname, "../public")));
 const autenticacaoRoute = require("./routes/authRoute.js");
 const refreshRoute = require("./routes/refreshRoute.js");
 
-const clienteRoute = require("./routes/clienteRoute.js");
-const pontoTuristicoRoute = require("./routes/pontoTuristicoRoute.js");
-const recompensaRoute = require("./routes/recompensaRoute.js");
-const regiaoTuristicaRoute = require("./routes/regiaoTuristicaRoute.js");
-const reservaRoute = require("./routes/reservaRoute.js");
-
-const tipologiaRoute = require("./routes/tipologiaRoute.js");
-const visitaRoute = require("./routes/visitaRoute.js");
-const voucherRoute = require("./routes/voucherRoute.js");
-const websiteRoute = require("./routes/websiteRoute.js");
-const utilizadoresRoute = require("./routes/utilizadoresRoute.js");
+const clienteRoute = require('./routes/clienteRoute.js')
+const pontoTuristicoRoute = require('./routes/pontoTuristicoRoute.js')
+const recompensaRoute = require('./routes/recompensaRoute.js')
+const regiaoTuristicaRoute = require('./routes/regiaoTuristicaRoute.js')
+const reservaRoute = require('./routes/reservaRoute.js')
+const tipoutilizadoresRoute = require('./routes/tipoUtilizadorRoute.js')
+const tipologiaRoute = require('./routes/tipologiaRoute.js')
+const visitaRoute = require('./routes/visitaRoute.js')
+const voucherRoute = require('./routes/voucherRoute.js')
+const websiteRoute = require('./routes/websiteRoute.js');
+const utilizadoresRoute = require('./routes/utilizadoresRoute.js');
 
 app.use("/auth", autenticacaoRoute);
 app.use("/refresh", refreshRoute);
 app.use(verifyJWT);
-app.use("/utilizadores", utilizadoresRoute);
-app.use("/cliente", clienteRoute);
-app.use("/pontoTuristico", pontoTuristicoRoute);
-app.use("/recompensa", recompensaRoute);
-app.use("/regiaoTuristica", regiaoTuristicaRoute);
-app.use("/reserva", reservaRoute);
-app.use("/tipologia", tipologiaRoute);
-app.use("/visita", visitaRoute);
-app.use("/voucher", voucherRoute);
-app.use("/website", websiteRoute);
+app.use('/utilizadores',utilizadoresRoute)
+app.use('/tipoutilizadores',tipoutilizadoresRoute)
+app.use('/cliente', clienteRoute)
+app.use('/pontoturistico', pontoTuristicoRoute)
+app.use('/recompensa', recompensaRoute)
+app.use('/regiaoturistica', regiaoTuristicaRoute)
+app.use('/reserva', reservaRoute)
+app.use('/tipologia', tipologiaRoute);
+app.use('/visita', visitaRoute)
+app.use('/voucher', voucherRoute)
+app.use('/website', websiteRoute);
 
 app.all("*", (req, res, next) => {
   res.status(404);

@@ -5,7 +5,7 @@ const utilizadoresController =require('../controllers/utilizadoresController')
 router.get('/list', utilizadoresController.getAllUtilizador);
 router.get('/getutilizador/:id', utilizadoresController.getUtilizadorById);
 router.post('/create', utilizadoresController.createUtilizador);
-router.put('/updateutilizador/:id', utilizadoresController.updateUtilizador);
+router.patch('/updateutilizador/:id', utilizadoresController.updateUtilizador);
 router.delete('/deleteutilizador/:id', utilizadoresController.deleteUtilizador);
 router.get('/countdashboardadmin', utilizadoresController.getCountDashboardAdmin)
 router.get('/countdashboardrt', utilizadoresController.getCountDashboardRT)
