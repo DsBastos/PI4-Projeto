@@ -45,6 +45,8 @@ const utilizadoresRoute = require('./routes/utilizadoresRoute.js');
 
 app.use("/auth", autenticacaoRoute);
 app.use("/refresh", refreshRoute);
+app.use('/website', websiteRoute);
+
 app.use(verifyJWT);
 app.use('/utilizadores',utilizadoresRoute)
 app.use('/tipoutilizadores',tipoutilizadoresRoute)
@@ -56,7 +58,6 @@ app.use('/reserva', reservaRoute)
 app.use('/tipologia', tipologiaRoute);
 app.use('/visita', visitaRoute)
 app.use('/voucher', voucherRoute)
-app.use('/website', websiteRoute);
 
 app.all("*", (req, res, next) => {
   res.status(404);
