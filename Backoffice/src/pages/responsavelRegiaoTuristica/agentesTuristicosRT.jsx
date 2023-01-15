@@ -2,9 +2,11 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
 import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-import { api } from "../../../api";
+import api  from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import useApiPrivate from "../../hooks/useApiPrivate";
+
 //import { ModalEditarAgenteTuristico } from "../../components/responsavelRegiaoTuristica/ModalEditarAgenteTuristico";
 
 function LoadFillData() {
@@ -17,8 +19,10 @@ function LoadFillData() {
   const [pontosT, setPontosT] = useState([]);
   const [modalConfirmacaoShow, setConfirmacaoShow] = useState(false);
 
+  const apiPrivate = useApiPrivate();
+
   useEffect(() => {
-    api.get('/utilizadores/list')
+    apiPrivate.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];
@@ -37,7 +41,7 @@ function LoadFillData() {
         alert(error)
       })
 
-      api.get('/pontoturistico/list')
+      apiPrivate.get('/pontoturistico/list')
       .then(({ data }) => {
         const dados = data.data;
         console.log(dados)

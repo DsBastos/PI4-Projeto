@@ -1,17 +1,20 @@
 import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
-import { api } from "../../../api";
+import api  from "../../../api";
 import {React, useState, useEffect } from "react";
+import useApiPrivate from "../../hooks/useApiPrivate";
+
 // import { toast } from 'react-toastify';
 
 import icongroup from "../../assets/icongroup.svg";
 
 function DashboardAdmin() {
   const [infoAdmin, setInfoAdmin] = useState([]);
+  const apiPrivate = useApiPrivate();
 
   useEffect(() => {
-    api
+    apiPrivate
       .get("utilizadores/countdashboardadmin")
       .then(({ data }) => {
         let aux = data.data;
@@ -44,6 +47,7 @@ function DashboardAdmin() {
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5">
+          <button onClick={() => refresh()}>Refresh</button>
           <h2 className="mt-4">Dashboard</h2>
           <div className="col col-md-10">
             <div className="d-flex flex-wrap mt-3">

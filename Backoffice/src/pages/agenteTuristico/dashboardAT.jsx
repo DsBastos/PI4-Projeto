@@ -3,16 +3,17 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { motion as m } from "framer-motion";
 import icongroup from "../../assets/icongroup.svg";
-import { api } from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import useApiPrivate from "../../hooks/useApiPrivate";
 
 function dashboardAT() {
 
     const [infoAT, setInfoAT] = useState([])
-  
+    const apiPrivate = useApiPrivate();
+
     useEffect(() => {
-      api.get('utilizadores/countdashboardat')
+      apiPrivate.get('utilizadores/countdashboardat')
         .then(({ data }) => {
           let aux=data.data;
           setInfoAT(aux);

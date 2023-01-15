@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import logo from "../assets/mygreenpointlogo.png";
 
-import { api } from "../../api";
+import api from "../../api";
 const LOGIN_URL = "/auth";
 
 function Login() {
@@ -12,7 +12,7 @@ function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/dashboard2";
 
   const userRef = useRef();
   const errRef = useRef();
@@ -44,9 +44,11 @@ function Login() {
         }
       );
 
-      console.log(JSON.stringify(response?.data));
+      console.log(JSON.stringify(response?.data), "cheguei aqui");
       const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.tu_id;
+      console.log(accessToken, "cheguei aqui com o token")
+      const roles = response?.data?.role;
+      console.log(roles, "cheguei aqui com a info da role");
       setAuth({ email, pwd, roles, accessToken });
       setEmail('');
       setPwd('');

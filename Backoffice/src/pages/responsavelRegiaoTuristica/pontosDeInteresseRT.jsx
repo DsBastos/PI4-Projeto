@@ -4,7 +4,7 @@ import { Menu } from "../../components/Menu";
 import { ModalEditarPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalEditarPontoInteresse"
 import { ModalPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalPontoInteresse";
 import { ModalReservaPontoInteresse } from "../../components/responsavelRegiaoTuristica/ModalReservaPontoInteresse";
-import { api } from "../../../api";
+import api from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 

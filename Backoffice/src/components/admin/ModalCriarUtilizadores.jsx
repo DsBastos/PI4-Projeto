@@ -1,4 +1,4 @@
-import { api } from "../../../api";
+import api from "../../../api";
 import React, { useState, useEffect } from "react"
 import 'react-dropdown/style.css';
 import { toast } from 'react-toastify';

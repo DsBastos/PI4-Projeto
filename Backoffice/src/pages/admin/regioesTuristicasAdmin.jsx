@@ -2,7 +2,7 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { Cartaodistrito } from "../../components/admin/Cartaodistrito";
-import { api } from "../../../api";
+import api  from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 

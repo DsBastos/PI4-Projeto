@@ -5,8 +5,14 @@ const RequireAuth = ({ allowedRoles }) => {
   const { auth } = useAuth();
   const location = useLocation();
 
-  return auth?.email? (
+  function checkRole() {
+    return allowedRoles.includes(auth?.roles);
+  }
+
+  return checkRole() ? (
     <Outlet />
+  ) : auth?.email ? (
+    <Navigate to="/unauthorized" state={{ from: location }} replace />
   ) : (
     <Navigate to="/" state={{ from: location }} replace />
   );

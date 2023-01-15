@@ -1,27 +1,46 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import useApiPrivate from "../../hooks/useApiPrivate";
+
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 //import { WeatherCard } from "../../components/WeatherCard";
 import { motion as m } from "framer-motion";
 import icongroup from "../../assets/icongroup.svg";
-import { api } from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+
+import { toast } from "react-toastify";
 
 function dashboardRT() {
-
-    const [infoRT, setInfoRT] = useState([])
+  const [infoRT, setInfoRT] = useState([]);
+  const apiPrivate = useApiPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
   
-    useEffect(() => {
-      api.get('utilizadores/countdashboardrt')
-        .then(({ data }) => {
-          let aux=data.data;
-          setInfoRT(aux);
-        })
-        .catch((error) => {
-          alert(error)
-        })
-    }, [])
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const getInfoRT = async () => {
+      try {
+        const response = await apiPrivate.get("utilizadores/countdashboardrt", {
+          signal: controller.signal,
+        });
+        console.log(response.data);
+        isMounted && setInfoRT(response.data);
+      } catch (error) {
+        console.error(error);
+        navigate("/", { state: { from: location }, replace: true });
+      }
+    };
+    getInfoRT();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
 
   return (
     <div className="d-flex">
@@ -135,7 +154,7 @@ function dashboardRT() {
                   <p className="card-text h1 mt-3">{infoRT[4]}</p>
                 </div>
               </m.div>
-            </div>  
+            </div>
           </div>
         </div>
       </main>

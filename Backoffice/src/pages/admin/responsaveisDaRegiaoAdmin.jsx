@@ -2,7 +2,7 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 // import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
 // import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-import { api } from "../../../api";
+import  api from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 

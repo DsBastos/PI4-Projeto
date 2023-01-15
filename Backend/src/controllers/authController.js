@@ -9,8 +9,9 @@ const handleLogin = async (req, res) => {
   if (!email || !pwd) {
     return res.status(400).json("Incorreta submissão de formulário");
   }
-  const foundUser = await utilizador
-    .findOne({ u_email: email } )
+  const foundUser = await utilizador.findOne({
+    where: { u_email: email },
+  })
   if (!foundUser) return res.sendStatus(401);
 
   const isMatch = await bcrypt.compare(pwd, foundUser.u_pwd);
@@ -25,7 +26,7 @@ const handleLogin = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "15m" }
     );
     const refreshToken = jwt.sign(
       { email: foundUser.u_email },
