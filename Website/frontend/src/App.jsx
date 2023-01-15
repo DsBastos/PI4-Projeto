@@ -20,7 +20,7 @@ import "./global.css";
 
 import api from "../api";
 
-//Animação da página
+//código para animação da página
 let easeing = [0.6, -0.05, 0.01, 0.99];
 
 const stagger = {
