@@ -1,22 +1,22 @@
-var utilizador = require("../models/utilizadoresModel");
+var utilizador = require('../models/utilizadoresModel')
 
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt')
 
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
 const handleLogin = async (req, res) => {
-  const { email, pwd } = req.body;
+  const { email, pwd } = req.body
   if (!email || !pwd) {
-    return res.status(400).json("Incorreta submissão de formulário");
+    return res.status(400).json('Incorreta submissão de formulário')
   }
   const foundUser = await utilizador.findOne({
     where: { u_email: email },
   })
-  if (!foundUser) return res.sendStatus(401);
+  if (!foundUser) return res.sendStatus(401)
 
-  const isMatch = await bcrypt.compare(pwd, foundUser.u_pwd);
+  const isMatch = await bcrypt.compare(pwd, foundUser.u_pwd)
   if (isMatch) {
-    const role = foundUser.tu_id;
+    const role = foundUser.tu_id
     // create token JWTs
     const accessToken = jwt.sign(
       {
@@ -26,30 +26,31 @@ const handleLogin = async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
-    );
+      { expiresIn: '15m' }
+    )
     const refreshToken = jwt.sign(
       { email: foundUser.u_email },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1d" }
-    );
+      { expiresIn: '1d' }
+    )
 
     // Saving refreshToken with current user
-    foundUser.refreshToken = refreshToken;
-    const result = await foundUser.save();
-    console.log(result);
-    console.log("role: ", role);
+    foundUser.refreshToken = refreshToken
+    const result = await foundUser.save()
+    console.log(result)
+    console.log('role: ', role)
 
-    res.cookie("jwt", refreshToken, {
+    res.cookie('jwt', refreshToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000,
-    });
+    })
+    const nome = foundUser.u_nome
 
     // Send authorization roles and access token to user
-    res.json({ role, accessToken });
-  } else return res.sendStatus(401);
-};
+    res.json({ nome, role, accessToken })
+  } else return res.sendStatus(401)
+}
 
-module.exports = { handleLogin };
+module.exports = { handleLogin }

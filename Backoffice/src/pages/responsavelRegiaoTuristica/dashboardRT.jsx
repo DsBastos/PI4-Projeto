@@ -1,46 +1,45 @@
-import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
-import useApiPrivate from "../../hooks/useApiPrivate";
+import useApiPrivate from '../../hooks/useApiPrivate'
 
-import { Topnav } from "../../components/Topnav";
-import { Menu } from "../../components/Menu";
+import { Topnav } from '../../components/Topnav'
+import { Menu } from '../../components/Menu'
 //import { WeatherCard } from "../../components/WeatherCard";
-import { motion as m } from "framer-motion";
-import icongroup from "../../assets/icongroup.svg";
-
-import { toast } from "react-toastify";
+import { motion as m } from 'framer-motion'
+import icongroup from '../../assets/icongroup.svg'
+import { toast } from 'react-toastify'
 
 function dashboardRT() {
-  const [infoRT, setInfoRT] = useState([]);
-  const apiPrivate = useApiPrivate();
-  const navigate = useNavigate();
-  const location = useLocation();
-  
+  const [infoRT, setInfoRT] = useState([])
+  const apiPrivate = useApiPrivate()
+  const navigate = useNavigate()
+  const location = useLocation()
+
   useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
+    let isMounted = true
+    const controller = new AbortController()
 
     const getInfoRT = async () => {
       try {
-        const response = await apiPrivate.get("utilizadores/countdashboardrt", {
+        const response = await apiPrivate.get('utilizadores/countdashboardrt', {
           signal: controller.signal,
-        });
-        console.log(response.data);
-        isMounted && setInfoRT(response.data);
+        })
+        console.log(response.data)
+        isMounted && setInfoRT(response.data)
       } catch (error) {
-        console.error(error);
-        navigate("/", { state: { from: location }, replace: true });
+        console.error(error)
+        navigate('/', { state: { from: location }, replace: true })
       }
-    };
-    getInfoRT();
+    }
+    getInfoRT()
 
     return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, []);
+      isMounted = false
+      controller.abort()
+    }
+  }, [])
 
   return (
     <div className="d-flex">
@@ -68,9 +67,9 @@ function dashboardRT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -86,9 +85,9 @@ function dashboardRT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -104,9 +103,9 @@ function dashboardRT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -122,9 +121,9 @@ function dashboardRT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -140,9 +139,9 @@ function dashboardRT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -159,8 +158,8 @@ function dashboardRT() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 //<WeatherCard />
 
-export default dashboardRT;
+export default dashboardRT

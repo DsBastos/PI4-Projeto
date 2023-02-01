@@ -1,36 +1,47 @@
-import React from "react";
-import { Topnav } from "../../components/Topnav";
-import { Menu } from "../../components/Menu";
-import { motion as m } from "framer-motion";
-import icongroup from "../../assets/icongroup.svg";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
-import useApiPrivate from "../../hooks/useApiPrivate";
+import React from 'react'
+import { Topnav } from '../../components/Topnav'
+import { Menu } from '../../components/Menu'
+import { motion as m } from 'framer-motion'
+import icongroup from '../../assets/icongroup.svg'
+import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import useApiPrivate from '../../hooks/useApiPrivate'
 
 function dashboardAT() {
+  const [infoAT, setInfoAT] = useState([])
+  const apiPrivate = useApiPrivate()
 
-    const [infoAT, setInfoAT] = useState([])
-    const apiPrivate = useApiPrivate();
+  useEffect(() => {
+    apiPrivate
+      .get('utilizadores/countdashboardat')
+      .then(({ data }) => {
+        let aux = data.data
+        setInfoAT(aux)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }, [])
 
-    useEffect(() => {
-      apiPrivate.get('utilizadores/countdashboardat')
-        .then(({ data }) => {
-          let aux=data.data;
-          setInfoAT(aux);
-        })
-        .catch((error) => {
-          alert(error)
-        })
-    }, [])
+  const nome = localStorage.getItem('nome')
 
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard2"
-      nome2="Criar visita" icon2="./assets/icon-filetext.svg" link2="/criarvisita"
-      nome3="Consultar reservas" icon3="./assets/icon-filetext.svg" link3="/consultarReservas"/>
+
+      <Menu
+        nome1="Dashboard"
+        icon1="./assets/icon-barchartline.svg"
+        link1="/dashboard2"
+        nome2="Criar visita"
+        icon2="./assets/icon-filetext.svg"
+        link2="/criarvisita"
+        nome3="Consultar reservas"
+        icon3="./assets/icon-filetext.svg"
+        link3="/consultarReservas"
+      />
       <main className="w-100">
-        <Topnav role="Agente turístico" nome="ROBERTO" />
+        <Topnav role="Agente turístico" nome={nome} />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">
@@ -39,9 +50,9 @@ function dashboardAT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -57,9 +68,9 @@ function dashboardAT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -75,9 +86,9 @@ function dashboardAT() {
                 className="card me-4 my-3"
                 whileHover={{
                   scale: 1.05,
-                  boxShadow: "0 .5rem 1rem rgba(0,0,0,.15) ",
+                  boxShadow: '0 .5rem 1rem rgba(0,0,0,.15) ',
                 }}
-                style={{ width: "18rem", height: "12rem" }}
+                style={{ width: '18rem', height: '12rem' }}
               >
                 <div className="card-body">
                   <div className="d-flex justify-content-between">
@@ -94,9 +105,7 @@ function dashboardAT() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default dashboardAT;
-  
-  
+export default dashboardAT
