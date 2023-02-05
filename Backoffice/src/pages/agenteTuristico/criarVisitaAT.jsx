@@ -25,8 +25,7 @@ function criarVisitaAT() {
         //pt_id: IDPONTOTURISTICO,
       }
       console.log(newVisita)
-      apiPrivate
-        .post('visita/create', newVisita)
+      apiPrivate.post('visita/create', newVisita)
         .then((res) => {
           if (res.data.sucess) {
             toast.success('Visita criada com sucesso', {

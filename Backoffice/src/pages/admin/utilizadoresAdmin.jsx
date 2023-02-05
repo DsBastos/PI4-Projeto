@@ -1,26 +1,29 @@
-import React from "react";
-import { Topnav } from "../../components/Topnav";
-import { Menu } from "../../components/Menu";
-import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
-import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-import api from "../../../api";
-import { useState, useEffect } from "react"
-import { ToastContainer,toast } from 'react-toastify';
+import React from 'react'
+import { Topnav } from '../../components/Topnav'
+import { Menu } from '../../components/Menu'
+import { ModalCriarUtilizadores } from '../../components/admin/ModalCriarUtilizadores'
+import { ModalEditarUtilizadores } from '../../components/admin/ModalEditarUtilizadores'
+import useApiPrivate from '../../hooks/useApiPrivate'
+import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 function LoadFillData() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [modalEditarUtilizadorShow, setModalEditarUtilizadorShow] = React.useState(false);
-  const [selectedUtilizador, setSelectedUtilizador] = useState(null);
-  const [utilizador, setUtilizador] = useState([]);
-  const [modalConfirmacaoShow, setConfirmacaoShow] = React.useState(false);
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const [modalEditarUtilizadorShow, setModalEditarUtilizadorShow] =
+    React.useState(false)
+  const [selectedUtilizador, setSelectedUtilizador] = useState(null)
+  const [utilizador, setUtilizador] = useState([])
+  const [modalConfirmacaoShow, setConfirmacaoShow] = React.useState(false)
+  const apiPrivate = useApiPrivate()
 
   useEffect(() => {
-    api.get('/utilizadores/list')
+    apiPrivate
+      .get('/utilizadores/list')
       .then(({ data }) => {
-        const dados = data.data;
-        var newUtilizador = [];
+        const dados = data.data
+        var newUtilizador = []
         dados.map((UtilizadorAux) => {
           newUtilizador.push({
             id: UtilizadorAux.u_id,
@@ -29,12 +32,12 @@ function LoadFillData() {
             cargo: UtilizadorAux.tipoutilizador.tu_tipo,
           })
         })
-        setUtilizador(newUtilizador);
+        setUtilizador(newUtilizador)
       })
       .catch((error) => {
         alert(error)
       })
-  }, []);
+  }, [])
 
   return (
     <>
@@ -49,11 +52,16 @@ function LoadFillData() {
                 <span
                   className="material-symbols-outlined"
                   onClick={() => {
-                    setSelectedUtilizador(data);
-                    setModalEditarUtilizadorShow(true);
-                  }}>
-                  <button style={{ "border": "none", "background": "none" }} data-bs-toggle="modal" data-bs-target="#ModalEditarUtilizadores">
-                    <img src="../../assets/icon-penfill.svg"></img>
+                    setSelectedUtilizador(data)
+                    setModalEditarUtilizadorShow(true)
+                  }}
+                >
+                  <button
+                    style={{ border: 'none', background: 'none' }}
+                    data-bs-toggle="modal"
+                    data-bs-target="#ModalEditarUtilizadores"
+                  >
+                    <img src="../../assets/icon-penfill.svg" alt="" />
                   </button>
                 </span>
 
@@ -61,10 +69,16 @@ function LoadFillData() {
                   id={data.u_id}
                   className="material-symbols-outlined"
                   onClick={() => {
-                    setSelectedUtilizador(data);
-                    setModalConfirmacaoShow(true);
-                  }}>
-                  <button style={{ "border": "none", "background": "none" }}><img src="../../assets/icon-trashfill.svg"></img></button>
+                    setSelectedUtilizador(data)
+                    setConfirmacaoShow(true)
+                  }}
+                >
+                  <button style={{ border: 'none', background: 'none' }}>
+                    <img
+                      src="../../assets/icon-trashfill.svg"
+                      alt="trash icon"
+                    />
+                  </button>
                 </span>
               </td>
             </tr>
@@ -74,10 +88,10 @@ function LoadFillData() {
               props={selectedUtilizador}
             />
           </>
-        );
+        )
       })}
     </>
-  );
+  )
 }
 
 function utilizadoresAdmin() {
@@ -104,8 +118,16 @@ function utilizadoresAdmin() {
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 p-3 mt-5">
           <h2 className="mt-5 d-inline">Utilizadores</h2>
-          <button type="button" className="btn btn-primary d-inline float-end" data-bs-toggle="modal" data-bs-target="#ModalCriarUtilizadores">
-            <img src="../../assets/icon-adduser.svg" alt="ícone de utilizador com símbolo de mais"></img>
+          <button
+            type="button"
+            className="btn btn-primary d-inline float-end"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalCriarUtilizadores"
+          >
+            <img
+              src="../../assets/icon-adduser.svg"
+              alt="ícone de utilizador com símbolo de mais"
+            ></img>
           </button>
           <table className="table table-striped mt-5">
             <thead>
@@ -122,10 +144,9 @@ function utilizadoresAdmin() {
           </table>
         </div>
         <ModalCriarUtilizadores />
-
       </main>
     </div>
-  );
+  )
 }
 
-export default utilizadoresAdmin;
+export default utilizadoresAdmin

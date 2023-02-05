@@ -22,7 +22,7 @@ const handleLogin = async (req, res) => {
       {
         UserInfo: {
           u_email: foundUser.u_email,
-          roles: role,
+          role: role,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,

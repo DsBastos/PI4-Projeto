@@ -8,11 +8,10 @@ import api from '../../api'
 const LOGIN_URL = '/auth'
 
 function Login() {
-  const { setAuth } = useAuth()
+  const { setAuth, persist, setPersist } = useAuth()
 
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location.state?.from?.pathname
 
   const userRef = useRef()
   const errRef = useRef()
@@ -44,18 +43,24 @@ function Login() {
         }
       )
 
-      //console.log(JSON.stringify(response?.data), "cheguei aqui");
+      console.log(JSON.stringify(response?.data), 'dados do login')
       const accessToken = response?.data?.accessToken
       //console.log(accessToken, "cheguei aqui com o token")
-      const roles = response?.data?.role
+      const role = response?.data?.role
       const nome = response?.data?.nome
-      console.log('resposta:' + response?.data?.nome)
-      //console.log(roles, 'cheguei aqui com a info da role')
-      setAuth({ email, pwd, roles, accessToken })
-      setEmail('')
-      setPwd('')
-      localStorage.setItem('nome', nome)
+
+      function checkRole() {
+        if (role == 1) return 'dashboard'
+        else if (role == 2) return 'dashboardRRT'
+        else if (role == 3) return 'dashboardAT'
+      }
+
+      const from = location.state?.from?.pathname || checkRole()
+
+      setAuth({ email, pwd, role, accessToken })
+
       navigate(from, { replace: true })
+
     } catch (err) {
       if (!err?.response) {
         setErrMsg('Sem resposta do servidor')
@@ -71,6 +76,15 @@ function Login() {
       errRef.current.focus()
     }
   }
+
+  const togglePersist = () => {
+    setPersist(!persist)
+  }
+
+  useEffect(() => {
+    localStorage.setItem('persist', persist)
+  }, [persist])
+
 
   return (
     <main className="bg-image-gradient vw-100 vh-100 d-flex align-items-center">
@@ -130,12 +144,14 @@ function Login() {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
-                          id="form1Example3"
+                          id='persist'
+                          onChange={togglePersist}
+                          checked={persist}
                         />
                         <label
                           className="form-check-label"
-                          htmlFor="form1Example3"
+                          htmlFor="persist"
+                          
                         >
                           Lembrar a palavra-passe
                         </label>
@@ -150,9 +166,7 @@ function Login() {
                   </div>
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary text-white">
-                    Entrar
-                  </button>
+                  <button className="btn btn-primary text-white">Entrar</button>
                 </div>
               </form>
             </div>

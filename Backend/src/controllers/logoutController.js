@@ -1,4 +1,5 @@
 const utilizadores = require('../models/utilizadoresModel')
+const { Op } = require('sequelize')
 
 const handleLogout = async (req, res) => {
   // On client, also delete the accessToken
@@ -8,20 +9,25 @@ const handleLogout = async (req, res) => {
   const refreshToken = cookies.jwt
 
   // Is refreshToken in db?
-  const foundUser = await utilizadores
-    .findOne({ where: { refreshToken } })
-    .exec()
+  const foundUser = await utilizadores.findOne({ where: { refreshToken } })
+  //console.log(foundUser)
   if (!foundUser) {
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
     return res.sendStatus(204)
   }
 
-  // Delete refreshToken in db
-  foundUser.refreshToken = foundUser.refreshToken.filter(
-    (rt) => rt !== refreshToken
-  )
-  const result = await foundUser.save()
-  console.log(result)
+  console.log('foundUser refreshToken: ', foundUser.refreshToken)
+
+  // Delete refreshToken in db (does not work) ⬇️
+  // foundUser.refreshToken = utilizadores.findOne({
+  //   where: {
+  //     refreshToken: {
+  //       [Op.ne]: refreshToken,
+  //     },
+  //   },
+  // })
+  // const result = await foundUser.save()
+  // console.log(result)
 
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
   res.sendStatus(204)
