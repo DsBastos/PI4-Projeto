@@ -1,6 +1,6 @@
 import React from "react";
 import { ModalRegiaoTuristica } from "./ModalRegiaoTuristica"
-import api from "../../../api";
+import useApiPrivate from "../../hooks/useApiPrivate";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
@@ -10,10 +10,11 @@ export function Cartaodistrito() {
   const [utilizador, setUtilizador] = useState([]);
   let [modalRegiaoTuristicaShow, setModalRegiaoTuristicaShow] = useState(false);
   let [selectedRegiao, setSelectedRegiao] = useState(null);
+  const apiPrivate = useApiPrivate();
 
 
   useEffect(() => {
-    api.get('/regiaoturistica/list')
+    apiPrivate.get('/regiaoturistica/list')
       .then(({ data }) => {
         const dados = data.data;
         var newRegiao = [];
@@ -29,7 +30,7 @@ export function Cartaodistrito() {
         alert(error)
       })
 
-      api.get('/utilizadores/list')
+      apiPrivate.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];
@@ -44,7 +45,7 @@ export function Cartaodistrito() {
   }, []);
 
   function setUserRtIdNull(id) {
-    api.patch("/utilizadores/updateutilizador/" + id, { rt_id: null }).then((data) => {
+    apiPrivate.patch("/utilizadores/updateutilizador/" + id, { rt_id: null }).then((data) => {
       console.log(data);
       if (data.status = "200") {
         toast.success('Responsável da região turística alterado com sucesso', {
@@ -71,7 +72,7 @@ export function Cartaodistrito() {
         regiao.map((reg, index) => {
           return (
             <>
-              <div className="card mt-3" style={{ width: "23rem" }}>
+              <div className="card mt-3" style={{ width: "23rem" }} key={index}>
                 <div className="card-header">{reg.nome}</div>
                 <div className="card-body">
                   <h5 className="card-title">Responsáveis definidos</h5>
@@ -81,7 +82,7 @@ export function Cartaodistrito() {
                       if (user.rt_id == reg.id) {
                         return (
                           <>
-                            <div className="alert alert-primary d-flex justify-content-between my-2 me-3" role="alert">
+                            <div key={index} className="alert alert-primary d-flex justify-content-between my-2 me-3" role="alert">
                               {user.u_nome}
                               <button
                                 type="button"

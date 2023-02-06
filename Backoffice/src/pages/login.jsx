@@ -1,36 +1,35 @@
-import { useState, useRef, useEffect } from "react";
-import useAuth from "../hooks/useAuth";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useRef, useEffect } from 'react'
+import useAuth from '../hooks/useAuth'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
-import logo from "../assets/mygreenpointlogo.png";
+import logo from '../assets/mygreenpointlogo.png'
 
-import api from "../../api";
-const LOGIN_URL = "/auth";
+import api from '../../api'
+const LOGIN_URL = '/auth'
 
 function Login() {
-  const { setAuth } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth()
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard2";
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const userRef = useRef();
-  const errRef = useRef();
+  const userRef = useRef()
+  const errRef = useRef()
 
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+  const [email, setEmail] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
 
   useEffect(() => {
-    setErrMsg("");
-  }, [email, pwd]);
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [email, pwd])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const response = await api.post(
@@ -38,43 +37,61 @@ function Login() {
         JSON.stringify({ email, pwd }),
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           withCredentials: true,
         }
-      );
+      )
 
-      console.log(JSON.stringify(response?.data), "cheguei aqui");
-      const accessToken = response?.data?.accessToken;
-      console.log(accessToken, "cheguei aqui com o token")
-      const roles = response?.data?.role;
-      console.log(roles, "cheguei aqui com a info da role");
-      setAuth({ email, pwd, roles, accessToken });
-      setEmail('');
-      setPwd('');
-      navigate(from, { replace: true });
+      console.log(JSON.stringify(response?.data), 'dados do login')
+      const accessToken = response?.data?.accessToken
+      //console.log(accessToken, "cheguei aqui com o token")
+      const role = response?.data?.role
+      const nome = response?.data?.nome
+
+      function checkRole() {
+        if (role == 1) return 'dashboard'
+        else if (role == 2) return 'dashboardRRT'
+        else if (role == 3) return 'dashboardAT'
+      }
+
+      const from = location.state?.from?.pathname || checkRole()
+
+      setAuth({ email, pwd, role, accessToken })
+
+      navigate(from, { replace: true })
+
     } catch (err) {
       if (!err?.response) {
-        setErrMsg("Sem resposta do servidor");
+        setErrMsg('Sem resposta do servidor')
       } else if (err?.response?.status === 400) {
-        setErrMsg("Falta o email ou a palavra-passe.");
+        setErrMsg('Falta o email ou a palavra-passe.')
       } else if (err?.response?.status === 401) {
         setErrMsg(
-          "Não autorizado, provalvelmente o email e/ou a palavra-passe estão errados"
-        );
+          'Não autorizado, provalvelmente o email e/ou a palavra-passe estão errados'
+        )
       } else {
-        setErrMsg("Erro desconhecido -> erro ao fazer login");
+        setErrMsg('Erro desconhecido -> erro ao fazer login')
       }
-      errRef.current.focus();
+      errRef.current.focus()
     }
-  };
+  }
+
+  const togglePersist = () => {
+    setPersist(!persist)
+  }
+
+  useEffect(() => {
+    localStorage.setItem('persist', persist)
+  }, [persist])
+
 
   return (
     <main className="bg-image-gradient vw-100 vh-100 d-flex align-items-center">
       <div className="container">
         <p
           ref={errRef}
-          className={errMsg ? "errmsg alert alert-danger" : "offscreen"}
+          className={errMsg ? 'errmsg alert alert-danger' : 'offscreen'}
           role="alert"
           aria-live="assertive"
         >
@@ -82,7 +99,7 @@ function Login() {
         </p>
         <div
           className="d-flex mx-auto justify-content-center flex-column"
-          style={{ maxWidth: "24rem" }}
+          style={{ maxWidth: '24rem' }}
         >
           <img src={logo} className="w-50 mx-auto d-block" alt="" />
           <div className="px-4 pb-5 pt-4 bg-card  shadow mt-4 rounded-3">
@@ -127,12 +144,14 @@ function Login() {
                         <input
                           className="form-check-input"
                           type="checkbox"
-                          value=""
-                          id="form1Example3"
+                          id='persist'
+                          onChange={togglePersist}
+                          checked={persist}
                         />
                         <label
                           className="form-check-label"
-                          htmlFor="form1Example3"
+                          htmlFor="persist"
+                          
                         >
                           Lembrar a palavra-passe
                         </label>
@@ -147,9 +166,7 @@ function Login() {
                   </div>
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary text-white">
-                    Entrar
-                  </button>
+                  <button className="btn btn-primary text-white">Entrar</button>
                 </div>
               </form>
             </div>
@@ -157,7 +174,7 @@ function Login() {
         </div>
       </div>
     </main>
-  );
+  )
 }
 
-export default Login;
+export default Login

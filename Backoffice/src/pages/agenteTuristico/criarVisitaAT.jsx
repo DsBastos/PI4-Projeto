@@ -1,21 +1,20 @@
-import { Topnav } from "../../components/Topnav";
-import { Menu } from "../../components/Menu";
-import api from "../../../api";
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import useApiPrivate from "../../hooks/useApiPrivate";
+import { Topnav } from '../../components/Topnav'
+import { Menu } from '../../components/Menu'
+import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import useApiPrivate from '../../hooks/useApiPrivate'
 
 function criarVisitaAT() {
-  const [data, setData] = useState("");
-  const [hora, setHora] = useState("");
-  const [vagas, setVagas] = useState("");
-  const apiPrivate = useApiPrivate();
+  const [data, setData] = useState('')
+  const [hora, setHora] = useState('')
+  const [vagas, setVagas] = useState('')
+  const apiPrivate = useApiPrivate()
 
   const criarVisita = () => {
-    let valid = true;
-    if (data == "" || hora == "" || vagas == "") {
-      valid = false;
-      sendError("Os campos não podem estar vazios");
+    let valid = true
+    if (data == '' || hora == '' || vagas == '') {
+      valid = false
+      sendError('Os campos não podem estar vazios')
     }
     if (valid) {
       let newVisita = {
@@ -23,31 +22,30 @@ function criarVisitaAT() {
         horas: hora,
         vagas: vagas,
         //pt_id: IDPONTOTURISTICO,
-      };
-      console.log(newVisita);
-      apiPrivate
-        .post("visita/create", newVisita)
+      }
+      console.log(newVisita)
+      apiPrivate.post('visita/create', newVisita)
         .then((res) => {
           if (res.data.sucess) {
-            toast.success("Visita criada com sucesso", {
-              position: "top-center",
+            toast.success('Visita criada com sucesso', {
+              position: 'top-center',
               autoClose: 5000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-            });
-            console.log(res.data);
+            })
+            console.log(res.data)
           } else {
-            sendError("Erro ao criar visita");
+            sendError('Erro ao criar visita')
           }
         })
         .catch((err) => {
-          alert("ERRO: " + err);
-        });
+          alert('ERRO: ' + err)
+        })
     }
-  };
+  }
 
   return (
     <div className="d-flex">
@@ -69,7 +67,7 @@ function criarVisitaAT() {
           <div className="col">
             <div className="container px-5 mt-5">
               <div className="pt-4">
-                <div className="card" style={{ width: "18rem" }}>
+                <div className="card" style={{ width: '18rem' }}>
                   <img
                     className="card-img-top"
                     src="../../assets/Sé_de_viseu.jpg"
@@ -91,7 +89,7 @@ function criarVisitaAT() {
                       value={data}
                       required
                       onChange={(e) => {
-                        setData(e.target.value);
+                        setData(e.target.value)
                       }}
                     ></input>
                   </div>
@@ -107,7 +105,7 @@ function criarVisitaAT() {
                       value={hora}
                       required
                       onChange={(e) => {
-                        setHora(e.target.value);
+                        setHora(e.target.value)
                       }}
                     ></input>
                   </div>
@@ -123,7 +121,7 @@ function criarVisitaAT() {
                       value={vagas}
                       required
                       onChange={(e) => {
-                        setVagas(e.target.value);
+                        setVagas(e.target.value)
                       }}
                     ></input>
                   </div>
@@ -141,7 +139,8 @@ function criarVisitaAT() {
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
-            <p className="text-dark h3">Sobre o ponto turístico</p><br />
+            <p className="text-dark h3">Sobre o ponto turístico</p>
+            <br />
             <p>
               A Sé ou Catedral de Viseu, também designada por Igreja Paroquial
               de Santa Maria ou Igreja de Nossa Senhora da Assunção, é uma
@@ -153,7 +152,7 @@ function criarVisitaAT() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default criarVisitaAT;
+export default criarVisitaAT

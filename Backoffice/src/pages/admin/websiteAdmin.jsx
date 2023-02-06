@@ -1,33 +1,33 @@
-import React from "react";
-import { Topnav } from "../../components/Topnav";
-import { Menu } from "../../components/Menu";
-import api from "../../../api";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import React from 'react'
+import { Topnav } from '../../components/Topnav'
+import { Menu } from '../../components/Menu'
+import useApiPrivate from '../../hooks/useApiPrivate'
+import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 function websiteAdmin() {
-
   const sendError = (erro) => {
     toast.error(erro, {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    });
-  };
+    })
+  }
 
   //Estados
-  const [heroi, setHeroi] = useState("")
-  const [descarregar, setDescarregar] = useState("")
-  const [objetivo, setObjetivo] = useState("")
-  const [pontosT, setPontosT] = useState("")
-  const [voucher, setVoucher] = useState("")
-  const [reservas, setReservas] = useState("")
-  const [qr, setQr] = useState("")
-  const [atualizacoes, setAtualizacoes] = useState("")
+  const [heroi, setHeroi] = useState('')
+  const [descarregar, setDescarregar] = useState('')
+  const [objetivo, setObjetivo] = useState('')
+  const [pontosT, setPontosT] = useState('')
+  const [voucher, setVoucher] = useState('')
+  const [reservas, setReservas] = useState('')
+  const [qr, setQr] = useState('')
+  const [atualizacoes, setAtualizacoes] = useState('')
+  const apiPrivate = useApiPrivate()
 
   function SendUpdate() {
     const datawebsitepost = {
@@ -38,33 +38,36 @@ function websiteAdmin() {
       voucher: voucher,
       reservas: reservas,
       qr: qr,
-      atualizacoes: atualizacoes
-    };
+      atualizacoes: atualizacoes,
+    }
 
-    api.patch("/website/updatewebsite", datawebsitepost).then((data) => {
-      if (data.status = "200") {
-        toast.success('Website alterado com sucesso', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        sendError("Ocorreu um erro ao tentar alterar o website")
-      }
-    })
+    apiPrivate
+      .patch('/website/updatewebsite/', datawebsitepost)
+      .then((data) => {
+        if ((data.status = '200')) {
+          toast.success('Website alterado com sucesso', {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        } else {
+          sendError('Ocorreu um erro ao tentar alterar o website')
+        }
+      })
       .catch((error) => {
-        alert(error);
-      });
+        alert(error)
+      })
   }
 
   useEffect(() => {
-    api.get('/website/list')
+    apiPrivate
+      .get('/website/list')
       .then(({ data }) => {
-        const dados = data.data;
+        const dados = data.data
         setHeroi(dados[0])
         setDescarregar(dados[1])
         setObjetivo(dados[2])
@@ -106,9 +109,7 @@ function websiteAdmin() {
               <div className="row d-flex justify-content-between">
                 <div className="col-lg-5 mt-5">
                   <div className="mb-5">
-                    <label
-                      className="form-label h4 fw-bold mt-md-3"
-                    >
+                    <label className="form-label h4 fw-bold mt-md-3">
                       Texto da secção herói
                     </label>
                     <textarea
@@ -117,13 +118,13 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={heroi.ws_texto}
-                      onChange={(e) => { setHeroi(e.target.value)}}
+                      onChange={(e) => {
+                        setHeroi(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                   <div className="mb-3">
-                    <label
-                      className="form-label h4 fw-bold mt-md-3"
-                    >
+                    <label className="form-label h4 fw-bold mt-md-3">
                       Texto da secção “Nosso Objetivo”
                     </label>
                     <textarea
@@ -132,15 +133,15 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={objetivo.ws_texto}
-                      onChange={(e) => { setObjetivo(e.target.value)}}
+                      onChange={(e) => {
+                        setObjetivo(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-5">
                   <div className="mb-3">
-                    <label
-                      className="form-label h4 fw-bold"
-                    >
+                    <label className="form-label h4 fw-bold">
                       Texto da secção para descarregar aplicação
                     </label>
                     <textarea
@@ -149,16 +150,16 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={descarregar.ws_texto}
-                      onChange={(e) => { setDescarregar(e.target.value)}}
+                      onChange={(e) => {
+                        setDescarregar(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                 </div>
                 <hr className="my-5" />
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
-                    <label
-                      className="form-label h4 fw-bold"
-                    >
+                    <label className="form-label h4 fw-bold">
                       Texto do cartão “Pontos Turísticos”
                     </label>
                     <textarea
@@ -167,13 +168,13 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={pontosT.ws_texto}
-                      onChange={(e) => { setPontosT(e.target.value)}}
+                      onChange={(e) => {
+                        setPontosT(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                   <div className="mb-5">
-                    <label
-                      className="form-label h4 fw-bold"
-                    >
+                    <label className="form-label h4 fw-bold">
                       Texto do cartão “Reservas”
                     </label>
                     <textarea
@@ -182,15 +183,15 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={reservas.ws_texto}
-                      onChange={(e) => { setReservas(e.target.value)}}
+                      onChange={(e) => {
+                        setReservas(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                 </div>
                 <div className="col-lg-5 mt-2">
                   <div className="mb-5">
-                    <label
-                      className="form-label h4 fw-bold"
-                    >
+                    <label className="form-label h4 fw-bold">
                       Texto do cartão “Voucher”
                     </label>
                     <textarea
@@ -199,13 +200,13 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={voucher.ws_texto}
-                      onChange={(e) => { setVoucher(e.target.value)}}
+                      onChange={(e) => {
+                        setVoucher(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                   <div className="mb-3">
-                    <label
-                      className="form-label h4 fw-bold"
-                    >
+                    <label className="form-label h4 fw-bold">
                       Texto do cartão “QRCode”
                     </label>
                     <textarea
@@ -214,7 +215,9 @@ function websiteAdmin() {
                       rows="5"
                       maxLength="200"
                       value={qr.ws_texto}
-                      onChange={(e) => { setQr(e.target.value)}}
+                      onChange={(e) => {
+                        setQr(e.target.value)
+                      }}
                     ></textarea>
                   </div>
                 </div>
@@ -244,29 +247,9 @@ function websiteAdmin() {
                                   maxLength="200"
                                   cols="3"
                                   value={atualizacoes.ws_texto}
-                                  onChange={(e) => { setAtualizacoes(e.target.value)}}
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="fw-bold">1.0.1</td>
-                              <td>
-                                <textarea
-                                  className="form-control mx-auto  w-50 my-md-3"
-                                  id="exampleFormControlTextarea1"
-                                  rows="4"
-                                  maxLength="200"
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="fw-bold">1.0.2</td>
-                              <td>
-                                <textarea
-                                  className="form-control mx-auto w-50 my-md-3"
-                                  id="exampleFormControlTextarea1"
-                                  rows="4"
-                                  maxLength="200"
+                                  onChange={(e) => {
+                                    setAtualizacoes(e.target.value)
+                                  }}
                                 />
                               </td>
                             </tr>
@@ -279,13 +262,17 @@ function websiteAdmin() {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary px-5 text-white d-block ms-auto mt-4 mb-4" onClick={SendUpdate}>Guardar</button>
+                className="btn btn-primary px-5 text-white d-block ms-auto mt-4 mb-4"
+                onClick={SendUpdate}
+              >
+                Guardar
+              </button>
             </form>
           </div>
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default websiteAdmin;
+export default websiteAdmin
