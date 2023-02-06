@@ -8,8 +8,6 @@ const createError = require('http-errors')
 const verifyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
 
 app.use(cors({ credentials: true, origin: true }))
 
