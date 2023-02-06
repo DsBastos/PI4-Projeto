@@ -1,6 +1,5 @@
 import { Topnav } from '../../components/Topnav'
 import { Menu } from '../../components/Menu'
-import api from '../../../api'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import useApiPrivate from '../../hooks/useApiPrivate'
@@ -25,8 +24,7 @@ function criarVisitaAT() {
         //pt_id: IDPONTOTURISTICO,
       }
       console.log(newVisita)
-      apiPrivate
-        .post('visita/create', newVisita)
+      apiPrivate.post('visita/create', newVisita)
         .then((res) => {
           if (res.data.sucess) {
             toast.success('Visita criada com sucesso', {

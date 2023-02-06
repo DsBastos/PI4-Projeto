@@ -30,7 +30,6 @@ function dashboardRT() {
         isMounted && setInfoRT(response.data)
       } catch (error) {
         console.error(error)
-        navigate('/', { state: { from: location }, replace: true })
       }
     }
     getInfoRT()

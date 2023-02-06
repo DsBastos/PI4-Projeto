@@ -2,9 +2,9 @@ import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 // import { ModalCriarUtilizadores } from "../../components/admin/ModalCriarUtilizadores"
 // import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
-import  api from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
+import useApiPrivate from "../../hooks/useApiPrivate";
 
 function LoadFillData() {
   const [show, setShow] = useState(false);
@@ -14,9 +14,10 @@ function LoadFillData() {
   const [selectedUtilizador, setSelectedUtilizador] = useState(null);
   const [utilizador, setUtilizador] = useState([]);
   const [modalConfirmacaoShow, setConfirmacaoShow] = useState(false);
+  const apiPrivate = useApiPrivate();
 
   useEffect(() => {
-    api.get('/utilizadores/list')
+    apiPrivate.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];
@@ -83,7 +84,6 @@ function responsaveisTuristicosAdmin() {
         link5="/utilizadores"
       />
       <main className="w-100">
-        {console.log(data)}
         <Topnav role="Administrador" nome="ROBERTO" />
         <div className="container px-5 p-3">
           <h2 className="mt-5">Responsáveis das regiões turísticas</h2>

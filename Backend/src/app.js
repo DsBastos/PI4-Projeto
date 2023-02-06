@@ -5,14 +5,9 @@ const app = express()
 const path = require('path')
 require('./models/associations')
 const createError = require('http-errors')
-const errorHandler = require('./middleware/errorHandler')
 const verifyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
-const corsOptions = require('./config/corsOptions')
-const credentials = require('./middleware/credentials')
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
 
 app.use(cors({ credentials: true, origin: true }))
 
@@ -47,6 +42,7 @@ const utilizadoresRoute = require('./routes/utilizadoresRoute.js')
 app.use('/auth', autenticacaoRoute)
 app.use('/refresh', refreshRoute)
 app.use('/logout', logoutRoute)
+app.use('/website', websiteRoute)
 
 app.use(verifyJWT)
 app.use('/utilizadores', utilizadoresRoute)
@@ -59,7 +55,6 @@ app.use('/reserva', reservaRoute)
 app.use('/tipologia', tipologiaRoute)
 app.use('/visita', visitaRoute)
 app.use('/voucher', voucherRoute)
-app.use('/website', websiteRoute)
 
 app.all('*', (req, res, next) => {
   res.status(404)

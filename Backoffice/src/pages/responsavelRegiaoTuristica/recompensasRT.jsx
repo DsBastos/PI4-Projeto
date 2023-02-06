@@ -1,7 +1,7 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import api from "../../../api";
+import useApiPrivate from "../../hooks/useApiPrivate";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import { ModalVouchers } from "../../components/responsavelRegiaoTuristica/ModalVouchers";
@@ -18,10 +18,10 @@ function recompensas() {
   const [pontoTuristico, setPontoTuristico] = useState([]);
   let [selectedPontoTuristico, setSelectedPontoTuristico] = useState(0);
   let [selectedPontos, setSelectedPontos] = useState([]);
-
+  const apiPrivate = useApiPrivate();
 
   useEffect(() => {
-    api.get('/recompensa/list')
+    apiPrivate.get('/recompensa/list')
       .then(({ data }) => {
         const dados = data.data;
         var newRecompensa = [];
@@ -37,7 +37,7 @@ function recompensas() {
         alert(error)
       })
 
-      api.get('/pontoturistico/list')
+      apiPrivate.get('/pontoturistico/list')
       .then(({ data }) => {
         const dados = data.data;
         var newPontoTuristico = [];
@@ -81,7 +81,7 @@ function recompensas() {
         pt_id: selectedPontoTuristico,
       };
       try {
-        api.post("recompensa/create/", newRecompensa).then((data) => {
+        apiPrivate.post("recompensa/create/", newRecompensa).then((data) => {
           console.log(data);
           if (data.status == "200") {
             toast.success("Recompensa criada com sucesso", {
@@ -108,7 +108,7 @@ function recompensas() {
       tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
     }
     //console.log(newUser)
-    api.patch("/pontoturistico/updatepontoturistico/" + pt_id, newPontoTuristico).then((data) => {
+    apiPrivate.patch("/pontoturistico/updatepontoturistico/" + pt_id, newPontoTuristico).then((data) => {
       //console.log(data);
       if (data.status = "200") {
         toast.success('Ponto turístico alterado com sucesso', {
