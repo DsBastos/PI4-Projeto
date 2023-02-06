@@ -2,9 +2,7 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { Cartaodistrito } from "../../components/admin/Cartaodistrito";
-import useApiPrivate from "../../hooks/useApiPrivate";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import api  from "../../../api";
 
 function regioesturisticasAdmin() {
   return (

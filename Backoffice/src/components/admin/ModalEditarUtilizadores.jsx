@@ -1,4 +1,4 @@
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 import React, { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,11 +9,10 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [selectedcargo, setSelectedcargo] = useState("");
-  const apiPrivate = useApiPrivate()
 
   useEffect(() => {
     console.log(props)
-    apiPrivate.get("tipoutilizadores/list").then((data) => {
+    api.get("tipoutilizadores/list").then((data) => {
       let cargosarr = data.data.data;
       setCargos(cargosarr);
     });
@@ -47,7 +46,7 @@ export function ModalEditarUtilizadores({ show, onHide, props }) {
       tipo: selectedcargo == '' ? cargos.find(x => x.tu_tipo == props.cargo).tu_id : selectedcargo
     }
     //console.log(newUser)
-    apiPrivate.patch("/utilizadores/updateutilizador/" + props.id, newUser).then((data) => {
+    api.patch("/utilizadores/updateutilizador/" + props.id, newUser).then((data) => {
       console.log(data);
       if (data.status = "200") {
         toast.success('Utilizador alterado com sucesso', {

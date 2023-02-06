@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import useAuth from '../hooks/useAuth'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 import logo from '../assets/mygreenpointlogo.png'
@@ -8,95 +7,14 @@ import api from '../../api'
 const LOGIN_URL = '/auth'
 
 function Login() {
-  const { setAuth, persist, setPersist } = useAuth()
-
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  const userRef = useRef()
-  const errRef = useRef()
 
   const [email, setEmail] = useState('')
   const [pwd, setPwd] = useState('')
-  const [errMsg, setErrMsg] = useState('')
-
-  useEffect(() => {
-    userRef.current.focus()
-  }, [])
-
-  useEffect(() => {
-    setErrMsg('')
-  }, [email, pwd])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    try {
-      const response = await api.post(
-        LOGIN_URL,
-        JSON.stringify({ email, pwd }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        }
-      )
-
-      console.log(JSON.stringify(response?.data), 'dados do login')
-      const accessToken = response?.data?.accessToken
-      //console.log(accessToken, "cheguei aqui com o token")
-      const role = response?.data?.role
-      const nome = response?.data?.nome
-
-      function checkRole() {
-        if (role == 1) return 'dashboard'
-        else if (role == 2) return 'dashboardRRT'
-        else if (role == 3) return 'dashboardAT'
-      }
-
-      const from = location.state?.from?.pathname || checkRole()
-
-      setAuth({ email, pwd, role, accessToken })
-
-      navigate(from, { replace: true })
-
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('Sem resposta do servidor')
-      } else if (err?.response?.status === 400) {
-        setErrMsg('Falta o email ou a palavra-passe.')
-      } else if (err?.response?.status === 401) {
-        setErrMsg(
-          'Não autorizado, provalvelmente o email e/ou a palavra-passe estão errados'
-        )
-      } else {
-        setErrMsg('Erro desconhecido -> erro ao fazer login')
-      }
-      errRef.current.focus()
-    }
-  }
-
-  const togglePersist = () => {
-    setPersist(!persist)
-  }
-
-  useEffect(() => {
-    localStorage.setItem('persist', persist)
-  }, [persist])
 
 
   return (
     <main className="bg-image-gradient vw-100 vh-100 d-flex align-items-center">
       <div className="container">
-        <p
-          ref={errRef}
-          className={errMsg ? 'errmsg alert alert-danger' : 'offscreen'}
-          role="alert"
-          aria-live="assertive"
-        >
-          {errMsg}
-        </p>
         <div
           className="d-flex mx-auto justify-content-center flex-column"
           style={{ maxWidth: '24rem' }}
@@ -107,7 +25,7 @@ function Login() {
               Painel de administradores
             </div>
             <div className="card-body px-4">
-              <form onSubmit={handleSubmit}>
+              <form>
                 <div className="row g-3 mt-2">
                   <div className="col-md-12">
                     <label htmlFor="inputEmail" className="col-form-label">
@@ -117,7 +35,6 @@ function Login() {
                       type="email"
                       id="inputEmail"
                       className="form-control"
-                      ref={userRef}
                       autoComplete="off"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
@@ -145,8 +62,6 @@ function Login() {
                           className="form-check-input"
                           type="checkbox"
                           id='persist'
-                          onChange={togglePersist}
-                          checked={persist}
                         />
                         <label
                           className="form-check-label"
@@ -166,7 +81,7 @@ function Login() {
                   </div>
                 </div>
                 <div className="d-grid gap-2">
-                  <button className="btn btn-primary text-white">Entrar</button>
+                  <Link to="/linkedPages" className="btn btn-primary text-white">Entrar</Link>
                 </div>
               </form>
             </div>

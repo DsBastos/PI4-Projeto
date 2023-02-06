@@ -5,14 +5,13 @@ import { motion as m } from 'framer-motion'
 import icongroup from '../../assets/icongroup.svg'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 
 function dashboardAT() {
   const [infoAT, setInfoAT] = useState([])
-  const apiPrivate = useApiPrivate()
 
   useEffect(() => {
-    apiPrivate
+    api
       .get('utilizadores/countdashboardat')
       .then(({ data }) => {
         let aux = data.data
@@ -41,7 +40,7 @@ function dashboardAT() {
         link3="/consultarReservas"
       />
       <main className="w-100">
-        <Topnav role="Agente turístico" nome={nome} />
+        <Topnav role="Agente turístico" nome="Agente Turístico" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">

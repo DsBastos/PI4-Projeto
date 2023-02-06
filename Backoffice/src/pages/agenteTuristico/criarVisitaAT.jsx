@@ -2,13 +2,12 @@ import { Topnav } from '../../components/Topnav'
 import { Menu } from '../../components/Menu'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 
 function criarVisitaAT() {
   const [data, setData] = useState('')
   const [hora, setHora] = useState('')
   const [vagas, setVagas] = useState('')
-  const apiPrivate = useApiPrivate()
 
   const criarVisita = () => {
     let valid = true
@@ -24,7 +23,7 @@ function criarVisitaAT() {
         //pt_id: IDPONTOTURISTICO,
       }
       console.log(newVisita)
-      apiPrivate.post('visita/create', newVisita)
+      api.post('visita/create', newVisita)
         .then((res) => {
           if (res.data.sucess) {
             toast.success('Visita criada com sucesso', {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import 'react-dropdown/style.css';
 import { toast } from 'react-toastify';
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 
 export function ModalCriarUtilizadores({ show, onHide }) {
   let [nome, setNome] = useState("");
@@ -9,10 +9,9 @@ export function ModalCriarUtilizadores({ show, onHide }) {
   let [password, setPassword] = useState("");
   let [cargos, setCargos] = useState([]);
   let [selectedcargo, setSelectedcargo] = useState(1);
-  const apiPrivate = useApiPrivate()
 
   useEffect(() => {
-    apiPrivate.get("tipoutilizadores/list").then((data) => {
+    api.get("tipoutilizadores/list").then((data) => {
       let cargosarr = data.data.data;
       setCargos(cargosarr);
       console.log(cargos)
@@ -45,7 +44,7 @@ export function ModalCriarUtilizadores({ show, onHide }) {
         password: password,
         cargo: selectedcargo,
       };
-      apiPrivate.post("utilizadores/create", newUtilizador).then((data) => {
+      api.post("utilizadores/create", newUtilizador).then((data) => {
         if (data.status == "200") {
           toast.success("Utilizador criado com sucesso", {
             position: "top-center",

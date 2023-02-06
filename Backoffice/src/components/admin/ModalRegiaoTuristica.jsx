@@ -1,15 +1,14 @@
-import useApiPrivate from "../../hooks/useApiPrivate";
+import api  from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
 export function ModalRegiaoTuristica({ show, onHide, props, props2 }) {
 
   let [selectedUtilizador, setSelectedUtilizador] = useState([]);
-  const apiPrivate = useApiPrivate();
 
   function editUserSetRegiao() {
     selectedUtilizador.map((id) => {
-      apiPrivate.patch("/utilizadores/updateutilizador/" + id, { rt_id: props.id }).then((data) => {
+      api.patch("/utilizadores/updateutilizador/" + id, { rt_id: props.id }).then((data) => {
         console.log(data);
         if (data.status = "200") {
           toast.success('Responsável da região turística alterado com sucesso', {
