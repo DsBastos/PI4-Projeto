@@ -31,7 +31,7 @@ function dashboardAT() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
-        link1="/dashboard2"
+        link1="/dashboardAT"
         nome2="Criar visita"
         icon2="./assets/icon-filetext.svg"
         link2="/criarvisita"

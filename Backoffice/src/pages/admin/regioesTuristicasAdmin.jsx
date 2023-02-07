@@ -19,6 +19,7 @@ function regioesturisticasAdmin() {
         link3="/responsaveisDaRegiao"
         nome4="Regiões turísticas"
         icon4="./assets/icon-filetext.svg"
+        link4="/regioesTuristicas"
         nome5="Utilizadores"
         icon5="./assets/icon-user.svg"
         link5="/utilizadores"

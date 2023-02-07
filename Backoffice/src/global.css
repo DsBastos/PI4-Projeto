@@ -25,3 +25,7 @@ textarea {
   background-image: url("./assets/backgroundneve.jpg");
   color: white;
 }
+
+.colorActive:active, .colorActive:selected {
+  background-color: #00a887;
+}

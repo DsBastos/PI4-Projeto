@@ -112,6 +112,7 @@ function utilizadoresAdmin() {
         link4="/regioesturisticas"
         nome5="Utilizadores"
         icon5="./assets/icon-user.svg"
+        link5="/utilizadores"
       />
       <main className="w-100">
         <Topnav role="Administrador" nome="ROBERTO" />

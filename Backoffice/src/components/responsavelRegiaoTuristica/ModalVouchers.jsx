@@ -10,7 +10,7 @@ function LoadFillData() {
     .then(({data}) => {
       const dados = data.data;
       var newRecompensa = [];
-        dados.map((RecompensaAux) => {
+        dados.forEach((RecompensaAux) => {
           newRecompensa.push({
               id: RecompensaAux.r_id,
               nomePT: RecompensaAux.pontoTuristico.pt_nome,

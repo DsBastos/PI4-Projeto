@@ -78,7 +78,7 @@ function AgentesTuristicosRT() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard1"
+      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboardRRT"
         nome2="Agentes turísticos" icon2="./assets/icon-filetext.svg"
         nome3="Pontos turísticos" icon3="./assets/icon-filetext.svg" link3="/pontosDeInteresse"
         nome4="Recompensas" icon4="./assets/icon-filetext.svg" link4="/recompensas" />

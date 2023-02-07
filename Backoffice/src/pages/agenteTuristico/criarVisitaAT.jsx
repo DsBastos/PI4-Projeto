@@ -2,49 +2,70 @@ import { Topnav } from '../../components/Topnav'
 import { Menu } from '../../components/Menu'
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
-import api  from "../../../api";
+import api from '../../../api'
 
-function criarVisitaAT() {
+function CriarVisitaAT() {
   const [data, setData] = useState('')
   const [hora, setHora] = useState('')
   const [vagas, setVagas] = useState('')
+  const [pt_descricao, setPt_descricao] = useState('')
 
-  const criarVisita = () => {
-    let valid = true
-    if (data == '' || hora == '' || vagas == '') {
-      valid = false
-      sendError('Os campos não podem estar vazios')
+  api.defaults.debug = true
+  api.interceptors.request.use(
+    function (config) {
+      // Do something before request is sent
+      console.log(config.url)
+      return config
+    },
+    function (error) {
+      // Do something with request error
+      return Promise.reject(error)
     }
-    if (valid) {
-      let newVisita = {
-        data: data,
-        horas: hora,
-        vagas: vagas,
-        //pt_id: IDPONTOTURISTICO,
-      }
-      console.log(newVisita)
-      api.post('visita/create', newVisita)
-        .then((res) => {
-          if (res.data.sucess) {
-            toast.success('Visita criada com sucesso', {
-              position: 'top-center',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            })
-            console.log(res.data)
-          } else {
-            sendError('Erro ao criar visita')
-          }
-        })
-        .catch((err) => {
-          alert('ERRO: ' + err)
-        })
+  )
+
+  const criarVisita = (e) => {
+    e.preventDefault()
+
+    let newVisita = {
+      vs_data: data,
+      vs_horas: hora,
+      vs_vagas: vagas,
     }
+    console.log(newVisita)
+    let dataJson = JSON.stringify(newVisita)
+    console.log(dataJson)
+    api
+      .post('visita/create', dataJson, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        console.log(res)
+        if (res.status == '200') {
+          toast.success('Visita criada com sucesso', {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        } else {
+          sendError('Erro ao criar visita')
+        }
+      })
+      .catch((err) => {
+        alert('ERRO: ' + err)
+      })
   }
+  useEffect(() => {
+    api.get('pontoturistico/getpontoturistico/' + 1).then((res) => {
+      let aux = res.data.data.pt_descricao
+      setPt_descricao(aux)
+    })
+  })
 
   return (
     <div className="d-flex">
@@ -52,7 +73,7 @@ function criarVisitaAT() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
-        link1="/dashboard2"
+        link1="/dashboardAT"
         nome2="Criar visita"
         icon2="./assets/icon-filetext.svg"
         link2="/criarvisita"
@@ -66,14 +87,14 @@ function criarVisitaAT() {
           <div className="col">
             <div className="container px-5 mt-5">
               <div className="pt-4">
-                <div className="card" style={{ width: '18rem' }}>
+                <div className="card" style={{ width: '24rem' }}>
                   <img
                     className="card-img-top"
                     src="../../assets/Sé_de_viseu.jpg"
                     alt="Card image cap"
                   ></img>
                   <div className="card-body">
-                    <h5 className="card-title">Sé de Viseu</h5>
+                    <h5 className="card-title">Castelo de bragança</h5>
                   </div>
                 </div>
               </div>
@@ -125,28 +146,18 @@ function criarVisitaAT() {
                     ></input>
                   </div>
                 </div>
+                <div className="pt-4">
+                  <button type="submit" className="btn btn-success">
+                    Confirmar
+                  </button>
+                </div>
               </form>
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="btn btn-success"
-                  onClick={criarVisita}
-                >
-                  Confirmar
-                </button>
-              </div>
             </div>
           </div>
           <div className="col-3 p-5 bg-secondary bg-opacity-25 vh-100">
             <p className="text-dark h3">Sobre o ponto turístico</p>
             <br />
-            <p>
-              A Sé ou Catedral de Viseu, também designada por Igreja Paroquial
-              de Santa Maria ou Igreja de Nossa Senhora da Assunção, é uma
-              catedral cristã localizada na cidade, no município e no distrito
-              de Viseu, em Portugal. A Sé de Viseu está classificada como
-              Monumento Nacional desde 1910.
-            </p>
+            <p>{pt_descricao}</p>
           </div>
         </div>
       </main>
@@ -154,4 +165,4 @@ function criarVisitaAT() {
   )
 }
 
-export default criarVisitaAT
+export default CriarVisitaAT

@@ -19,7 +19,19 @@ function Recompensas() {
   const [pontosadquiridos, setPontosAdquiridos] = useState(0)
 
   let [selectedPontoTuristico, setSelectedPontoTuristico] = useState(0)
-  let [selectedPontos, setSelectedPontos] = useState([])
+
+  api.defaults.debug = true
+  api.interceptors.request.use(
+    function (config) {
+      // Do something before request is sent
+      console.log(config.url)
+      return config
+    },
+    function (error) {
+      // Do something with request error
+      return Promise.reject(error)
+    }
+  )
 
   useEffect(() => {
     api
@@ -69,75 +81,44 @@ function Recompensas() {
       })
   }, [])
 
-
-
-  function SendSave() {
-    if (nome === undefined) {
-      alert("Insira um nome");
-    } else if (descricao === undefined) {
-      alert("Insira uma descrição");
-    } else if (pontos === undefined) {
-      alert("Diga quantos pontos a recompensa vale");
-    } else {
-      const datapost = {
-        nome: nome,
-        titulo: titulo,
-        descricao: descricao,
-        imagem: imagem,
-        pontos: pontos,
-        pt_id: selectedPontoTuristico,
-      };
-
-      axios
-        .post("recompensa/create/", datapost)
-        .then((response) => {
-          if (response.data.success === true) {
-            alert(response.data.message);
-          } else {
-            alert(response.data.message);
-          }
-        })
-        .catch((error) => {
-          alert("Error 34 " + error);
-        });
-    }
-  }
-
   //CRIAR RECOMPENSA
-  function criarRecompensa() {
-    let valid = true
-    if (nome == '' || descricao == '' || pontos == '') {
-      valid = false
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const newRecompensa = {
+      nome: nome,
+      pt_id: selectedPontoTuristico,
+      pontos: pontos,
+      descricao: descricao,
+      imagem: imagem,
     }
-    console.log(valid)
-    if (valid) {
-      let newRecompensa = {
-        nome: nome,
-        titulo: titulo,
-        descricao: descricao,
-        imagem: imagem,
-        pontos: pontos,
-        pt_id: selectedPontoTuristico,
-      }
-      try {
-        api.post('recompensa/create/', newRecompensa).then((data) => {
-          console.log(data)
-          if (data.status == '200') {
-            toast.success('Recompensa criada com sucesso', {
-              position: 'top-center',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            })
-          }
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    console.log(newRecompensa)
+    let dataJson = JSON.stringify(newRecompensa)
+    console.log(dataJson)
+
+    api
+      .post('/recompensa/create', dataJson, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        if (response.status == '200') {
+          toast.success('Recompensa criada com sucesso', {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   }
 
   //EDITAR PONTOS OBTIDOS NO PONTO TURÍSTICO
@@ -166,7 +147,7 @@ function Recompensas() {
           })
         } else {
           sendError('Ocorreu um erro ao tentar alterar o ponto turístico')
-          //console.log("asd");
+          console.log('asd')
         }
       })
       .catch((error) => {
@@ -181,7 +162,7 @@ function Recompensas() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
-        link1="/dashboard1"
+        link1="/dashboardRRT"
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
@@ -190,6 +171,7 @@ function Recompensas() {
         link3="/pontosDeInteresse"
         nome4="Recompensas"
         icon4="./assets/icon-filetext.svg"
+        link4="/recompensas"
       />
 
       <main className="w-100">
@@ -208,7 +190,7 @@ function Recompensas() {
             <div className="card">
               <div className="card-body p-5">
                 <h5 className="card-title h4 fw-bold">Criar recompensa</h5>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="form-group row mt-2">
                     <label
                       htmlFor="localRecompensa"
@@ -230,27 +212,14 @@ function Recompensas() {
                       />
                     </div>
                   </div>
-                  <div className="form-group row mt-2">
-                    <label className="col-2 col-form-label">Local</label>
-                    <div className="col-lg-3">
-                      <input
-                        className="form-control"
-                        placeholder="Insira a região do local"
-                        id="localRecompensa"
-                        required
-                        value={local}
-                        onChange={(e) => {
-                          setLocal(e.target.value)
-                        }}
-                      />
-                    </div>
-                  </div>
+
                   <div className="form-group row mt-2">
                     <label className="col-2 col-form-label">
                       Ponto turístico
                     </label>
                     <div className="col-lg-3">
-                      <select className="form-select" 
+                      <select
+                        className="form-select"
                         onChange={(e) =>
                           setSelectedPontoTuristico(e.target.value)
                         }
@@ -259,9 +228,9 @@ function Recompensas() {
                         <option value="0">Selecione o ponto turístico</option>
                         {pontoTuristico.map((data, index) => {
                           return (
-                            <>
-                              <option value={data.id}>{data.nomePT}</option>
-                            </>
+                            <option key={index} value={data.id}>
+                              {data.nomePT}
+                            </option>
                           )
                         })}
                       </select>
@@ -320,8 +289,7 @@ function Recompensas() {
                   </div>
                   <button
                     className="btn btn-success text-white mt-4 d-block ms-auto "
-                    type='submit'
-                    onClick={() => SendSave()}
+                    type="submit"
                   >
                     Criar recompensa
                   </button>

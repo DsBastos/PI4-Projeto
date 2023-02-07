@@ -30,6 +30,7 @@ function dashboardRT() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
+        link1="/dashboardRRT"  
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
