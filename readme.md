@@ -27,12 +27,14 @@
 </a> • <a href="#authors">
     Authors
 </a>
+
 </br>
 
 <img alt="Projeto integrado 4" src="public/../Backoffice/public/app-readme.png">
 
-</br>
 </div>
+
+</br>
 
 <div id="about"></div>
 
