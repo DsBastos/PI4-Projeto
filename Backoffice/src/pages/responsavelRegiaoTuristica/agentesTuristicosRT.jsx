@@ -5,7 +5,6 @@ import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtili
 import api  from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
-import useApiPrivate from "../../hooks/useApiPrivate";
 
 //import { ModalEditarAgenteTuristico } from "../../components/responsavelRegiaoTuristica/ModalEditarAgenteTuristico";
 
@@ -19,10 +18,8 @@ function LoadFillData() {
   const [pontosT, setPontosT] = useState([]);
   const [modalConfirmacaoShow, setConfirmacaoShow] = useState(false);
 
-  const apiPrivate = useApiPrivate();
-
   useEffect(() => {
-    apiPrivate.get('/utilizadores/list')
+    api.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];
@@ -41,7 +38,7 @@ function LoadFillData() {
         alert(error)
       })
 
-      apiPrivate.get('/pontoturistico/list')
+      api.get('/pontoturistico/list')
       .then(({ data }) => {
         const dados = data.data;
         console.log(dados)
@@ -81,7 +78,7 @@ function AgentesTuristicosRT() {
   return (
     <div className="d-flex">
       {/* Colocar aqui o componente da sidebar */}
-      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboard1"
+      <Menu nome1="Dashboard" icon1="./assets/icon-barchartline.svg" link1="/dashboardRRT"
         nome2="Agentes turísticos" icon2="./assets/icon-filetext.svg"
         nome3="Pontos turísticos" icon3="./assets/icon-filetext.svg" link3="/pontosDeInteresse"
         nome4="Recompensas" icon4="./assets/icon-filetext.svg" link4="/recompensas" />

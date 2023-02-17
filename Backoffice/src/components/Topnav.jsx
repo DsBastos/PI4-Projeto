@@ -1,15 +1,7 @@
 import React from "react";
-import useLogout from "../hooks/useLogout";
-import { useNavigate } from "react-router-dom";
 
 export function Topnav(props) {
-  const navigate = useNavigate();
-  const logout = useLogout();
 
-  const signOut = async () => {
-    await logout();
-    navigate("/");
-  }
   return (
     <div
       className="navbar navbar-expand-lg bg-white sticky-top"
@@ -32,7 +24,7 @@ export function Topnav(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" type="button" onClick={signOut}>
+              <a className="nav-link" type="button">
                 <img src="./assets/icon_saida.svg" alt="saida" />
               </a>
             </li>

@@ -4,7 +4,7 @@ import { Menu } from '../../components/Menu'
 import { ModalEditarPontoInteresse } from '../../components/responsavelRegiaoTuristica/ModalEditarPontoInteresse'
 import { ModalPontoInteresse } from '../../components/responsavelRegiaoTuristica/ModalPontoInteresse'
 import { ModalReservaPontoInteresse } from '../../components/responsavelRegiaoTuristica/ModalReservaPontoInteresse'
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
@@ -16,10 +16,9 @@ function LoadFillData() {
   const [modalReservaPontoTuristicoShow, setModalReservaPontoTuristicoShow] =
     useState(false)
   const [selectedPontoTuristico, setSelectedPontoTuristico] = useState(null)
-  const apiPrivate = useApiPrivate()
 
   useEffect(() => {
-    apiPrivate
+    api
       .get('/pontoturistico/list')
       .then(({ data }) => {
         const dados = data.data
@@ -135,7 +134,7 @@ function pontosdeinteresseRT() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
-        link1="/dashboard1"
+        link1="/dashboardRRT"
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"

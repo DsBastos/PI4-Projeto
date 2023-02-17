@@ -1,19 +1,17 @@
 import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import useApiPrivate from "../../hooks/useApiPrivate";
+import  api  from "../../../api";
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
 
 function LoadFillData({ props }) {
   const [reserva, setReserva] = useState([]);
-  const apiPrivate = useApiPrivate();
-
   function updateAccepted(accepted, res) {
     let newReserva = {
       aceite: accepted,
     }
-    apiPrivate.patch("/reserva/updatereserva/" + res.id, newReserva).then((data) => {
+    api.patch("/reserva/updatereserva/" + res.id, newReserva).then((data) => {
       if (data.status = "200") {
         let newReservas = []
         reserva.map((reservaAux) => {
@@ -85,7 +83,7 @@ function LoadFillData({ props }) {
   }
 
   useEffect(() => {
-    apiPrivate.get('/reserva/list')
+    api.get('/reserva/list')
       .then(({ data }) => {
         const dados = data.data;
         var newReserva = [];
@@ -130,12 +128,12 @@ function LoadFillData({ props }) {
                   <button
                     style={{ border: "none", background: "none" }}
                     onClick={() => updateAccepted(true, data)}>
-                    <img src="../../assets/icon-accept.svg" alt="" />
+                    <img src="../../assets/icon-accept.svg"></img>
                   </button>
 
                   <button style={{ border: "none", background: "none" }}
                     onClick={() => updateAccepted(false, data)}>
-                    <img src="../../assets/icon-decline.svg"alt="" />
+                    <img src="../../assets/icon-decline.svg"></img>
                   </button>
                 </td>
               </tr>

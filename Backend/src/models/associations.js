@@ -9,34 +9,38 @@ const reserva = require("./reservaModel.js");
 const tipologia = require("./tipologiaModel.js");
 const visita = require("./visitaModel.js");
 const voucher = require("./voucherModel.js");
+const cliente_voucher = require("./cliente_voucherModel.js");
+//const tipologia_pontoTuristico = require("./tipologia_pontoTuristicoModel.js");
 
-tipoUtilizador.hasMany(utilizadores, {foreignKey:{name:"tu_id",allowNull:false}});
-utilizadores.belongsTo(tipoUtilizador, {foreignKey:{name:"tu_id",allowNull:false}});
 
-pontoTuristico.belongsTo(utilizadores, {foreignKey:{name:"u_id",allowNull:true}});
+tipoUtilizador.hasMany(utilizadores, { foreignKey: { name: "tu_id", allowNull: false } });
+utilizadores.belongsTo(tipoUtilizador, { foreignKey: { name: "tu_id", allowNull: false } });
 
-regiaoTuristica.hasMany(utilizadores, {foreignKey:{name:"rt_id",allowNull:true}});
-utilizadores.belongsTo(regiaoTuristica, {foreignKey:{name:"rt_id",allowNull:true}});
+pontoTuristico.belongsTo(utilizadores, { foreignKey: { name: "u_id", allowNull: true } });
 
-utilizadores.hasMany(pontoTuristico, {foreignKey:{name:"u_id",allowNull:false}});
-regiaoTuristica.hasMany(pontoTuristico, {foreignKey:{name:"rt_id",allowNull:false}});
+regiaoTuristica.hasMany(utilizadores, { foreignKey: { name: "rt_id", allowNull: true } });
+utilizadores.belongsTo(regiaoTuristica, { foreignKey: { name: "rt_id", allowNull: true } });
 
-cliente.belongsToMany(voucher,{through:'cliente_voucher'});
-cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}})
+utilizadores.hasMany(pontoTuristico, { foreignKey: { name: "u_id", allowNull: false } });
+regiaoTuristica.hasMany(pontoTuristico, { foreignKey: { name: "rt_id", allowNull: false } });
 
-voucher.belongsToMany(cliente,{through:'cliente_voucher'});
+cliente.belongsToMany(voucher, { through: cliente_voucher, foreignKey: 'c_id' });
+voucher.belongsToMany(cliente, { through: cliente_voucher, foreignKey: 'v_id' });
 
-tipologia.belongsToMany(pontoTuristico,{through:'tipologia_pontoTuristico'});
+pontoTuristico.belongsToMany(tipologia, { through: 'tipologia_pontoTuristico' });
+tipologia.belongsToMany(pontoTuristico, { through: 'tipologia_pontoTuristico' });
 
-pontoTuristico.hasMany(recompensa, {foreignKey:{name:"pT_id",allowNull:false}});
-recompensa.belongsTo(pontoTuristico, {foreignKey:{name:"pT_id",allowNull:false}});
+pontoTuristico.hasMany(recompensa, { foreignKey: { name: "pT_id", allowNull: false } });
+recompensa.belongsTo(pontoTuristico, { foreignKey: { name: "pT_id", allowNull: false } });
 
-recompensa.hasMany(voucher, {foreignKey:{name:"r_id",allowNull:false}});
+recompensa.hasMany(voucher, { foreignKey: { name: "r_id", allowNull: false } });
+voucher.belongsTo(recompensa, { foreignKey: { name: "r_id", allowNull: false } });
 
-cliente.hasMany(reserva, {foreignKey:{name:"c_id",allowNull:false}});
-reserva.belongsTo(cliente, {foreignKey:{name:"c_id",allowNull:false}});
 
-visita.hasMany(reserva, {foreignKey:{name:"vs_id",allowNull:false}});
-reserva.belongsTo(visita, {foreignKey:{name:"vs_id",allowNull:false}});
+cliente.hasMany(reserva, { foreignKey: { name: "c_id", allowNull: false } });
+reserva.belongsTo(cliente, { foreignKey: { name: "c_id", allowNull: false } });
 
-db.sync({logging:false});
+visita.hasMany(reserva, { foreignKey: { name: "vs_id", allowNull: false } });
+reserva.belongsTo(visita, { foreignKey: { name: "vs_id", allowNull: false } });
+
+db.sync({ logging: false });

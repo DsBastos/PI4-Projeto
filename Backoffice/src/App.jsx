@@ -12,6 +12,7 @@ export default function App() {
           path="/recuperarPalavraPasse"
           element={<router.forgotPassword />}
         />
+        <Route path="/linkedPages" element={<router.linkedPages />} />
         <Route path="unauthorized" element={<Unauthorized />} />
 
         {/*Rotas Protegidas ⬇️*/}

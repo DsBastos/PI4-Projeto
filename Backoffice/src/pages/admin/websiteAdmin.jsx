@@ -1,11 +1,11 @@
 import React from 'react'
 import { Topnav } from '../../components/Topnav'
 import { Menu } from '../../components/Menu'
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
-function websiteAdmin() {
+function WebsiteAdmin() {
   const sendError = (erro) => {
     toast.error(erro, {
       position: 'top-center',
@@ -27,7 +27,6 @@ function websiteAdmin() {
   const [reservas, setReservas] = useState('')
   const [qr, setQr] = useState('')
   const [atualizacoes, setAtualizacoes] = useState('')
-  const apiPrivate = useApiPrivate()
 
   function SendUpdate() {
     const datawebsitepost = {
@@ -40,8 +39,10 @@ function websiteAdmin() {
       qr: qr,
       atualizacoes: atualizacoes,
     }
+    console.log(datawebsitepost)
 
-    apiPrivate
+
+    api
       .patch('/website/updatewebsite/', datawebsitepost)
       .then((data) => {
         if ((data.status = '200')) {
@@ -54,8 +55,10 @@ function websiteAdmin() {
             draggable: true,
             progress: undefined,
           })
+           console.log("Pedido enviado com sucesso")
         } else {
           sendError('Ocorreu um erro ao tentar alterar o website')
+          console.log("Erro ao enviar o pedido")
         }
       })
       .catch((error) => {
@@ -64,7 +67,7 @@ function websiteAdmin() {
   }
 
   useEffect(() => {
-    apiPrivate
+    api
       .get('/website/list')
       .then(({ data }) => {
         const dados = data.data
@@ -81,7 +84,6 @@ function websiteAdmin() {
         alert(error)
       })
   }, [])
-
   return (
     <div className="d-flex">
       <Menu
@@ -101,7 +103,7 @@ function websiteAdmin() {
         link5="/utilizadores"
       />
       <main className="w-100">
-        <Topnav role="Administrador" nome="ROBERTO" />
+        <Topnav role="Administrador" nome="Nome do Adminstrador" />
         <div className="container px-5">
           <h2 className="mt-5">Editar conteúdos do website</h2>
           <div className="col col-md-10">
@@ -275,4 +277,4 @@ function websiteAdmin() {
   )
 }
 
-export default websiteAdmin
+export default WebsiteAdmin

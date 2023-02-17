@@ -1,5 +1,6 @@
 import login from "../pages/login";
 import forgotPassword from "../pages/forgotPassword"
+import linkedPages from "../pages/linkedPages";
 /*Admin */
 import dashboardAdmin from "../pages/admin/dashboardAdmin";
 import websiteAdmin from "../pages/admin/websiteAdmin";
@@ -19,6 +20,7 @@ import consultarReservasAT from "../pages/agenteTuristico/consultarReservasAT";
 export default {
   login,
   forgotPassword,
+  linkedPages,
   dashboardAdmin,
   websiteAdmin,
   responsaveisDaRegiaoAdmin,

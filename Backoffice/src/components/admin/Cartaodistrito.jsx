@@ -1,6 +1,6 @@
 import React from "react";
 import { ModalRegiaoTuristica } from "./ModalRegiaoTuristica"
-import useApiPrivate from "../../hooks/useApiPrivate";
+import api  from "../../../api";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 
@@ -10,11 +10,10 @@ export function Cartaodistrito() {
   const [utilizador, setUtilizador] = useState([]);
   let [modalRegiaoTuristicaShow, setModalRegiaoTuristicaShow] = useState(false);
   let [selectedRegiao, setSelectedRegiao] = useState(null);
-  const apiPrivate = useApiPrivate();
 
 
   useEffect(() => {
-    apiPrivate.get('/regiaoturistica/list')
+    api.get('/regiaoturistica/list')
       .then(({ data }) => {
         const dados = data.data;
         var newRegiao = [];
@@ -30,7 +29,7 @@ export function Cartaodistrito() {
         alert(error)
       })
 
-      apiPrivate.get('/utilizadores/list')
+      api.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];
@@ -42,10 +41,10 @@ export function Cartaodistrito() {
       .catch((error) => {
         alert(error)
       })
-  }, []);
+  }, [utilizador]);
 
   function setUserRtIdNull(id) {
-    apiPrivate.patch("/utilizadores/updateutilizador/" + id, { rt_id: null }).then((data) => {
+    api.patch("/utilizadores/updateutilizador/" + id, { rt_id: null }).then((data) => {
       console.log(data);
       if (data.status = "200") {
         toast.success('Responsável da região turística alterado com sucesso', {
@@ -57,6 +56,7 @@ export function Cartaodistrito() {
           draggable: true,
           progress: undefined,
         });
+
       } else {
         sendError("Ocorreu um erro ao tentar alterar o responsável da região turística")
       }

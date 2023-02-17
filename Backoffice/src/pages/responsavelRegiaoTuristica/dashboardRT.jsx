@@ -1,44 +1,28 @@
-import React from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { React, useState, useEffect } from 'react'
 
-import useApiPrivate from '../../hooks/useApiPrivate'
+import api  from "../../../api";
 
 import { Topnav } from '../../components/Topnav'
 import { Menu } from '../../components/Menu'
-//import { WeatherCard } from "../../components/WeatherCard";
 import { motion as m } from 'framer-motion'
 import icongroup from '../../assets/icongroup.svg'
 import { toast } from 'react-toastify'
 
 function dashboardRT() {
   const [infoRT, setInfoRT] = useState([])
-  const apiPrivate = useApiPrivate()
-  const navigate = useNavigate()
-  const location = useLocation()
 
-  useEffect(() => {
-    let isMounted = true
-    const controller = new AbortController()
 
-    const getInfoRT = async () => {
-      try {
-        const response = await apiPrivate.get('utilizadores/countdashboardrt', {
-          signal: controller.signal,
+    useEffect(() => {
+      api
+        .get("utilizadores/countdashboardrt")
+        .then(({ data }) => {
+          let aux = data.data;
+          setInfoRT(aux);
         })
-        console.log(response.data)
-        isMounted && setInfoRT(response.data)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    getInfoRT()
-
-    return () => {
-      isMounted = false
-      controller.abort()
-    }
-  }, [])
+        .catch((error) => {
+          alert(error);
+        });
+    }, []);
 
   return (
     <div className="d-flex">
@@ -46,6 +30,7 @@ function dashboardRT() {
       <Menu
         nome1="Dashboard"
         icon1="./assets/icon-barchartline.svg"
+        link1="/dashboardRRT"  
         nome2="Agentes turísticos"
         icon2="./assets/icon-filetext.svg"
         link2="/agentesTuristicos"
@@ -57,7 +42,7 @@ function dashboardRT() {
         link4="/recompensas"
       />
       <main className="w-100">
-        <Topnav role="Responsável da região turística" nome="ROBERTO" />
+        <Topnav role="Responsável da região turística" nome="Nome do Utilizador" />
         <div className="container px-5 mt-5">
           <h2 className="mt-5">Dashboard</h2>
           <div className="col col-md-10">

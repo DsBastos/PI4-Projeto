@@ -4,7 +4,7 @@ import { Menu } from "../../components/Menu";
 // import { ModalEditarUtilizadores } from "../../components/admin/ModalEditarUtilizadores";
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
-import useApiPrivate from "../../hooks/useApiPrivate";
+import api  from "../../../api";
 
 function LoadFillData() {
   const [show, setShow] = useState(false);
@@ -14,10 +14,9 @@ function LoadFillData() {
   const [selectedUtilizador, setSelectedUtilizador] = useState(null);
   const [utilizador, setUtilizador] = useState([]);
   const [modalConfirmacaoShow, setConfirmacaoShow] = useState(false);
-  const apiPrivate = useApiPrivate();
 
   useEffect(() => {
-    apiPrivate.get('/utilizadores/list')
+    api.get('/utilizadores/list')
       .then(({ data }) => {
         const dados = data.data;
         var newUtilizador = [];

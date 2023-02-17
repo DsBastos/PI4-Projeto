@@ -2,9 +2,7 @@ import React from "react";
 import { Topnav } from "../../components/Topnav";
 import { Menu } from "../../components/Menu";
 import { Cartaodistrito } from "../../components/admin/Cartaodistrito";
-import useApiPrivate from "../../hooks/useApiPrivate";
-import { useState, useEffect } from "react"
-import { toast } from 'react-toastify';
+import api  from "../../../api";
 
 function regioesturisticasAdmin() {
   return (
@@ -21,6 +19,7 @@ function regioesturisticasAdmin() {
         link3="/responsaveisDaRegiao"
         nome4="Regiões turísticas"
         icon4="./assets/icon-filetext.svg"
+        link4="/regioesTuristicas"
         nome5="Utilizadores"
         icon5="./assets/icon-user.svg"
         link5="/utilizadores"

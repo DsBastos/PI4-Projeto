@@ -5,29 +5,17 @@ const app = express()
 const path = require('path')
 require('./models/associations')
 const createError = require('http-errors')
-const verifyJWT = require('./middleware/verifyJWT')
-const cookieParser = require('cookie-parser')
 
-
-app.use(cors({ credentials: true, origin: true }))
-
-app.set('port', process.env.PORT || 3333)
+//Configurações 
+app.use(cors())
+app.set('port', (process.env.PORT || 3333));
 //Middlewares
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-
-app.use(cookieParser())
-
-//serve static files
-app.use('/', express.static(path.join(__dirname, '../public')))
+app.use(express.json());
 
 //Routes
-
-const autenticacaoRoute = require('./routes/authRoute.js')
-const refreshRoute = require('./routes/refreshRoute.js')
-const logoutRoute = require('./routes/logoutRoute.js')
-
 const clienteRoute = require('./routes/clienteRoute.js')
+const cliente_voucherRoute = require('./routes/cliente_voucherRoute.js')
 const pontoTuristicoRoute = require('./routes/pontoTuristicoRoute.js')
 const recompensaRoute = require('./routes/recompensaRoute.js')
 const regiaoTuristicaRoute = require('./routes/regiaoTuristicaRoute.js')
@@ -39,12 +27,8 @@ const voucherRoute = require('./routes/voucherRoute.js')
 const websiteRoute = require('./routes/websiteRoute.js')
 const utilizadoresRoute = require('./routes/utilizadoresRoute.js')
 
-app.use('/auth', autenticacaoRoute)
-app.use('/refresh', refreshRoute)
-app.use('/logout', logoutRoute)
 app.use('/website', websiteRoute)
-
-app.use(verifyJWT)
+app.use('/clientevoucher', cliente_voucherRoute)
 app.use('/utilizadores', utilizadoresRoute)
 app.use('/tipoutilizadores', tipoutilizadoresRoute)
 app.use('/cliente', clienteRoute)
@@ -56,19 +40,15 @@ app.use('/tipologia', tipologiaRoute)
 app.use('/visita', visitaRoute)
 app.use('/voucher', voucherRoute)
 
-app.all('*', (req, res, next) => {
-  res.status(404)
-  if (req.accepts('html')) {
-    res.sendFile(path.join(__dirname, 'views', '404.html'))
-  } else if (req.accepts('json')) {
-    res.json({ error: '404 Not found' })
-  } else {
-    res.type('txt').send('404 Not found')
-  }
+app.use(async (req, res, next) => {
+  next(createError.NotFound("Route does not exist!"))
 })
 
-app.use(createError)
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  res.status(status).send({ data: err.message, success: false })
+})
 
 app.listen(app.get('port'), () => {
-  console.log('Start server on port ' + app.get('port'))
+  console.log("Start server on port " + app.get('port'))
 })

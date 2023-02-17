@@ -2,17 +2,15 @@ import { Topnav } from "../../components/Topnav";
 import { motion as m } from "framer-motion";
 import { Menu } from "../../components/Menu";
 import {React, useState, useEffect } from "react";
-import useApiPrivate from "../../hooks/useApiPrivate";
+import api  from "../../../api";
 
 import icongroup from "../../assets/icongroup.svg";
 
 function DashboardAdmin() {
   const [infoAdmin, setInfoAdmin] = useState([]);
-  const apiPrivate = useApiPrivate();
-  
 
   useEffect(() => {
-    apiPrivate
+    api
       .get("utilizadores/countdashboardadmin")
       .then(({ data }) => {
         let aux = data.data;
@@ -43,7 +41,7 @@ function DashboardAdmin() {
         link5="/utilizadores"
       />
       <main className="w-100">
-        <Topnav role="Administrador" nome="ROBERTO" />
+        <Topnav role="Administrador" nome="Nome do administrador" />
         <div className="container px-5">
           <h2 className="mt-4">Dashboard</h2>
           <div className="col col-md-10">
