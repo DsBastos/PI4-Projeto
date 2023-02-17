@@ -1,3 +1,4 @@
+<center>
 
 <img alt="My Green Point" title="My Green Point" width="300px" src="public/../Backoffice/public/mygreenpointlogo.png" />
 
@@ -5,11 +6,16 @@
 
 # Project for the curricular unit "Projeto Integrado 4"
 
-<p style="text-align:center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/dsbastos/PI4-Projeto">
+  <a href="https://github.com/dsbastos/PI4-Projeto/">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/dsbastos/PI4-Projeto">
+  </a>
+   <a href="https://github.com/dsbastos/PI4-Projeto/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/forks/dsbastos/PI4-Projeto?style=social">
+  </a>
 
-  ![GitHub language count](https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto "GitHub language count")  ![Repository size](https://img.shields.io/github/repo-size/dsbastos/PI4-Projeto "Repository size")  [![last-commit](https://img.shields.io/github/last-commit/dsbastos/PI4-Projeto "last-commit")](https://github.com/dsbastos/PI4-Projeto/)  [![Stargazers](https://img.shields.io/github/forks/dsbastos/PI4-Projeto?style=social "Stargazers")](https://github.com/dsbastos/PI4-Projeto/stargazers) ![GitHub language count](https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto "GitHub language count")
 
-</p>
 
 </br>
 
@@ -17,8 +23,9 @@
 
 </br>
 
-  ![app](public/../Backoffice/public/app-readme.png "Projeto integrado 4")
+<img alt="Projeto integrado 4" src="public/../Backoffice/public/app-readme.png">
 
+</center>
 
 <div id="about"></div>
 
