@@ -19,11 +19,7 @@
 
 </br>
 
-[About](#about) •
-[Layout](#layout) •
-[Techs](#tech) •
-[Getting Started](#gettingStarted) •
-[Authors](#authors)
+[About](#about) • [Layout](#layout) • [Techs](#tech) • [Getting Started](#gettingStarted) • [Authors](#authors)
 
 </br>
 
