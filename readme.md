@@ -1,5 +1,4 @@
-<center>
-
+<div align="center">
 <img alt="My Green Point" title="My Green Point" width="300px" src="public/../Backoffice/public/mygreenpointlogo.png" />
 
 </br>
@@ -33,7 +32,7 @@
 <img alt="Projeto integrado 4" src="public/../Backoffice/public/app-readme.png">
 
 </br>
-</center>
+</div>
 
 <div id="about"></div>
 
