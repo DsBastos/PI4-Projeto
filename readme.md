@@ -5,10 +5,10 @@
 
 # Project for the curricular unit "Projeto Integrado 4"
 
-  <p align="center">
+  <center>
 
   ![GitHub language count](https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto "GitHub language count")  ![Repository size](https://img.shields.io/github/repo-size/dsbastos/PI4-Projeto "Repository size")  [![last-commit](https://img.shields.io/github/last-commit/dsbastos/PI4-Projeto "last-commit")](https://github.com/dsbastos/PI4-Projeto/)  [![Stargazers](https://img.shields.io/github/forks/dsbastos/PI4-Projeto?style=social "Stargazers")](https://github.com/dsbastos/PI4-Projeto/stargazers) ![GitHub language count](https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto "GitHub language count")
-</p>
+</center>
 
 </br>
 
