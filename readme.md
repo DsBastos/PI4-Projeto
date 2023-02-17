@@ -4,7 +4,7 @@
 
 </br>
 
-# Project for the curricular unit "Projeto Integrado 4"
+<h1> Project for my University -> "Projeto Integrado 4" </h1>
 
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/dsbastos/PI4-Projeto">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/dsbastos/PI4-Projeto">
@@ -15,16 +15,24 @@
     <img alt="Stargazers" src="https://img.shields.io/github/forks/dsbastos/PI4-Projeto?style=social">
   </a>
 
-
-
 </br>
 
-[About](#about) • [Layout](#layout) • [Techs](#tech) • [Getting Started](#gettingStarted) • [Authors](#authors)
-
+<a href="#about">
+    About
+</a> • <a href="#layout">
+    Layout
+</a> • <a href="#tech">
+    Techs
+</a> • <a href="#gettingStarted">
+    Getting Started
+</a> • <a href="#authors">
+    Authors
+</a>
 </br>
 
 <img alt="Projeto integrado 4" src="public/../Backoffice/public/app-readme.png">
 
+</br>
 </center>
 
 <div id="about"></div>
@@ -74,11 +82,11 @@ The following tools were used in the construction of the project:
 
 ```bash
 cd backend
-npm i 
-# or 
+npm i
+# or
 yarn install
 
-npm run dev 
+npm run dev
 # or
 yarn dev
 ```
@@ -89,11 +97,11 @@ The backend will run here [http://localhost:3333](http://localhost:3333).
 
 ```bash
 cd backoffice
-npm i 
-# or 
+npm i
+# or
 yarn install
 
-npm run dev 
+npm run dev
 # or
 yarn dev
 ```
