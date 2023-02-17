@@ -28,11 +28,11 @@
     Authors
 </a>
 
+</div>
+
 </br>
 
 <img alt="Projeto integrado 4" src="public/../Backoffice/public/app-readme.png">
-
-</div>
 
 </br>
 
